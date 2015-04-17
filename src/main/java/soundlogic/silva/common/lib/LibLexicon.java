@@ -1,0 +1,50 @@
+package soundlogic.silva.common.lib;
+
+public class LibLexicon {
+
+	public static final String KNOWLEDGE_TYPE_PREFIX = "silva.knowledge.";
+	public static final String CATEGORY_PREFIX = "silva.category.";
+	public static final String ENTRY_PREFIX = "silva.entry.";
+	public static final String PAGE_PREFIX = "silva.page.";
+	
+	public static final String KNOWLEDGE_TREE = "worldTree";
+	public static final String KNOWLEDGE_DWARVEN = "dwarven";
+	public static final String KNOWLEDGE_DARK_ELF = "darkElf";
+	
+	public static final String CATEGORY_TREE = CATEGORY_PREFIX + "worldTree";
+	public static final String CATEGORY_DWARVEN = CATEGORY_PREFIX + "dwarven";
+	public static final String CATEGORY_DARK_ELF = CATEGORY_PREFIX + "darkElf";
+	
+	public static final String DIMENSIONAL_TRAVEL_ATTEMPT = "dimensionalTravelAttempt";
+	public static final String DIMENSIONAL_TRAVEL_FAILURE = "dimensionalTravelFailure";
+	public static final String PAPER_BUNDLES = "paperBundles";
+	public static final String DARK_ELF_INTRO = "darkElfIntro";
+	public static final String WORLD_TREE_INTRO = "worldTreeIntro";
+	public static final String MANA_EATER = "manaEater";
+	public static final String ADVANCED_PORTALS = "advancedPortals";
+	public static final String DWARF_WEED = "dwarfWeed";
+	public static final String BOOM_MOSS = "boomMoss";
+	public static final String DWARF_FORGED = "dwarfForged";
+	public static final String DWARF_INTRO = "dwarfIntro";
+	
+	public static final String DIM_GINNUNGAGAP = "dimGinnungagap";
+	public static final String DIM_VIGRIOR = "dimVigrior";
+	public static final String DIM_FOLKVANGR = "dimFolkvangr";
+	public static final String DIM_VALHALLA = "dimValhalla";
+	public static final String DIM_HELHEIM = "dimHelheim";
+	public static final String DIM_ASGARD = "dimAsgard";
+	public static final String DIM_ALFHEIM = "dimAlfheim";
+	public static final String DIM_MINEGARD = "dimMinegard";
+	public static final String DIM_JOTUNHEIMR = "dimJotunheimr";
+	public static final String DIM_NIOAVELLIR = "dimNioavellir";
+	public static final String DIM_MUSPELHEIM = "dimMuspelheim";
+	public static final String DIM_NIFLHEIM = "dimNiflheim";
+	public static final String DIM_NIDAVELLIR = "dimNidavellir";
+	public static final String DIM_VANAHEIMR = "dimVanaheimr";
+	public static final String BIFROST = "bifrost";
+	public static final String DARKENED_DUST = "darkenedDust";
+
+
+
+
+}

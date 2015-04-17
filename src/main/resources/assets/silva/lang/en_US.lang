@@ -1,0 +1,209 @@
+# TOOLTIPS
+silva.tooltips.papers_craft=Craft with a lexicon
+silva.tooltips.papers_knowledge_type=Adds knowledge type:
+silva.tooltips.fake_knowledge=More Knowledge!
+silva.tooltips.clickToSignature=Shift click to see signature
+
+# DIMENSIONS
+silva.dimension.ginnungagap=Ginnungagap
+silva.dimension.vigrior=Vigrior
+silva.dimension.folkvangr=Folkvangr
+silva.dimension.valhalla=Valhalla
+silva.dimension.helheim=Helheim
+silva.dimension.asgard=Asgard
+silva.dimension.alfheim=Alfheim
+silva.dimension.minegard=Minegard
+silva.dimension.jotunheimr=Jotunheimr
+silva.dimension.nioavellir=Nioavellir
+silva.dimension.muspelheim=Muspelheim
+silva.dimension.niflheim=Niflheim
+silva.dimension.nidavellir=Nidavellir
+silva.dimension.vanaheimr=Vanaheimr
+
+
+# KNOWLEDGE
+botania.knowledge.worldTree=&5World Tree&7 Knowledge
+botania.knowledge.dwarven=&8Dwarven&7 Knowledge
+botania.knowledge.darkElf=&fDark Elf&7 Knowledge
+
+# BLOCK NAMES
+tile.silva:manaEater.name=Mana Spreader?
+tile.silva:pylon.portal.name=Portal Pylon
+tile.silva:pylon.untuned.name=Untuned Pylon
+tile.silva:pylon.Ginnungagap.name=Ender Pylon
+tile.silva:pylon.Vigrior.name=Armagedon Pylon
+tile.silva:pylon.Folkvangr.name=Tactical Pylon
+tile.silva:pylon.Valhalla.name=Battle Pylon
+tile.silva:pylon.Helheim.name=Death Pylon
+tile.silva:pylon.Asgard.name=Divine Pylon
+tile.silva:pyl0on.Alfheim.name=Elven Pylon
+tile.silva:pylon.Minegard.name=Worldly Pylon
+tile.silva:pylon.Jotunheimr.name=Stone Pylon
+tile.silva:pylon.Nioavellir.name=Darkened Pylon
+tile.silva:pylon.Muspelheim.name=Fire Pylon
+tile.silva:pylon.Niflheim.name=Frost Pylon
+tile.silva:pylon.Nidavellir.name=Metal Pylon
+tile.silva:pylon.Vanaheimr.name=Wisdom Pylon
+tile.silva:boomMoss.0.name=Boom Moss
+tile.silva:boomMoss.1.name=Master Boom Moss
+tile.silva:bifrostBlock.name=Bifrost
+tile.silva:bifrostBlockSparkling.name=Sparkling Bifrost
+tile.silva:bifrostBlockStairs.name=Bifrost Stairs
+tile.silva:bifrostBlockWall.name=Bifrost Wall
+tile.silva:portalCore.name=Advanced Portal Core
+tile.silva:darkenedDust.name=Darkened Dust
+
+# ITEM NAMES
+item.silva:questionMark.name=Who knows?
+item.silva:pageBundleFake.name=Notes for your Lexicon
+item.silva:pageBundle.worldTree.name=Another Message from Elven Garde
+item.silva:pageBundle.dwarven.name=Message from Dwarven Trade Commission
+item.silva:pageBundle.darkElf.name=Message from [ELF NAME]
+item.silva:bifrostShard.name=Bifrost Shard
+
+# FLOWER NAMES
+
+# - GENERATING
+
+# - FUNCTIONAL
+
+
+# LEXICON CATEGORIES
+silva.category.worldTree=The World Tree
+silva.category.dwarven=Dwarven Trade
+silva.category.darkElf=The Dark Elves
+
+
+# LEXICON ENTRIES
+
+
+# - MISC
+# -- BUNDLES OF PAPER
+silva.entry.paperBundles=Bundles of Paper
+silva.page.paperBundles0=While having all your knowledge in one simple lexicon is wonderful, occasionally you might get knowledge from other sources. Such knowledge should of course be put in your lexicon. Simply crafting a paper bundle with your lexicon will add it to the lexicon as a new knowledge type, or craft it with paper to copy it
+silva.page.paperBundles1=Crafting with a lexicon
+silva.page.paperBundles2=Crafting with paper
+
+# - ALFHOMANCY
+# -- DIMENSIONAL TRAVEL
+silva.entry.dimensionalTravelAttempt=Dimensional Travel
+silva.page.dimensionalTravelAttempt0=Your &4Alfheim Portal&0 is unable to let living things through, just items. However, an &4Ender Pearl&0 is an item with an unusual property: When thrown, you follow it to its destination. Perhaps &4Throwing&0 the ender pearl through the portal would permit you to reach Alfheim. 
+silva.page.dimensionalTravelAttempt1=What will happen when you throw an &4Ender Pearl&0?
+
+# -- DIMENSIONAL TRAVEL FAILURE
+silva.entry.dimensionalTravelFailure=Dimensional Travel II
+silva.page.dimensionalTravelFailure0=That was... not what you expected. Well, it could have been worse. You should probably read the rest of the papers they sent you though.
+
+# - WORLD TREE
+
+# -- WORLD TREE INTRO
+silva.entry.worldTreeIntro=Introduction to the World Tree
+silva.page.worldTreeIntro0=The World Tree is the great tree which holds our worlds together. From its branches come the nine realms: Asgard, Alfheim (where we live), Minegard (where you live), Jotunheimr, Nioavellir, Muspelheim, Niflheim, Nidavellir, and Vanaheimr. 
+silva.page.worldTreeIntro1=Some realms contain locations of great enough significance to have their own dimensional signature such as Vigrior, Folkvangr, Valhalla, and Helheim.
+silva.page.worldTreeIntro2=The World Tree is surrounded by the Great Ginnungagap - a powerful void of great and terrible energies. 
+
+# -- ADVANCED PORTALS
+silva.entry.advancedPortals=Advanced Portals
+silva.page.advancedPortals0=Since Thor shattered the bifrost we have had an increasing dependence on smaller weaker portals akin to the one you created to first contact us. While they do not permit living things to travel (with one exception-see &4Nioavellir&0), they have permitted us to rebuild some of the trade networks we had before. While the portal you created out of wood and metal is impressive for such an
+silva.page.advancedPortals1=ad-hoc creation, shards of bifrost permit a far more refined, adaptable, and efficient portal. Said portal can be tuned to connect to any of the nine realms, and a few locations within them. The portal not only permits trade, but also lets energy from one place flow into the other for various effects (described in the entries for that location)
+silva.page.advancedPortals2=The full requirements for the portal are as follows: 8 Bifrost blocks, 4 Bifrost Stairs, 3 Sparkling Bifrost Blocks, 1 Portal Core (read on) and two Portal Pylons (read on), and a Dimensional Signature (read on)
+silva.page.advancedPortals3=A dimensional signature tunes the portal to its target location-usually a realm. A signature is drawn in front of the portal. We usually draw it in pixie dust, though your realm may have some other dust which you may have an easier time getting. The signature has a specific shape fitting within 5 by 3, and I have listed the signatures known to me along with where they lead in other entries in these papers.
+silva.page.advancedPortals4=Crafting the Portal Core
+silva.page.advancedPortals5=Crafting the Portal Pylons
+silva.page.advancedPortals6=Making a frame of Bifrost Blocks
+silva.page.advancedPortals7=Add Sparkling Bifrost Blocks
+silva.page.advancedPortals8=Add Bifrost Stairs
+silva.page.advancedPortals9=Place the Portal Core
+silva.page.advancedPortals10=Add Mana Pools
+silva.page.advancedPortals11=Place Portal Pylons above the Pools
+silva.page.advancedPortals12=Create a Dimensional Signature
+silva.page.advancedPortals13=Opening the portal takes twice as much mana as opening the wooden portal, but costs half as much mana to maintain. In addition, the portal permits more control over the time dilation between the worlds, allowing bulk trade to go much faster
+
+# -- BIFROST
+silva.entry.bifrost=The Bifrost
+silva.page.bifrost0='Bifrost' refers both to the rainbow bridge of Asgard which Thor shattered and the material which made it up. Said material was the only known material with the properties required for such a project. Unfortunately, since its destruction the required amount of Bifrost (the material) to rebuild the Bifrost (the bridge) has vastly exceeded our supply by many many many orders of magnitude. 
+silva.page.bifrost1=None the less, it is useful for a few different tasks. For starters, while individual bits of bifrost are weak it becomes stronger when touching other portions of bifrost, eventually being rendered near indestructible. Thor's abilities permitted him to shatter it in one blow, but lacking such abilities attempting to break a piece of bifrost which touches four others is impossible. 
+silva.page.bifrost2=A more common use now however is to exploit its interworldly nature for the creation of portals between the realms. Such a portal is described under 'Advanced Portals'.
+silva.page.bifrost3=There are three known ways to create bifrost, one which is useless for portal creation, the second which is tedious, and the third which requires pre-existing bifrost.
+silva.page.bifrost4=The first creates a weak, quickly vanishing 'psuedo-bifrost' out of mana using the 'Rod of the Bifrost'. Such a material is insufficient for any real use. 
+silva.page.bifrost5=The second uses said rod and a block of dragonstone, applying the power of the rod with the stability of the dragonstone to create shards of bifrost-18 to be exact. Said bifrost shards can then be put together to form a full block of bifrost. This is how you should get your initial bifrost. 
+silva.page.bifrost6=The third way uses an interesting property of such blocks-when in contact with a block of dragonstone they will convert it into bifrost, resulting in a second block of bifrost and nine shards.
+silva.page.bifrost7=Crafting a bifrost block
+silva.page.bifrost8=Turning the block back into shards
+silva.page.bifrost9=Crafting bifrost stairs
+silva.page.bifrost10=Crafting bifrost walls
+silva.page.bifrost11=Crafting bifrost slabs
+silva.page.bifrost12=Crafting sparkling bifrost
+
+# -- Alfheim
+silva.entry.dimAlfheim=Alfheim
+silva.page.dimAlfheim0=Alfheim is one of the nine realms, and is inhabited by the Elves (us). Before the Shattering we had grand cities constructed in the most massive of trees, and have been rebuilding our previous grandeur ever since. We are skilled at magic and craftmanship, and the only ones with the secret of growing the elusive dreamwood. It is a beautiful realm of nature and magic that I wish you could visit. 
+silva.page.dimAlfheim1=Exposure to Alfheim energies results in a slight increase in grace and speed, our realm's little gift to you.
+
+# -- Asgard
+silva.entry.dimAsgard=Asgard
+silva.page.dimAsgard0=Asgard is one of the nine realms, and is inhabited by the Asgardians. It was previously a place of grand spires and trade. It was home to the Bifrost before it was shattered, making it a nexus of culture and industry. Since the shattering we have had little contact despite our best efforts. 
+silva.page.dimAsgard1=From what we have gathered there is some force there which still threatens the Asgardians, though they are almost completely unwilling to share whatever it is. If this is the legendary Asgardian pride or something else we do not know. 
+silva.page.dimAsgard2=Exposure to Asgard energies results in a slight increase in strength and toughness, though nothing like a native Asgardian.
+
+# -- Ginnungagap
+silva.entry.dimGinnungagap=Ginnungagap
+silva.page.dimGinnungagap0=Ginnungagap is the energised void outside of the World Tree. It is massive and seemingly without limit. Unlike the other realms, we know of multiple signatures which connect to it, however a powerful being of massive dimensional energies which resides within it prevents us from opening a portal there. 
+silva.page.dimGinnungagap1=We can only speculate as to how one could reach the Ginnungagap-we have records of some sort of creature in minegard with a connection to it, but little else. No method known to Elvenkind can create a portal to it.
+silva.page.dimGinnungagap2=What exposure to Ginnungagap energies would do is unknown due to our inability to open a portal to it.
+
+# -- Helheim
+silva.entry.dimHelheim=Helheim
+silva.page.dimHelheim0=Helheim is a hall on the edge of Niflheim. It is ruled over by Hel and is where those who die of sickness are taken. Since the shattering we can sense that the dead are on the othe side, but neither them nor Hel reply to any message we send through.
+silva.page.dimHelheim1=Exposure to Helheim energies results in weakness to mortals and the instant removal of necromatic animation form unliving beings.
+
+# -- Jotunheimr
+silva.entry.dimJotunheimr=Jotunheimr
+silva.page.dimJotunheimr0=Jotunheimr is one of the nine realms, and is inhabited by the Giants. Most of the Giants died during the shattering as holes opened in Jotunheimr, though they have recovered somewhat. They are mostly lacking in the way of civilization, and we have found little use for portals to their realm.
+silva.page.dimJotunheimr1=Exposure to Jotunheimr energies results gaining the power of a giant as the cost of the slowness of a giant. We find the trade inconvenient, but you may like it.
+
+# -- Minegard
+silva.entry.dimMinegard=Minegard
+silva.page.dimMinegard0=Minegard is one of the nine realms, and is the one in which you live. You probably know more about it than us. For obvious reasons, you cannot open a portal to it.
+silva.page.dimMinegard1=Exposure to Minegard energies results in trees growing at an extraordinarily rapid rate into incredibly small trees by our standards, though you would find such things normal. In our world trees take years to centuries to grow and can easily be big enough for us to form houses in.
+
+# -- Muspelheim
+silva.entry.dimMuspelheim=Muspelheim
+silva.page.dimMuspelheim0=Muspelheim is one of the nine realms, and was one of the original two realms which resulted in the world tree. It was inhabited by the Fire Giants until the shattering when it crashed into Asgard. Since then we haven't found any life within it.
+silva.page.dimMuspelheim1=Exposure to Muspelheim energies results fire and charring. We occasionally use it as a furnace.
+
+# -- Nidavellir
+silva.entry.dimNidavellir=Nidavellir
+silva.page.dimNidavellir0=Nidavellir is one of the nine realms, and is home to the Dwarves. They live underground and are expert miners and smiths. Their resistance helped them recover quickly from the Shattering, and while they haven't rebuilt all of their tunnel networks the individual tribes are doing quite well in both life and trade.
+silva.page.dimNidavellir1=Exposure to Nidavellir energies results increased mining ability, and in the case of longer exposure night vision.
+
+# -- Niflheim
+silva.entry.dimNiflheim=Niflheim
+silva.page.dimNiflheim0=Niflheim is one of the nine realms, and was one of the original two realms which resulted in the world tree. It was almost completely uninhabited except Helheim on its edge. During the shattering nothing much seemed to happen to it.
+silva.page.dimNiflheim1=Exposure to Niflheim energies will freeze and weaken things.
+
+# -- Nioavellir
+silva.entry.dimNioavellir=Nioavellir
+silva.page.dimNioavellir0=Nioavellir is one of the nine realms, and is home to the Dark Elves. DO NOT OPEN A PORTAL TO IT. The Dark Elves are cowardly and evil creatures, and while most lack almost all intelligence, a few of them possess extraordinary cunning and teach the others to act on their behalf. 
+silva.page.dimNioavellir1=Dark Elves are the only creatures which know the secret of how to use these portals to travel between world, making opening a portal there extremely dangerous.
+silva.page.dimNioavellir2=Teasing out what results from the Dark Elves' actions and the essence of Nioavellir itself is tricky. 
+
+# -- Valhalla
+silva.entry.dimValhalla=Valhalla
+silva.page.dimValhalla0=Valhalla is a hall within Asgard where Odin takes half of those who are slain in combat. Since the shattering, Odin has not been seen in it according to reports, though Thor has occasionally feasted there-though he is reported to have an unusually small appetite, eating only a dozen times as much as the others. 
+silva.page.dimValhalla1=Exposure to Valhalla energies results in strength in battle and powerful strikes.
+
+# -- Vanaheimr
+silva.entry.dimVanaheimr=Vanaheimr
+silva.page.dimVanaheimr0=Vanaheimr is one of the nine realms, and is home to the Vanir-powerful beings of wisdom and forsight. When the Bifrost existed gaining permission to visit Vanaheimr was difficult, and permission to build a lasting portal to it unheard of outside of Folkvangr. As a result, I do not know its dimensional signature nor details of its energies.
+silva.page.dimVanaheimr1=What exposure to Vanaheimr energies would do is unknown due to our inability to open a portal to it.
+
+# -- Folkvangr
+silva.entry.dimFolkvangr=Folkvangr
+silva.page.dimFolkvangr0=Folkvangr is the accessable portion of Vanaheimr, though how to get from it to Vanaheimr is a closely guarded secret. It is ruled over by Freyja of the Vanir and holds half of those slain in battle. A portal to it leads to the hall Sessrúmnir. Before the shattering one could use such a portal to call on the wisdom of Freyja, though she has not been seen since the shattering.
+silva.page.dimFolkvangr1=Exposure to Folkvangr energies results in calmness in battle, permitting one's strikes to fall on ones foes with the precision that those in Sessrúmnir possess.
+
+# -- Vigrior
+silva.entry.dimVigrior=Vigrior
+silva.page.dimVigrior0=Vigrior is the great field where the battle Ragnarok is fortold to occur. Even now the ground there is filled with the energy of battle cries and death. No one lives there but strange things sometimes occur on it-echos of the future. 
+silva.page.dimVigrior1=Exposure to Vigrior energies results in strange happenings in battle as the power of the future battle stretches backwards to touch the present. I have seen mice exposed slay men, men slay giants, and Asgardians defeat armies all without any apparent difficulty, and watched warriers forget their skills, drop their weapons, or give them away to their enemies. 

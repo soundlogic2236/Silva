@@ -1,0 +1,16 @@
+[
+{
+  "modid": "Silva",
+  "name": "Silva",
+  "description": "Silva is an addon for Botania",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["SoundLogic"],
+  "credits": "Vazkii, TheMadman, nekosune, neptunepink",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

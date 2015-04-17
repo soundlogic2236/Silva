@@ -1,0 +1,7 @@
+Credits:
+Mojang and related entities for creating Minecraft
+Vazkii for creating Botania
+Vazkii for permitting me to use some of her code
+TheMadman for design aid
+Nekosune for aid in project setup and related things
+Neptunepink for code aid

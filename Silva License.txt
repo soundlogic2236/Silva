@@ -1,0 +1,34 @@
+Silva is distributed under a reasonably open license. You probably want to read through this if you want to do something other than just play (with or without friends) or you derive amusement from the form of humor I enjoy.
+
+General Clauses:
+Clauses that apply in general to any of the uses that follow.
+Waive Clause:
+I (Sound Logic) reserve the right to waive any restrictive clause in this license. I also reserve the right to redirect you to this license if you ask me to waive a restrictive clause instead of waiving it.
+
+Informal Clause:
+This license will probably not hold up in court. I currently have no plans for using such things to enforce it. None the less, I may be irritated if you break it, and given how open the license is, you breaking it probably indicates you aren't a very nice person.
+
+If you want to distribute Silva:
+"Distribution" refers to making available binaries or source of the mod available from the original sources as part of your modpack or otherwise.
+
+Attribution Clause
+You must give appropriate credit to SoundLogic as the creator of Silva or the parts of it you are using. Simply leaving the basic mod creator documentation untouched counts.
+
+Documentation Clause
+If you alter in depth things (not superficial things like recipes) please record said fact in such a way that if someone comes to me with an issue I can tell if it is caused by you. 
+
+Awesomeness Clause
+If you create something which is: 1) Public, 2) Big, 3) Involves Silva, 4) Awesome, you are required to inform me if reasonably convenient. Such things include: Big modpacks involving Silva, Popular Let's Plays involving Silva, and any other similar things. Failure to do so will result in me not being as happy as if you informed me. 
+
+Monetary clause
+Money is not evil. Money is useful. However, money is used in our current economy as a proxy for value, so in principle if you are getting money you ought to be producing some value for our world. You may make money using Silva if and only if you are generating some non-trivial value from it. Simply re-uploading and putting it behind and ad-fly link or such is not permitted. Charging Martians for the precision lasers to rapidly send updates to them is. This clause is automatically invalidated should the economic system change sufficiently that money ceases to be a proxy for value, in which case please attempt to either consult me as to how to translate it to the new system or if you cannot find a good way to do this attempt to translate it either yourself or with whatever the equivalent of an economist is in the new system.
+
+If you want to Feature Silva:
+"Featuring" refers to using Silva in an environment where you do not distribute binaries or source. An example would be a YouTube Let's Play.
+Thief Clause:
+You must not claim that you made Silva (unless you did via either by being me or by some remarkable set of circumstances). Please give credit to me (SoundLogic) if your feature is primarily about Silva (such as a mod spotlight on Silva or a Let's Play episode focusing on Silva). If you have multiple closely related features involving Silva only the first need credit me (For example, if you run 5 episodes on Silva in a Let's Play, only the first need mention my name)
+
+If you want to Use Silva Code
+
+Attribution Clause
+You must give credit to SoundLogic as the creator of Silva or the parts of it you are using. Please be aware that a noticeable portion of my code is derived from Botania, and therefor can fall under its license. If you modify my code in such a way that I am likely to need to debug it please report it to me (such as modifying my classes at runtime) either directly or via some sort of reference that would appear to me while debugging. If it would be otherwise helpful for me to know, I would appreciate knowing (such as coming up with a modification that makes my code faster).
