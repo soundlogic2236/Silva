@@ -2,6 +2,7 @@ package soundlogic.silva.client.render.tile;
 
 import org.lwjgl.opengl.GL11;
 
+import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.block.tile.TileDwarvenSign;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.model.ModelSign;
@@ -12,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderTileDwarvenSign extends TileEntitySpecialRenderer{
 
-	private static final ResourceLocation textureOff = new ResourceLocation("textures/entity/sign.png");
-	private static final ResourceLocation textureOn = new ResourceLocation("textures/entity/la.png");
+	private static final ResourceLocation textureOff = new ResourceLocation(LibResources.MODEL_DWARVEN_SIGN_OFF);
+	private static final ResourceLocation textureOn = new ResourceLocation(LibResources.MODEL_DWARVEN_SIGN_ON);
     private final ModelSign model = new ModelSign();
 
     public void renderTileEntityAt(TileEntity tile, double d0, double d1, double d2, float ticks) {

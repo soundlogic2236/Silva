@@ -58,6 +58,9 @@ public class LibResources {
 		PREFIX_ENTRIES + "portal6.png",
 	};
 
+	public static final String MODEL_DWARVEN_SIGN_OFF = PREFIX_MODEL + "dwarvenSignOff.png";
+	public static final String MODEL_DWARVEN_SIGN_ON = PREFIX_MODEL + "dwarvenSignOn.png";
+
 
 
 

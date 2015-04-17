@@ -1,5 +1,7 @@
 package soundlogic.silva.common.block.tile;
 
+import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
+
 public class TileDwarvenSign extends TileMod{
 	
 	public TilePortalCore core;
@@ -9,14 +11,21 @@ public class TileDwarvenSign extends TileMod{
 	@Override
 	public void updateEntity() {
 		ticks++;
-		if(core!=null) {
-			if(core.isInvalid()) {
-				core=null;
-			}
-		}
+		checkValid();
 		if(core!=null) {
 			
 		}
+	}
+	
+	private void checkValid() {
+		if(core!=null)
+			if(core.isInvalid())
+				core=null;
+		if(core!=null)
+			if(core.getDimension()!=Dimension.NIDAVELLIR)
+				core=null;
+		if(core==null)
+			activated=false;
 	}
 
 	public void activate() {
