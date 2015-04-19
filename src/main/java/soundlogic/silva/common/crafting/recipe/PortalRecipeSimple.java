@@ -33,7 +33,19 @@ public class PortalRecipeSimple implements IPortalRecipe {
 	@Override
 	public IPortalRecipeTransaction getTransaction(
 			ArrayList<ItemStack> inventory, TilePortalCore tilePortalCore) {
-		ArrayList<Object> inputsMissing = new ArrayList(inputs);
+		ArrayList<Object> inputsMissing = new ArrayList();
+		for(Object o : inputs) {
+			if(o instanceof String)
+				inputsMissing.add(o);
+			else {
+				ItemStack stack=((ItemStack) o).copy();
+				int size=stack.stackSize;
+				stack.stackSize=1;
+				for(int i=0;i<size;i++) {
+					inputsMissing.add(stack);
+				}
+			}
+		}
 		ArrayList<ItemStack> stacksToRemove = new ArrayList();
 		
 		for(ItemStack stack : inventory) {

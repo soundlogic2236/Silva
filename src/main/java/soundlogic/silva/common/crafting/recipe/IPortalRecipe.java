@@ -5,6 +5,7 @@ import java.util.List;
 
 import soundlogic.silva.common.block.tile.TilePortalCore;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 public interface IPortalRecipe {
 
@@ -14,5 +15,5 @@ public interface IPortalRecipe {
 	List<ItemStack> getOutput();
 
 	List<Object> getInputs();
-
+	
 }

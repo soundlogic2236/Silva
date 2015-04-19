@@ -17,6 +17,7 @@ import soundlogic.silva.common.item.block.ItemBlockPylon;
 import soundlogic.silva.common.lib.LibBlockNames;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.tileentity.TileEntity;
 
@@ -107,6 +108,9 @@ public class ModBlocks {
 		
 		manaCrystal=new BlockManaCrystal();
 		GameRegistry.registerBlock(manaCrystal, ItemBlockManaCrystal.class, LibBlockNames.MANA_CRYSTAL);
+		
+		dwarfRock=new BlockSimple(Material.rock).setBlockName(LibBlockNames.DWARF_ROCK);
+		GameRegistry.registerBlock(dwarfRock, ItemBlockMod.class, LibBlockNames.DWARF_ROCK);
 		
 		
 		initTileEntities();

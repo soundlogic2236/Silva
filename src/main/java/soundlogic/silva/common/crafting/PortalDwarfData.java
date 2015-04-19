@@ -16,9 +16,11 @@ public class PortalDwarfData {
 	private static final String TAG_DATA = "dwarfData";
 	private static final String TAG_REPUTATION = "reputation";
 	private static final String TAG_DWARF_TRADES = "dwarfTrade";
+	private static final String TAG_DWARF_TRADES_DATA = "dwarfTradeData";
 
 	int reputation;
 	DwarfTrade[] dwarfTrades=new DwarfTrade[9];
+	NBTTagCompound[] dwarfTradesData=new NBTTagCompound[9];
 	Random random=new Random();
 	
 	public PortalDwarfData() {
@@ -30,6 +32,8 @@ public class PortalDwarfData {
 		mine.setInteger(TAG_REPUTATION, reputation);
 		for(int i=0;i<dwarfTrades.length;i++) {
 			mine.setInteger(TAG_DWARF_TRADES+i, ModPortalTradeRecipes.dwarfTradesIndex.indexOf(dwarfTrades[i]));
+			if(dwarfTradesData[i]!=null)
+				mine.setTag(TAG_DWARF_TRADES_DATA+i, dwarfTradesData[i]);
 		}
 		
 		cmp.setTag(TAG_DATA, mine);
@@ -43,6 +47,8 @@ public class PortalDwarfData {
 				dwarfTrades[i]=null;
 			else
 				dwarfTrades[i]=ModPortalTradeRecipes.dwarfTradesIndex.get(j);
+			if(mine.hasKey(TAG_DWARF_TRADES_DATA+i))
+				dwarfTradesData[i]=mine.getCompoundTag(TAG_DWARF_TRADES_DATA+i);
 		}
 		reputation=mine.getInteger(TAG_REPUTATION);
 	}
@@ -56,6 +62,7 @@ public class PortalDwarfData {
 	}
 	
 	public DwarfTrade getTrade(int slot) {
+		dwarfTrades[slot].readNBTData(dwarfTradesData[slot]);
 		return dwarfTrades[slot];
 	}
 	
@@ -69,6 +76,13 @@ public class PortalDwarfData {
 			if(i != locked && ticks % 60 == 0)
 				if(random.nextFloat()<.01F) {
 					dwarfTrades[i]=getRandomTrade();
+					dwarfTrades[i].prepRecipe(reputation);
+					NBTTagCompound cmp=new NBTTagCompound();
+					dwarfTrades[i].writeNBTData(cmp);
+					if(cmp.hasNoTags())
+						dwarfTradesData[i]=null;
+					else
+						dwarfTradesData[i]=cmp;
 					TileDwarvenSign sign = signs[i];
 					if(sign!=null) {
 						sign.getWorldObj().markBlockForUpdate(sign.xCoord, sign.yCoord, sign.zCoord);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
 import scala.actors.threadpool.Arrays;
 import soundlogic.silva.common.block.tile.TilePortalCore;
@@ -41,7 +42,6 @@ public class DwarfTradeSimple extends DwarfTrade{
 			ArrayList<ItemStack> inventory, TilePortalCore tilePortalCore) {
 		if(!this.canApply(tilePortalCore))
 			return null;
-//		System.out.println("lo");
 		ArrayList<Object> inputsMissing = new ArrayList(inputs);
 		ArrayList<ItemStack> stacksToRemove = new ArrayList();
 		
@@ -56,7 +56,6 @@ public class DwarfTradeSimple extends DwarfTrade{
 			while(i < inputsMissing.size()) {
 				if(stackMatches(stack,inputsMissing.get(i)))
 				{
-					System.out.println("te"+stack);
 					stacksToRemove.add(stack);
 					match=true;
 					break;
@@ -67,9 +66,6 @@ public class DwarfTradeSimple extends DwarfTrade{
 				inputsMissing.remove(i);
 		}
 		
-//		for(Object o : inputsMissing) {
-//			System.out.println(o);
-//		}
 		if(inputsMissing.isEmpty())
 			return new DwarvenTradeTransaction(this.getOutput(),stacksToRemove,this.getRepBoost(),this.getMaxRep());
 		

@@ -19,7 +19,7 @@ import net.minecraft.util.MathHelper;
 public class ItemMod extends Item{
 
 	private boolean namedMetadata=false;
-	private static String[] creativelyHiddenNames=new String[]{LibItemNames.QUESTION_MARK, LibItemNames.FAKE_PAPERS};
+	private static String[] creativelyHiddenNames=new String[]{LibItemNames.ITEM_PROXY, LibItemNames.FAKE_PAPERS, LibItemNames.ITEM_PRICE_PROXY};
 	
 	public ItemMod(String unLocalizedName) {
 		super();

@@ -20,6 +20,7 @@ import cpw.mods.fml.common.gameevent.TickEvent.RenderTickEvent;
 public class ClientTickHandler {
 
 	public static float ticksInGame = 0;
+	public static int ticks = 0;
 	public float partialTicks = 0;
 
 	@SubscribeEvent
@@ -30,6 +31,7 @@ public class ClientTickHandler {
 	
 	@SubscribeEvent
 	public void clientTickEnd(ClientTickEvent event) {
+		ticks++;
 		if(event.phase == Phase.END) {
 
 			GuiScreen gui = Minecraft.getMinecraft().currentScreen;

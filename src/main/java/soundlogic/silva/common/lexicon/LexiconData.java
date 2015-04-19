@@ -92,7 +92,7 @@ public class LexiconData {
 		
 		ItemStack thrownPearl=new ItemStack(Items.ender_pearl);
 		thrownPearl.setStackDisplayName("Thrown Ender Pearl");
-		ItemStack questionMark=new ItemStack(ModItems.questionMark);
+		ItemStack questionMark=new ItemStack(ModItems.proxyItem);
 		
 		dimensionalTravelAttempt=new SLexiconEntry(LibLexicon.DIMENSIONAL_TRAVEL_ATTEMPT, BotaniaAPI.categoryAlfhomancy);
 		dimensionalTravelAttempt.setKnowledgeType(BotaniaAPI.elvenKnowledge).setLexiconPages(new PageText("0"), new PageElvenRecipe("1", new RecipeElvenTrade(questionMark,thrownPearl)));

@@ -19,6 +19,8 @@ public class PortalRecipes {
 	}
 	
 	public static void addRecipe(Dimension dimension,IPortalRecipe recipe) {
+		if(recipe==null)
+			return;
 		if(recipes.containsKey(dimension))
 			recipes.get(dimension).add(recipe);
 		else {

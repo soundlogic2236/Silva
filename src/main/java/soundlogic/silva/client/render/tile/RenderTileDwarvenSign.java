@@ -111,7 +111,7 @@ public class RenderTileDwarvenSign extends TileEntitySpecialRenderer{
 	
 	private void renderStack(ItemStack stack, boolean input, int slot) {
 		
-		if(stack.getItem()==null)
+		if(stack==null || stack.getItem()==null)
 			return;
 		
     	int x = (slot % 2 ) * 17 + ( input ? 0 : 52 );
@@ -119,5 +119,6 @@ public class RenderTileDwarvenSign extends TileEntitySpecialRenderer{
 		
 		RenderItem render = new RenderItem();
 		render.renderItemAndEffectIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), stack, x, y);
+		render.renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), stack, x, y);
 	}
 }

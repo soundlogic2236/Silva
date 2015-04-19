@@ -54,7 +54,16 @@ tile.silva:portalCore.name=Advanced Portal Core
 tile.silva:darkenedDust.name=Darkened Dust
 
 # ITEM NAMES
-item.silva:questionMark.name=Who knows?
+item.silva:itemProxy.questionMark.name=Who knows?
+item.silva:itemProxy.helmet.name=Any Helmet
+item.silva:itemProxy.chestplate.name=Any Chestplate
+item.silva:itemProxy.leggings.name=Any Leggings
+item.silva:itemProxy.boots.name=Any Boots
+item.silva:itemProxy.pickaxe.name=Any Pickaxe
+item.silva:itemProxy.shovel.name=Any Shovel
+item.silva:itemProxy.axe.name=Any Axe
+item.silva:itemProxy.sword.name=Any Sword
+item.silva:priceProxy.name=Additional Cost
 item.silva:pageBundleFake.name=Notes for your Lexicon
 item.silva:pageBundle.worldTree.name=Another Message from Elven Garde
 item.silva:pageBundle.dwarven.name=Message from Dwarven Trade Commission

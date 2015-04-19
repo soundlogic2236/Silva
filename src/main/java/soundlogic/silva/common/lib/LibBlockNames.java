@@ -53,6 +53,8 @@ public class LibBlockNames {
 
 	public static final String MANA_CRYSTAL = "manaCrystal";
 
+	public static final String DWARF_ROCK = "dwarfRock";
+
 
 
 		

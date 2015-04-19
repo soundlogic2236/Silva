@@ -15,6 +15,7 @@ import soundlogic.silva.common.block.tile.TilePortalCore;
 import soundlogic.silva.common.core.handler.BifrostCreationHandler;
 import soundlogic.silva.common.core.handler.BlockDropsHandler;
 import soundlogic.silva.common.core.handler.ConfigHandler;
+import soundlogic.silva.common.core.handler.DwarfForgedHandler;
 import soundlogic.silva.common.core.handler.EnderPearlPortalHandler;
 import soundlogic.silva.common.core.handler.PixieDustHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
@@ -63,6 +64,7 @@ public class CommonProxy {
 		MinecraftForge.EVENT_BUS.register(new PixieDustHandler());
 		MinecraftForge.EVENT_BUS.register(new BlockDropsHandler());
 		MinecraftForge.EVENT_BUS.register(new EnderPearlPortalHandler());
+		MinecraftForge.EVENT_BUS.register(new DwarfForgedHandler());
 	}
 	
 	public void postInit(FMLPostInitializationEvent event) {
@@ -74,4 +76,9 @@ public class CommonProxy {
     public void registerRenderers() {
             // Nothing here as the server doesn't render graphics or entities!
     }
+
+	public int getTicks() {
+        // Nothing here as the server doesn't render graphics or entities!
+		return 0;
+	}
 }

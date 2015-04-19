@@ -69,4 +69,8 @@ public class ClientProxy extends CommonProxy{
     	RenderingRegistry.registerEntityRenderingHandler(EntityStoneHorse.class, new RenderEntityStoneHorse());
     }
         
+    @Override
+    public int getTicks() {
+    	return ClientTickHandler.ticks;
+    }
 }
