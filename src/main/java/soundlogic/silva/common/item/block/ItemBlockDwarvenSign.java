@@ -13,8 +13,9 @@ public class ItemBlockDwarvenSign extends ItemBlockMod {
 
 	public ItemBlockDwarvenSign(Block block) {
 		super(block);
-		// TODO Auto-generated constructor stub
 	}
+	
+	@Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float xs, float xy, float xz)
     {
         if (side == 0)
