@@ -9,7 +9,7 @@ public class ModEntities {
 	public static void preInit() {
 		int id = 0;
 		
-		EntityRegistry.registerModEntity(EntityCustomManaBurst.class, LibEntityNames.MANA_BURST, id++, Silva.instance, 64, 10, true);
+		EntityRegistry.registerModEntity(EntityEaterManaBurst.class, LibEntityNames.MANA_BURST, id++, Silva.instance, 64, 10, true);
 		EntityRegistry.registerModEntity(EntityStoneHorse.class, LibEntityNames.MANA_BURST, id++, Silva.instance, 64, 10, true);
 	}
 

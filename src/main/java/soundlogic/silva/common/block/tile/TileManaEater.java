@@ -7,13 +7,14 @@ import org.lwjgl.opengl.GL11;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.ModBlocks;
-import soundlogic.silva.common.entity.EntityCustomManaBurst;
+import soundlogic.silva.common.entity.EntityEaterManaBurst;
 import vazkii.botania.api.internal.IManaBurst;
 import vazkii.botania.api.mana.BurstProperties;
 import vazkii.botania.api.mana.ILensEffect;
 import vazkii.botania.api.mana.IManaBlock;
 import vazkii.botania.api.mana.IManaPool;
 import vazkii.botania.api.mana.IManaReceiver;
+import vazkii.botania.api.mana.IManaSpreader;
 import vazkii.botania.api.mana.ManaNetworkEvent;
 import vazkii.botania.api.wand.IWandBindable;
 import vazkii.botania.common.core.helper.Vector3;
@@ -39,7 +40,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileManaEater extends TileMod implements IWandBindable, IManaReceiver, ICustomSpreader, IForestClientTick {
+public class TileManaEater extends TileMod implements IWandBindable, IManaReceiver, IManaSpreader, IForestClientTick {
 
 	private static final int MAX_MANA = 1000;
 	private static final int ULTRA_MAX_MANA = 6400;
@@ -104,7 +105,7 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 							int newPoolMana=pool.getCurrentMana();
 							int manaAdded=newPoolMana-previousPoolMana;
 							recieveMana(-manaAdded);
-						}
+							worldObj.markBlockForUpdate(tileAt.xCoord, tileAt.yCoord, tileAt.zCoord);						}
 					}
 				}
 			}
@@ -262,7 +263,7 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 	}
 
 	public EntityManaBurst getBurst(boolean fake) {
-		EntityManaBurst burst = new EntityCustomManaBurst(this,fake,xCoord,yCoord,zCoord,rotationX,rotationY);
+		EntityManaBurst burst = new EntityEaterManaBurst(this,fake);
 		burst.setColor(0xFFAA33);
 		burst.setMana(1);
 		burst.setStartingMana(1);
@@ -387,15 +388,11 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 
 	public void onClientDisplayTick() {
 		if(worldObj != null) {
-			EntityCustomManaBurst burst = (EntityCustomManaBurst) getBurst(true);
+			EntityEaterManaBurst burst = (EntityEaterManaBurst) getBurst(true);
 			burst.getCollidedTile(false);
 		}
 	}
 
-	@Override
-	public void prepBurst() {
-		canShootBurst=true;
-	}
 	public int getBurstParticleTick() {
 		return burstParticleTick;
 	}
@@ -410,5 +407,20 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 
 	public void setLastBurstDeathTick(int lastBurstDeathTick) {
 		this.lastBurstDeathTick = lastBurstDeathTick;
+	}
+
+	@Override
+	public float getRotationX() {
+		return this.rotationX;
+	}
+
+	@Override
+	public float getRotationY() {
+		return this.rotationY;
+	}
+
+	@Override
+	public void setCanShoot(boolean arg0) {
+		this.canShootBurst=arg0;
 	}
 }
