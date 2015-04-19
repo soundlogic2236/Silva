@@ -10,6 +10,7 @@ import soundlogic.silva.common.block.tile.TilePortalCore;
 import soundlogic.silva.common.block.tile.TilePylon;
 import soundlogic.silva.common.item.block.ItemBlockBoomMoss;
 import soundlogic.silva.common.item.block.ItemBlockDwarvenSign;
+import soundlogic.silva.common.item.block.ItemBlockManaCrystal;
 import soundlogic.silva.common.item.block.ItemBlockMod;
 import soundlogic.silva.common.item.block.ItemBlockModSlab;
 import soundlogic.silva.common.item.block.ItemBlockPylon;
@@ -105,7 +106,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(dwarfWeed, ItemBlockMod.class, LibBlockNames.DWARF_WEED);
 		
 		manaCrystal=new BlockManaCrystal();
-		GameRegistry.registerBlock(manaCrystal, ItemBlockMod.class, LibBlockNames.MANA_CRYSTAL);
+		GameRegistry.registerBlock(manaCrystal, ItemBlockManaCrystal.class, LibBlockNames.MANA_CRYSTAL);
 		
 		
 		initTileEntities();

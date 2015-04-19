@@ -7,12 +7,12 @@ import org.lwjgl.opengl.GL11;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.ModBlocks;
-import soundlogic.silva.common.entity.EntityCustomManaBurst;
 import vazkii.botania.api.internal.IManaBurst;
 import vazkii.botania.api.mana.BurstProperties;
 import vazkii.botania.api.mana.IManaCollector;
 import vazkii.botania.api.mana.IManaPool;
 import vazkii.botania.api.mana.IManaReceiver;
+import vazkii.botania.api.mana.IManaSpreader;
 import vazkii.botania.api.mana.ManaNetworkEvent;
 import vazkii.botania.client.core.handler.HUDHandler;
 import vazkii.botania.common.block.tile.mana.TileSpreader;
@@ -37,7 +37,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-public class TileManaCrystal extends TileMod implements IManaPool, IManaCollector, ICustomSpreader, IForestClientTick {
+public class TileManaCrystal extends TileMod implements IManaPool, IManaCollector, IManaSpreader, IForestClientTick {
 
 	public static final int MAX_MANA = 100000;
 
@@ -205,7 +205,7 @@ public class TileManaCrystal extends TileMod implements IManaPool, IManaCollecto
 	}
 
 	public EntityManaBurst getBurst(boolean fake) {
-		EntityManaBurst burst = new EntityCustomManaBurst(this, fake,xCoord,yCoord,zCoord,0,-90F);
+		EntityManaBurst burst = new EntityManaBurst(this, fake);
 
 		int maxMana = 360;
 		int color = 0x007eff;
@@ -261,8 +261,7 @@ public class TileManaCrystal extends TileMod implements IManaPool, IManaCollecto
 	@Override
 	public void onClientDisplayTick() {
 		if(worldObj != null) {
-			System.out.println("lo");
-			EntityCustomManaBurst burst = (EntityCustomManaBurst) getBurst(true);
+			EntityManaBurst burst = getBurst(true);
 			burst.getCollidedTile(false);
 		}
 	}
@@ -287,11 +286,6 @@ public class TileManaCrystal extends TileMod implements IManaPool, IManaCollecto
 		return MAX_MANA;
 	}
 
-	@Override
-	public void prepBurst() {
-		canShootBurst=true;
-	}
-
 	public int getBurstParticleTick() {
 		return burstParticleTick;
 	}
@@ -306,5 +300,20 @@ public class TileManaCrystal extends TileMod implements IManaPool, IManaCollecto
 
 	public void setLastBurstDeathTick(int lastBurstDeathTick) {
 		this.lastBurstDeathTick = lastBurstDeathTick;
+	}
+
+	@Override
+	public float getRotationX() {
+		return 0;
+	}
+
+	@Override
+	public float getRotationY() {
+		return -90;
+	}
+
+	@Override
+	public void setCanShoot(boolean arg0) {
+		this.canShootBurst=arg0;
 	}
 }
