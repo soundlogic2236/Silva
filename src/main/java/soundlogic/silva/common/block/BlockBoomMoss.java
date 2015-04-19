@@ -40,6 +40,11 @@ public class BlockBoomMoss extends BlockContainer implements ILexiconable{
 		setBlockName(LibBlockNames.BOOM_MOSS);
 		setCreativeTab(Silva.creativeTab);
 	}
+	
+	@Override
+	public boolean isReplaceable(IBlockAccess world, int x, int y, int z) {
+		return false;
+	}
 
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
