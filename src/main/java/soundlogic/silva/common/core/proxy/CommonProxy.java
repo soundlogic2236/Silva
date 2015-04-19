@@ -62,7 +62,7 @@ public class CommonProxy {
 		MinecraftForge.EVENT_BUS.register(new BifrostCreationHandler());
 		MinecraftForge.EVENT_BUS.register(new PixieDustHandler());
 		MinecraftForge.EVENT_BUS.register(new BlockDropsHandler());
-		FMLCommonHandler.instance().bus().register(new EnderPearlPortalHandler());
+		MinecraftForge.EVENT_BUS.register(new EnderPearlPortalHandler());
 	}
 	
 	public void postInit(FMLPostInitializationEvent event) {

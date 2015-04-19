@@ -543,7 +543,6 @@ public class TilePortalCore extends TileMod{
 		else
 			direction = ForgeDirection.values()[dirNum];
 		darkElfPapers = cmp.getBoolean(TAG_CAN_OPEN_DARK_ELF);
-		System.out.println("baba");
 		dwarfData.readNBT(cmp);
 	}
 
