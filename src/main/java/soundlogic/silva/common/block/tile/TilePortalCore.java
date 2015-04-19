@@ -45,6 +45,7 @@ public class TilePortalCore extends TileMod{
 	
 	private static final String TAG_DIMENSION = "dimension";
 	private static final String TAG_TICKS_OPEN = "ticksOpen";
+	private static final String TAG_TICKS_ALL = "ticksAll";
 	private static final String TAG_TICKS_ITEM = "ticksItem";
 	private static final String TAG_DIRECTION = "direction";
 	private static final String TAG_INVENTORY = "inventory";
@@ -55,6 +56,7 @@ public class TilePortalCore extends TileMod{
 	private Dimension dimension;
 	private int ticksOpen;
 	private int ticksSinceLastItem;
+	private int ticks=0;
 	private ForgeDirection direction;
 	private boolean darkElfPapers=false;
 	private ArrayList<ItemStack> inventory = new ArrayList<ItemStack>();
@@ -100,6 +102,7 @@ public class TilePortalCore extends TileMod{
 
 	@Override
 	public void updateEntity() {
+		ticks++;
 		if(dimension!=null) {
 			checkStability();
 			if(dimension!=null) {
@@ -108,21 +111,30 @@ public class TilePortalCore extends TileMod{
 				drainUpkeepMana();
 				pylonParticles();
 				teleportItems();
-				checkDwarvenSigns();
+				handleDwarvenSigns();
 				if(ticksSinceLastItem>=20)
 					resolveRecipes();
 			}
 		}
 	}
 	
-	private void checkDwarvenSigns() {
+	private void handleDwarvenSigns() {
 		if(dimension!=Dimension.NIDAVELLIR)
 			return;
 		TileDwarvenSign[] signs=getDwarvenSigns();
-		for(TileDwarvenSign sign : signs) {
-			if(sign!=null)
+		int locked=-1;
+		for(int i=0;i<signs.length;i++) {
+			TileDwarvenSign sign = signs[i];
+			if(sign!=null) {
 				sign.core=this;
+				sign.recipeSlot=i;
+				if(sign.activated)
+					locked=i;
+			}
 		}
+		if(worldObj.isRemote)
+			return;
+		this.dwarfData.updateTrades(locked,ticks, signs, this);
 	}
 
 	private void teleportItems() {
@@ -422,6 +434,7 @@ public class TilePortalCore extends TileMod{
 		if(dimension==null)
 			return;
 		dimension=null;
+		this.inventory.clear();
 	}
 	
 	public Dimension getDimension() {
@@ -499,6 +512,7 @@ public class TilePortalCore extends TileMod{
 
 	@Override
 	public void writeCustomNBT(NBTTagCompound cmp) {
+		cmp.setInteger(TAG_TICKS_ALL, ticks);
 		cmp.setInteger(TAG_TICKS_OPEN, ticksOpen);
 		cmp.setInteger(TAG_TICKS_ITEM, ticksSinceLastItem);
 		if(dimension==null)
@@ -515,6 +529,7 @@ public class TilePortalCore extends TileMod{
 
 	@Override
 	public void readCustomNBT(NBTTagCompound cmp) {
+		ticks = cmp.getInteger(TAG_TICKS_ALL);
 		ticksOpen = cmp.getInteger(TAG_TICKS_OPEN);
 		ticksSinceLastItem = cmp.getInteger(TAG_TICKS_ITEM);
 		int dimNum=cmp.getInteger(TAG_DIMENSION);
@@ -528,6 +543,7 @@ public class TilePortalCore extends TileMod{
 		else
 			direction = ForgeDirection.values()[dirNum];
 		darkElfPapers = cmp.getBoolean(TAG_CAN_OPEN_DARK_ELF);
+		System.out.println("baba");
 		dwarfData.readNBT(cmp);
 	}
 
@@ -554,7 +570,7 @@ public class TilePortalCore extends TileMod{
 				transaction.doTransaction(this);
 				List<ItemStack> output=transaction.getOutput();
 				for(ItemStack stack : output) {
-					spawnItem(stack);
+					spawnItem(stack.copy());
 				}
 				transaction=recipe.getTransaction(inventory,this);
 			}
@@ -612,5 +628,5 @@ public class TilePortalCore extends TileMod{
 	private boolean isSignatureBlock(Block block) {
 		return block==ModBlocks.pixieDust || block==Blocks.redstone_wire || block==ModBlocks.darkenedDust;
 	}
-	
+
 }

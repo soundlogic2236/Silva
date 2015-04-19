@@ -31,6 +31,7 @@ import vazkii.botania.api.internal.IGuiLexiconEntry;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.lexicon.LexiconRecipeMappings;
 import vazkii.botania.api.lexicon.LexiconRecipeMappings.EntryData;
+import vazkii.botania.client.gui.lexicon.GuiLexicon;
 import vazkii.botania.client.gui.lexicon.GuiLexiconEntry;
 import vazkii.botania.common.block.BlockAlfPortal;
 import vazkii.botania.common.lexicon.page.PageRecipe;
@@ -81,7 +82,6 @@ public class PageAdvancedPortalTrade extends PageRecipe{
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		((GuiScreen) gui).drawTexturedModalRect(gui.getLeft(), gui.getTop(), 0, 0, gui.getWidth(), gui.getHeight());
 		GL11.glDisable(GL11.GL_BLEND);
-
 		List<ItemStack> output=recipe.getOutput();
 		for(int i = 0;i<output.size();i++)
 			renderItemAtGridPos(gui, 3+i, 1, output.get(i), false);

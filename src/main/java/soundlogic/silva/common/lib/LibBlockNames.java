@@ -49,6 +49,10 @@ public class LibBlockNames {
 
 	public static final String DWARVEN_SIGN = "dwarvenSign";
 
+	public static final String DWARF_WEED = "dwarfWeed";
+
+	public static final String MANA_CRYSTAL = "manaCrystal";
+
 
 
 		

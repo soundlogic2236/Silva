@@ -9,6 +9,7 @@ public class LibResources {
 	public static final String PREFIX_MODEL = PREFIX_MOD + "textures/model/";
 	public static final String PREFIX_GUI = PREFIX_MOD + "textures/gui/";
 	public static final String PREFIX_ENTRIES = PREFIX_GUI + "entries/";
+	public static final String PREFIX_ENTITY = PREFIX_MOD + "textures/entity/";
 
 	public static final String MODEL_PYLON_PORTAL = PREFIX_MODEL + "pylonPortal.png";
 	public static final String MODEL_PYLON_UNTUNED = PREFIX_MODEL + "pylonUntuned.png";
@@ -60,6 +61,8 @@ public class LibResources {
 
 	public static final String MODEL_DWARVEN_SIGN_OFF = PREFIX_MODEL + "dwarvenSignOff.png";
 	public static final String MODEL_DWARVEN_SIGN_ON = PREFIX_MODEL + "dwarvenSignOn.png";
+
+	public static final String MODEL_STONE_HORSE = PREFIX_ENTITY + "horse_stone.png";
 
 
 

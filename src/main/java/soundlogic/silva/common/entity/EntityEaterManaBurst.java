@@ -10,6 +10,7 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import soundlogic.silva.common.block.tile.ICustomSpreader;
 import soundlogic.silva.common.block.tile.TileFakeSpreaderWrapper;
 import soundlogic.silva.common.block.tile.TileManaEater;
 import vazkii.botania.api.BotaniaAPI;
@@ -20,15 +21,15 @@ import vazkii.botania.api.mana.IManaTrigger;
 import vazkii.botania.common.Botania;
 import vazkii.botania.common.entity.EntityManaBurst;
 
-public class EntityManaEaterBurst extends EntityManaBurst{
+public class EntityEaterManaBurst extends EntityCustomManaBurst{
 
 	TileEntity collidedTile = null;
 	
-	public EntityManaEaterBurst(TileManaEater eater, boolean fake) {
-		super(new TileFakeSpreaderWrapper(eater), fake);
+	public EntityEaterManaBurst(ICustomSpreader spreader, boolean fake, int x, int y, int z, float rotx, float roty) {
+		super(spreader,fake,x,y,z,rotx,roty);
 	}
-	
-	public EntityManaEaterBurst(World world) {
+
+	public EntityEaterManaBurst(World world) {
 		super(world);
 	}
 
@@ -100,8 +101,8 @@ public class EntityManaEaterBurst extends EntityManaBurst{
 		if(!isFake()) {
 			ChunkCoordinates coords = getBurstSourceChunkCoordinates();
 			TileEntity tile = worldObj.getTileEntity(coords.posX, coords.posY, coords.posZ);
-			if(tile != null && tile instanceof TileManaEater) {
-				((TileManaEater) tile).canShootBurst = true;
+			if(tile != null && tile instanceof ICustomSpreader) {
+				((ICustomSpreader) tile).prepBurst();
 			}
 		}
 	}

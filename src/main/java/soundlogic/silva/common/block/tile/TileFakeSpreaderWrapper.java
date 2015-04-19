@@ -5,20 +5,20 @@ import vazkii.botania.common.block.tile.mana.TileSpreader;
 
 public class TileFakeSpreaderWrapper extends TileSpreader{
 
-	TileManaEater eater;
+	ICustomSpreader spreader;
 	
-	public TileFakeSpreaderWrapper(TileManaEater eater) {
-		this.eater = eater;
-		this.xCoord = eater.xCoord;
-		this.yCoord = eater.yCoord;
-		this.zCoord = eater.zCoord;
-		this.rotationX = eater.rotationX;
-		this.rotationY = eater.rotationY;
+	public TileFakeSpreaderWrapper(ICustomSpreader spreader, int x, int y, int z, float rotx, float roty) {
+		this.spreader = spreader;
+		this.xCoord = x;
+		this.yCoord = y;
+		this.zCoord = z;
+		this.rotationX = rotx;
+		this.rotationY = roty;
 	}
 	
 	@Override
 	public World getWorldObj() {
-		return eater.getWorldObj();
+		return spreader.getWorldObj();
 	}
 	
 }

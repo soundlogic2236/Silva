@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import soundlogic.silva.common.Silva;
+import soundlogic.silva.common.block.tile.IForestClientTick;
 import soundlogic.silva.common.block.tile.TileManaEater;
 import vazkii.botania.common.item.ItemTwigWand;
 import net.minecraft.client.Minecraft;
@@ -39,9 +40,8 @@ public class ClientTickHandler {
 				if(player != null) {
 					ItemStack stack = player.getCurrentEquippedItem();
 					if(stack != null && stack.getItem() instanceof ItemTwigWand) {
-						for(TileEntity renderer : Silva.proxy.ForestWandRenderers) {
-							if(renderer instanceof TileManaEater)
-								((TileManaEater) renderer).onClientDisplayTick();
+						for(IForestClientTick renderer : Silva.proxy.ForestWandRenderers) {
+							((IForestClientTick) renderer).onClientDisplayTick();
 						}
 					}
 				}

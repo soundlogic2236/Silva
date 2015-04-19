@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.block.tile.TileBoomMoss;
 import soundlogic.silva.common.block.tile.TileDwarvenSign;
+import soundlogic.silva.common.block.tile.TileManaCrystal;
 import soundlogic.silva.common.block.tile.TileManaEater;
 import soundlogic.silva.common.block.tile.TilePortalCore;
 import soundlogic.silva.common.block.tile.TilePylon;
@@ -57,6 +58,8 @@ public class ModBlocks {
 	public static Block paradoxWoodPlank;
 	public static Block manaEater;
 	public static Block dwarvenSign;
+	public static Block dwarfRock;
+	public static Block manaCrystal;
 	
 	public static void preInit() {
 		
@@ -98,6 +101,13 @@ public class ModBlocks {
 		dwarvenSign=new BlockDwarvenSign();
 		GameRegistry.registerBlock(dwarvenSign, ItemBlockDwarvenSign.class, LibBlockNames.DWARVEN_SIGN);
 		
+		dwarfWeed=new BlockDwarfWeed();
+		GameRegistry.registerBlock(dwarfWeed, ItemBlockMod.class, LibBlockNames.DWARF_WEED);
+		
+		manaCrystal=new BlockManaCrystal();
+		GameRegistry.registerBlock(manaCrystal, ItemBlockMod.class, LibBlockNames.MANA_CRYSTAL);
+		
+		
 		initTileEntities();
 	}
 
@@ -108,6 +118,7 @@ public class ModBlocks {
 		registerTile(TileBoomMoss.class, LibBlockNames.BOOM_MOSS);
 		registerTile(TilePortalCore.class, LibBlockNames.PORTAL_CORE);
 		registerTile(TileDwarvenSign.class, LibBlockNames.DWARVEN_SIGN);
+		registerTile(TileManaCrystal.class, LibBlockNames.MANA_CRYSTAL);
 	}
 	
 	private static void registerTile(Class<? extends TileEntity> clazz, String key) {
