@@ -7,5 +7,6 @@ public class LibGUI {
 	public static final String PAPERS_ERROR = "silva.tooltips.papers_error";
 	public static final String FAKE_KNOWLEDGE_TOOLTIP = "silva.tooltips.fake_knowledge";
 	public static final String DWARF_FORGED_TOOLTIP = "silva.tooltips.dwarfForged";
+	public static final String BROKEN_ITEM_NAME = "silva.misc.brokenItemName";
 
 }

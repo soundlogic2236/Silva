@@ -276,7 +276,7 @@ public class ModPortalTradeRecipes {
 		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfForgeElementiumRecipes[6],100));
 		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfForgeElementiumRecipes[7],100));
 
-		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfReforgeRecipes[0],60000));
+		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfReforgeRecipes[0],600));
 		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfReforgeRecipes[1],600));
 		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfReforgeRecipes[2],600));
 		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfReforgeRecipes[3],600));

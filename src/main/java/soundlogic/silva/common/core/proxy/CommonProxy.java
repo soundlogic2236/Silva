@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import soundlogic.silva.common.Silva;
@@ -64,7 +65,9 @@ public class CommonProxy {
 		MinecraftForge.EVENT_BUS.register(new PixieDustHandler());
 		MinecraftForge.EVENT_BUS.register(new BlockDropsHandler());
 		MinecraftForge.EVENT_BUS.register(new EnderPearlPortalHandler());
-		MinecraftForge.EVENT_BUS.register(new DwarfForgedHandler());
+		DwarfForgedHandler dwarfForged=new DwarfForgedHandler();
+		MinecraftForge.EVENT_BUS.register(dwarfForged);
+		FMLCommonHandler.instance().bus().register(dwarfForged);
 	}
 	
 	public void postInit(FMLPostInitializationEvent event) {

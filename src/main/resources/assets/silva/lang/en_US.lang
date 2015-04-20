@@ -1,3 +1,6 @@
+# MISC
+silva.misc.brokenItemName=Broken %s
+
 # TOOLTIPS
 silva.tooltips.papers_craft=Craft with a lexicon
 silva.tooltips.papers_knowledge_type=Adds knowledge type:

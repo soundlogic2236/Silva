@@ -25,10 +25,10 @@ public class ItemProxy extends ItemMod{
 			"sword"};
 	private final String[] resources=new String[]{
 			"questionMark",
-			null,
-			null,
-			null,
-			null,
+			"proxyHelmet",
+			"proxyChestplate",
+			"proxyLeggings",
+			"proxyBoots",
 			"proxyPickaxe",
 			"proxyShovel",
 			"proxyAxe",
@@ -49,10 +49,6 @@ public class ItemProxy extends ItemMod{
     	for(int i=0;i<resources.length;i++)
     		if(resources[i]!=null)
     			icons[i] = par1IconRegister.registerIcon(LibResources.PREFIX_MOD+resources[i]);
-    	icons[1]=ItemArmor.func_94602_b(0);
-    	icons[2]=ItemArmor.func_94602_b(1);
-    	icons[3]=ItemArmor.func_94602_b(2);
-    	icons[4]=ItemArmor.func_94602_b(3);
 	}
 
 	@SideOnly(Side.CLIENT)
