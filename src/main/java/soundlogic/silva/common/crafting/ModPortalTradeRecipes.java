@@ -72,9 +72,6 @@ public class ModPortalTradeRecipes {
 		dwarfDwarfRockRecipe=new DwarfTradeSimple(new ItemStack(ModBlocks.dwarfRock),0,1,5,new ItemStack(vazkii.botania.common.block.ModBlocks.livingrock));
 		PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfDwarfRockRecipe);
 		
-		dwarfdeepQuartzRecipe=new DwarfTradeSimple(new ItemStack(ModItems.deepQuartz),0,1,5,new ItemStack(Items.quartz));
-		PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfdeepQuartzRecipe);
-		
 		dwarfPumpkinToMeadTrade=new DwarfTradeSimple(new ItemStack(ModItems.dwarfMead),4,1,15,new ItemStack(Blocks.pumpkin));
 		PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfPumpkinToMeadTrade);
 		

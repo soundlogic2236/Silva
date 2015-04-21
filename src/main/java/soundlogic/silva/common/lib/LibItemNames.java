@@ -9,7 +9,6 @@ public class LibItemNames {
 	public static final String FAKE_PAPERS = "pageBundleFake";
 	public static final String STONE_HORSE = "stoneHorse";
 	public static final String ITEM_PRICE_PROXY = "priceProxy";
-	public static final String DEEP_QUARTZ = "deepQuartz";
 	public static final String DWARF_MEAD = "dwarfMead";
 	public static final String DWARF_CHAIN = "dwarfChain";
 	public static final String DWARF_BARRIER = "dwarfBarrier";

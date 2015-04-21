@@ -19,7 +19,6 @@ public class ModItems {
 	public static Item fakePageBundle;
 	public static Item fakeLexicon;
 	public static Item stoneHorse;
-	public static Item deepQuartz;
 	public static Item dwarfMead;
 	public static Item dwarfChain;
 	public static Item dwarfBarrier;
@@ -34,7 +33,6 @@ public class ModItems {
 		fakePageBundle=new ItemFakePapers(LibItemNames.FAKE_PAPERS);
 		fakeLexicon=new ItemFakeLexicon();
 		stoneHorse=new ItemStoneHorse();
-		deepQuartz=new ItemMod(LibItemNames.DEEP_QUARTZ);
 		dwarfMead=new ItemMod(LibItemNames.DWARF_MEAD);
 		dwarfChain=new ItemMod(LibItemNames.DWARF_CHAIN);
 		dwarfBarrier=new ItemMod(LibItemNames.DWARF_BARRIER);
