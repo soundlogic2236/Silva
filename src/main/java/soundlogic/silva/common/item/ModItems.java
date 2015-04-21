@@ -22,7 +22,6 @@ public class ModItems {
 	public static Item dwarfMead;
 	public static Item dwarfChain;
 	public static Item dwarfBarrier;
-	public static Item brokenDwarvenWrapper;
 
 	public static void preInit() {
 	
@@ -36,7 +35,6 @@ public class ModItems {
 		dwarfMead=new ItemMod(LibItemNames.DWARF_MEAD);
 		dwarfChain=new ItemMod(LibItemNames.DWARF_CHAIN);
 		dwarfBarrier=new ItemDwarvenBarrier(LibItemNames.DWARF_BARRIER);
-		brokenDwarvenWrapper=new ItemBrokenDwarvenWrapper(LibItemNames.BROKEN_DWARVEN_WRAPPER);
 	}
 	
 }

@@ -2,7 +2,6 @@ package soundlogic.silva.common.core.handler;
 
 import java.util.Random;
 
-import soundlogic.silva.common.item.ItemBrokenDwarvenWrapper;
 import soundlogic.silva.common.lib.LibGUI;
 import vazkii.botania.api.mana.ManaItemHandler;
 import vazkii.botania.common.item.ItemRegenIvy;
@@ -13,6 +12,7 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -82,17 +82,6 @@ public class DwarfForgedHandler {
 	}
 	
 	@SubscribeEvent
-	public void onDestroyedItem(PlayerDestroyItemEvent event) {
-		if(isDwarfForged(event.original) && event.original.getItem().isRepairable()) {
-			ItemStack broken = ItemBrokenDwarvenWrapper.makeFromStack(event.original);
-            if (!event.entityPlayer.inventory.addItemStackToInventory(broken))
-            {
-            	event.entityPlayer.dropPlayerItemWithRandomChoice(broken, false);
-            }
-		}
-	}
-
-	@SubscribeEvent
 	public void onPlayerHurt(LivingHurtEvent event) {
 		if(event.entityLiving instanceof EntityPlayer) {
 			if(event.source.isDamageAbsolute() || event.source.isUnblockable())
@@ -113,6 +102,7 @@ public class DwarfForgedHandler {
 					event.ammount *=1.1F;
 				if(random.nextFloat()<.05F)
 					event.ammount *=2F;
+				ISpecialArmor armor;
 			}
 		}
 	}
