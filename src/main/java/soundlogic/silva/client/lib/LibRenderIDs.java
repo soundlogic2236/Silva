@@ -8,4 +8,5 @@ public class LibRenderIDs {
 	public static int idPixieDust = -1;
 	public static int idDarkenedDust = -1;
 	public static int idManaCrystal = -1;
+	public static int idDwarvenPool = -1;
 }

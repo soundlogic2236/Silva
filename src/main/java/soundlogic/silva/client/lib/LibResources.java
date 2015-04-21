@@ -64,6 +64,8 @@ public class LibResources {
 
 	public static final String MODEL_STONE_HORSE = PREFIX_ENTITY + "horse_stone.png";
 
+	public static final String MODEL_DWARVEN_POOL = PREFIX_MODEL + "dwarvenPool.png";
+
 
 
 

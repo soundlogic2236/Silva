@@ -25,6 +25,7 @@ public class ModCraftingRecipes {
 	public static IRecipe recipeBoomMoss;
 	public static IRecipe recipePortalCore;
 	public static IRecipe recipeBifrostSparkling;
+	public static IRecipe recipeDwarvenPool;
 
 	public static void preInit() {
 		addOreDictRecipe(new ItemStack(ModBlocks.dimensionalPylon,1,0),
@@ -97,6 +98,13 @@ public class ModCraftingRecipes {
 				'G', vazkii.botania.common.lib.LibOreDict.LIFE_ESSENCE,
 				'S',new ItemStack(ModItems.bifrostShard),
 				'T',new ItemStack(vazkii.botania.common.block.ModBlocks.storage,1,1));
+		recipePortalCore = BotaniaAPI.getLatestAddedRecipe();
+		
+		addOreDictRecipe(new ItemStack(ModBlocks.dwarvenManaPool),
+				"SDS",
+				"SSS",
+				'S', new ItemStack(ModBlocks.dwarfRock),
+				'D', new ItemStack(vazkii.botania.common.block.ModBlocks.pool));
 		recipePortalCore = BotaniaAPI.getLatestAddedRecipe();
 		
 		

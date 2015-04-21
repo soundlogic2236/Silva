@@ -83,14 +83,10 @@ public class DwarfForgedHandler {
 	
 	@SubscribeEvent
 	public void onDestroyedItem(PlayerDestroyItemEvent event) {
-		System.out.println("d");
 		if(isDwarfForged(event.original) && event.original.getItem().isRepairable()) {
-			System.out.println("e");
 			ItemStack broken = ItemBrokenDwarvenWrapper.makeFromStack(event.original);
-			System.out.println(broken);
             if (!event.entityPlayer.inventory.addItemStackToInventory(broken))
             {
-        		System.out.println("stroy");
             	event.entityPlayer.dropPlayerItemWithRandomChoice(broken, false);
             }
 		}

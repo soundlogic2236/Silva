@@ -55,6 +55,8 @@ public class LibBlockNames {
 
 	public static final String DWARF_ROCK = "dwarfRock";
 
+	public static final String DWARVEN_POOL = "dwarvenPool";
+
 
 
 		

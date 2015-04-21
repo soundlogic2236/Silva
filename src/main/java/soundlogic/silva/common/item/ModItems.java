@@ -35,7 +35,7 @@ public class ModItems {
 		stoneHorse=new ItemStoneHorse();
 		dwarfMead=new ItemMod(LibItemNames.DWARF_MEAD);
 		dwarfChain=new ItemMod(LibItemNames.DWARF_CHAIN);
-		dwarfBarrier=new ItemMod(LibItemNames.DWARF_BARRIER);
+		dwarfBarrier=new ItemDwarvenBarrier(LibItemNames.DWARF_BARRIER);
 		brokenDwarvenWrapper=new ItemBrokenDwarvenWrapper(LibItemNames.BROKEN_DWARVEN_WRAPPER);
 	}
 	
