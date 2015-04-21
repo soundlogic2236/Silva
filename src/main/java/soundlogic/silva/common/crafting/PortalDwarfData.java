@@ -31,7 +31,10 @@ public class PortalDwarfData {
 		NBTTagCompound mine=new NBTTagCompound();
 		mine.setInteger(TAG_REPUTATION, reputation);
 		for(int i=0;i<dwarfTrades.length;i++) {
-			mine.setInteger(TAG_DWARF_TRADES+i, ModPortalTradeRecipes.dwarfTradesIndex.indexOf(dwarfTrades[i]));
+			if(dwarfTrades[i]==null)
+				mine.setString(TAG_DWARF_TRADES+i, "NONE");
+			else
+				mine.setString(TAG_DWARF_TRADES+i, ModPortalTradeRecipes.dwarfTradesToStrings.get(dwarfTrades[i]));
 			if(dwarfTradesData[i]!=null)
 				mine.setTag(TAG_DWARF_TRADES_DATA+i, dwarfTradesData[i]);
 		}
@@ -42,11 +45,11 @@ public class PortalDwarfData {
 	public void readNBT(NBTTagCompound cmp) {
 		NBTTagCompound mine=cmp.getCompoundTag(TAG_DATA);
 		for(int i=0;i<dwarfTrades.length;i++) {
-			int j=mine.getInteger(TAG_DWARF_TRADES+i);
-			if(j==-1)
+			String tradeKey=mine.getString(TAG_DWARF_TRADES+i);
+			if(tradeKey.equals("NONE"))
 				dwarfTrades[i]=null;
 			else
-				dwarfTrades[i]=ModPortalTradeRecipes.dwarfTradesIndex.get(j);
+				dwarfTrades[i]=ModPortalTradeRecipes.dwarfStringsToTrades.get(tradeKey);
 			if(mine.hasKey(TAG_DWARF_TRADES_DATA+i))
 				dwarfTradesData[i]=mine.getCompoundTag(TAG_DWARF_TRADES_DATA+i);
 		}
@@ -62,7 +65,8 @@ public class PortalDwarfData {
 	}
 	
 	public DwarfTrade getTrade(int slot) {
-		dwarfTrades[slot].readNBTData(dwarfTradesData[slot]);
+		if(dwarfTrades[slot]!=null)
+			dwarfTrades[slot].readNBTData(dwarfTradesData[slot]);
 		return dwarfTrades[slot];
 	}
 	

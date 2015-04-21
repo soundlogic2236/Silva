@@ -1,6 +1,7 @@
 package soundlogic.silva.common.crafting;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -22,7 +23,8 @@ import soundlogic.silva.common.item.ModItems;
 
 public class ModPortalTradeRecipes {
 
-	public static List<DwarfTrade> dwarfTradesIndex=new ArrayList<DwarfTrade>();
+	public static HashMap<String,DwarfTrade> dwarfStringsToTrades=new HashMap<String,DwarfTrade>();
+	public static HashMap<DwarfTrade,String> dwarfTradesToStrings=new HashMap<DwarfTrade,String>();
 	private static List<DwarfTradeWeight> dwarfTradeWeights=new ArrayList<DwarfTradeWeight>();
 
 	public static IPortalRecipe dwarfSignRecipe;
@@ -37,7 +39,6 @@ public class ModPortalTradeRecipes {
 	public static IPortalRecipe dwarfWeedRecipe;
 	public static IPortalRecipe dwarfLivingRockRecipe;
 	public static IPortalRecipe dwarfDwarfRockRecipe;
-	public static IPortalRecipe dwarfdeepQuartzRecipe;
 	public static IPortalRecipe dwarfPumpkinToMeadTrade;
 	public static IPortalRecipe dwarfMelonToMeadTrade;
 	public static IPortalRecipe dwarfChainTrade;
@@ -213,7 +214,6 @@ public class ModPortalTradeRecipes {
 		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfWeedRecipe,1600));
 		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfLivingRockRecipe,1600));
 		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfDwarfRockRecipe,1600));
-		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfdeepQuartzRecipe,1600));
 		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfPumpkinToMeadTrade,1600));
 		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfMelonToMeadTrade,1600));
 		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfChainTrade,1600));
@@ -316,93 +316,97 @@ public class ModPortalTradeRecipes {
 
 
 	private static void indexDwarfRecipes() {
-		dwarfTradesIndex.add((DwarfTrade)dwarfMushroomRecipes[0]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfMushroomRecipes[1]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfMushroomRecipes[2]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfMushroomRecipes[3]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfMushroomRecipes[4]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfMushroomRecipes[5]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfMushroomRecipes[6]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfMushroomRecipes[7]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfMushroomRecipes[8]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfMushroomRecipes[9]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfMushroomRecipes[10]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfMushroomRecipes[11]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfMushroomRecipes[12]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfMushroomRecipes[13]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfMushroomRecipes[14]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfMushroomRecipes[15]);
+		mapDwarfTrade("mushroom0",(DwarfTrade)dwarfMushroomRecipes[0]);
+		mapDwarfTrade("mushroom1",(DwarfTrade)dwarfMushroomRecipes[1]);
+		mapDwarfTrade("mushroom2",(DwarfTrade)dwarfMushroomRecipes[2]);
+		mapDwarfTrade("mushroom3",(DwarfTrade)dwarfMushroomRecipes[3]);
+		mapDwarfTrade("mushroom4",(DwarfTrade)dwarfMushroomRecipes[4]);
+		mapDwarfTrade("mushroom5",(DwarfTrade)dwarfMushroomRecipes[5]);
+		mapDwarfTrade("mushroom6",(DwarfTrade)dwarfMushroomRecipes[6]);
+		mapDwarfTrade("mushroom7",(DwarfTrade)dwarfMushroomRecipes[7]);
+		mapDwarfTrade("mushroom8",(DwarfTrade)dwarfMushroomRecipes[8]);
+		mapDwarfTrade("mushroom9",(DwarfTrade)dwarfMushroomRecipes[9]);
+		mapDwarfTrade("mushroom10",(DwarfTrade)dwarfMushroomRecipes[10]);
+		mapDwarfTrade("mushroom11",(DwarfTrade)dwarfMushroomRecipes[11]);
+		mapDwarfTrade("mushroom12",(DwarfTrade)dwarfMushroomRecipes[12]);
+		mapDwarfTrade("mushroom13",(DwarfTrade)dwarfMushroomRecipes[13]);
+		mapDwarfTrade("mushroom14",(DwarfTrade)dwarfMushroomRecipes[14]);
+		mapDwarfTrade("mushroom15",(DwarfTrade)dwarfMushroomRecipes[15]);
 		
-		dwarfTradesIndex.add((DwarfTrade)dwarfWeedRecipe);
-		dwarfTradesIndex.add((DwarfTrade)dwarfLivingRockRecipe);
-		dwarfTradesIndex.add((DwarfTrade)dwarfDwarfRockRecipe);
-		dwarfTradesIndex.add((DwarfTrade)dwarfdeepQuartzRecipe);
-		dwarfTradesIndex.add((DwarfTrade)dwarfPumpkinToMeadTrade);
-		dwarfTradesIndex.add((DwarfTrade)dwarfMelonToMeadTrade);
-		dwarfTradesIndex.add((DwarfTrade)dwarfChainTrade);
-		dwarfTradesIndex.add((DwarfTrade)dwarfBarrierTrade);
-		dwarfTradesIndex.add((DwarfTrade)dwarfStoneHorseTrade);
-		dwarfTradesIndex.add((DwarfTrade)dwarfManaCrystalTrade);
-		dwarfTradesIndex.add((DwarfTrade)dwarfMasterBoomMossTrade);
+		mapDwarfTrade("dwarfweed",(DwarfTrade)dwarfWeedRecipe);
+		mapDwarfTrade("livingrock",(DwarfTrade)dwarfLivingRockRecipe);
+		mapDwarfTrade("dwarfrock",(DwarfTrade)dwarfDwarfRockRecipe);
+		mapDwarfTrade("pumpkinmead",(DwarfTrade)dwarfPumpkinToMeadTrade);
+		mapDwarfTrade("melonmead",(DwarfTrade)dwarfMelonToMeadTrade);
+		mapDwarfTrade("dwarfchain",(DwarfTrade)dwarfChainTrade);
+		mapDwarfTrade("dwarfbarrier",(DwarfTrade)dwarfBarrierTrade);
+		mapDwarfTrade("stonehorse",(DwarfTrade)dwarfStoneHorseTrade);
+		mapDwarfTrade("manacrystal",(DwarfTrade)dwarfManaCrystalTrade);
+		mapDwarfTrade("masterboommoss",(DwarfTrade)dwarfMasterBoomMossTrade);
 
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeIronRecipes[0]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeIronRecipes[1]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeIronRecipes[2]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeIronRecipes[3]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeIronRecipes[4]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeIronRecipes[5]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeIronRecipes[6]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeIronRecipes[7]);
+		mapDwarfTrade("forgeiron0",(DwarfTrade)dwarfForgeIronRecipes[0]);
+		mapDwarfTrade("forgeiron1",(DwarfTrade)dwarfForgeIronRecipes[1]);
+		mapDwarfTrade("forgeiron2",(DwarfTrade)dwarfForgeIronRecipes[2]);
+		mapDwarfTrade("forgeiron3",(DwarfTrade)dwarfForgeIronRecipes[3]);
+		mapDwarfTrade("forgeiron4",(DwarfTrade)dwarfForgeIronRecipes[4]);
+		mapDwarfTrade("forgeiron5",(DwarfTrade)dwarfForgeIronRecipes[5]);
+		mapDwarfTrade("forgeiron6",(DwarfTrade)dwarfForgeIronRecipes[6]);
+		mapDwarfTrade("forgeiron7",(DwarfTrade)dwarfForgeIronRecipes[7]);
 
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeDiamondRecipes[0]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeDiamondRecipes[1]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeDiamondRecipes[2]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeDiamondRecipes[3]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeDiamondRecipes[4]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeDiamondRecipes[5]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeDiamondRecipes[6]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeDiamondRecipes[7]);
+		mapDwarfTrade("forgediamond0",(DwarfTrade)dwarfForgeDiamondRecipes[0]);
+		mapDwarfTrade("forgediamond1",(DwarfTrade)dwarfForgeDiamondRecipes[1]);
+		mapDwarfTrade("forgediamond2",(DwarfTrade)dwarfForgeDiamondRecipes[2]);
+		mapDwarfTrade("forgediamond3",(DwarfTrade)dwarfForgeDiamondRecipes[3]);
+		mapDwarfTrade("forgediamond4",(DwarfTrade)dwarfForgeDiamondRecipes[4]);
+		mapDwarfTrade("forgediamond5",(DwarfTrade)dwarfForgeDiamondRecipes[5]);
+		mapDwarfTrade("forgediamond6",(DwarfTrade)dwarfForgeDiamondRecipes[6]);
+		mapDwarfTrade("forgediamond7",(DwarfTrade)dwarfForgeDiamondRecipes[7]);
 
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeGoldRecipes[0]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeGoldRecipes[1]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeGoldRecipes[2]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeGoldRecipes[3]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeGoldRecipes[4]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeGoldRecipes[5]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeGoldRecipes[6]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeGoldRecipes[7]);
+		mapDwarfTrade("forgegold0",(DwarfTrade)dwarfForgeGoldRecipes[0]);
+		mapDwarfTrade("forgegold1",(DwarfTrade)dwarfForgeGoldRecipes[1]);
+		mapDwarfTrade("forgegold2",(DwarfTrade)dwarfForgeGoldRecipes[2]);
+		mapDwarfTrade("forgegold3",(DwarfTrade)dwarfForgeGoldRecipes[3]);
+		mapDwarfTrade("forgegold4",(DwarfTrade)dwarfForgeGoldRecipes[4]);
+		mapDwarfTrade("forgegold5",(DwarfTrade)dwarfForgeGoldRecipes[5]);
+		mapDwarfTrade("forgegold6",(DwarfTrade)dwarfForgeGoldRecipes[6]);
+		mapDwarfTrade("forgegold7",(DwarfTrade)dwarfForgeGoldRecipes[7]);
 
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeManasteelRecipes[0]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeManasteelRecipes[1]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeManasteelRecipes[2]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeManasteelRecipes[3]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeManasteelRecipes[4]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeManasteelRecipes[5]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeManasteelRecipes[6]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeManasteelRecipes[7]);
+		mapDwarfTrade("forgemanasteel0",(DwarfTrade)dwarfForgeManasteelRecipes[0]);
+		mapDwarfTrade("forgemanasteel1",(DwarfTrade)dwarfForgeManasteelRecipes[1]);
+		mapDwarfTrade("forgemanasteel2",(DwarfTrade)dwarfForgeManasteelRecipes[2]);
+		mapDwarfTrade("forgemanasteel3",(DwarfTrade)dwarfForgeManasteelRecipes[3]);
+		mapDwarfTrade("forgemanasteel4",(DwarfTrade)dwarfForgeManasteelRecipes[4]);
+		mapDwarfTrade("forgemanasteel5",(DwarfTrade)dwarfForgeManasteelRecipes[5]);
+		mapDwarfTrade("forgemanasteel6",(DwarfTrade)dwarfForgeManasteelRecipes[6]);
+		mapDwarfTrade("forgemanasteel7",(DwarfTrade)dwarfForgeManasteelRecipes[7]);
 
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeTerrasteelRecipes[0]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeTerrasteelRecipes[1]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeTerrasteelRecipes[2]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeTerrasteelRecipes[3]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeTerrasteelRecipes[7]);
+		mapDwarfTrade("forgeterrasteel0",(DwarfTrade)dwarfForgeTerrasteelRecipes[0]);
+		mapDwarfTrade("forgeterrasteel1",(DwarfTrade)dwarfForgeTerrasteelRecipes[1]);
+		mapDwarfTrade("forgeterrasteel2",(DwarfTrade)dwarfForgeTerrasteelRecipes[2]);
+		mapDwarfTrade("forgeterrasteel3",(DwarfTrade)dwarfForgeTerrasteelRecipes[3]);
+		mapDwarfTrade("forgeterrasteel7",(DwarfTrade)dwarfForgeTerrasteelRecipes[7]);
 
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeElementiumRecipes[0]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeElementiumRecipes[1]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeElementiumRecipes[2]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeElementiumRecipes[3]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeElementiumRecipes[4]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeElementiumRecipes[5]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeElementiumRecipes[6]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfForgeElementiumRecipes[7]);
+		mapDwarfTrade("forgeelementum0",(DwarfTrade)dwarfForgeElementiumRecipes[0]);
+		mapDwarfTrade("forgeelementum1",(DwarfTrade)dwarfForgeElementiumRecipes[1]);
+		mapDwarfTrade("forgeelementum2",(DwarfTrade)dwarfForgeElementiumRecipes[2]);
+		mapDwarfTrade("forgeelementum3",(DwarfTrade)dwarfForgeElementiumRecipes[3]);
+		mapDwarfTrade("forgeelementum4",(DwarfTrade)dwarfForgeElementiumRecipes[4]);
+		mapDwarfTrade("forgeelementum5",(DwarfTrade)dwarfForgeElementiumRecipes[5]);
+		mapDwarfTrade("forgeelementum6",(DwarfTrade)dwarfForgeElementiumRecipes[6]);
+		mapDwarfTrade("forgeelementum7",(DwarfTrade)dwarfForgeElementiumRecipes[7]);
 
-		dwarfTradesIndex.add((DwarfTrade)dwarfReforgeRecipes[0]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfReforgeRecipes[1]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfReforgeRecipes[2]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfReforgeRecipes[3]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfReforgeRecipes[4]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfReforgeRecipes[5]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfReforgeRecipes[6]);
-		dwarfTradesIndex.add((DwarfTrade)dwarfReforgeRecipes[7]);
+		mapDwarfTrade("reforge0",(DwarfTrade)dwarfReforgeRecipes[0]);
+		mapDwarfTrade("reforge1",(DwarfTrade)dwarfReforgeRecipes[1]);
+		mapDwarfTrade("reforge2",(DwarfTrade)dwarfReforgeRecipes[2]);
+		mapDwarfTrade("reforge3",(DwarfTrade)dwarfReforgeRecipes[3]);
+		mapDwarfTrade("reforge4",(DwarfTrade)dwarfReforgeRecipes[4]);
+		mapDwarfTrade("reforge5",(DwarfTrade)dwarfReforgeRecipes[5]);
+		mapDwarfTrade("reforge6",(DwarfTrade)dwarfReforgeRecipes[6]);
+		mapDwarfTrade("reforge7",(DwarfTrade)dwarfReforgeRecipes[7]);
+	}
+	
+	public static void mapDwarfTrade(String key, DwarfTrade trade) {
+		dwarfStringsToTrades.put(key, trade);
+		dwarfTradesToStrings.put(trade, key);
 	}
 }
