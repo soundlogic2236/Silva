@@ -10,6 +10,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
 @Mod(modid = LibMisc.MOD_ID, name = LibMisc.MOD_NAME, version = LibMisc.VERSION, dependencies = LibMisc.DEPENDENCIES)
 public class Silva {
@@ -24,6 +25,8 @@ public class Silva {
 	@SidedProxy(serverSide = LibMisc.PROXY_COMMON, clientSide = LibMisc.PROXY_CLIENT)
     public static CommonProxy proxy;
     
+	public static final SimpleNetworkWrapper PACKET_HANDLER = new SimpleNetworkWrapper(LibMisc.MOD_ID);
+	
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         proxy.preInit(event);

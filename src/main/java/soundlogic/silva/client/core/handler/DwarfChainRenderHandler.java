@@ -1,17 +1,20 @@
 package soundlogic.silva.client.core.handler;
 
+import java.util.HashMap;
 import java.util.UUID;
 import java.util.Map.Entry;
 
 import org.lwjgl.opengl.GL11;
 
 import soundlogic.silva.common.core.handler.DwarvenChainHandler;
+import soundlogic.silva.common.core.handler.DwarvenChainHandler.LeashProperties;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -20,14 +23,15 @@ public class DwarfChainRenderHandler {
 
 	@SubscribeEvent
 	public void renderLiving(RenderLivingEvent.Pre event) {
+		
 		if ( event.entity instanceof EntityCreature) {
-			for(Entry<EntityPlayer, UUID> entry : DwarvenChainHandler.playerLeashesUUIDs.entrySet()) {
-				if(entry.getValue()!=null && entry.getValue().equals(event.entity.getPersistentID())) {
-					float f2=ClientTickHandler.partialTicks; //partial ticks?
-			        float f1 = event.entity.prevRotationYaw + (event.entity.rotationYaw - event.entity.prevRotationYaw) * f2;
-					renderChain((EntityLiving) event.entity, entry.getKey(), event.x, event.y, event.z, f1, f2);
-				}
-			}
+			LeashProperties props = DwarvenChainHandler.getChainForEntity((EntityCreature) event.entity);
+			props.searchTick(event.entity, true);
+			if(props==null || props.getEntity() == null || !props.getActive())
+				return;
+			float f2=ClientTickHandler.partialTicks; //partial ticks?
+			float f1 = event.entity.prevRotationYaw + (event.entity.rotationYaw - event.entity.prevRotationYaw) * f2;
+			renderChain((EntityLiving) event.entity, props.getEntity(), event.x, event.y, event.z, f1, f2);
 		}
 	}
 

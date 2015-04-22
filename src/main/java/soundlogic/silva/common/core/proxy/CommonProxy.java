@@ -20,6 +20,7 @@ import soundlogic.silva.common.core.handler.DwarfForgedHandler;
 import soundlogic.silva.common.core.handler.DwarvenChainHandler;
 import soundlogic.silva.common.core.handler.EnderPearlPortalHandler;
 import soundlogic.silva.common.core.handler.PixieDustHandler;
+import soundlogic.silva.common.core.handler.PotionEffectHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
 import soundlogic.silva.common.crafting.ModCraftingRecipes;
 import soundlogic.silva.common.crafting.ModPortalTradeRecipes;
@@ -27,10 +28,13 @@ import soundlogic.silva.common.crafting.PortalRecipes;
 import soundlogic.silva.common.entity.ModEntities;
 import soundlogic.silva.common.item.ModItems;
 import soundlogic.silva.common.lexicon.LexiconData;
+import soundlogic.silva.common.network.MessageEntityData;
+import soundlogic.silva.common.potion.ModPotions;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.relauncher.Side;
 
 public class CommonProxy {
 
@@ -48,6 +52,8 @@ public class CommonProxy {
 			}
 		};
 		
+		ModPotions.preInit();
+		
 		ModBlocks.preInit();
 		ModItems.preInit();
 		ModEntities.preInit();
@@ -59,6 +65,8 @@ public class CommonProxy {
 		DimensionHandler.initSignatures();
 
 		LexiconData.preInit();
+		
+		Silva.PACKET_HANDLER.registerMessage(MessageEntityData.Handler.class, MessageEntityData.class, 0, Side.CLIENT);
 	}
 
 	public void init(FMLInitializationEvent event) {
@@ -70,6 +78,9 @@ public class CommonProxy {
 		MinecraftForge.EVENT_BUS.register(dwarfForged);
 		FMLCommonHandler.instance().bus().register(dwarfForged);
 		MinecraftForge.EVENT_BUS.register(new DwarvenChainHandler());
+		PotionEffectHandler potionHandler=new PotionEffectHandler();
+		MinecraftForge.EVENT_BUS.register(potionHandler);
+		FMLCommonHandler.instance().bus().register(potionHandler);
 	}
 	
 	public void postInit(FMLPostInitializationEvent event) {

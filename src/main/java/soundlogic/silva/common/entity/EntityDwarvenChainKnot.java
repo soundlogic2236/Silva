@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import soundlogic.silva.common.item.ModItems;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.EntityLeashKnot;
 import net.minecraft.entity.EntityLiving;
@@ -48,6 +49,11 @@ public class EntityDwarvenChainKnot extends EntityHanging{
 	public void setAttachedEntity(EntityLiving toLeash) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public boolean isChainAttached(EntityCreature creature) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

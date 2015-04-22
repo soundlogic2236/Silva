@@ -26,6 +26,8 @@ public class ItemDwarvenChain extends ItemMod{
 	
     @Override
     public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity) {
+    	if(player.worldObj.isRemote)
+    		return false;
     	if(entity instanceof EntityCreature) {
     		EntityCreature creature = (EntityCreature) entity;
         	DwarvenChainHandler.attachChainToEntity(creature, player);
