@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import org.lwjgl.opengl.GL11;
 
 import soundlogic.silva.common.core.handler.DwarvenChainHandler;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -22,7 +23,7 @@ public class DwarfChainRenderHandler {
 		if ( event.entity instanceof EntityCreature) {
 			for(Entry<EntityPlayer, UUID> entry : DwarvenChainHandler.playerLeashesUUIDs.entrySet()) {
 				if(entry.getValue()!=null && entry.getValue().equals(event.entity.getPersistentID())) {
-					float f2=0; //partial ticks?
+					float f2=ClientTickHandler.partialTicks; //partial ticks?
 			        float f1 = event.entity.prevRotationYaw + (event.entity.rotationYaw - event.entity.prevRotationYaw) * f2;
 					renderChain((EntityLiving) event.entity, entry.getKey(), event.x, event.y, event.z, f1, f2);
 				}

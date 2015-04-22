@@ -21,7 +21,7 @@ public class ClientTickHandler {
 
 	public static float ticksInGame = 0;
 	public static int ticks = 0;
-	public float partialTicks = 0;
+	public static float partialTicks = 0;
 
 	@SubscribeEvent
 	public void renderTickStart(RenderTickEvent event) {
