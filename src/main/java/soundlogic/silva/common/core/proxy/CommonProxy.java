@@ -17,6 +17,7 @@ import soundlogic.silva.common.core.handler.BifrostCreationHandler;
 import soundlogic.silva.common.core.handler.BlockDropsHandler;
 import soundlogic.silva.common.core.handler.ConfigHandler;
 import soundlogic.silva.common.core.handler.DwarfForgedHandler;
+import soundlogic.silva.common.core.handler.DwarvenChainHandler;
 import soundlogic.silva.common.core.handler.EnderPearlPortalHandler;
 import soundlogic.silva.common.core.handler.PixieDustHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
@@ -68,6 +69,7 @@ public class CommonProxy {
 		DwarfForgedHandler dwarfForged=new DwarfForgedHandler();
 		MinecraftForge.EVENT_BUS.register(dwarfForged);
 		FMLCommonHandler.instance().bus().register(dwarfForged);
+		MinecraftForge.EVENT_BUS.register(new DwarvenChainHandler());
 	}
 	
 	public void postInit(FMLPostInitializationEvent event) {

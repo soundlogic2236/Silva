@@ -8,6 +8,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import soundlogic.silva.client.core.handler.AlfheimPortalGuiHandler;
 import soundlogic.silva.client.core.handler.ClientTickHandler;
+import soundlogic.silva.client.core.handler.DwarfChainRenderHandler;
 import soundlogic.silva.client.lib.LibRenderIDs;
 import soundlogic.silva.client.render.block.RenderBoomMoss;
 import soundlogic.silva.client.render.block.RenderDarkenedDust;
@@ -16,6 +17,7 @@ import soundlogic.silva.client.render.block.RenderManaCrystal;
 import soundlogic.silva.client.render.block.RenderManaEater;
 import soundlogic.silva.client.render.block.RenderPixieDust;
 import soundlogic.silva.client.render.block.RenderPylon;
+import soundlogic.silva.client.render.entity.RenderDwarvenChainKnot;
 import soundlogic.silva.client.render.entity.RenderEntityStoneHorse;
 import soundlogic.silva.client.render.tile.RenderTileBoomMoss;
 import soundlogic.silva.client.render.tile.RenderTileDwarvenPool;
@@ -34,6 +36,7 @@ import soundlogic.silva.common.block.tile.TilePortalCore;
 import soundlogic.silva.common.block.tile.TilePylon;
 import soundlogic.silva.common.core.proxy.CommonProxy;
 import soundlogic.silva.common.entity.EntityDwarvenBarrier;
+import soundlogic.silva.common.entity.EntityDwarvenChainKnot;
 import soundlogic.silva.common.entity.EntityStoneHorse;
 import soundlogic.silva.common.item.ModItems;
 
@@ -44,6 +47,7 @@ public class ClientProxy extends CommonProxy{
 		super.init(event);
 
 		FMLCommonHandler.instance().bus().register(new ClientTickHandler());
+		MinecraftForge.EVENT_BUS.register(new DwarfChainRenderHandler());
 		MinecraftForge.EVENT_BUS.register(new AlfheimPortalGuiHandler());
 
 	}
@@ -77,6 +81,7 @@ public class ClientProxy extends CommonProxy{
     	
     	RenderingRegistry.registerEntityRenderingHandler(EntityStoneHorse.class, new RenderEntityStoneHorse());
     	RenderingRegistry.registerEntityRenderingHandler(EntityDwarvenBarrier.class, new RenderSnowball(ModItems.dwarfBarrier));
+    	RenderingRegistry.registerEntityRenderingHandler(EntityDwarvenChainKnot.class, new RenderDwarvenChainKnot());
     }
         
     @Override

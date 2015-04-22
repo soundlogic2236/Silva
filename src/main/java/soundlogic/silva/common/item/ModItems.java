@@ -33,7 +33,7 @@ public class ModItems {
 		fakeLexicon=new ItemFakeLexicon();
 		stoneHorse=new ItemStoneHorse();
 		dwarfMead=new ItemMod(LibItemNames.DWARF_MEAD);
-		dwarfChain=new ItemMod(LibItemNames.DWARF_CHAIN);
+		dwarfChain=new ItemDwarvenChain(LibItemNames.DWARF_CHAIN);
 		dwarfBarrier=new ItemDwarvenBarrier(LibItemNames.DWARF_BARRIER);
 	}
 	
