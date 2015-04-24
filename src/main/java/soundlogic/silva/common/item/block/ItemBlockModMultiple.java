@@ -5,7 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockModMultiple extends ItemBlock{
+public class ItemBlockModMultiple extends ItemBlockMod{
 
 	public ItemBlockModMultiple(Block block) {
 		super(block);

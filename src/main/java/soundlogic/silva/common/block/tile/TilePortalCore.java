@@ -409,7 +409,6 @@ public class TilePortalCore extends TileMod{
 	public boolean onWanded() {
 		NBTTagCompound cmp=new NBTTagCompound();
 		this.dwarfData.writeNBT(cmp);
-		System.out.println(cmp);
 		if(this.dimension!=null)
 			return true;
 		ForgeDirection direction=getPortalDirection();

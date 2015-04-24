@@ -53,8 +53,16 @@ tile.silva:bifrostBlock.name=Bifrost
 tile.silva:bifrostBlockSparkling.name=Sparkling Bifrost
 tile.silva:bifrostBlockStairs.name=Bifrost Stairs
 tile.silva:bifrostBlockWall.name=Bifrost Wall
+tile.silva:bifrostBlockSlab.name=Bifrost Slab
 tile.silva:portalCore.name=Advanced Portal Core
 tile.silva:darkenedDust.name=Darkened Dust
+tile.silva:dwarvenSign.name=Dwarven Trade Sign
+tile.silva:dwarfWeed.name=Dwarf Weed
+tile.silva:manaCrystal.name=Mana Crystal
+tile.silva:dwarfRock0.name=Deep Rock
+tile.silva:dwarfRock1.name=Deep Rock Brick
+tile.silva:dwarvenPool.name=Dwarven Mana Pool
+
 
 # ITEM NAMES
 item.silva:itemProxy.questionMark.name=Who knows?
@@ -70,8 +78,12 @@ item.silva:priceProxy.name=Additional Cost
 item.silva:pageBundleFake.name=Notes for your Lexicon
 item.silva:pageBundle.worldTree.name=Another Message from Elven Garde
 item.silva:pageBundle.dwarven.name=Message from Dwarven Trade Commission
-item.silva:pageBundle.darkElf.name=Message from [ELF NAME]
+item.silva:pageBundle.darkElf.name=Another Message from Nublia
 item.silva:bifrostShard.name=Bifrost Shard
+item.silva:stoneHorse.name=Stone Horse
+item.silva:dwarfMead.name=Mead of Poetry
+item.silva:dwarfChain.name=Dwarven Chain
+item.silva:dwarfBarrier.name=Dwarven Barrier Stone
 
 # FLOWER NAMES
 

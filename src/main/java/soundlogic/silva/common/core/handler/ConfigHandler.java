@@ -4,6 +4,7 @@ import java.io.File;
 
 public class ConfigHandler {
 
+	public static boolean devBooks = false;
 	public static int potionIDMead = 124;
 	
 	public static void loadConfig(File suggestedConfigurationFile) {

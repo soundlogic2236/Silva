@@ -1,5 +1,7 @@
 package soundlogic.silva.client.core.proxy;
 
+import java.io.IOException;
+
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -7,6 +9,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import soundlogic.silva.client.core.handler.AlfheimPortalGuiHandler;
+import soundlogic.silva.client.core.handler.BookConverter;
 import soundlogic.silva.client.core.handler.ClientTickHandler;
 import soundlogic.silva.client.core.handler.DwarfChainRenderHandler;
 import soundlogic.silva.client.lib.LibRenderIDs;
@@ -88,4 +91,12 @@ public class ClientProxy extends CommonProxy{
     public int getTicks() {
     	return ClientTickHandler.ticks;
     }
+
+	public void convertBooks() {
+		try {
+			BookConverter.convertBooks();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

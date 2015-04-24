@@ -15,6 +15,7 @@ import soundlogic.silva.common.block.tile.IForestClientTick;
 import soundlogic.silva.common.block.tile.TilePortalCore;
 import soundlogic.silva.common.core.handler.BifrostCreationHandler;
 import soundlogic.silva.common.core.handler.BlockDropsHandler;
+import soundlogic.silva.common.core.handler.BookHandler;
 import soundlogic.silva.common.core.handler.ConfigHandler;
 import soundlogic.silva.common.core.handler.DwarfForgedHandler;
 import soundlogic.silva.common.core.handler.DwarvenChainHandler;
@@ -85,7 +86,7 @@ public class CommonProxy {
 	
 	public void postInit(FMLPostInitializationEvent event) {
 		TilePortalCore.definePortalShape();
-
+		BookHandler.loadBooks();
 	}
 	
 	// Client stuff
@@ -96,5 +97,9 @@ public class CommonProxy {
 	public int getTicks() {
         // Nothing here as the server doesn't render graphics or entities!
 		return 0;
+	}
+	
+	public void convertBooks() {
+		// Only done client side during dev
 	}
 }

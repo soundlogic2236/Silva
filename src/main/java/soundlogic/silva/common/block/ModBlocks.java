@@ -117,7 +117,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(dwarfRock, ItemBlockModMultiple.class, LibBlockNames.DWARF_ROCK);
 		
 		dwarvenManaPool=new BlockDwarvenPool().setBlockName(LibBlockNames.DWARVEN_POOL);
-		GameRegistry.registerBlock(dwarvenManaPool, ItemBlockModMultiple.class, LibBlockNames.DWARVEN_POOL);
+		GameRegistry.registerBlock(dwarvenManaPool, ItemBlockMod.class, LibBlockNames.DWARVEN_POOL);
 		
 		initTileEntities();
 	}
