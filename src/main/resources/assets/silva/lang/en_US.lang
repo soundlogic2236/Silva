@@ -6,6 +6,7 @@ silva.tooltips.papers_craft=Craft with a lexicon
 silva.tooltips.papers_knowledge_type=Adds knowledge type:
 silva.tooltips.fake_knowledge=More Knowledge!
 silva.tooltips.clickToSignature=Shift click to see signature
+silva.tooltips.dwarfForged=Dwarf Forged
 
 # DIMENSIONS
 silva.dimension.ginnungagap=Ginnungagap
@@ -116,9 +117,16 @@ silva.page.dimensionalTravelAttempt1=What will happen when you throw an &4Ender 
 
 # -- DIMENSIONAL TRAVEL FAILURE
 silva.entry.dimensionalTravelFailure=Dimensional Travel II
-silva.page.dimensionalTravelFailure0=That was... not what you expected. Well, it could have been worse. You should probably read the rest of the papers they sent you though.
+silva.page.dimensionalTravelFailure0=That was... not what you expected. Well, it could have been worse. You should probably read the rest of the papers they sent you though. Starting with 'A message from Nublia' in the World Tree Category
 
 # - WORLD TREE
+
+# -- A Message from Nublia
+silva.entry.nubliaMessage=A Message From Nublia
+silva.page.nubliaMessage0=
+silva.page.nubliaMessage1=Greetings. I am Nublia, Senior Researcher of the World Tree Institute of Higher Alfheim. I must say, your actions provoked quite a response-infusing an active portal with the power of the Ginnungagap. There was quite a lot of debate on what to do with you. 
+silva.page.nubliaMessage2=Some argued for creating a barrier to prevent you from opening any more portals to Alfhiem, or even attempting to kill you to prevent any further risk. As you can probably tell though, neither of those were selected. I advocated for instead giving you aid and teaching you caution, and naturally wound up in the position of your sponsor. 
+silva.page.nubliaMessage3=I have included notes on portal creation, the various realms of the world tree. 
 
 # -- WORLD TREE INTRO
 silva.entry.worldTreeIntro=Introduction to the World Tree
@@ -231,3 +239,72 @@ silva.page.dimFolkvangr1=Exposure to Folkvangr energies results in calmness in b
 silva.entry.dimVigrior=Vigrior
 silva.page.dimVigrior0=Vigrior is the great field where the battle Ragnarok is fortold to occur. Even now the ground there is filled with the energy of battle cries and death. No one lives there but strange things sometimes occur on it-echos of the future. 
 silva.page.dimVigrior1=Exposure to Vigrior energies results in strange happenings in battle as the power of the future battle stretches backwards to touch the present. I have seen mice exposed slay men, men slay giants, and Asgardians defeat armies all without any apparent difficulty, and watched warriers forget their skills, drop their weapons, or give them away to their enemies. 
+
+# - DWARVEN TRADE
+# -- DWARF INTRO
+silva.entry.dwarfIntro=Dwarven Trade
+silva.page.dwarfIntro0=Greetings and Good Mining from Nidavellir! It is wonderful to have new trading partners! We hope that we can build a great relationship with our skills. We have many things to offer, which are detailed in the attached pages. To start however, we need a easier method of indicating what trades we are offering. 
+silva.page.dwarfIntro1=For this, us dwarves use Trade Signs, which use a bit of bifrost and the energies of a portal to synchronise themselves with ones on the other side. If you provide the required materials, we will craft them free of charge for you.
+silva.page.dwarfIntro2=Trading for Dwarven Trade Signs.
+silva.page.dwarfIntro3=The rest of the trades will show up on the signs, what we want on the left, and what we will give on the right. Simply press a sign like a button and it will become selected, a fact which will be mirrored on our end. Then if you send your half of the deal through we will reply in kind.
+silva.page.dwarfIntro4=Deals are offered on a Dwarf by Dwarf basis, and they are free to change their deals at any time, though it is considered rude to change down a selected deal, so that of course isn't done.
+silva.page.dwarfIntro5=As you build up a reputation as a trading partner, you will find that we will be willing to offer more advanced trades. Participating in trades that require a greater level of skill will also boost your reputation more than simply trading trinkets ever could.
+silva.page.dwarfIntro6=A final word of warning: While the Elves of Alfheim centralise their portals, our portals are dispersed between the different tribes of dwarves. While simply closing and reopening the portal will still have it lead to us, if you actually disrupt the portal core itself it is unlikely it will reopen to us, and you will have to develop a reputation with whatever new tribe you connect to.
+
+# -- BASIC DWARVEN RESOURCES
+silva.entry.basicDwarvenResources=The Resources of Nidavellir
+silva.page.basicDwarvenResources0=Some more common resources of our realm we will trade easily, and are mostly used in crafting. We hope you enjoy them. They form a firm foundation for further trades
+silva.page.basicDwarvenResources1=Trading for Dwarf Weed
+silva.page.basicDwarvenResources2=Trading for Deep Rock
+silva.page.basicDwarvenResources3=Trading for Mushrooms
+silva.page.basicDwarvenResources4=Trading for Living Rock
+
+# -- BOOM MOSS
+silva.entry.boomMoss=Boom Moss
+silva.page.boomMoss0=Boom Moss is a wonderful creation, and a staple of dwarven mining. Simply place down a patch of it and apply mana and it will grow at an incredible speed! Then, use a light tap to detonate it, causing a chain reaction to mine out large areas, though just the surface. 
+silva.page.boomMoss1=We often use it for prospecting to reveal entire new layers at a time before selecting where to dig, or letting it grow between things to expand large areas in a single blow. 
+silva.page.boomMoss2=Crafting Boom Moss
+silva.page.boomMoss3=In addition to regular Boom Moss, some dwarves know the secret of enchanting it, creating something known as "Master Boom Moss". It requires no additional mana beyond that of regular boom moss, but when detonated it carves out the stone with precision like an enchanted pickaxe, letting the miners handle the ores in their original form. 
+silva.page.boomMoss4=Even better, it moves all the ores thus mined back to the original location of detonation, permitting the user to pick all of them up with ease!
+silva.page.boomMoss5=Trading For Master Boom Moss
+
+# -- DWARF FORGED
+silva.entry.dwarfForged=Dwarf Forged
+silva.page.dwarfForged0=The Elves' skills at enchanting are well known, and a dwarf who goes into battle will be as covered in enchantments and runes as any elf. None the less, at the core of any dwarf's weapon and tools, below the layers of enchantment and runes lies the precise skill of a dwarven forgemaster. 
+silva.page.dwarfForged1=Such creations are superior in a multitude of tiny and not so tiny ways, adding up to, while not quite on the level of full magic, a steady and reliable base completely compatible with enchanting. 
+silva.page.dwarfForged2=A dwarf forged sword's edge has tiny details on it which cause its hits to occasionally tear skin for a slight boost in damage, and its sharpness means that when it hits just right it can do massive damage. 
+silva.page.dwarfForged3=Dwarven Forged armor has carefully created interlocking pieces which will sometimes completely nullify even the most powerful blows! 
+silva.page.dwarfForged4=In addition our smiths put careful grooves into their creations permitting things like timeless ivy to mesh better, allowing it to repair at a greater rate and for less mana.
+silva.page.dwarfForged5=Any armor, tool, or weapon you get from us will be of dwarven make, and many of our smiths may be willing to craft armor for you should you provide the materials and a fee. Such is their skill that they usually require less materials than ordinary crafters, wasting less and making the ingots go farther.
+silva.page.dwarfForged6=Paying Dwarven Smiths to craft
+silva.page.dwarfForged7=Should you have object which are not of dwarven make, not all hope is lost! While reforging existing armor to the exacting standards of dwarven crafting is more difficult than most of our smith's can do, it is none the less possible to reforge objects, even those of materials we do not normally use!
+silva.page.dwarfForged8=Paying Dwarven Smiths to reforge
+
+# -- DWARVEN BARRIER STONE
+silva.entry.dwarvenBarrierStone=Dwarven Barrier Stone
+silva.page.dwarvenBarrierStone0=The Dwarven Barrier stone is a clever creation of the dwarves. By infusing deep rock with a mana pearl and inscribing it with certain runes we can create a stone which when impacting a surface expands into a barrier (or floor, or ceiling). 
+silva.page.dwarvenBarrierStone1=It is useful for rapidly blocking up tunnels when necessary, or quickly creating bridges across pits. In addition, the high density of stone held inside means that it can put a nasty bruise on a foe it hits.
+silva.page.dwarvenBarrierStone2=Trading For Dwarven Barrier Stone
+
+# -- DWARVEN CHAIN
+silva.entry.dwarvenChain=Dwarven Chain
+silva.page.dwarvenChain0=The great chain Gleipnir was crafted by our kind to bind the mighty wolf Fenrir, and is the only object known to be able to. Crafted from the sound of a cat's footfall, the beard of a woman, the roots of a mountain, the sinews of a bear, the breath of a fish, and the spittle of a bird it was a magnificent thing. But who has the time to get all that?
+silva.page.dwarvenChain1=None the less, the same skills can be used to craft a mighty, if not completely unstoppable chain which can be used to bind other creatures even if they resist. A dwarven chain can act similar to a lead except that it functions on creatures which are more agressive than your ordinary pig.
+silva.page.dwarvenChain2=Trading for Dwarven Chain
+
+
+# -- DWARVEN MANA POOL
+silva.entry.dwarvenManaPool=Dwarven Mana Pool
+silva.page.dwarvenManaPool0=
+
+# -- MEAD OF POETRY
+silva.entry.dwarvenMead=Mead of Poetry
+silva.page.dwarvenMead0=
+
+# -- MANA CRYSTAL
+silva.entry.manaCrystal=Mana Crystal
+silva.page.manaCrystal0=
+
+# -- STONE HORSE
+silva.entry.stoneHorse=Stone Horse
+silva.page.stoneHorse0=

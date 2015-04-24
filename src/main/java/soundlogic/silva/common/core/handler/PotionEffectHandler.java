@@ -41,9 +41,6 @@ public class PotionEffectHandler {
 				event.setCanceled(true);
 			}
 		}
-		if(stack.getItem()==Items.written_book) {
-			System.out.println(stack.getTagCompound());
-		}
 	}
 	@SubscribeEvent
 	public void onTick(PlayerTickEvent event) {

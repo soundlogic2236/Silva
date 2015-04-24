@@ -105,7 +105,7 @@ public class ModCraftingRecipes {
 				"SSS",
 				'S', new ItemStack(ModBlocks.dwarfRock),
 				'D', new ItemStack(vazkii.botania.common.block.ModBlocks.pool));
-		recipePortalCore = BotaniaAPI.getLatestAddedRecipe();
+		recipeDwarvenPool = BotaniaAPI.getLatestAddedRecipe();
 		
 		
 	}

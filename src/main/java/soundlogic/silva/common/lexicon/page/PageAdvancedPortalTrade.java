@@ -59,6 +59,10 @@ public class PageAdvancedPortalTrade extends PageRecipe{
 	public PageAdvancedPortalTrade(String unlocalizedName, IPortalRecipe recipe, Dimension dim) {
 		this(unlocalizedName, Arrays.asList(recipe),dim);
 	}
+
+	public PageAdvancedPortalTrade(String unlocalizedName, IPortalRecipe[] recipes, Dimension dim) {
+		this(unlocalizedName, Arrays.asList(recipes),dim);
+	}
 	
 	@Override
 	public void onPageAdded(LexiconEntry entry, int index) {
@@ -68,10 +72,22 @@ public class PageAdvancedPortalTrade extends PageRecipe{
 				LexiconRecipeMappings.map(outputSingle, entry, index);
 		}
 	}
-	
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void updateScreen() {
+		if(ticksElapsed % 20 == 0) {
+			recipeAt++;
+
+			if(recipeAt == recipes.size())
+				recipeAt = 0;
+		}
+		++ticksElapsed;
+	}	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void renderRecipe(IGuiLexiconEntry gui, int mx, int my) {
+		ticksElapsed++;
 		boolean mouseDown = Mouse.isButtonDown(0);
 		
 		IPortalRecipe recipe = recipes.get(recipeAt);

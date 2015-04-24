@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -50,7 +51,7 @@ public class LexiconData {
 	public static LexiconEntry manaEater;
 	public static LexiconEntry darkElfIntro;
 	public static LexiconEntry advancedPortals;
-	public static LexiconEntry dwarfWeed;
+	public static LexiconEntry basicDwarvenResources;
 	public static LexiconEntry boomMoss;
 	public static LexiconEntry dwarfForged;
 	public static LexiconEntry worldTreeIntro;
@@ -71,11 +72,18 @@ public class LexiconData {
 	public static LexiconEntry dimVanaheimr;
 	public static LexiconEntry bifrost;
 	public static LexiconEntry darkenedDust;
+	public static LexiconEntry nubliaMessage;
 	
 	public static ItemStack dimensionalPapers;
 	public static ItemStack dwarvenPapers;
 	public static ItemStack darkElfPapers;
 	public static List<ItemStack> papers;
+	public static LexiconEntry manaCrystal;
+	public static LexiconEntry dwarvenManaPool;
+	public static LexiconEntry stoneHorse;
+	public static LexiconEntry dwarvenMead;
+	public static LexiconEntry dwarvenChain;
+	public static LexiconEntry dwarvenBarrierStone;
 
 	public static void preInit() {
 		
@@ -156,17 +164,68 @@ public class LexiconData {
 		dwarfIntro=new SLexiconEntry(LibLexicon.DWARF_INTRO, categoryDwarven);
 		dwarfIntro.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
 				new PageAdvancedText("0",PageBackground.DWARVEN),
-				new PageAdvancedPortalTrade("1", ModPortalTradeRecipes.dwarfSignRecipe,Dimension.NIDAVELLIR)).setPriority();
+				new PageAdvancedText("1",PageBackground.DWARVEN),
+				new PageAdvancedPortalTrade("2", ModPortalTradeRecipes.dwarfSignRecipe,Dimension.NIDAVELLIR),
+				new PageAdvancedText("3",PageBackground.DWARVEN),
+				new PageAdvancedText("4",PageBackground.DWARVEN),
+				new PageAdvancedText("5",PageBackground.DWARVEN),
+				new PageAdvancedText("6",PageBackground.DWARVEN)).setPriority();
 		
-		dwarfWeed=new SLexiconEntry(LibLexicon.DWARF_WEED, categoryDwarven);
-		dwarfWeed.setKnowledgeType(dwarvenKnowledge).setLexiconPages(new PageAdvancedText("0",PageBackground.DWARVEN));
+		basicDwarvenResources=new SLexiconEntry(LibLexicon.BASIC_DWARVEN_RESOURCES, categoryDwarven);
+		basicDwarvenResources.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
+				new PageAdvancedText("0",PageBackground.DWARVEN),
+				new PageAdvancedPortalTrade("1", ModPortalTradeRecipes.dwarfWeedRecipe,Dimension.NIDAVELLIR),
+				new PageAdvancedPortalTrade("2", ModPortalTradeRecipes.dwarfDwarfRockRecipe,Dimension.NIDAVELLIR),
+				new PageAdvancedPortalTrade("3", ModPortalTradeRecipes.dwarfMushroomRecipes,Dimension.NIDAVELLIR),
+				new PageAdvancedPortalTrade("4", ModPortalTradeRecipes.dwarfLivingRockRecipe,Dimension.NIDAVELLIR)).setPriority();
 		
 		boomMoss=new SLexiconEntry(LibLexicon.BOOM_MOSS, categoryDwarven);
-		boomMoss.setKnowledgeType(dwarvenKnowledge).setLexiconPages(new PageAdvancedText("0",PageBackground.DWARVEN));
+		boomMoss.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
+				new PageAdvancedText("0",PageBackground.DWARVEN),
+				new PageAdvancedText("1",PageBackground.DWARVEN),
+				new PageAdvancedCraftingRecipe("2",ModCraftingRecipes.recipeBoomMoss,PageBackground.DWARVEN),
+				new PageAdvancedText("3",PageBackground.DWARVEN),
+				new PageAdvancedText("4",PageBackground.DWARVEN),
+				new PageAdvancedPortalTrade("5", ModPortalTradeRecipes.dwarfMasterBoomMossTrade,Dimension.NIDAVELLIR)
+				);
 
 		dwarfForged=new SLexiconEntry(LibLexicon.DWARF_FORGED, categoryDwarven);
-		dwarfForged.setKnowledgeType(dwarvenKnowledge).setLexiconPages(new PageAdvancedText("0",PageBackground.DWARVEN));
+		dwarfForged.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
+				new PageAdvancedText("0",PageBackground.DWARVEN),
+				new PageAdvancedText("1",PageBackground.DWARVEN),
+				new PageAdvancedText("2",PageBackground.DWARVEN),
+				new PageAdvancedText("3",PageBackground.DWARVEN),
+				new PageAdvancedText("4",PageBackground.DWARVEN),
+				new PageAdvancedText("5",PageBackground.DWARVEN),
+				new PageAdvancedPortalTrade("6", ModPortalTradeRecipes.dwarfForgingDisplay,Dimension.NIDAVELLIR),
+				new PageAdvancedText("7",PageBackground.DWARVEN),
+				new PageAdvancedPortalTrade("8", ModPortalTradeRecipes.dwarfReforgingDisplay,Dimension.NIDAVELLIR)
+				).setIcon(new ItemStack(Blocks.anvil));
 		
+		manaCrystal=new SLexiconEntry(LibLexicon.MANA_CRYSTAL, categoryDwarven);
+		manaCrystal.setKnowledgeType(dwarvenKnowledge).setLexiconPages(new PageAdvancedText("0",PageBackground.DWARVEN));
+
+		dwarvenManaPool=new SLexiconEntry(LibLexicon.DWARVEN_MANA_POOL, categoryDwarven);
+		dwarvenManaPool.setKnowledgeType(dwarvenKnowledge).setLexiconPages(new PageAdvancedText("0",PageBackground.DWARVEN));
+
+		stoneHorse=new SLexiconEntry(LibLexicon.STONE_HORSE, categoryDwarven);
+		stoneHorse.setKnowledgeType(dwarvenKnowledge).setLexiconPages(new PageAdvancedText("0",PageBackground.DWARVEN));
+
+		dwarvenMead=new SLexiconEntry(LibLexicon.DWARVEN_MEAD, categoryDwarven);
+		dwarvenMead.setKnowledgeType(dwarvenKnowledge).setLexiconPages(new PageAdvancedText("0",PageBackground.DWARVEN));
+
+		dwarvenChain=new SLexiconEntry(LibLexicon.DWARVEN_CHAIN, categoryDwarven);
+		dwarvenChain.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
+				new PageAdvancedText("0",PageBackground.DWARVEN),
+				new PageAdvancedText("1",PageBackground.DWARVEN),
+				new PageAdvancedPortalTrade("2", ModPortalTradeRecipes.dwarfChainTrade,Dimension.NIDAVELLIR));
+
+		dwarvenBarrierStone=new SLexiconEntry(LibLexicon.DWARVEN_BARRIER_STONE, categoryDwarven);
+		dwarvenBarrierStone.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
+				new PageAdvancedText("0",PageBackground.DWARVEN),
+				new PageAdvancedText("1",PageBackground.DWARVEN),
+				new PageAdvancedPortalTrade("2", ModPortalTradeRecipes.dwarfBarrierTrade,Dimension.NIDAVELLIR));
+
 		dimGinnungagap=new SLexiconEntry(LibLexicon.DIM_GINNUNGAGAP, categoryWorldTree);
 		dimGinnungagap.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
 				new PageAdvancedText("0",PageBackground.ELVEN), 
@@ -252,6 +311,13 @@ public class LexiconData {
 		dimVanaheimr.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
 				new PageAdvancedText("0",PageBackground.ELVEN),
 				new PageAdvancedText("1",PageBackground.ELVEN));
+		
+		nubliaMessage=new SLexiconEntry(LibLexicon.NUBLIA_MESSAGE, categoryWorldTree);
+		nubliaMessage.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
+				new PageAdvancedImage("0",vazkii.botania.client.lib.LibResources.ENTRY_ELVEN_GARDE,PageBackground.ELVEN),
+				new PageAdvancedText("1",PageBackground.ELVEN),
+				new PageAdvancedText("2",PageBackground.ELVEN),
+				new PageAdvancedText("3",PageBackground.ELVEN)).setPriority();
 		
 		definePapers();
 	}

@@ -24,7 +24,7 @@ public class ItemPriceProxy extends ItemMod{
 	}
 	
 	@SideOnly(Side.CLIENT)
-    public IIcon getIcon() {
+	public IIcon getIconIndex(ItemStack stack) {
 		int ticks=Silva.proxy.getTicks();
 		int slot = (ticks / 20) % stacks.size();
     	return stacks.get(slot).getIconIndex();

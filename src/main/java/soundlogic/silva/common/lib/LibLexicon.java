@@ -22,7 +22,7 @@ public class LibLexicon {
 	public static final String WORLD_TREE_INTRO = "worldTreeIntro";
 	public static final String MANA_EATER = "manaEater";
 	public static final String ADVANCED_PORTALS = "advancedPortals";
-	public static final String DWARF_WEED = "dwarfWeed";
+	public static final String BASIC_DWARVEN_RESOURCES = "basicDwarvenResources";
 	public static final String BOOM_MOSS = "boomMoss";
 	public static final String DWARF_FORGED = "dwarfForged";
 	public static final String DWARF_INTRO = "dwarfIntro";
@@ -43,6 +43,13 @@ public class LibLexicon {
 	public static final String DIM_VANAHEIMR = "dimVanaheimr";
 	public static final String BIFROST = "bifrost";
 	public static final String DARKENED_DUST = "darkenedDust";
+	public static final String NUBLIA_MESSAGE = "nubliaMessage";
+	public static final String MANA_CRYSTAL = "manaCrystal";
+	public static final String DWARVEN_MANA_POOL = "dwarvenManaPool";
+	public static final String STONE_HORSE = "stoneHorse";
+	public static final String DWARVEN_MEAD = "dwarvenMead";
+	public static final String DWARVEN_CHAIN = "dwarvenChain";
+	public static final String DWARVEN_BARRIER_STONE = "dwarvenBarrierStone";
 
 
 

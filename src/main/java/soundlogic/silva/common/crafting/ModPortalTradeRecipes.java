@@ -19,6 +19,7 @@ import soundlogic.silva.common.crafting.recipe.DwarfTradeReforging.ReforgeType;
 import soundlogic.silva.common.crafting.recipe.DwarfTradeSimple;
 import soundlogic.silva.common.crafting.recipe.IPortalRecipe;
 import soundlogic.silva.common.crafting.recipe.PortalRecipeSimple;
+import soundlogic.silva.common.item.ItemProxy;
 import soundlogic.silva.common.item.ModItems;
 
 public class ModPortalTradeRecipes {
@@ -47,12 +48,9 @@ public class ModPortalTradeRecipes {
 	public static IPortalRecipe dwarfManaCrystalTrade;
 	public static IPortalRecipe dwarfMasterBoomMossTrade;
 
-	public static IPortalRecipe[] dwarfIronTrades;
-	public static IPortalRecipe[] dwarfDiamondTrades;
-	public static IPortalRecipe[] dwarfGoldTrades;
-	public static IPortalRecipe[] dwarfManasteelTrades;
-	public static IPortalRecipe[] dwarfTerrasteelTrades;
-	public static IPortalRecipe[] dwarfElementumTrades;
+	public static List<IPortalRecipe> dwarfForgingDisplay=new ArrayList<IPortalRecipe>();
+	public static List<IPortalRecipe> dwarfReforgingDisplay=new ArrayList<IPortalRecipe>();
+
 	
 	
 	public static void preInit() {
@@ -157,6 +155,15 @@ public class ModPortalTradeRecipes {
 		dwarfReforgeRecipes[5]=new DwarfTradeReforging(ReforgeType.SHOVEL,18,8,40);
 		dwarfReforgeRecipes[6]=new DwarfTradeReforging(ReforgeType.AXE,18,6,40);
 		dwarfReforgeRecipes[7]=new DwarfTradeReforging(ReforgeType.SWORD,21,9,40);
+
+		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(ItemProxy.getStackForReforgeType(ReforgeType.HELMET)),ItemProxy.getStackForReforgeType(ReforgeType.HELMET), new ItemStack(ModItems.priceProxyItem)));
+		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(ItemProxy.getStackForReforgeType(ReforgeType.CHESTPLATE)),ItemProxy.getStackForReforgeType(ReforgeType.CHESTPLATE), new ItemStack(ModItems.priceProxyItem)));
+		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(ItemProxy.getStackForReforgeType(ReforgeType.LEGGINGS)),ItemProxy.getStackForReforgeType(ReforgeType.LEGGINGS), new ItemStack(ModItems.priceProxyItem)));
+		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(ItemProxy.getStackForReforgeType(ReforgeType.BOOTS)),ItemProxy.getStackForReforgeType(ReforgeType.BOOTS), new ItemStack(ModItems.priceProxyItem)));
+		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(ItemProxy.getStackForReforgeType(ReforgeType.PICKAXE)),ItemProxy.getStackForReforgeType(ReforgeType.PICKAXE), new ItemStack(ModItems.priceProxyItem)));
+		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(ItemProxy.getStackForReforgeType(ReforgeType.SHOVEL)),ItemProxy.getStackForReforgeType(ReforgeType.SHOVEL), new ItemStack(ModItems.priceProxyItem)));
+		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(ItemProxy.getStackForReforgeType(ReforgeType.AXE)),ItemProxy.getStackForReforgeType(ReforgeType.AXE), new ItemStack(ModItems.priceProxyItem)));
+		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(ItemProxy.getStackForReforgeType(ReforgeType.SWORD)),ItemProxy.getStackForReforgeType(ReforgeType.SWORD), new ItemStack(ModItems.priceProxyItem)));
 		
 		for(int i=0;i<8;i++) {
 			PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfForgeIronRecipes[i]);
@@ -174,22 +181,38 @@ public class ModPortalTradeRecipes {
 
 	private static IPortalRecipe[] getForgeRecipes(int cost, int minRep, int repBoost, int maxRep, ItemStack ingredient, ItemStack helm, ItemStack chest, ItemStack legs, ItemStack boots, ItemStack pick, ItemStack shovel, ItemStack axe, ItemStack sword) {
 		IPortalRecipe[] recipes=new IPortalRecipe[8];
-		if(helm!=null)
+		if(helm!=null) {
 			recipes[0]=new DwarfTradeForging(helm,5*cost,minRep,repBoost,maxRep,new ItemStack(ingredient.getItem(),4,ingredient.getItemDamage()));
-		if(chest!=null)
+			dwarfForgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(helm),new ItemStack(ingredient.getItem(),4,ingredient.getItemDamage()), new ItemStack(ModItems.priceProxyItem)));
+		}
+		if(chest!=null) {
 			recipes[1]=new DwarfTradeForging(chest,10*cost,minRep,repBoost,maxRep,new ItemStack(ingredient.getItem(),7,ingredient.getItemDamage()));
-		if(legs!=null)
+			dwarfForgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(chest),new ItemStack(ingredient.getItem(),7,ingredient.getItemDamage()), new ItemStack(ModItems.priceProxyItem)));
+		}
+		if(legs!=null) {
 			recipes[2]=new DwarfTradeForging(legs,8*cost,minRep,repBoost,maxRep,new ItemStack(ingredient.getItem(),6,ingredient.getItemDamage()));
-		if(boots!=null)
+			dwarfForgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(legs),new ItemStack(ingredient.getItem(),6,ingredient.getItemDamage()), new ItemStack(ModItems.priceProxyItem)));
+		}
+		if(boots!=null) {
 			recipes[3]=new DwarfTradeForging(boots,4*cost,minRep,repBoost,maxRep,new ItemStack(ingredient.getItem(),3,ingredient.getItemDamage()));
-		if(pick!=null)
+			dwarfForgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(boots),new ItemStack(ingredient.getItem(),3,ingredient.getItemDamage()), new ItemStack(ModItems.priceProxyItem)));
+		}
+		if(pick!=null) {
 			recipes[4]=new DwarfTradeForging(pick,5*cost,minRep,repBoost,maxRep,new ItemStack(ingredient.getItem(),2,ingredient.getItemDamage()));
-		if(shovel!=null)
+			dwarfForgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(pick),new ItemStack(ingredient.getItem(),2,ingredient.getItemDamage()), new ItemStack(ModItems.priceProxyItem)));
+		}
+		if(shovel!=null) {
 			recipes[5]=new DwarfTradeForging(shovel,2*cost,minRep,repBoost,maxRep,new ItemStack(ingredient.getItem(),1,ingredient.getItemDamage()));
-		if(axe!=null)
+			dwarfForgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(shovel),new ItemStack(ingredient.getItem(),1,ingredient.getItemDamage()), new ItemStack(ModItems.priceProxyItem)));
+		}
+		if(axe!=null) {
 			recipes[6]=new DwarfTradeForging(axe,4*cost,minRep,repBoost,maxRep,new ItemStack(ingredient.getItem(),2,ingredient.getItemDamage()));
-		if(sword!=null)
+			dwarfForgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(axe),new ItemStack(ingredient.getItem(),2,ingredient.getItemDamage()), new ItemStack(ModItems.priceProxyItem)));
+		}
+		if(sword!=null) {
 			recipes[7]=new DwarfTradeForging(sword,3*cost,minRep,repBoost,maxRep,new ItemStack(ingredient.getItem(),1,ingredient.getItemDamage()));
+			dwarfForgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(sword),new ItemStack(ingredient.getItem(),1,ingredient.getItemDamage()), new ItemStack(ModItems.priceProxyItem)));
+		}
 		return recipes;
 	}
 
