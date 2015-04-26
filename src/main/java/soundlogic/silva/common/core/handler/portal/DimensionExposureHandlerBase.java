@@ -127,7 +127,7 @@ public class DimensionExposureHandlerBase implements IDimensionalExposureHandler
 		for(PotionEffect effect : potions) {
 			int minLevel = effect.getDuration();
 			if(minLevel <= level)
-				entity.addPotionEffect(new PotionEffect(effect.getPotionID(),level - minLevel, effect.getAmplifier()));
+				entity.addPotionEffect(new PotionEffect(effect.getPotionID(),level - minLevel, effect.getAmplifier(),true));
 		}
 	}
 

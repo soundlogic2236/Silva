@@ -78,11 +78,12 @@ public class BookConverter {
 			linesOnPage+=brokenLines.size();
 			for(String brokenLine : brokenLines) {
 				curPage+=brokenLine + "\n";
-			}
-			if(linesOnPage>10 || (linesOnPage>8 && line.equals(""))) {
-				pages.add(curPage);
-				curPage="";
-				linesOnPage = 0;
+				linesOnPage++;
+				if(linesOnPage>10 || (linesOnPage>8 && line.equals(""))) {
+					pages.add(curPage);
+					curPage="";
+					linesOnPage = 0;
+				}
 			}
 		}
 		saveBook(title, subtitle, pages);

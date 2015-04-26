@@ -479,7 +479,6 @@ public class TilePortalCore extends TileMod{
 		AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(xCoord - 1, yCoord + 1, zCoord, xCoord + 2, yCoord + 4, zCoord + 1);
 		if(direction == ForgeDirection.EAST || direction == ForgeDirection.WEST)
 			aabb = AxisAlignedBB.getBoundingBox(xCoord, yCoord + 1, zCoord - 1, xCoord + 1, yCoord + 4, zCoord + 2);
-
 		return aabb;
 	}
 	

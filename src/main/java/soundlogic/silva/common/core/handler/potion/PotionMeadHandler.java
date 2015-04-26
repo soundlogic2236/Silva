@@ -53,7 +53,7 @@ public class PotionMeadHandler {
 					prev1SwingTime.put(event.player, event.player.ticksExisted);
 				}
 				if(!event.player.isPotionActive(Potion.confusion))
-					event.player.addPotionEffect(new PotionEffect(Potion.confusion.id,event.player.getActivePotionEffect(ModPotions.potionMead).getDuration()));
+					event.player.addPotionEffect(new PotionEffect(Potion.confusion.id,event.player.getActivePotionEffect(ModPotions.potionMead).getDuration(),0,true));
 			}
 			else {
 				prev1SwingTime.put(event.player, null);

@@ -44,6 +44,7 @@ public class LibResources {
 	
 	public static final String BLANK_RUNE = PREFIX_GUI + "runeBlank.png";
 	public static final String GUI_PORTAL_TRADE_OVERLAY = PREFIX_GUI + "portalTradeOverlay.png";
+	public static final String GUI_DARK_ELF_OVERLAY = PREFIX_GUI + "darkElfOverlay.png";
 	public static final String GUI_FURNACE_OVERLAY = PREFIX_GUI + "furnaceOverlay.png";
 	public static final String GUI_SIGNATURE_OVERLAY = PREFIX_GUI + "dimensionSignatureOverlay.png";
 	public static final String GUI_SIGNATURE_NODE = PREFIX_GUI + "dimensionSignature/node.png";
@@ -68,6 +69,7 @@ public class LibResources {
 	public static final String MODEL_STONE_HORSE = PREFIX_ENTITY + "horse_stone.png";
 
 	public static final String MODEL_DWARVEN_POOL = PREFIX_MODEL + "dwarvenPool.png";
+
 
 
 

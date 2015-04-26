@@ -131,8 +131,25 @@ public class DimensionalEnergyHandler {
 			getExposureData(ent).addExposure(dim, 3);
 		}
 		IDimensionalBlockHandler handler = core.getDimension().getBlockHandler();
-		if(handler==null)
-			return;
+		aabb = getEnergyBoundingBoxForBlocks(core);
+		if(handler!=null)
+		{
+			if((core.getTicksOpen() % handler.frequencyForSearch(core))==0 && handler.shouldTryApply(core)) {
+				int blocks = handler.getBlocksPerTick(core);
+				while(blocks!=0) {
+					int tries = handler.triesPerBlock(core);
+					while(tries > 0) {
+						int[] coords = getRandomBlockInBox(aabb);
+						if(handler.tryApplyToBlock(core, world, coords)) {
+							tries=0;
+						}
+						else
+							tries--;
+					}
+					blocks--;
+				}
+			}
+		}
 	}
 	
 	@SubscribeEvent
@@ -203,6 +220,23 @@ public class DimensionalEnergyHandler {
 		aabb.maxX += direction.offsetX > 0 ? direction.offsetX * length : 0;
 		aabb.maxY += direction.offsetY > 0 ? direction.offsetY * length : 0;
 		aabb.maxZ += direction.offsetZ > 0 ? direction.offsetZ * length : 0;
+
+		return aabb;
+	}
+	public static AxisAlignedBB getEnergyBoundingBoxForBlocks(TilePortalCore core) {
+		int widthOffset = getWidthOffset(core);
+		int heightOffset = getHeightOffset(core);
+		AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(core.xCoord - widthOffset, core.yCoord + 2 - heightOffset, core.zCoord, core.xCoord + 1 + widthOffset, core.yCoord + 3 + heightOffset, core.zCoord + 1);
+		ForgeDirection direction = core.getDirection().getOpposite();
+		if(direction == ForgeDirection.EAST || direction == ForgeDirection.WEST)
+			aabb = AxisAlignedBB.getBoundingBox(core.xCoord, core.yCoord + 2 - heightOffset, core.zCoord - widthOffset, core.xCoord + 1, core.yCoord + 3 + heightOffset, core.zCoord + 1 + widthOffset);
+		int length = getLength(core);
+		aabb.minX += direction.offsetX < 0 ? direction.offsetX * length : direction.offsetX;
+		aabb.minY += direction.offsetY < 0 ? direction.offsetY * length : direction.offsetY;
+		aabb.minZ += direction.offsetZ < 0 ? direction.offsetZ * length : direction.offsetZ;
+		aabb.maxX += direction.offsetX > 0 ? direction.offsetX * length : direction.offsetX;
+		aabb.maxY += direction.offsetY > 0 ? direction.offsetY * length : direction.offsetY;
+		aabb.maxZ += direction.offsetZ > 0 ? direction.offsetZ * length : direction.offsetZ;
 
 		return aabb;
 	}

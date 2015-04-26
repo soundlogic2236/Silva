@@ -88,6 +88,18 @@ public class BlockPixieDust extends Block implements ILexiconable{
         return World.doesBlockHaveSolidTopSurface(p_149742_1_, p_149742_2_, p_149742_3_ - 1, p_149742_4_) || p_149742_1_.getBlock(p_149742_2_, p_149742_3_ - 1, p_149742_4_) == Blocks.glowstone;
     }
     
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block block)
+    {
+        if (!world.isRemote)
+        {
+            if(!this.canPlaceBlockAt(world, x, y, z))
+            {
+                this.dropBlockAsItem(world, x, y, z, 0, 0);
+                world.setBlockToAir(x, y, z);
+            }
+            super.onNeighborBlockChange(world, x, y, z, block);
+        }
+    }
     @Override
     @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess p_149720_1_, int p_149720_2_, int p_149720_3_, int p_149720_4_)

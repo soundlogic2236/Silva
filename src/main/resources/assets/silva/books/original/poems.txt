@@ -5554,8 +5554,6 @@ POEM	Sigrun was early dead of sorrow and grief. It was believed in olden times t
 POEM	but that is now called old wives' folly. Of Helgi and Sigrun it is said that they were born again; he
 POEM	became Helgi Haddingjaskati, and she Kara the daughter of Halfdan, as is told in the Lay of Kara, and
 POEM	she was a Valkyrie.
-TITLE	FRA DAUTHA SINFJOTLA
-SUBTITLE	Of Sinfjotli's Death
 TITLE	GRIPISSPO
 SUBTITLE	Gripir's Prophecy
 POEM	1. "Who is it has | this dwelling here,
@@ -7226,8 +7224,6 @@ POEM	14. "Ever with grief | and all too long
 POEM	Are men and women | born in the world;
 POEM	But yet we shall live | our lives together,
 POEM	Sigurth and I. | Sink down, Giantess!"
-TITLE	DRAP NIFLUNGA
-SUBTITLE	The Slaying of The Niflungs
 TITLE	GUTHRUNARKVITHA II, EN FORNA
 SUBTITLE	The Second, or Old, Lay of Guthrun
 POEM	1. A maid of maids | my mother bore me,

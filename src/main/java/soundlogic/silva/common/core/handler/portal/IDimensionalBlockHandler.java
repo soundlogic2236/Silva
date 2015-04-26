@@ -7,9 +7,9 @@ import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
 public interface IDimensionalBlockHandler {
 
 	public void init(Dimension dim);
+	public int frequencyForSearch(TilePortalCore core);
 	public boolean shouldTryApply(TilePortalCore core);
 	public int getBlocksPerTick(TilePortalCore core);
 	public int triesPerBlock(TilePortalCore core);
-	public boolean canApplyToBlock(TilePortalCore core, World world, int[] coords);
-	public void applyToBlock(TilePortalCore core, World world, int[] coords);
+	public boolean tryApplyToBlock(TilePortalCore core, World world, int[] coords);
 }

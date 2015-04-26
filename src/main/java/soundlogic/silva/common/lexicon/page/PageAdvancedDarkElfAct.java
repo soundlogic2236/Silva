@@ -10,6 +10,7 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -37,42 +38,40 @@ import vazkii.botania.client.gui.lexicon.GuiLexiconEntry;
 import vazkii.botania.common.block.BlockAlfPortal;
 import vazkii.botania.common.lexicon.page.PageRecipe;
 
-public class PageAdvancedPortalTrade extends PageRecipe{
+public class PageAdvancedDarkElfAct extends PageRecipe{
 
 	PageBackground background;
 
 	private static final ResourceLocation tradeOverlay = new ResourceLocation(LibResources.GUI_PORTAL_TRADE_OVERLAY);
+	private static final ResourceLocation darkElfOverlay = new ResourceLocation(LibResources.GUI_DARK_ELF_OVERLAY);
 
 	static boolean mouseDownLastTick = false;
 
-	List<IPortalRecipe> recipes;
-	Dimension dim;
+	List<ItemStack> inputs;
+	List<ItemStack> outputs;
 	
 	int ticksElapsed = 0;
 	int recipeAt = 0;
 	
-	public PageAdvancedPortalTrade(String unlocalizedName,List<IPortalRecipe> recipes, Dimension dim, PageBackground background) {
+	public PageAdvancedDarkElfAct(String unlocalizedName,List<ItemStack> outputs, List<ItemStack> inputs, PageBackground background) {
 		super(unlocalizedName);
-		this.recipes=recipes;
-		this.dim=dim;
+		this.inputs=inputs;
+		this.outputs=outputs;
 		this.background=background;
 	}
 
-	public PageAdvancedPortalTrade(String unlocalizedName, IPortalRecipe recipe, Dimension dim, PageBackground background) {
-		this(unlocalizedName, Arrays.asList(recipe),dim, background);
+	public PageAdvancedDarkElfAct(String unlocalizedName, ItemStack output, ItemStack input, PageBackground background) {
+		this(unlocalizedName, Arrays.asList(output), Arrays.asList(input),background);
 	}
 
-	public PageAdvancedPortalTrade(String unlocalizedName, IPortalRecipe[] recipes, Dimension dim, PageBackground background) {
-		this(unlocalizedName, Arrays.asList(recipes),dim, background);
+	public PageAdvancedDarkElfAct(String unlocalizedName, ItemStack[] outputs, ItemStack[] inputs, PageBackground background) {
+		this(unlocalizedName, Arrays.asList(outputs), Arrays.asList(inputs),background);
 	}
 	
 	@Override
 	public void onPageAdded(LexiconEntry entry, int index) {
-		for(IPortalRecipe recipe : recipes) {
-			List<ItemStack> output=recipe.getOutput();
-			for(ItemStack outputSingle : output)
-				LexiconRecipeMappings.map(outputSingle, entry, index);
-		}
+		for(ItemStack outputSingle : outputs)
+			LexiconRecipeMappings.map(outputSingle, entry, index);
 	}
 
 	@Override
@@ -81,7 +80,7 @@ public class PageAdvancedPortalTrade extends PageRecipe{
 		if(ticksElapsed % 20 == 0) {
 			recipeAt++;
 
-			if(recipeAt == recipes.size())
+			if(recipeAt == inputs.size())
 				recipeAt = 0;
 		}
 		++ticksElapsed;
@@ -92,7 +91,6 @@ public class PageAdvancedPortalTrade extends PageRecipe{
 		ticksElapsed++;
 		boolean mouseDown = Mouse.isButtonDown(0);
 		
-		IPortalRecipe recipe = recipes.get(recipeAt);
 		TextureManager render = Minecraft.getMinecraft().renderEngine;
 		render.bindTexture(tradeOverlay);
 		GL11.glEnable(GL11.GL_BLEND);
@@ -100,27 +98,14 @@ public class PageAdvancedPortalTrade extends PageRecipe{
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		((GuiScreen) gui).drawTexturedModalRect(gui.getLeft(), gui.getTop(), 0, 0, gui.getWidth(), gui.getHeight());
 		GL11.glDisable(GL11.GL_BLEND);
-		List<ItemStack> output=recipe.getOutput();
-		for(int i = 0;i<output.size();i++)
-			renderItemAtGridPos(gui, 3+i, 1, output.get(i), false);
+		ItemStack output=outputs.get(recipeAt);
+		renderItemAtGridPos(gui, 3, 1, output, false);
 
-		List<Object> inputs = recipe.getInputs();
-		int i = 0;
-		for(Object obj : inputs) {
-			Object input = obj;
-			if(input instanceof String)
-				input = OreDictionary.getOres((String) input).get(0);
-
-			renderItemAtInputPos(gui, i, (ItemStack) input);
-			i++;
-		}
+		ItemStack input = inputs.get(recipeAt);
+		renderItemAtInputPos(gui, 0, (ItemStack) input);
 
 		IIcon portalTex=((BlockPortalCore)ModBlocks.portalCore).portalTex;
-		Color color=dim.getPortalColor();
-		if(dim == Dimension.ALFHEIM) {
-			portalTex=BlockAlfPortal.portalTex;
-			color=new Color(0xFFFFFF);
-		}
+		Color color=Dimension.SVARTALFHEIM.getPortalColor();
 		float red=(float)color.getRed()/255F;
 		float green=(float)color.getGreen()/255F;
 		float blue=(float)color.getBlue()/255F;
@@ -129,13 +114,21 @@ public class PageAdvancedPortalTrade extends PageRecipe{
 		GL11.glColor4f(red, green, blue, 1F);
 		RenderItem.getInstance().renderIcon(gui.getLeft() + 22, gui.getTop() + 36, portalIcon, 48, 48);
 		GL11.glColor4f(1F, 1F, 1F, 1F);
+
+		render.bindTexture(darkElfOverlay);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GL11.glColor4f(1F, 1F, 1F, 1F);
+		((GuiScreen) gui).drawTexturedModalRect(gui.getLeft(), gui.getTop(), 0, 0, gui.getWidth(), gui.getHeight());
+		GL11.glDisable(GL11.GL_BLEND);
+		
 		if(mx >= gui.getLeft() + 22 && mx <= gui.getLeft() + 22 + 48) 
 			if(my >= gui.getTop() + 36 && my <= gui.getTop() + 36 + 48) {
 				List<String> tooltip=new ArrayList<String>();
-				tooltip.add(StatCollector.translateToLocal(dim.getUnlocalizedName()));
+				tooltip.add(StatCollector.translateToLocal(Dimension.SVARTALFHEIM.getUnlocalizedName()));
 				vazkii.botania.client.core.helper.RenderHelper.renderTooltip(mx, my, tooltip);
 
-				EntryData data=DimensionHandler.getSignatureEntryForDimension(dim);
+				EntryData data=DimensionHandler.getSignatureEntryForDimension(Dimension.SVARTALFHEIM);
 				if(data!=null) {
 					vazkii.botania.client.core.helper.RenderHelper.renderTooltipOrange(mx, my + 19, Arrays.asList(EnumChatFormatting.GRAY + StatCollector.translateToLocal("silva.tooltips.clickToSignature")));
 					if(!mouseDownLastTick && mouseDown && GuiScreen.isShiftKeyDown()) {
