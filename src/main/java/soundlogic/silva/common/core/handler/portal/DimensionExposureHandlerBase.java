@@ -32,7 +32,7 @@ public class DimensionExposureHandlerBase implements IDimensionalExposureHandler
 		switch(dim) {
 		case GINNUNGAGAP:
 			break;
-		case VIGRIOR:
+		case VIGRIDR:
 			break;
 		case FOLKVANGR:
 			addAttributeModifier(SharedMonsterAttributes.attackDamage,UUID.randomUUID(),1.02,2,60*20*2);
@@ -74,9 +74,9 @@ public class DimensionExposureHandlerBase implements IDimensionalExposureHandler
 			addAttributeModifier(SharedMonsterAttributes.movementSpeed,UUID.randomUUID(),0.95,2,60*20);
 			break;
 		case NIDAVELLIR:
-			addPotionEffect(Potion.digSpeed, 1, 60*20*1);
-			addPotionEffect(Potion.digSpeed, 2, 60*20*2);
-			addPotionEffect(Potion.nightVision, 2, 60*20*2);
+			addPotionEffect(Potion.digSpeed, 0, 60*20*1);
+			addPotionEffect(Potion.digSpeed, 1, 60*20*2);
+			addPotionEffect(Potion.nightVision, 0, 60*20*2);
 			break;
 		case VANAHEIMR:
 			break;

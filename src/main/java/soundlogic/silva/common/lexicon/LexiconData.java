@@ -60,7 +60,7 @@ public class LexiconData {
 	public static LexiconEntry worldTreeIntro;
 	public static LexiconEntry dwarfIntro;
 	public static LexiconEntry dimGinnungagap;
-	public static LexiconEntry dimVigrior;
+	public static LexiconEntry dimVigridr;
 	public static LexiconEntry dimFolkvangr;
 	public static LexiconEntry dimValhalla;
 	public static LexiconEntry dimHelheim;
@@ -253,11 +253,11 @@ public class LexiconData {
 				new PageAdvancedText("2",PageBackground.ELVEN), 
 				new PageDimensionSignature("3",Dimension.GINNUNGAGAP, PageBackground.ELVEN));
 
-		dimVigrior=new SLexiconEntry(LibLexicon.DIM_VIGRIOR, categoryWorldTree);
-		dimVigrior.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
+		dimVigridr=new SLexiconEntry(LibLexicon.DIM_VIGRIOR, categoryWorldTree);
+		dimVigridr.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
 				new PageAdvancedText("0",PageBackground.ELVEN), 
 				new PageAdvancedText("1",PageBackground.ELVEN), 
-				new PageDimensionSignature("2",Dimension.VIGRIOR, PageBackground.ELVEN));
+				new PageDimensionSignature("2",Dimension.VIGRIDR, PageBackground.ELVEN));
 		
 		dimFolkvangr=new SLexiconEntry(LibLexicon.DIM_FOLKVANGR, categoryWorldTree);
 		dimFolkvangr.setKnowledgeType(worldTreeKnowledge).setLexiconPages(

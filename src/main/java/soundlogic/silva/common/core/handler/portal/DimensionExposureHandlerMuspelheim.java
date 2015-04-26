@@ -7,7 +7,7 @@ public class DimensionExposureHandlerMuspelheim extends DimensionExposureHandler
 	@Override
 	public void onEntityUpdate(EntityLivingBase entity, int level) {
 		super.onEntityUpdate(entity, level);
-		if(random.nextFloat()<( level / (level * 2 + 20)))
-			entity.setFire(30);
+		if(random.nextFloat()<( (float)level / (level * 2 + 20)))
+			entity.setFire(2);
 	}
 }

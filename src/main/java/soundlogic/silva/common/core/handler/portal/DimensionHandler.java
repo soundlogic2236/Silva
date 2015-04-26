@@ -22,13 +22,13 @@ public class DimensionHandler {
 				0x782b79,
 				null,
 				new DimensionExposureHandlerBase()), 
-		VIGRIOR (
-				"vigrior", 
+		VIGRIDR (
+				"vigridr", 
 				State.DEFAULT, 
 				0x792b2b, 
 				0x792b2b,
 				null,
-				new DimensionExposureHandlerVigrior()), 
+				new DimensionExposureHandlerVigridr()), 
 		FOLKVANGR (
 				"folkvangr", 
 				State.DEFAULT, 
@@ -237,7 +237,7 @@ public class DimensionHandler {
 				 {1,1,0,1,1},
 				 }); // The End
 		addSignature(
-				Dimension.VIGRIOR, new int[][]	
+				Dimension.VIGRIDR, new int[][]	
 				{{1,1,1,0,1},
 				 {1,0,1,0,1},
 				 {1,0,1,1,1},

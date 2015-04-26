@@ -9,6 +9,7 @@ import soundlogic.silva.common.block.tile.TilePortalCore;
 import soundlogic.silva.common.core.handler.DwarvenChainHandler;
 import soundlogic.silva.common.core.handler.DwarvenChainHandler.LeashProperties;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
+import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension.State;
 import soundlogic.silva.common.network.MessageEntityData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -121,6 +122,8 @@ public class DimensionalEnergyHandler {
 	
 	public static void applyPortalTick(TilePortalCore core) {
 		Dimension dim = core.getDimension();
+		if(dim.getState()==State.LOCKED)
+			return;
 		World world = core.getWorldObj();
 		AxisAlignedBB aabb = getEnergyBoundingBox(core);
 		List<EntityLivingBase> ents = world.getEntitiesWithinAABB(EntityLivingBase.class, aabb);

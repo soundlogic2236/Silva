@@ -8,7 +8,7 @@ silva.tooltips.exposure=%s Energy Exposure
 
 # DIMENSIONS
 silva.dimension.ginnungagap=Ginnungagap
-silva.dimension.vigrior=Vigrior
+silva.dimension.vigridr=Vigridr
 silva.dimension.folkvangr=Folkvangr
 silva.dimension.valhalla=Valhalla
 silva.dimension.helheim=Helheim
@@ -33,7 +33,7 @@ tile.silva:manaEater.name=Mana Spreader?
 tile.silva:pylon.portal.name=Portal Pylon
 tile.silva:pylon.untuned.name=Untuned Pylon
 tile.silva:pylon.Ginnungagap.name=Ender Pylon
-tile.silva:pylon.Vigrior.name=Armagedon Pylon
+tile.silva:pylon.Vigridr.name=Armagedon Pylon
 tile.silva:pylon.Folkvangr.name=Tactical Pylon
 tile.silva:pylon.Valhalla.name=Battle Pylon
 tile.silva:pylon.Helheim.name=Death Pylon
@@ -130,7 +130,7 @@ silva.page.nubliaMessage3=I have included notes on portal creation, the various 
 # -- WORLD TREE INTRO
 silva.entry.worldTreeIntro=Introduction to the World Tree
 silva.page.worldTreeIntro0=The World Tree is the great tree which holds our worlds together. From its branches come the nine realms: Asgard, Alfheim (where we live), Minegard (where you live), Jotunheimr, Svartalfheim, Muspelheim, Niflheim, Nidavellir, and Vanaheimr. 
-silva.page.worldTreeIntro1=Some realms contain locations of great enough significance to have their own dimensional signature such as Vigrior, Folkvangr, Valhalla, and Helheim.
+silva.page.worldTreeIntro1=Some realms contain locations of great enough significance to have their own dimensional signature such as Vigridr, Folkvangr, Valhalla, and Helheim.
 silva.page.worldTreeIntro2=The World Tree is surrounded by the Great Ginnungagap - a powerful void of great and terrible energies. 
 
 # -- ADVANCED PORTALS
@@ -234,10 +234,10 @@ silva.entry.dimFolkvangr=Folkvangr
 silva.page.dimFolkvangr0=Folkvangr is the accessable portion of Vanaheimr, though how to get from it to Vanaheimr is a closely guarded secret. It is ruled over by Freyja of the Vanir and holds half of those slain in battle. A portal to it leads to the hall Sessrúmnir. Before the shattering one could use such a portal to call on the wisdom of Freyja, though she has not been seen since the shattering.
 silva.page.dimFolkvangr1=Exposure to Folkvangr energies results in calmness in battle, permitting one's strikes to fall on ones foes with the precision that those in Sessrúmnir possess.
 
-# -- Vigrior
-silva.entry.dimVigrior=Vigrior
-silva.page.dimVigrior0=Vigrior is the great field where the battle Ragnarok is fortold to occur. Even now the ground there is filled with the energy of battle cries and death. No one lives there but strange things sometimes occur on it-echos of the future. 
-silva.page.dimVigrior1=Exposure to Vigrior energies results in strange happenings in battle as the power of the future battle stretches backwards to touch the present. I have seen mice exposed slay men, men slay giants, and Asgardians defeat armies all without any apparent difficulty, and watched warriers forget their skills, drop their weapons, or give them away to their enemies. 
+# -- Vigridr
+silva.entry.dimVigridr=Vigridr
+silva.page.dimVigridr0=Vigridr is the great field where the battle Ragnarok is fortold to occur. Even now the ground there is filled with the energy of battle cries and death. No one lives there but strange things sometimes occur on it-echos of the future. 
+silva.page.dimVigridr1=Exposure to Vigridr energies results in strange happenings in battle as the power of the future battle stretches backwards to touch the present. I have seen mice exposed slay men, men slay giants, and Asgardians defeat armies all without any apparent difficulty, and watched warriers forget their skills, drop their weapons, or give them away to their enemies. 
 
 # - DWARVEN TRADE
 # -- DWARF INTRO

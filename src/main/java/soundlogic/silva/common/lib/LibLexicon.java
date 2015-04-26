@@ -28,7 +28,7 @@ public class LibLexicon {
 	public static final String DWARF_INTRO = "dwarfIntro";
 	
 	public static final String DIM_GINNUNGAGAP = "dimGinnungagap";
-	public static final String DIM_VIGRIOR = "dimVigrior";
+	public static final String DIM_VIGRIOR = "dimVigridr";
 	public static final String DIM_FOLKVANGR = "dimFolkvangr";
 	public static final String DIM_VALHALLA = "dimValhalla";
 	public static final String DIM_HELHEIM = "dimHelheim";
