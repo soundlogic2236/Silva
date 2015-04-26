@@ -21,9 +21,11 @@ import soundlogic.silva.common.core.handler.DwarfForgedHandler;
 import soundlogic.silva.common.core.handler.DwarvenChainHandler;
 import soundlogic.silva.common.core.handler.EnderPearlPortalHandler;
 import soundlogic.silva.common.core.handler.PixieDustHandler;
-import soundlogic.silva.common.core.handler.PotionEffectHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
+import soundlogic.silva.common.core.handler.portal.DimensionalEnergyHandler;
+import soundlogic.silva.common.core.handler.potion.PotionMeadHandler;
 import soundlogic.silva.common.crafting.ModCraftingRecipes;
+import soundlogic.silva.common.crafting.ModFurnaceRecipes;
 import soundlogic.silva.common.crafting.ModPortalTradeRecipes;
 import soundlogic.silva.common.crafting.PortalRecipes;
 import soundlogic.silva.common.entity.ModEntities;
@@ -62,8 +64,9 @@ public class CommonProxy {
 		ModCraftingRecipes.preInit();
 		PortalRecipes.preInit();
 		ModPortalTradeRecipes.preInit();
+		ModFurnaceRecipes.preInit();
 		
-		DimensionHandler.initSignatures();
+		DimensionHandler.init();
 
 		LexiconData.preInit();
 		
@@ -79,9 +82,10 @@ public class CommonProxy {
 		MinecraftForge.EVENT_BUS.register(dwarfForged);
 		FMLCommonHandler.instance().bus().register(dwarfForged);
 		MinecraftForge.EVENT_BUS.register(new DwarvenChainHandler());
-		PotionEffectHandler potionHandler=new PotionEffectHandler();
-		MinecraftForge.EVENT_BUS.register(potionHandler);
-		FMLCommonHandler.instance().bus().register(potionHandler);
+		PotionMeadHandler potionMeadHandler=new PotionMeadHandler();
+		MinecraftForge.EVENT_BUS.register(potionMeadHandler);
+		FMLCommonHandler.instance().bus().register(potionMeadHandler);
+		MinecraftForge.EVENT_BUS.register(new DimensionalEnergyHandler());
 	}
 	
 	public void postInit(FMLPostInitializationEvent event) {

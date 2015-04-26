@@ -1,11 +1,11 @@
 package soundlogic.silva.common.crafting.recipe;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import scala.actors.threadpool.Arrays;
 import soundlogic.silva.common.block.tile.TilePortalCore;
 
 public class PortalRecipeSimple implements IPortalRecipe {

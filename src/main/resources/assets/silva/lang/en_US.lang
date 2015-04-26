@@ -1,12 +1,10 @@
-# MISC
-silva.misc.brokenItemName=Broken %s
-
 # TOOLTIPS
 silva.tooltips.papers_craft=Craft with a lexicon
 silva.tooltips.papers_knowledge_type=Adds knowledge type:
 silva.tooltips.fake_knowledge=More Knowledge!
 silva.tooltips.clickToSignature=Shift click to see signature
 silva.tooltips.dwarfForged=Dwarf Forged
+silva.tooltips.exposure=%s Energy Exposure
 
 # DIMENSIONS
 silva.dimension.ginnungagap=Ginnungagap
@@ -18,7 +16,7 @@ silva.dimension.asgard=Asgard
 silva.dimension.alfheim=Alfheim
 silva.dimension.minegard=Minegard
 silva.dimension.jotunheimr=Jotunheimr
-silva.dimension.nioavellir=Nioavellir
+silva.dimension.svartalfheim=Svartalfheim
 silva.dimension.muspelheim=Muspelheim
 silva.dimension.niflheim=Niflheim
 silva.dimension.nidavellir=Nidavellir
@@ -43,13 +41,14 @@ tile.silva:pylon.Asgard.name=Divine Pylon
 tile.silva:pyl0on.Alfheim.name=Elven Pylon
 tile.silva:pylon.Minegard.name=Worldly Pylon
 tile.silva:pylon.Jotunheimr.name=Stone Pylon
-tile.silva:pylon.Nioavellir.name=Darkened Pylon
+tile.silva:pylon.Svartalfheim.name=Darkened Pylon
 tile.silva:pylon.Muspelheim.name=Fire Pylon
 tile.silva:pylon.Niflheim.name=Frost Pylon
 tile.silva:pylon.Nidavellir.name=Metal Pylon
 tile.silva:pylon.Vanaheimr.name=Wisdom Pylon
 tile.silva:boomMoss.0.name=Boom Moss
 tile.silva:boomMoss.1.name=Master Boom Moss
+tile.silva:boomMoss.2.name=Dry Boom Moss
 tile.silva:bifrostBlock.name=Bifrost
 tile.silva:bifrostBlockSparkling.name=Sparkling Bifrost
 tile.silva:bifrostBlockStairs.name=Bifrost Stairs
@@ -130,13 +129,13 @@ silva.page.nubliaMessage3=I have included notes on portal creation, the various 
 
 # -- WORLD TREE INTRO
 silva.entry.worldTreeIntro=Introduction to the World Tree
-silva.page.worldTreeIntro0=The World Tree is the great tree which holds our worlds together. From its branches come the nine realms: Asgard, Alfheim (where we live), Minegard (where you live), Jotunheimr, Nioavellir, Muspelheim, Niflheim, Nidavellir, and Vanaheimr. 
+silva.page.worldTreeIntro0=The World Tree is the great tree which holds our worlds together. From its branches come the nine realms: Asgard, Alfheim (where we live), Minegard (where you live), Jotunheimr, Svartalfheim, Muspelheim, Niflheim, Nidavellir, and Vanaheimr. 
 silva.page.worldTreeIntro1=Some realms contain locations of great enough significance to have their own dimensional signature such as Vigrior, Folkvangr, Valhalla, and Helheim.
 silva.page.worldTreeIntro2=The World Tree is surrounded by the Great Ginnungagap - a powerful void of great and terrible energies. 
 
 # -- ADVANCED PORTALS
 silva.entry.advancedPortals=Advanced Portals
-silva.page.advancedPortals0=Since Thor shattered the bifrost we have had an increasing dependence on smaller weaker portals akin to the one you created to first contact us. While they do not permit living things to travel (with one exception-see &4Nioavellir&0), they have permitted us to rebuild some of the trade networks we had before. While the portal you created out of wood and metal is impressive for such an
+silva.page.advancedPortals0=Since Thor shattered the bifrost we have had an increasing dependence on smaller weaker portals akin to the one you created to first contact us. While they do not permit living things to travel (with one exception-see &4Svartalfheim&0), they have permitted us to rebuild some of the trade networks we had before. While the portal you created out of wood and metal is impressive for such an
 silva.page.advancedPortals1=ad-hoc creation, shards of bifrost permit a far more refined, adaptable, and efficient portal. Said portal can be tuned to connect to any of the nine realms, and a few locations within them. The portal not only permits trade, but also lets energy from one place flow into the other for various effects (described in the entries for that location)
 silva.page.advancedPortals2=The full requirements for the portal are as follows: 8 Bifrost blocks, 4 Bifrost Stairs, 3 Sparkling Bifrost Blocks, 1 Portal Core (read on) and two Portal Pylons (read on), and a Dimensional Signature (read on)
 silva.page.advancedPortals3=A dimensional signature tunes the portal to its target location-usually a realm. A signature is drawn in front of the portal. We usually draw it in pixie dust, though your realm may have some other dust which you may have an easier time getting. The signature has a specific shape fitting within 5 by 3, and I have listed the signatures known to me along with where they lead in other entries in these papers.
@@ -214,11 +213,11 @@ silva.entry.dimNiflheim=Niflheim
 silva.page.dimNiflheim0=Niflheim is one of the nine realms, and was one of the original two realms which resulted in the world tree. It was almost completely uninhabited except Helheim on its edge. During the shattering nothing much seemed to happen to it.
 silva.page.dimNiflheim1=Exposure to Niflheim energies will freeze and weaken things.
 
-# -- Nioavellir
-silva.entry.dimNioavellir=Nioavellir
-silva.page.dimNioavellir0=Nioavellir is one of the nine realms, and is home to the Dark Elves. DO NOT OPEN A PORTAL TO IT. The Dark Elves are cowardly and evil creatures, and while most lack almost all intelligence, a few of them possess extraordinary cunning and teach the others to act on their behalf. 
-silva.page.dimNioavellir1=Dark Elves are the only creatures which know the secret of how to use these portals to travel between world, making opening a portal there extremely dangerous.
-silva.page.dimNioavellir2=Teasing out what results from the Dark Elves' actions and the essence of Nioavellir itself is tricky. 
+# -- Svartalfheim
+silva.entry.dimSvartalfheim=Svartalfheim
+silva.page.dimSvartalfheim0=Svartalfheim is one of the nine realms, and is home to the Dark Elves. DO NOT OPEN A PORTAL TO IT. The Dark Elves are cowardly and evil creatures, and while most lack almost all intelligence, a few of them possess extraordinary cunning and teach the others to act on their behalf. 
+silva.page.dimSvartalfheim1=Dark Elves are the only creatures which know the secret of how to use these portals to travel between world, making opening a portal there extremely dangerous.
+silva.page.dimSvartalfheim2=Teasing out what results from the Dark Elves' actions and the essence of Svartalfheim itself is tricky. 
 
 # -- Valhalla
 silva.entry.dimValhalla=Valhalla
@@ -253,7 +252,7 @@ silva.page.dwarfIntro6=A final word of warning: While the Elves of Alfheim centr
 
 # -- BASIC DWARVEN RESOURCES
 silva.entry.basicDwarvenResources=The Resources of Nidavellir
-silva.page.basicDwarvenResources0=Some more common resources of our realm we will trade easily, and are mostly used in crafting. We hope you enjoy them. They form a firm foundation for further trades
+silva.page.basicDwarvenResources0=Some more common resources of our realm we will trade easily, and are mostly used in crafting. We hope you enjoy them. They form a firm foundation for further trades.
 silva.page.basicDwarvenResources1=Trading for Dwarf Weed
 silva.page.basicDwarvenResources2=Trading for Deep Rock
 silva.page.basicDwarvenResources3=Trading for Mushrooms
@@ -267,14 +266,16 @@ silva.page.boomMoss2=Crafting Boom Moss
 silva.page.boomMoss3=In addition to regular Boom Moss, some dwarves know the secret of enchanting it, creating something known as "Master Boom Moss". It requires no additional mana beyond that of regular boom moss, but when detonated it carves out the stone with precision like an enchanted pickaxe, letting the miners handle the ores in their original form. 
 silva.page.boomMoss4=Even better, it moves all the ores thus mined back to the original location of detonation, permitting the user to pick all of them up with ease!
 silva.page.boomMoss5=Trading For Master Boom Moss
+silva.page.boomMoss6=Boom Moss can be disrupted by higher heat level such as created in a furnace. When dried out it will still explode, but will turn the things in its explosion to dust in the wind. 
+silva.page.boomMoss7=Drying Boom Moss
 
 # -- DWARF FORGED
 silva.entry.dwarfForged=Dwarf Forged
 silva.page.dwarfForged0=The Elves' skills at enchanting are well known, and a dwarf who goes into battle will be as covered in enchantments and runes as any elf. None the less, at the core of any dwarf's weapon and tools, below the layers of enchantment and runes lies the precise skill of a dwarven forgemaster. 
-silva.page.dwarfForged1=Such creations are superior in a multitude of tiny and not so tiny ways, adding up to, while not quite on the level of full magic, a steady and reliable base completely compatible with enchanting. 
+silva.page.dwarfForged1=Such creations are superior in a multitude of tiny and not so tiny ways, adding up to a steady and reliable base. While not on the level of actual magic, it is completely compatible with enchanting.
 silva.page.dwarfForged2=A dwarf forged sword's edge has tiny details on it which cause its hits to occasionally tear skin for a slight boost in damage, and its sharpness means that when it hits just right it can do massive damage. 
 silva.page.dwarfForged3=Dwarven Forged armor has carefully created interlocking pieces which will sometimes completely nullify even the most powerful blows! 
-silva.page.dwarfForged4=In addition our smiths put careful grooves into their creations permitting things like timeless ivy to mesh better, allowing it to repair at a greater rate and for less mana.
+silva.page.dwarfForged4=In addition, our smiths put careful grooves into their creations permitting things like timeless ivy to mesh better, allowing it to repair at a greater rate and for less mana.
 silva.page.dwarfForged5=Any armor, tool, or weapon you get from us will be of dwarven make, and many of our smiths may be willing to craft armor for you should you provide the materials and a fee. Such is their skill that they usually require less materials than ordinary crafters, wasting less and making the ingots go farther.
 silva.page.dwarfForged6=Paying Dwarven Smiths to craft
 silva.page.dwarfForged7=Should you have object which are not of dwarven make, not all hope is lost! While reforging existing armor to the exacting standards of dwarven crafting is more difficult than most of our smith's can do, it is none the less possible to reforge objects, even those of materials we do not normally use!
@@ -295,16 +296,25 @@ silva.page.dwarvenChain2=Trading for Dwarven Chain
 
 # -- DWARVEN MANA POOL
 silva.entry.dwarvenManaPool=Dwarven Mana Pool
-silva.page.dwarvenManaPool0=
+silva.page.dwarvenManaPool0=The Mana systems of us dwarves are a bit different from the system commonly used by the elves. We primarily use Mana Crystals and Mana Pools made of Deep Rock rather than living rock mana pools and spreaders. Our mana pools lack the ability to disperse power to nearby devices automatically, but have an increased storage capacity compared to livingrock ones. 
+silva.page.dwarvenManaPool1=They are still fully capable of infusing items with mana and connecting to spreaders or sparks, it is only things like flowers which they will fail to interact with. For more information about how we manipulate mana see the entry on mana crystals
+silva.page.dwarvenManaPool2=Converting a livingrock mana pool to a dwarven mana pool
 
 # -- MEAD OF POETRY
 silva.entry.dwarvenMead=Mead of Poetry
-silva.page.dwarvenMead0=
+silva.page.dwarvenMead0=Ah! The Mead of Poetry! Truely a wonderous drink! Despite its questionable origins, who could resist such a beverage? Delicious, sweet, and strong enough to make an entire party of dwarves black out. To my knowledge,  I myself have partaken in it a total of thirty-one times in my life, though despite this I can only recall two times I've witnessed someone drunk on it.
+silva.page.dwarvenMead1=One occasion was in a tavern, and the dwarf in question has recently achieved some accomplishment or another-the details escape me-I was rather well supplied at the time. After a single mug he was singing a wonderful sing, knocked over three tables, then bit off his companion's finger and used the bloody stump to write a poem on the wall of the tavern. Good times.
+silva.page.dwarvenMead2=The other occasion was seeing it used in combat. The one who drank it was shouting strange facts and swinging his sword every which way, a full half his strikes going completely wild as he jumped around like a madman. Come to think of it, the singing dwarf was jumping as well... The strikes that did hit though... Perfectly aimed and devastating in strength. He won with ease and passed out.
+silva.page.dwarvenMead3=Trading for Mead of Poetry
 
 # -- MANA CRYSTAL
 silva.entry.manaCrystal=Mana Crystal
-silva.page.manaCrystal0=
+silva.page.manaCrystal0=The Mana Crystal is the other half of the standard dwarven power system. I shall attempt to explain it using the concepts of elven systems. In short, it is a combination mana tablet, mana spreader, and mana pool. 
+silva.page.manaCrystal1=It cannot store as much mana as a pool or tablet, but automatically can send bursts of mana downwards like a spreader. It can be charged via a mana pool or a spreader/crystal and keeps its mana when picked up. It also has the ability of a livingrock pool to give mana to nearby systems.
+silva.page.manaCrystal2=Trading for mana crystals
 
 # -- STONE HORSE
 silva.entry.stoneHorse=Stone Horse
-silva.page.stoneHorse0=
+silva.page.stoneHorse0=A classic final challange for an apprentice dwarven stonecarver is to carve a stone horse with such detail that it comes to life. As a result, we have a fair number of them, and will trade them readily.
+silva.page.stoneHorse1=Placing down the stone horse will animate it, resulting in a horse that needs no saddle, and while it can be equipped with armor will have some natural armor given its composition. Should the horse be sufficiently damaged, it will return to its statue state to be placed down again.
+silva.page.stoneHorse2=Trading for a stone horse

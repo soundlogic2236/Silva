@@ -29,6 +29,7 @@ public class TileBoomMoss extends TileMod implements IManaReceiver{
 
 	private static final String TAG_MANA = "mana";
 	private static final String TAG_COUNTDOWN = "countdown";
+	private static final String TAG_GENERATION = "generation";
 	private static final String TAG_DROP_X = "dropX";
 	private static final String TAG_DROP_Y = "dropY";
 	private static final String TAG_DROP_Z = "dropZ";
@@ -55,6 +56,7 @@ public class TileBoomMoss extends TileMod implements IManaReceiver{
 	
 	int mana = 0;
 	int countdown = -1;
+	int generation = 0;
 	double dropX = 0;
 	double dropY = 0;
 	double dropZ = 0;
@@ -91,6 +93,7 @@ public class TileBoomMoss extends TileMod implements IManaReceiver{
 		super.writeCustomNBT(cmp);
 		cmp.setInteger(TAG_MANA, mana);
 		cmp.setInteger(TAG_COUNTDOWN, countdown);
+		cmp.setInteger(TAG_GENERATION, generation);
 		cmp.setDouble(TAG_DROP_X, dropX);
 		cmp.setDouble(TAG_DROP_Y, dropY);
 		cmp.setDouble(TAG_DROP_Z, dropZ);
@@ -101,6 +104,7 @@ public class TileBoomMoss extends TileMod implements IManaReceiver{
 		super.readCustomNBT(cmp);
 		mana = cmp.getInteger(TAG_MANA);
 		countdown = cmp.getInteger(TAG_COUNTDOWN);
+		generation = cmp.getInteger(TAG_GENERATION);
 		dropX = cmp.getDouble(TAG_DROP_X);
 		dropY = cmp.getDouble(TAG_DROP_Y);
 		dropZ = cmp.getDouble(TAG_DROP_Z);
@@ -178,6 +182,7 @@ public class TileBoomMoss extends TileMod implements IManaReceiver{
 		if(worldObj.isRemote)
 			return;
 		boolean upgraded = worldObj.getBlockMetadata(xCoord,yCoord,zCoord)==1;
+		boolean dry = worldObj.getBlockMetadata(xCoord,yCoord,zCoord)==2;
 		for(ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
 			TileEntity tileAt = worldObj.getTileEntity(xCoord + dir.offsetX, yCoord + dir.offsetY, zCoord + dir.offsetZ);
 			if(!(tileAt instanceof TileBoomMoss)) {
@@ -200,7 +205,8 @@ public class TileBoomMoss extends TileMod implements IManaReceiver{
 						dropZ=(float) (this.dropZ+.5F);
 					}
 					for(ItemStack stack_ : items) {
-						worldObj.spawnEntityInWorld(new EntityItem(worldObj, dropX, dropY, dropZ , stack_));
+						if(!dry)
+							worldObj.spawnEntityInWorld(new EntityItem(worldObj, dropX, dropY, dropZ , stack_));
 					}
 					items.clear();
 				}
@@ -210,7 +216,8 @@ public class TileBoomMoss extends TileMod implements IManaReceiver{
 			TileEntity tileAt = worldObj.getTileEntity(xCoord + offset[0], yCoord + offset[1], zCoord + offset[2]);
 			if(tileAt instanceof TileBoomMoss) {
 				if(((TileBoomMoss) tileAt).countdown==-1) {
-					((TileBoomMoss) tileAt).countdown=TIMER;
+					((TileBoomMoss) tileAt).countdown=(int) (TIMER + generation/5 + Math.random() * 3);
+					((TileBoomMoss) tileAt).generation=generation+1;
 					((TileBoomMoss) tileAt).dropX=this.dropX;
 					((TileBoomMoss) tileAt).dropY=this.dropY;
 					((TileBoomMoss) tileAt).dropZ=this.dropZ;

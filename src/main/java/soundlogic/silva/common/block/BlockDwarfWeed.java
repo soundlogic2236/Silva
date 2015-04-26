@@ -1,10 +1,10 @@
 package soundlogic.silva.common.block;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import scala.actors.threadpool.Arrays;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.item.ModItems;
@@ -51,7 +51,7 @@ public class BlockDwarfWeed extends BlockBush implements IShearable {
 	@Override
 	public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world,
 			int x, int y, int z, int fortune) {
-		return (ArrayList<ItemStack>) Arrays.asList(new Object[]{new ItemStack(this)});
+		return (ArrayList<ItemStack>) Arrays.asList(new ItemStack[]{new ItemStack(this)});
 	}
     
 

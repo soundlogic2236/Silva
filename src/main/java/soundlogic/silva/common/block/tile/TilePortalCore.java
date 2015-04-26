@@ -16,6 +16,7 @@ import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension.State;
+import soundlogic.silva.common.core.handler.portal.DimensionalEnergyHandler;
 import soundlogic.silva.common.crafting.PortalDwarfData;
 import soundlogic.silva.common.crafting.PortalRecipes;
 import soundlogic.silva.common.crafting.recipe.IPortalRecipe;
@@ -112,6 +113,7 @@ public class TilePortalCore extends TileMod{
 				pylonParticles();
 				teleportItems();
 				handleDwarvenSigns();
+				DimensionalEnergyHandler.applyPortalTick(this);
 				if(ticksSinceLastItem>=20)
 					resolveRecipes();
 			}
@@ -182,6 +184,8 @@ public class TilePortalCore extends TileMod{
 	}
 	
 	private void pylonParticles(int x, int y, int z) {
+		if(dimension==null)
+			return;
 		Vector3 centerBlock = new Vector3(xCoord + 0.5, yCoord + 0.75 + (Math.random() - 0.5 * 0.25), zCoord + 0.5);
 		double worldTime = ticksOpen;
 		worldTime += new Random(xCoord ^ yCoord ^ zCoord).nextInt(1000);

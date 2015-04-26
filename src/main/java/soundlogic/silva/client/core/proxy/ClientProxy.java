@@ -11,6 +11,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import soundlogic.silva.client.core.handler.AlfheimPortalGuiHandler;
 import soundlogic.silva.client.core.handler.BookConverter;
 import soundlogic.silva.client.core.handler.ClientTickHandler;
+import soundlogic.silva.client.core.handler.DimensionalExposureRenderHandler;
 import soundlogic.silva.client.core.handler.DwarfChainRenderHandler;
 import soundlogic.silva.client.lib.LibRenderIDs;
 import soundlogic.silva.client.render.block.RenderBoomMoss;
@@ -52,7 +53,13 @@ public class ClientProxy extends CommonProxy{
 		FMLCommonHandler.instance().bus().register(new ClientTickHandler());
 		MinecraftForge.EVENT_BUS.register(new DwarfChainRenderHandler());
 		MinecraftForge.EVENT_BUS.register(new AlfheimPortalGuiHandler());
+		DimensionalExposureRenderHandler dimensionalExposureRenderHandler = new DimensionalExposureRenderHandler();
+		MinecraftForge.EVENT_BUS.register(dimensionalExposureRenderHandler);
+		FMLCommonHandler.instance().bus().register(dimensionalExposureRenderHandler);
 
+		DimensionalExposureRenderHandler.defineGUILocation("", 0, 0, "", 0, false);
+		DimensionalExposureRenderHandler.defineGUILocation("", 0, 0, "", 0, true);
+		
 	}
 
     @Override

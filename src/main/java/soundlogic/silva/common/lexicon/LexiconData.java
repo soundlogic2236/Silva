@@ -11,13 +11,16 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.util.EnumChatFormatting;
 import soundlogic.silva.client.lib.LibResources;
+import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
 import soundlogic.silva.common.crafting.ModCraftingRecipes;
 import soundlogic.silva.common.crafting.ModPortalTradeRecipes;
+import soundlogic.silva.common.crafting.recipe.IPortalRecipe;
 import soundlogic.silva.common.item.ItemPapers;
 import soundlogic.silva.common.item.ModItems;
 import soundlogic.silva.common.lexicon.page.PageAdvancedCraftingRecipe;
+import soundlogic.silva.common.lexicon.page.PageAdvancedFurnaceRecipe;
 import soundlogic.silva.common.lexicon.page.PageAdvancedImage;
 import soundlogic.silva.common.lexicon.page.PageAdvancedPortalTrade;
 import soundlogic.silva.common.lexicon.page.PageAdvancedText;
@@ -65,7 +68,7 @@ public class LexiconData {
 	public static LexiconEntry dimAlfheim;
 	public static LexiconEntry dimMinegard;
 	public static LexiconEntry dimJotunheimr;
-	public static LexiconEntry dimNioavellir;
+	public static LexiconEntry dimSvartalfheim;
 	public static LexiconEntry dimMuspelheim;
 	public static LexiconEntry dimNiflheim;
 	public static LexiconEntry dimNidavellir;
@@ -186,7 +189,9 @@ public class LexiconData {
 				new PageAdvancedCraftingRecipe("2",ModCraftingRecipes.recipeBoomMoss,PageBackground.DWARVEN),
 				new PageAdvancedText("3",PageBackground.DWARVEN),
 				new PageAdvancedText("4",PageBackground.DWARVEN),
-				new PageAdvancedPortalTrade("5", ModPortalTradeRecipes.dwarfMasterBoomMossTrade,Dimension.NIDAVELLIR)
+				new PageAdvancedPortalTrade("5", ModPortalTradeRecipes.dwarfMasterBoomMossTrade,Dimension.NIDAVELLIR),
+				new PageAdvancedText("6",PageBackground.DWARVEN),
+				new PageAdvancedFurnaceRecipe("7", new ItemStack(ModBlocks.boomMoss, 1, 2), new ItemStack(ModBlocks.boomMoss, 1, 0), PageBackground.DWARVEN)
 				);
 
 		dwarfForged=new SLexiconEntry(LibLexicon.DWARF_FORGED, categoryDwarven);
@@ -203,16 +208,31 @@ public class LexiconData {
 				).setIcon(new ItemStack(Blocks.anvil));
 		
 		manaCrystal=new SLexiconEntry(LibLexicon.MANA_CRYSTAL, categoryDwarven);
-		manaCrystal.setKnowledgeType(dwarvenKnowledge).setLexiconPages(new PageAdvancedText("0",PageBackground.DWARVEN));
+		manaCrystal.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
+				new PageAdvancedText("0",PageBackground.DWARVEN),
+				new PageAdvancedText("1",PageBackground.DWARVEN),
+				new PageAdvancedPortalTrade("2", ModPortalTradeRecipes.dwarfManaCrystalTrade,Dimension.NIDAVELLIR)
+				);
 
 		dwarvenManaPool=new SLexiconEntry(LibLexicon.DWARVEN_MANA_POOL, categoryDwarven);
-		dwarvenManaPool.setKnowledgeType(dwarvenKnowledge).setLexiconPages(new PageAdvancedText("0",PageBackground.DWARVEN));
+		dwarvenManaPool.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
+				new PageAdvancedText("0",PageBackground.DWARVEN),
+				new PageAdvancedText("1",PageBackground.DWARVEN),
+				new PageAdvancedCraftingRecipe("2",ModCraftingRecipes.recipeDwarvenPool,PageBackground.DWARVEN));
 
 		stoneHorse=new SLexiconEntry(LibLexicon.STONE_HORSE, categoryDwarven);
-		stoneHorse.setKnowledgeType(dwarvenKnowledge).setLexiconPages(new PageAdvancedText("0",PageBackground.DWARVEN));
+		stoneHorse.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
+				new PageAdvancedText("0",PageBackground.DWARVEN),
+				new PageAdvancedText("0",PageBackground.DWARVEN),
+				new PageAdvancedPortalTrade("2", ModPortalTradeRecipes.dwarfStoneHorseTrade,Dimension.NIDAVELLIR)
+				);
 
 		dwarvenMead=new SLexiconEntry(LibLexicon.DWARVEN_MEAD, categoryDwarven);
-		dwarvenMead.setKnowledgeType(dwarvenKnowledge).setLexiconPages(new PageAdvancedText("0",PageBackground.DWARVEN));
+		dwarvenMead.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
+				new PageAdvancedText("0",PageBackground.DWARVEN),
+				new PageAdvancedText("1",PageBackground.DWARVEN),
+				new PageAdvancedText("2",PageBackground.DWARVEN),
+				new PageAdvancedPortalTrade("3", new IPortalRecipe[]{ModPortalTradeRecipes.dwarfMelonToMeadTrade,ModPortalTradeRecipes.dwarfPumpkinToMeadTrade},Dimension.NIDAVELLIR));
 
 		dwarvenChain=new SLexiconEntry(LibLexicon.DWARVEN_CHAIN, categoryDwarven);
 		dwarvenChain.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
@@ -282,11 +302,11 @@ public class LexiconData {
 				new PageAdvancedText("1",PageBackground.ELVEN), 
 				new PageDimensionSignature("2",Dimension.JOTUNHEIMR, PageBackground.ELVEN));
 		
-		dimNioavellir=new SLexiconEntry(LibLexicon.DIM_NIOAVELLIR, categoryWorldTree);
-		dimNioavellir.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
+		dimSvartalfheim=new SLexiconEntry(LibLexicon.DIM_SVARTALFHEIM, categoryWorldTree);
+		dimSvartalfheim.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
 				new PageAdvancedText("0",PageBackground.ELVEN), 
 				new PageAdvancedText("1",PageBackground.ELVEN), 
-				new PageDimensionSignature("2",Dimension.NIOAVELLIR, PageBackground.ELVEN));
+				new PageDimensionSignature("2",Dimension.SVARTALFHEIM, PageBackground.ELVEN));
 		
 		dimMuspelheim=new SLexiconEntry(LibLexicon.DIM_MUSPELHEIM, categoryWorldTree);
 		dimMuspelheim.setKnowledgeType(worldTreeKnowledge).setLexiconPages(

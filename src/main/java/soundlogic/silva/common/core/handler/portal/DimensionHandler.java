@@ -6,32 +6,119 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import net.minecraft.potion.Potion;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
 import soundlogic.silva.common.lib.LibMisc;
+import soundlogic.silva.common.potion.ModPotions;
 import vazkii.botania.api.lexicon.LexiconRecipeMappings.EntryData;
 
 public class DimensionHandler {
 
 	public enum Dimension {
-		GINNUNGAGAP ("ginnungagap", State.LOCKED, 0x376332, 0x782b79), 
-		VIGRIOR ("vigrior", State.DEFAULT, 0x792b2b, 0x792b2b), 
-		FOLKVANGR ("folkvangr", State.DEFAULT, 0xf6d5a0, 0xf6d5a0), 
-		VALHALLA ("valhalla", State.DEFAULT, 0xe88787, 0xe88787), 
-		HELHEIM ("helheim", State.DEFAULT, 0x1d2457, 0x1d2457), 
-		ASGARD ("asgard", State.DEFAULT, 0xd8e825, 0xd8e825), 
-		ALFHEIM ("alfheim", State.DEFAULT, 0x5fff4a, 0x00c000), 
-		MINEGARD ("minegard", State.OVERWORLD, 0x00c172, 0x00c172), 
-		JOTUNHEIMR ("jotunheimr", State.DEFAULT, 0x94aba5, 0x94aba5), 
-		NIOAVELLIR ("nioavellir", State.DEFAULT, 0x381325, 0x381325), 
-		MUSPELHEIM ("muspelheim", State.DEFAULT, 0xe03d1d, 0xe03d1d), 
-		NIFLHEIM ("niflheim", State.DEFAULT, 0x1dc2e0, 0x1dc2e0), 
-		NIDAVELLIR ("nidavellir", State.DEFAULT, 0xd2d5e7, 0xd2d5e7), 
-		VANAHEIMR ("vanaheimr", State.DEFAULT, 0xcf52bf, 0xcf52bf);
+		GINNUNGAGAP (
+				"ginnungagap", 
+				State.LOCKED, 
+				0x376332, 
+				0x782b79,
+				null,
+				new DimensionExposureHandlerBase()), 
+		VIGRIOR (
+				"vigrior", 
+				State.DEFAULT, 
+				0x792b2b, 
+				0x792b2b,
+				null,
+				new DimensionExposureHandlerVigrior()), 
+		FOLKVANGR (
+				"folkvangr", 
+				State.DEFAULT, 
+				0xf6d5a0, 
+				0xf6d5a0,
+				null,
+				new DimensionExposureHandlerBase()), 
+		VALHALLA ("valhalla", 
+				State.DEFAULT, 
+				0xe88787, 
+				0xe88787,
+				null,
+				new DimensionExposureHandlerBase()), 
+		HELHEIM (
+				"helheim", 
+				State.DEFAULT, 
+				0x1d2457, 
+				0x1d2457,
+				null,
+				new DimensionExposureHandlerHelheim()), 
+		ASGARD (
+				"asgard", 
+				State.DEFAULT, 
+				0xd8e825, 
+				0xd8e825,
+				null,
+				new DimensionExposureHandlerBase()), 
+		ALFHEIM (
+				"alfheim", 
+				State.DEFAULT, 
+				0x5fff4a, 
+				0x00c000,
+				null,
+				new DimensionExposureHandlerBase()), 
+		MINEGARD (
+				"minegard", 
+				State.OVERWORLD, 
+				0x00c172, 
+				0x00c172,
+				null,
+				new DimensionExposureHandlerBase()), 
+		JOTUNHEIMR (
+				"jotunheimr", 
+				State.DEFAULT, 
+				0x94aba5, 
+				0x94aba5,
+				null,
+				new DimensionExposureHandlerBase()), 
+		SVARTALFHEIM (
+				"svartalfheim", 
+				State.DEFAULT, 
+				0x381325,
+				0x381325,
+				null,
+				new DimensionExposureHandlerSvartalheim()), 
+		MUSPELHEIM (
+				"muspelheim", 
+				State.DEFAULT, 
+				0xe03d1d, 
+				0xe03d1d,
+				null,
+				new DimensionExposureHandlerMuspelheim()), 
+		NIFLHEIM (
+				"niflheim", 
+				State.DEFAULT, 
+				0x1dc2e0, 
+				0x1dc2e0,
+				null,
+				new DimensionExposureHandlerBase()), 
+		NIDAVELLIR (
+				"nidavellir", 
+				State.DEFAULT, 
+				0xd2d5e7, 
+				0xd2d5e7,
+				null,
+				new DimensionExposureHandlerBase()),
+		VANAHEIMR (
+				"vanaheimr", 
+				State.DEFAULT, 
+				0xcf52bf, 
+				0xcf52bf,
+				null,
+				new DimensionExposureHandlerVanaheimr());
 		
 		private final String unlocalizedName;
 		private final State state;
 		private final Color portalColor;
 		private final Color sparkColor;
+		private final IDimensionalBlockHandler blockHandler;
+		private final IDimensionalExposureHandler exposureHandler;
 		
 		public enum State {
 			DEFAULT,
@@ -39,11 +126,13 @@ public class DimensionHandler {
 			OVERWORLD,
 		}
 		
-		Dimension(String unlocalizedName,State state, int portalColor, int sparkColor) {
+		Dimension(String unlocalizedName,State state, int portalColor, int sparkColor, IDimensionalBlockHandler blockHandler, IDimensionalExposureHandler exposureHandler) {
 			this.unlocalizedName=unlocalizedName;
 			this.state=state;
 			this.portalColor=new Color(portalColor);
 			this.sparkColor=new Color(sparkColor);
+			this.blockHandler=blockHandler;
+			this.exposureHandler=exposureHandler;
 		}
 		public String getUnlocalizedName() {
 			return LibMisc.MOD_ID.toLowerCase() + ".dimension." + unlocalizedName;
@@ -56,6 +145,18 @@ public class DimensionHandler {
 		}
 		public Color getSparkColor() {
 			return sparkColor;
+		}
+		public IDimensionalBlockHandler getBlockHandler() {
+			return blockHandler;
+		}
+		public IDimensionalExposureHandler getExposureHandler() {
+			return exposureHandler;
+		}
+		private void init() {
+			if(this.blockHandler!=null)
+				this.blockHandler.init(this);
+			if(this.exposureHandler!=null)
+				this.exposureHandler.init(this);
 		}
 	}
 	
@@ -103,7 +204,13 @@ public class DimensionHandler {
 		return true;
 	}
 	
-	public static void initSignatures() {
+	public static void init() {
+		for(Dimension dim : Dimension.values())
+			dim.init();
+		initSignature();
+	}
+	
+	public static void initSignature() {
 		signatures = new HashMap<boolean[][], Dimension>();
 		addSignature(
 				Dimension.GINNUNGAGAP, new int[][]	
@@ -178,7 +285,7 @@ public class DimensionHandler {
 				 {1,0,0,1,1},
 				 }); // Realm of Rocks and Caves and Giants
 		addSignature(
-				Dimension.NIOAVELLIR, new int[][]	
+				Dimension.SVARTALFHEIM, new int[][]	
 				{{1,0,1,1,0},
 				 {0,1,0,1,1},
 				 {1,0,0,1,1},

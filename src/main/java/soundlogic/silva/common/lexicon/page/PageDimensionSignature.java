@@ -117,7 +117,7 @@ public class PageDimensionSignature extends LexiconPage{
 				boolean pathRight=currentSignatureConnectionRight[row][column];
 				if(node) {
 					render.bindTexture(texNode);
-					drawTexturedModalRect(x, y, 16, 16, nodeWidth, nodeHeight);
+					drawTexturedModalRect(x, y, 0, 0, nodeWidth, nodeHeight);
 				}
 				if(pathUp) {
 					render.bindTexture(texPathUp);

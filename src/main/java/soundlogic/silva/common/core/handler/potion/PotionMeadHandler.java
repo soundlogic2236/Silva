@@ -1,10 +1,12 @@
-package soundlogic.silva.common.core.handler;
+package soundlogic.silva.common.core.handler.potion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
 import soundlogic.silva.common.Silva;
+import soundlogic.silva.common.core.handler.BookHandler;
+import soundlogic.silva.common.core.handler.ConfigHandler;
 import soundlogic.silva.common.potion.ModPotions;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,7 +24,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
-public class PotionEffectHandler {
+public class PotionMeadHandler {
 
 	static Random random = new Random();
 	HashMap<EntityPlayer,Integer> prev1SwingTime=new HashMap<EntityPlayer,Integer>();

@@ -23,6 +23,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.world.BlockEvent;
+import soundlogic.silva.client.core.handler.ClientTickHandler;
 import soundlogic.silva.client.lib.LibRenderIDs;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.Silva;
@@ -79,19 +80,28 @@ public class BlockBoomMoss extends BlockContainer implements ILexiconable{
 	}
 
     @SideOnly(Side.CLIENT)
-    public int getBlockColor()
+    public int getRenderColor(int meta)
     {
-        return 0x999900;
+    	if(meta == 1) {
+    		int i = (int) ((Math.sin(ClientTickHandler.ticksInGame)+1)/2*256);
+    		int j = 256-i;
+    		int col1 = 0x999900;
+    		int col2 = 0x004199;
+    		int mask1 = 0xFF00FF;
+    		int mask2 = 0x00FF00;
+    		return ((((( col1 & mask1 ) * i ) + ( ( col2 & mask1 ) * j )) >> 8 ) & mask1 ) 
+    		         			| ((((( col1 & mask2 ) * i ) + ( ( col2 & mask2 ) * j )) >> 8 ) & mask2 );
+    	}
+    	if(meta == 2)
+    		return 0x5f5f35;
+    	
+    	
+    	return 0x999900;
     }
     @SideOnly(Side.CLIENT)
-    public int getRenderColor(int p_149741_1_)
+    public int colorMultiplier(IBlockAccess world, int x, int y, int z)
     {
-        return 0x999900;
-    }
-    @SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockAccess p_149720_1_, int p_149720_2_, int p_149720_3_, int p_149720_4_)
-    {
-        return 0x999900;
+        return getRenderColor(0);
     }
 
 	@Override
@@ -133,5 +143,6 @@ public class BlockBoomMoss extends BlockContainer implements ILexiconable{
     {
         p_149666_3_.add(new ItemStack(p_149666_1_, 1, 0));
         p_149666_3_.add(new ItemStack(p_149666_1_, 1, 1));
+        p_149666_3_.add(new ItemStack(p_149666_1_, 1, 2));
     }
 }

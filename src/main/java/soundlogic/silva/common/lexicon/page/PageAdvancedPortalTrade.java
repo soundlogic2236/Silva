@@ -21,6 +21,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.oredict.OreDictionary;
+import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.block.BlockPortalCore;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
@@ -40,7 +41,7 @@ public class PageAdvancedPortalTrade extends PageRecipe{
 
 	PageBackground background;
 
-	private static final ResourceLocation tradeOverlay = new ResourceLocation(vazkii.botania.client.lib.LibResources.GUI_ELVEN_TRADE_OVERLAY);
+	private static final ResourceLocation tradeOverlay = new ResourceLocation(LibResources.GUI_PORTAL_TRADE_OVERLAY);
 
 	static boolean mouseDownLastTick = false;
 
