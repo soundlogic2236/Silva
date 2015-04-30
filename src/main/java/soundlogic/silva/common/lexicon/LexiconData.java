@@ -77,6 +77,7 @@ public class LexiconData {
 	public static LexiconEntry bifrost;
 	public static LexiconEntry darkenedDust;
 	public static LexiconEntry nubliaMessage;
+	public static LexiconEntry darkElves;
 	
 	public static ItemStack dimensionalPapers;
 	public static ItemStack dwarvenPapers;
@@ -333,7 +334,12 @@ public class LexiconData {
 				new PageAdvancedText("3",PageBackground.ELVEN)).setPriority();
 		
 		darkElfIntro=new SLexiconEntry(LibLexicon.DARK_ELF_INTRO, categoryDarkElf);
-		darkElfIntro.setKnowledgeType(darkElfKnowledge).setLexiconPages(new PageAdvancedText("0", PageBackground.ELVEN)).setPriority();
+		darkElfIntro.setKnowledgeType(darkElfKnowledge).setLexiconPages(
+				new PageAdvancedImage("0",vazkii.botania.client.lib.LibResources.ENTRY_ELVEN_GARDE,PageBackground.ELVEN),
+				new PageAdvancedText("1", PageBackground.ELVEN),
+				new PageAdvancedText("2", PageBackground.ELVEN),
+				new PageAdvancedText("3", PageBackground.ELVEN)
+				).setPriority();
 
 		manaEater=new SLexiconEntry(LibLexicon.MANA_EATER, categoryDarkElf);
 		manaEater.setKnowledgeType(darkElfKnowledge).setLexiconPages(
@@ -343,8 +349,8 @@ public class LexiconData {
 		darkenedDust=new SLexiconEntry(LibLexicon.DARKENED_DUST, categoryDarkElf);
 		darkenedDust.setKnowledgeType(darkElfKnowledge).setLexiconPages(new PageAdvancedText("0", PageBackground.ELVEN));
 
-		advancedPortals=new SLexiconEntry(LibLexicon.LAVA_SHROOM, categoryDwarven);
-		advancedPortals.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
+		lavaShroom=new SLexiconEntry(LibLexicon.LAVA_SHROOM, categoryDwarven);
+		lavaShroom.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
 				new PageAdvancedText("0", PageBackground.DWARVEN),
 				new PageAdvancedText("1", PageBackground.DWARVEN),
 				new PageAdvancedImage("2",LibResources.LAVA_SHROOM_PICS[0],PageBackground.DWARVEN),
@@ -356,6 +362,22 @@ public class LexiconData {
 				new PageAdvancedText("8", PageBackground.DWARVEN),
 				new PageAdvancedText("9", PageBackground.DWARVEN),
 				new PageAdvancedText("10",PageBackground.DWARVEN));
+		
+		darkElves=new SLexiconEntry(LibLexicon.DARK_ELVES_DESCRIPTION, categoryDarkElf);
+		darkElves.setKnowledgeType(darkElfKnowledge).setLexiconPages(
+				new PageAdvancedText("0",PageBackground.ELVEN), 
+				new PageAdvancedText("1",PageBackground.ELVEN), 
+				new PageAdvancedText("2",PageBackground.ELVEN), 
+				new PageAdvancedText("3",PageBackground.ELVEN), 
+				new PageAdvancedText("4",PageBackground.ELVEN), 
+				new PageAdvancedText("5",PageBackground.ELVEN), 
+				new PageAdvancedText("6",PageBackground.ELVEN), 
+				new PageAdvancedText("7",PageBackground.ELVEN), 
+				new PageAdvancedText("8",PageBackground.ELVEN), 
+				new PageAdvancedText("9",PageBackground.ELVEN), 
+				new PageAdvancedText("10",PageBackground.ELVEN), 
+				new PageAdvancedText("11",PageBackground.ELVEN)).setPriority();
+		
 
 		definePapers();
 	}
