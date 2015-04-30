@@ -50,6 +50,7 @@ public class LibLexicon {
 	public static final String DWARVEN_MEAD = "dwarvenMead";
 	public static final String DWARVEN_CHAIN = "dwarvenChain";
 	public static final String DWARVEN_BARRIER_STONE = "dwarvenBarrierStone";
+	public static final String LAVA_SHROOM = "lavaShroom";
 
 
 

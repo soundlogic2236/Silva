@@ -8,7 +8,12 @@ import soundlogic.silva.common.block.tile.TileDwarvenSign;
 import soundlogic.silva.common.block.tile.TileManaCrystal;
 import soundlogic.silva.common.block.tile.TileManaEater;
 import soundlogic.silva.common.block.tile.TilePortalCore;
+import soundlogic.silva.common.block.tile.TilePortalUpgradeCharge;
+import soundlogic.silva.common.block.tile.TilePortalUpgradeInhibit;
+import soundlogic.silva.common.block.tile.TilePortalUpgradeRedstone;
 import soundlogic.silva.common.block.tile.TilePylon;
+import soundlogic.silva.common.block.tile.multiblocks.TileMultiblockCore;
+import soundlogic.silva.common.block.tile.multiblocks.TileMultiblockProxy;
 import soundlogic.silva.common.item.block.ItemBlockBoomMoss;
 import soundlogic.silva.common.item.block.ItemBlockDwarvenSign;
 import soundlogic.silva.common.item.block.ItemBlockManaCrystal;
@@ -39,9 +44,17 @@ public class ModBlocks {
 	// Enhanced Portal
 	public static Block portalCore;
 	public static Block pixieDust;
+	public static Block portalUpgradeRedstone;
+	public static Block portalUpgradeInhibit;
+	public static Block portalUpgradeCharge;
 
 	// Pylons
 	public static Block dimensionalPylon;
+	
+	// Multiblocks
+	public static Block multiblockProxy;
+	public static Block multiblockCore;
+	public static Block multiblockProxyLava;
 
 	public static Block consumingWeed;
 	public static Block dwarfWeed;
@@ -119,6 +132,24 @@ public class ModBlocks {
 		dwarvenManaPool=new BlockDwarvenPool().setBlockName(LibBlockNames.DWARVEN_POOL);
 		GameRegistry.registerBlock(dwarvenManaPool, ItemBlockMod.class, LibBlockNames.DWARVEN_POOL);
 		
+		portalUpgradeRedstone=new BlockPortalUpgradeRedstone().setBlockName(LibBlockNames.PORTAL_UPGRADE_REDSTONE);
+		GameRegistry.registerBlock(portalUpgradeRedstone, ItemBlockMod.class, LibBlockNames.PORTAL_UPGRADE_REDSTONE);
+		
+		portalUpgradeInhibit=new BlockPortalUpgradeInhibit().setBlockName(LibBlockNames.PORTAL_UPGRADE_INHIBIT);
+		GameRegistry.registerBlock(portalUpgradeInhibit, ItemBlockMod.class, LibBlockNames.PORTAL_UPGRADE_INHIBIT);
+		
+		portalUpgradeCharge=new BlockPortalUpgradeCharge().setBlockName(LibBlockNames.PORTAL_UPGRADE_CHARGE);
+		GameRegistry.registerBlock(portalUpgradeCharge, ItemBlockMod.class, LibBlockNames.PORTAL_UPGRADE_CHARGE);
+		
+		multiblockProxy=new BlockMultiblockProxy(Material.glass).setBlockName(LibBlockNames.MULTIBLOCK_PROXY);
+		GameRegistry.registerBlock(multiblockProxy, ItemBlockMod.class, LibBlockNames.MULTIBLOCK_PROXY);
+		
+		multiblockCore=new BlockMultiblockCore(Material.glass).setBlockName(LibBlockNames.MULTIBLOCK_CORE);
+		GameRegistry.registerBlock(multiblockCore, ItemBlockMod.class, LibBlockNames.MULTIBLOCK_CORE);
+
+		multiblockProxyLava=new BlockMultiblockProxyLava().setBlockName(LibBlockNames.MULTIBLOCK_PROXY_LAVA);
+		GameRegistry.registerBlock(multiblockProxyLava, ItemBlockMod.class, LibBlockNames.MULTIBLOCK_PROXY_LAVA);
+		
 		initTileEntities();
 	}
 
@@ -131,6 +162,12 @@ public class ModBlocks {
 		registerTile(TileDwarvenSign.class, LibBlockNames.DWARVEN_SIGN);
 		registerTile(TileManaCrystal.class, LibBlockNames.MANA_CRYSTAL);
 		registerTile(TileDwarvenPool.class, LibBlockNames.DWARVEN_POOL);
+		registerTile(TilePortalUpgradeRedstone.class, LibBlockNames.PORTAL_UPGRADE_REDSTONE);
+		registerTile(TilePortalUpgradeInhibit.class, LibBlockNames.PORTAL_UPGRADE_INHIBIT);
+		registerTile(TilePortalUpgradeCharge.class, LibBlockNames.PORTAL_UPGRADE_CHARGE);
+		registerTile(TileMultiblockProxy.class, LibBlockNames.MULTIBLOCK_PROXY);
+		registerTile(TileMultiblockCore.class, LibBlockNames.MULTIBLOCK_CORE);
+		registerTile(TileMultiblockProxy.class, LibBlockNames.MULTIBLOCK_PROXY_LAVA);
 	}
 	
 	private static void registerTile(Class<? extends TileEntity> clazz, String key) {

@@ -88,6 +88,7 @@ public class LexiconData {
 	public static LexiconEntry dwarvenMead;
 	public static LexiconEntry dwarvenChain;
 	public static LexiconEntry dwarvenBarrierStone;
+	public static LexiconEntry lavaShroom;
 
 	public static void preInit() {
 		
@@ -342,6 +343,19 @@ public class LexiconData {
 		darkenedDust=new SLexiconEntry(LibLexicon.DARKENED_DUST, categoryDarkElf);
 		darkenedDust.setKnowledgeType(darkElfKnowledge).setLexiconPages(new PageAdvancedText("0", PageBackground.ELVEN));
 
+		advancedPortals=new SLexiconEntry(LibLexicon.LAVA_SHROOM, categoryDwarven);
+		advancedPortals.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
+				new PageAdvancedText("0", PageBackground.DWARVEN),
+				new PageAdvancedText("1", PageBackground.DWARVEN),
+				new PageAdvancedImage("2",LibResources.LAVA_SHROOM_PICS[0],PageBackground.DWARVEN),
+				new PageAdvancedImage("3",LibResources.LAVA_SHROOM_PICS[1],PageBackground.DWARVEN),
+				new PageAdvancedText("4", PageBackground.DWARVEN),
+				new PageAdvancedImage("5",LibResources.LAVA_SHROOM_PICS[2],PageBackground.DWARVEN),
+				new PageAdvancedImage("6",LibResources.LAVA_SHROOM_PICS[3],PageBackground.DWARVEN),
+				new PageAdvancedImage("7",LibResources.LAVA_SHROOM_PICS[4],PageBackground.DWARVEN),
+				new PageAdvancedText("8", PageBackground.DWARVEN),
+				new PageAdvancedText("9", PageBackground.DWARVEN),
+				new PageAdvancedText("10",PageBackground.DWARVEN));
 
 		definePapers();
 	}

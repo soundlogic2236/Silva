@@ -70,12 +70,32 @@ public class LibResources {
 
 	public static final String MODEL_DWARVEN_POOL = PREFIX_MODEL + "dwarvenPool.png";
 
+	public static final String PORTAL_UPGRADE_REDSTONE_ON = PREFIX_MOD + "portalUpgradeRedstoneOn";
+	public static final String PORTAL_UPGRADE_REDSTONE_OFF = PREFIX_MOD + "portalUpgradeRedstoneOff";
 
+	public static final String PORTAL_UPGRADE_INHIBIT = PREFIX_MOD + "portalUpgradeInhibit";
 
+	public static final String PORTAL_UPGRADE_OPENING = PREFIX_MOD + "portalUpgradeCharge";
 
+	public static final String MAGIC_LAVA = PREFIX_MOD + "magicLava";
+	public static final String DULL_LAVA = PREFIX_MOD + "dullLava";
 
+	public static final String LAVASHROOM_SKIN = PREFIX_MOD + "lavaShroomSkin";
+	public static final String LAVASHROOM_DULL_SKIN = PREFIX_MOD + "lavaShroomSkinDull";
+	public static final String LAVASHROOM_STEM = PREFIX_MOD + "lavaShroomStem";
+	public static final String LAVASHROOM_INSIDE = PREFIX_MOD + "lavaShroomInside";
+	public static final String LAVASHROOM_INSIDE_EDGE = PREFIX_MOD + "lavaShroomInsideEdge";
+	public static final String LAVASHROOM_INSIDE_EDGE_DULL = PREFIX_MOD + "lavaShroomInsideDullEdge";
+	public static final String LAVASHROOM_DULL_SKIN_EDGE = PREFIX_MOD + "lavaShroomSkinDullEdge";
+	public static final String LAVASHROOM_SKIN_EDGE = PREFIX_MOD + "lavaShroomSkinEdge";
 
-
+	public static final String[] LAVA_SHROOM_PICS = new String[] {
+		PREFIX_ENTRIES + "lavashroom0.png",
+		PREFIX_ENTRIES + "lavashroom1.png",
+		PREFIX_ENTRIES + "lavashroom2.png",
+		PREFIX_ENTRIES + "lavashroom3.png",
+		PREFIX_ENTRIES + "lavashroom4.png",
+	};
 
 
 

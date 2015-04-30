@@ -20,10 +20,11 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockBifrostSparkling extends BlockBifrost {
+public class BlockBifrostSparkling extends BlockBifrost implements IPortalFocus {
 
 	protected BlockBifrostSparkling() {
 		super();
@@ -72,4 +73,12 @@ public class BlockBifrostSparkling extends BlockBifrost {
         }
     }
 
+	@Override
+	public boolean isPortalFocus(World world, int x, int y, int z) {
+		return true;
+	}
+
+    public boolean isNormalCube(IBlockAccess world, int x, int y, int z) {
+    	return true;
+    }
 }

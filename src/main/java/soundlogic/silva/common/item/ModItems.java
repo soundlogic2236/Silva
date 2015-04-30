@@ -22,6 +22,7 @@ public class ModItems {
 	public static Item dwarfMead;
 	public static Item dwarfChain;
 	public static Item dwarfBarrier;
+	public static Item chargedStone;
 
 	public static void preInit() {
 	
@@ -35,6 +36,7 @@ public class ModItems {
 		dwarfMead=new ItemDwarvenMead(LibItemNames.DWARF_MEAD);
 		dwarfChain=new ItemDwarvenChain(LibItemNames.DWARF_CHAIN);
 		dwarfBarrier=new ItemDwarvenBarrier(LibItemNames.DWARF_BARRIER);
+		chargedStone=new ItemChargedStone(LibItemNames.CHARGED_STONE);
 	}
 	
 }

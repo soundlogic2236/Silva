@@ -10,8 +10,11 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import soundlogic.silva.common.block.IPortalFocus;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
@@ -22,9 +25,12 @@ import soundlogic.silva.common.crafting.PortalRecipes;
 import soundlogic.silva.common.crafting.recipe.IPortalRecipe;
 import soundlogic.silva.common.crafting.recipe.IPortalRecipeTransaction;
 import soundlogic.silva.common.crafting.recipe.PortalRecipeTransaction;
+import soundlogic.silva.common.item.ItemPapers;
+import soundlogic.silva.common.lexicon.LexiconData;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.lexicon.ILexicon;
 import vazkii.botania.api.mana.IManaPool;
+import vazkii.botania.client.core.handler.LightningHandler;
 import vazkii.botania.common.Botania;
 import vazkii.botania.common.core.helper.Vector3;
 import vazkii.botania.common.item.ItemLexicon;
@@ -52,6 +58,7 @@ public class TilePortalCore extends TileMod{
 	private static final String TAG_INVENTORY = "inventory";
 	private static final String TAG_INVENTORY_SIZE = "inventorySize";
 	private static final String TAG_CAN_OPEN_DARK_ELF = "darkElfPapers";
+	private static final String TAG_DARK_ELF_COOLDOWN = "darkElfCooldown";
 	private static final String TAG_PORTAL_FLAG = "_superPortal";
 	
 	private Dimension dimension;
@@ -60,9 +67,14 @@ public class TilePortalCore extends TileMod{
 	private int ticks=0;
 	private ForgeDirection direction;
 	private boolean darkElfPapers=false;
+	private int darkElfCooldown=0;
 	private ArrayList<ItemStack> inventory = new ArrayList<ItemStack>();
 	
 	public PortalDwarfData dwarfData=new PortalDwarfData();
+	
+	private List<IPortalUpgrade> upgrades = new ArrayList<IPortalUpgrade>();
+	
+	Random random = new Random();
 	
 	public static void definePortalShape() {
 		Block corner=ModBlocks.bifrostBlockStairs;
@@ -104,6 +116,10 @@ public class TilePortalCore extends TileMod{
 	@Override
 	public void updateEntity() {
 		ticks++;
+		updateUpgrades();
+		tickUpgrades();
+		if(darkElfCooldown>0)
+			darkElfCooldown--;
 		if(dimension!=null) {
 			checkStability();
 			if(dimension!=null) {
@@ -120,6 +136,12 @@ public class TilePortalCore extends TileMod{
 		}
 	}
 	
+	private void tickUpgrades() {
+		for(IPortalUpgrade upgrade : upgrades) {
+			upgrade.onTick();
+		}
+	}
+
 	private void handleDwarvenSigns() {
 		if(dimension!=Dimension.NIDAVELLIR)
 			return;
@@ -145,6 +167,8 @@ public class TilePortalCore extends TileMod{
 				return;
 			if(dimension.getState()==State.LOCKED)
 				return;
+			if(!this.upgradesPermitItemsThroughPortal())
+				return;
 			AxisAlignedBB aabb = getPortalAABB();
 			List<EntityItem> items = worldObj.getEntitiesWithinAABB(EntityItem.class, aabb);
 			for(EntityItem item : items) {
@@ -165,8 +189,12 @@ public class TilePortalCore extends TileMod{
 	void addItem(ItemStack stack) {
 		int size = stack.stackSize;
 		stack.stackSize = 1;
-		for(int i = 0; i < size; i++)
+		for(int i = 0; i < size; i++) {
+			for(IPortalUpgrade upgrade : upgrades) {
+				upgrade.onItemThroughPortal(stack.copy());
+			}
 			inventory.add(stack.copy());
+		}
 	}
 
 	private void checkStability() {
@@ -249,6 +277,67 @@ public class TilePortalCore extends TileMod{
 		return null;
 	}
 	
+	public List<IPortalUpgrade> getUpgrades() {
+		return upgrades;
+	}
+	
+	private void updateUpgrades() {
+		int[][] locs=getUpgradeLocations(direction);
+		upgrades.clear();
+		for(int[] loc : locs) {
+			TileEntity tile = worldObj.getTileEntity(loc[0], loc[1], loc[2]);
+			if(tile instanceof IPortalUpgrade) {
+				IPortalUpgrade upgrade = (IPortalUpgrade) tile;
+				if(upgrade.isPortalUpgrade()) {
+					upgrades.add(upgrade);
+					upgrade.setPortalCore(this);
+				}
+			}
+		}
+	}
+	
+	private int[][] getUpgradeLocations(ForgeDirection direction2) {
+		boolean onX = direction == ForgeDirection.NORTH || direction == ForgeDirection.SOUTH;
+		
+		int [][] output=new int[3][3];
+		
+		int x=xCoord;
+		int y=yCoord;
+		int z=zCoord;
+		
+		y+=2;
+		
+		if(onX) {
+			x-=2;
+		}
+		else {
+			z-=2;
+		}
+
+		output[0]=new int[]{x,y,z};
+		
+		if(onX) {
+			x+=2 * 2;
+		}
+		else {
+			z+=2 * 2;
+		}
+		
+		output[1]=new int[]{x,y,z};
+
+		y+=2;
+		
+		if(onX) {
+			x-=2;
+		}
+		else {
+			z-=2;
+		}
+		
+		output[2]=new int[]{x,y,z};
+		return output;
+	}
+
 	private boolean checkForPortalFrame(boolean onX) {
 		for(int rowNum = 0; rowNum < frameHeight; rowNum++) {
 			for(int columnNum = 0; columnNum < frameWidth; columnNum++) {
@@ -266,6 +355,10 @@ public class TilePortalCore extends TileMod{
 	private boolean checkPortalBlock(int x,int y,int z, Block block, int metadata, boolean onX) {
 		if(block == Blocks.air)
 			return worldObj.getBlock(x, y, z).isAir(worldObj, x, y, z);
+		if(block == ModBlocks.bifrostBlockSparkling) {
+			Block theBlock = worldObj.getBlock(x, y, z);
+			return ( theBlock instanceof IPortalFocus && ((IPortalFocus)theBlock).isPortalFocus(this.worldObj,x,y,z) );
+		}
 		if(worldObj.getBlock(x, y, z)!=block)
 			return false;
 		int realMetadata;
@@ -415,14 +508,45 @@ public class TilePortalCore extends TileMod{
 		this.dwarfData.writeNBT(cmp);
 		if(this.dimension!=null)
 			return true;
+		tryOpenPortal();
+		return true;
+	}
+	
+	public void tryOpenPortal() {
 		ForgeDirection direction=getPortalDirection();
 		if(direction!=null) {
 			boolean[][] signature = getDimensionSignature(direction);
 			Dimension dim=DimensionHandler.getDimensionFromSignature(signature);
+			if(dim == Dimension.SVARTALFHEIM && (!this.darkElfPapers || this.darkElfCooldown > 0)) {
+				if(!darkElfPapers && drainMana(150000, direction, false)) {
+					Vector3 origin=new Vector3(
+							xCoord + .5,
+							yCoord + 3.5,
+							zCoord + .5);
+					if(!this.worldObj.isRemote) {
+						ItemStack stack = LexiconData.darkElfPapers.copy();
+						EntityItem ent = new EntityItem(this.worldObj);
+						ent.setEntityItemStack(stack);
+						ent.setPosition(origin.x,origin.y,origin.z);
+						this.worldObj.spawnEntityInWorld(ent);
+					}
+					int col = Dimension.ALFHEIM.getSparkColor().getRGB();
+					for(int i = 0; i < 10; i++) {
+						Vector3 point=new Vector3(
+								origin.x + random.nextDouble()*6 - 3,
+								origin.y + random.nextDouble()*6 - 3 ,
+								origin.z + random.nextDouble()*6 - 3);
+						LightningHandler.spawnLightningBolt(getWorldObj(), origin, point, 2, random.nextLong(), col, col);
+					}
+					drainMana(Integer.MAX_VALUE,direction, true);
+				}
+				this.darkElfCooldown=20*5;
+				this.darkElfPapers=true;
+				return;
+			}
 			if(dim!=null)
 				openPortal(direction,dim);
 		}
-		return true;
 	}
 	
 	private void openPortal(ForgeDirection direction, Dimension dim) {
@@ -438,7 +562,7 @@ public class TilePortalCore extends TileMod{
 		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
 	
-	private void closePortal() {
+	public void closePortal() {
 		if(dimension==null)
 			return;
 		dimension=null;
@@ -456,22 +580,33 @@ public class TilePortalCore extends TileMod{
 	}
 		
 	private boolean drainMana(int costPerPool) {
+		return drainMana(costPerPool, this.direction, true);
+	}
+	
+	private boolean drainMana(int costPerPool, boolean doDrain) {
+		return drainMana(costPerPool, this.direction, doDrain);
+	}
+	private boolean drainMana(int costPerPool, ForgeDirection direction, boolean doDrain) {
 		int[][] pylonLocations=getPylonLocations(direction);
 		IManaPool pool1=(IManaPool) worldObj.getTileEntity(pylonLocations[0][0], pylonLocations[0][1]-1, pylonLocations[0][2]);
 		IManaPool pool2=(IManaPool) worldObj.getTileEntity(pylonLocations[1][0], pylonLocations[1][1]-1, pylonLocations[1][2]);
 		boolean result=true;
 		if(pool1==null || pool1.getCurrentMana() < costPerPool) {
-			closePortal();
+			if(doDrain)
+				closePortal();
 			result=false;
 		}
 		if(pool2==null || pool2.getCurrentMana() < costPerPool) {
-			closePortal();
+			if(doDrain)
+				closePortal();
 			result=false;
 		}
-		if(pool1!=null)
-			pool1.recieveMana(-costPerPool);
-		if(pool2!=null)
-			pool2.recieveMana(-costPerPool);
+		if(doDrain) {
+			if(pool1!=null)
+				pool1.recieveMana(-costPerPool);
+			if(pool2!=null)
+				pool2.recieveMana(-costPerPool);
+		}
 		return result;
 	}
 
@@ -531,6 +666,7 @@ public class TilePortalCore extends TileMod{
 		else
 			cmp.setInteger(TAG_DIRECTION, direction.ordinal());
 		cmp.setBoolean(TAG_CAN_OPEN_DARK_ELF, darkElfPapers);
+		cmp.setInteger(TAG_DARK_ELF_COOLDOWN, darkElfCooldown);
 		dwarfData.writeNBT(cmp);
 	}
 
@@ -550,10 +686,13 @@ public class TilePortalCore extends TileMod{
 		else
 			direction = ForgeDirection.values()[dirNum];
 		darkElfPapers = cmp.getBoolean(TAG_CAN_OPEN_DARK_ELF);
+		darkElfCooldown = cmp.getInteger(TAG_DARK_ELF_COOLDOWN);
 		dwarfData.readNBT(cmp);
 	}
 
 	private void resolveRecipes() {
+		if(!this.upgradesPermitTrades())
+			return;
 		if(inventory.size()==0)
 			return;
 		if(dimension==Dimension.ALFHEIM) {
@@ -634,5 +773,29 @@ public class TilePortalCore extends TileMod{
 	private boolean isSignatureBlock(Block block) {
 		return block==ModBlocks.pixieDust || block==Blocks.redstone_wire || block==ModBlocks.darkenedDust;
 	}
-
+	
+	public boolean upgradesPermitBlockExposureTicks() {
+		for(IPortalUpgrade upgrade : upgrades)
+			if(!upgrade.permitBlockExposureTicks())
+				return false;
+		return true;
+	}
+	public boolean upgradesPermitEntityExposureTicks() {
+		for(IPortalUpgrade upgrade : upgrades)
+			if(!upgrade.permitEntityExposureTicks())
+				return false;
+		return true;
+	}
+	public boolean upgradesPermitTrades() {
+		for(IPortalUpgrade upgrade : upgrades)
+			if(!upgrade.permitTrades())
+				return false;
+		return true;
+	}
+	public boolean upgradesPermitItemsThroughPortal() {
+		for(IPortalUpgrade upgrade : upgrades)
+			if(!upgrade.permitItemsThroughPortal())
+				return false;
+		return true;
+	}
 }

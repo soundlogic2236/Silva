@@ -125,28 +125,32 @@ public class DimensionalEnergyHandler {
 		if(dim.getState()==State.LOCKED)
 			return;
 		World world = core.getWorldObj();
-		AxisAlignedBB aabb = getEnergyBoundingBox(core);
-		List<EntityLivingBase> ents = world.getEntitiesWithinAABB(EntityLivingBase.class, aabb);
-		for(EntityLivingBase ent : ents) {
-			getExposureData(ent).addExposure(dim, 3);
+		if(core.upgradesPermitEntityExposureTicks()) {
+			AxisAlignedBB aabb = getEnergyBoundingBox(core);
+			List<EntityLivingBase> ents = world.getEntitiesWithinAABB(EntityLivingBase.class, aabb);
+			for(EntityLivingBase ent : ents) {
+				getExposureData(ent).addExposure(dim, 3);
+			}
 		}
-		IDimensionalBlockHandler handler = core.getDimension().getBlockHandler();
-		aabb = getEnergyBoundingBoxForBlocks(core);
-		if(handler!=null)
-		{
-			if((core.getTicksOpen() % handler.frequencyForSearch(core))==0 && handler.shouldTryApply(core)) {
-				int blocks = handler.getBlocksPerTick(core);
-				while(blocks!=0) {
-					int tries = handler.triesPerBlock(core);
-					while(tries > 0) {
-						int[] coords = getRandomBlockInBox(aabb);
-						if(handler.tryApplyToBlock(core, world, coords)) {
-							tries=0;
+		if(core.upgradesPermitBlockExposureTicks()) {
+			IDimensionalBlockHandler handler = core.getDimension().getBlockHandler();
+			AxisAlignedBB aabb = getEnergyBoundingBoxForBlocks(core);
+			if(handler!=null)
+			{
+				if((core.getTicksOpen() % handler.frequencyForSearch(core))==0 && handler.shouldTryApply(core)) {
+					int blocks = handler.getBlocksPerTick(core);
+					while(blocks!=0) {
+						int tries = handler.triesPerBlock(core);
+						while(tries > 0) {
+							int[] coords = getRandomBlockInBox(aabb);
+							if(handler.tryApplyToBlock(core, world, coords)) {
+								tries=0;
+							}
+							else
+								tries--;
 						}
-						else
-							tries--;
+						blocks--;
 					}
-					blocks--;
 				}
 			}
 		}

@@ -15,7 +15,7 @@ public class DimensionalBlockHandlerSvartalfheim implements IDimensionalBlockHan
 	@Override
 	public int frequencyForSearch(TilePortalCore core) {
 		// TODO Auto-generated method stub
-		return 0;
+		return 10;
 	}
 
 	@Override

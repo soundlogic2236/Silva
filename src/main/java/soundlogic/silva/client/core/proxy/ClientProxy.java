@@ -20,6 +20,7 @@ import soundlogic.silva.client.render.block.RenderDwarvenPool;
 import soundlogic.silva.client.render.block.RenderManaCrystal;
 import soundlogic.silva.client.render.block.RenderManaEater;
 import soundlogic.silva.client.render.block.RenderPixieDust;
+import soundlogic.silva.client.render.block.RenderPortalUpgradeCharge;
 import soundlogic.silva.client.render.block.RenderPylon;
 import soundlogic.silva.client.render.entity.RenderDwarvenChainKnot;
 import soundlogic.silva.client.render.entity.RenderEntityStoneHorse;
@@ -29,6 +30,7 @@ import soundlogic.silva.client.render.tile.RenderTileDwarvenSign;
 import soundlogic.silva.client.render.tile.RenderTileManaCrystal;
 import soundlogic.silva.client.render.tile.RenderTileManaEater;
 import soundlogic.silva.client.render.tile.RenderTilePortalCore;
+import soundlogic.silva.client.render.tile.RenderTilePortalUpgradeCharge;
 import soundlogic.silva.client.render.tile.RenderTilePylon;
 import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.tile.TileBoomMoss;
@@ -37,6 +39,7 @@ import soundlogic.silva.common.block.tile.TileDwarvenSign;
 import soundlogic.silva.common.block.tile.TileManaCrystal;
 import soundlogic.silva.common.block.tile.TileManaEater;
 import soundlogic.silva.common.block.tile.TilePortalCore;
+import soundlogic.silva.common.block.tile.TilePortalUpgradeCharge;
 import soundlogic.silva.common.block.tile.TilePylon;
 import soundlogic.silva.common.core.proxy.CommonProxy;
 import soundlogic.silva.common.entity.EntityDwarvenBarrier;
@@ -72,6 +75,7 @@ public class ClientProxy extends CommonProxy{
     	LibRenderIDs.idDarkenedDust = RenderingRegistry.getNextAvailableRenderId();
     	LibRenderIDs.idManaCrystal = RenderingRegistry.getNextAvailableRenderId();
     	LibRenderIDs.idDwarvenPool = RenderingRegistry.getNextAvailableRenderId();
+    	LibRenderIDs.idPortalUpgradeCharge = RenderingRegistry.getNextAvailableRenderId();
     	
     	RenderingRegistry.registerBlockHandler(new RenderPylon());
     	RenderingRegistry.registerBlockHandler(new RenderManaEater());
@@ -80,6 +84,7 @@ public class ClientProxy extends CommonProxy{
     	RenderingRegistry.registerBlockHandler(new RenderDarkenedDust());
     	RenderingRegistry.registerBlockHandler(new RenderManaCrystal());
     	RenderingRegistry.registerBlockHandler(new RenderDwarvenPool());
+    	RenderingRegistry.registerBlockHandler(new RenderPortalUpgradeCharge());
     	
     	ClientRegistry.bindTileEntitySpecialRenderer(TilePylon.class, new RenderTilePylon());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileManaEater.class, new RenderTileManaEater());
@@ -88,6 +93,7 @@ public class ClientProxy extends CommonProxy{
     	ClientRegistry.bindTileEntitySpecialRenderer(TileDwarvenSign.class, new RenderTileDwarvenSign());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileManaCrystal.class, new RenderTileManaCrystal());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileDwarvenPool.class, new RenderTileDwarvenPool());
+    	ClientRegistry.bindTileEntitySpecialRenderer(TilePortalUpgradeCharge.class, new RenderTilePortalUpgradeCharge());
     	
     	RenderingRegistry.registerEntityRenderingHandler(EntityStoneHorse.class, new RenderEntityStoneHorse());
     	RenderingRegistry.registerEntityRenderingHandler(EntityDwarvenBarrier.class, new RenderSnowball(ModItems.dwarfBarrier));

@@ -12,5 +12,5 @@ public class LibItemNames {
 	public static final String DWARF_MEAD = "dwarfMead";
 	public static final String DWARF_CHAIN = "dwarfChain";
 	public static final String DWARF_BARRIER = "dwarfBarrier";
-	public static final String BROKEN_DWARVEN_WRAPPER = "brokenDwarvenWrapper";
+	public static final String CHARGED_STONE = "chargedStone";
 }

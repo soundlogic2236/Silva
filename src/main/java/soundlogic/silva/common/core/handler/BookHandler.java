@@ -87,7 +87,6 @@ public class BookHandler {
 	}
 	
 	public static BookData getRandomBook() {
-		System.out.println(bookData.size());
 		return bookData.get(random.nextInt(bookData.size()));
 	}
 	

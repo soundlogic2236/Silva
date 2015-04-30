@@ -3,7 +3,7 @@ silva.tooltips.papers_craft=Craft with a lexicon
 silva.tooltips.papers_knowledge_type=Adds knowledge type:
 silva.tooltips.fake_knowledge=More Knowledge!
 silva.tooltips.clickToSignature=Shift click to see signature
-silva.tooltips.dwarfForged=Dwarf Forged
+silva.tooltips.dwarfForged=Dwarf-Forged
 silva.tooltips.exposure=%s Energy Exposure
 
 # DIMENSIONS
@@ -33,18 +33,18 @@ tile.silva:manaEater.name=Mana Spreader?
 tile.silva:pylon.portal.name=Portal Pylon
 tile.silva:pylon.untuned.name=Untuned Pylon
 tile.silva:pylon.Ginnungagap.name=Ender Pylon
-tile.silva:pylon.Vigridr.name=Armagedon Pylon
+tile.silva:pylon.Vigridr.name=Armageddon Pylon
 tile.silva:pylon.Folkvangr.name=Tactical Pylon
 tile.silva:pylon.Valhalla.name=Battle Pylon
-tile.silva:pylon.Helheim.name=Death Pylon
+tile.silva:pylon.Helheim.name=Deathly Pylon
 tile.silva:pylon.Asgard.name=Divine Pylon
-tile.silva:pyl0on.Alfheim.name=Elven Pylon
+tile.silva:pylon.Alfheim.name=Elven Pylon
 tile.silva:pylon.Minegard.name=Worldly Pylon
-tile.silva:pylon.Jotunheimr.name=Stone Pylon
+tile.silva:pylon.Jotunheimr.name=Rocky Pylon
 tile.silva:pylon.Svartalfheim.name=Darkened Pylon
-tile.silva:pylon.Muspelheim.name=Fire Pylon
-tile.silva:pylon.Niflheim.name=Frost Pylon
-tile.silva:pylon.Nidavellir.name=Metal Pylon
+tile.silva:pylon.Muspelheim.name=Fiery Pylon
+tile.silva:pylon.Niflheim.name=Icy Pylon
+tile.silva:pylon.Nidavellir.name=Metallic Pylon
 tile.silva:pylon.Vanaheimr.name=Wisdom Pylon
 tile.silva:boomMoss.0.name=Boom Moss
 tile.silva:boomMoss.1.name=Master Boom Moss
@@ -60,20 +60,20 @@ tile.silva:dwarvenSign.name=Dwarven Trade Sign
 tile.silva:dwarfWeed.name=Dwarf Weed
 tile.silva:manaCrystal.name=Mana Crystal
 tile.silva:dwarfRock0.name=Deep Rock
-tile.silva:dwarfRock1.name=Deep Rock Brick
+tile.silva:dwarfRock1.name=Deep Brick
 tile.silva:dwarvenPool.name=Dwarven Mana Pool
 
 
 # ITEM NAMES
 item.silva:itemProxy.questionMark.name=Who knows?
-item.silva:itemProxy.helmet.name=Any Helmet
-item.silva:itemProxy.chestplate.name=Any Chestplate
-item.silva:itemProxy.leggings.name=Any Leggings
-item.silva:itemProxy.boots.name=Any Boots
-item.silva:itemProxy.pickaxe.name=Any Pickaxe
-item.silva:itemProxy.shovel.name=Any Shovel
-item.silva:itemProxy.axe.name=Any Axe
-item.silva:itemProxy.sword.name=Any Sword
+item.silva:itemProxy.helmet.name=Helmet
+item.silva:itemProxy.chestplate.name=Chestplate
+item.silva:itemProxy.leggings.name=Leggings
+item.silva:itemProxy.boots.name=Boots
+item.silva:itemProxy.pickaxe.name=Pickaxe
+item.silva:itemProxy.shovel.name=Shovel
+item.silva:itemProxy.axe.name=Axe
+item.silva:itemProxy.sword.name=Sword
 item.silva:priceProxy.name=Additional Cost
 item.silva:pageBundleFake.name=Notes for your Lexicon
 item.silva:pageBundle.worldTree.name=Another Message from Elven Garde
@@ -111,54 +111,54 @@ silva.page.paperBundles2=Crafting with paper
 # - ALFHOMANCY
 # -- DIMENSIONAL TRAVEL
 silva.entry.dimensionalTravelAttempt=Dimensional Travel
-silva.page.dimensionalTravelAttempt0=Your &4Alfheim Portal&0 is unable to let living things through, just items. However, an &4Ender Pearl&0 is an item with an unusual property: When thrown, you follow it to its destination. Perhaps &4Throwing&0 the ender pearl through the portal would permit you to reach Alfheim. 
+silva.page.dimensionalTravelAttempt0=The &4Portal to Alfheim&0 you constructed is incapable of transporting living things. However, &4Ender Pearls&0 have an unusual property: When thrown, the thrower is teleported to wherever it lands. In addition, the pearls seem to be capable of traveling through the portal without issue. &4Throwing&0 an Ender Pearl through the portal might allow travel to Alfheim.
 silva.page.dimensionalTravelAttempt1=What will happen when you throw an &4Ender Pearl&0?
 
 # -- DIMENSIONAL TRAVEL FAILURE
 silva.entry.dimensionalTravelFailure=Dimensional Travel II
-silva.page.dimensionalTravelFailure0=That was... not what you expected. Well, it could have been worse. You should probably read the rest of the papers they sent you though. Starting with 'A message from Nublia' in the World Tree Category
+silva.page.dimensionalTravelFailure0=That was... not as expected in the slightest. Well, it could have been worse. You should still read the rest of the papers they sent you, starting with that message from Nublia.
 
 # - WORLD TREE
 
 # -- A Message from Nublia
 silva.entry.nubliaMessage=A Message From Nublia
 silva.page.nubliaMessage0=
-silva.page.nubliaMessage1=Greetings. I am Nublia, Senior Researcher of the World Tree Institute of Higher Alfheim. I must say, your actions provoked quite a response-infusing an active portal with the power of the Ginnungagap. There was quite a lot of debate on what to do with you. 
-silva.page.nubliaMessage2=Some argued for creating a barrier to prevent you from opening any more portals to Alfhiem, or even attempting to kill you to prevent any further risk. As you can probably tell though, neither of those were selected. I advocated for instead giving you aid and teaching you caution, and naturally wound up in the position of your sponsor. 
-silva.page.nubliaMessage3=I have included notes on portal creation, the various realms of the world tree. 
+silva.page.nubliaMessage1=Greetings. I am Nublia, Senior Researcher of the World Tree Institute of Higher Alfheim. I must say, your actions provoked quite a magical reaction - an active portal was infused with the power of the Ginnungagap. There was quite a lot of debate on the best way to respond to your actions.
+silva.page.nubliaMessage2=Some argued for permanently sealing you from Alfhiem, and others even attempting to kill you to prevent any further risk. As you can probably tell, neither of those options were selected. I advocated for giving you aid and teaching caution, and naturally wound up in the position of your sponsor.
+silva.page.nubliaMessage3=I have included notes on both portal creation and the various realms of the world tree.
 
 # -- WORLD TREE INTRO
 silva.entry.worldTreeIntro=Introduction to the World Tree
-silva.page.worldTreeIntro0=The World Tree is the great tree which holds our worlds together. From its branches come the nine realms: Asgard, Alfheim (where we live), Minegard (where you live), Jotunheimr, Svartalfheim, Muspelheim, Niflheim, Nidavellir, and Vanaheimr. 
-silva.page.worldTreeIntro1=Some realms contain locations of great enough significance to have their own dimensional signature such as Vigridr, Folkvangr, Valhalla, and Helheim.
-silva.page.worldTreeIntro2=The World Tree is surrounded by the Great Ginnungagap - a powerful void of great and terrible energies. 
+silva.page.worldTreeIntro0=The World Tree is the great tree which holds our worlds together. From its branches come the nine realms: Asgard, Alfheim (our realm), Minegard (your realm), Jotunheimr, Svartalfheim, Muspelheim, Niflheim, Nidavellir, and Vanaheimr. 
+silva.page.worldTreeIntro1=Some realms contain locations of great enough significance to have their own dimensional signature.
+silva.page.worldTreeIntro2=The World Tree is surrounded by the Great Ginnungagap - a powerful void of great and terrible energies - the origin of the phenomena witnessed during your...incident.
 
 # -- ADVANCED PORTALS
 silva.entry.advancedPortals=Advanced Portals
-silva.page.advancedPortals0=Since Thor shattered the bifrost we have had an increasing dependence on smaller weaker portals akin to the one you created to first contact us. While they do not permit living things to travel (with one exception-see &4Svartalfheim&0), they have permitted us to rebuild some of the trade networks we had before. While the portal you created out of wood and metal is impressive for such an
-silva.page.advancedPortals1=ad-hoc creation, shards of bifrost permit a far more refined, adaptable, and efficient portal. Said portal can be tuned to connect to any of the nine realms, and a few locations within them. The portal not only permits trade, but also lets energy from one place flow into the other for various effects (described in the entries for that location)
+silva.page.advancedPortals0=Since Thor shattered the original bridge, we have had an increasing dependence on smaller, weaker portals akin to the one you initially created. While they do not, at least methods known to us, permit the travel of living beings, they have permitted us to rebuild some of the trade network between realms. While the portal you created out of wood and metal is impressive for such an
+silva.page.advancedPortals1=ad-hoc creation, Shards of Bifrost permit a far more refined, adaptable, and efficient portal. Said portal can be tuned to connect to any of the nine realms, and any locations within with their own signature. The portal not only permits trade, but also lets some of each realm's underlying magical essence leak through, manifesting as specific effects in the portal's vicinity.
 silva.page.advancedPortals2=The full requirements for the portal are as follows: 8 Bifrost blocks, 4 Bifrost Stairs, 3 Sparkling Bifrost Blocks, 1 Portal Core (read on) and two Portal Pylons (read on), and a Dimensional Signature (read on)
-silva.page.advancedPortals3=A dimensional signature tunes the portal to its target location-usually a realm. A signature is drawn in front of the portal. We usually draw it in pixie dust, though your realm may have some other dust which you may have an easier time getting. The signature has a specific shape fitting within 5 by 3, and I have listed the signatures known to me along with where they lead in other entries in these papers.
-silva.page.advancedPortals4=Crafting the Portal Core
-silva.page.advancedPortals5=Crafting the Portal Pylons
-silva.page.advancedPortals6=Making a frame of Bifrost Blocks
+silva.page.advancedPortals3=A dimensional signature tunes the portal to its target location-usually a realm. A signature is drawn in front of the portal, In Alfheim, it is usually drawn in pixie dust, though Minegard may have some other, easier to obtain, dust that's equally suitable. Each signature has a specific shape, all of them fitting within a 5 by 3 space. and I have included the signatures known to us in these papers.
+silva.page.advancedPortals4=Creating the Portal Core
+silva.page.advancedPortals5=Creating Portal Pylons
+silva.page.advancedPortals6=Make a frame of Bifrost Blocks
 silva.page.advancedPortals7=Add Sparkling Bifrost Blocks
 silva.page.advancedPortals8=Add Bifrost Stairs
 silva.page.advancedPortals9=Place the Portal Core
 silva.page.advancedPortals10=Add Mana Pools
 silva.page.advancedPortals11=Place Portal Pylons above the Pools
 silva.page.advancedPortals12=Create a Dimensional Signature
-silva.page.advancedPortals13=Opening the portal takes twice as much mana as opening the wooden portal, but costs half as much mana to maintain. In addition, the portal permits more control over the time dilation between the worlds, allowing bulk trade to go much faster
+silva.page.advancedPortals13=This portal requires a fair bit more mana to open than the wooden one, but once opened it has a fraction of the continuous drain. In addition, the portal allows for stronger dilation of time, accelerating bulk trades.
 
 # -- BIFROST
 silva.entry.bifrost=The Bifrost
-silva.page.bifrost0='Bifrost' refers both to the rainbow bridge of Asgard which Thor shattered and the material which made it up. Said material was the only known material with the properties required for such a project. Unfortunately, since its destruction the required amount of Bifrost (the material) to rebuild the Bifrost (the bridge) has vastly exceeded our supply by many many many orders of magnitude. 
-silva.page.bifrost1=None the less, it is useful for a few different tasks. For starters, while individual bits of bifrost are weak it becomes stronger when touching other portions of bifrost, eventually being rendered near indestructible. Thor's abilities permitted him to shatter it in one blow, but lacking such abilities attempting to break a piece of bifrost which touches four others is impossible. 
-silva.page.bifrost2=A more common use now however is to exploit its interworldly nature for the creation of portals between the realms. Such a portal is described under 'Advanced Portals'.
-silva.page.bifrost3=There are three known ways to create bifrost, one which is useless for portal creation, the second which is tedious, and the third which requires pre-existing bifrost.
-silva.page.bifrost4=The first creates a weak, quickly vanishing 'psuedo-bifrost' out of mana using the 'Rod of the Bifrost'. Such a material is insufficient for any real use. 
-silva.page.bifrost5=The second uses said rod and a block of dragonstone, applying the power of the rod with the stability of the dragonstone to create shards of bifrost-18 to be exact. Said bifrost shards can then be put together to form a full block of bifrost. This is how you should get your initial bifrost. 
-silva.page.bifrost6=The third way uses an interesting property of such blocks-when in contact with a block of dragonstone they will convert it into bifrost, resulting in a second block of bifrost and nine shards.
+silva.page.bifrost0='Bifrost' refers both to the rainbow bridge of Asgard which Thor shattered and that bridge's material. Said material was the only known thing to have the properties required for such a bridge. Unfortunately, the amount of the material that would be required to rebuild the bridge has exceeded our supply by several orders of magnitude.
+silva.page.bifrost1=Regardless, what of it we do have is useful for a few different tasks. For starters, while individual blocks of Bifrost are weak, it becomes stronger when adjacent to other blocks of Bifrost, eventually being rendered almost indestructible. Thor's abilities permitted him to shatter it in one blow, but short of such power, destroying a block surrounded by four others is impossible.
+silva.page.bifrost2=A more common use ever since the shattering of the bridge, however, is to harness its interworldly nature for the creation of portals between the realms. Such a portal is described under 'Advanced Portals'.
+silva.page.bifrost3=There are ways known to us to create the material, one of which is useless for portal creation, the second of which is rather tedious, and the third of which requires an existing supply of the stuff.
+silva.page.bifrost4=The first method summons the blocks purely from mana, resulting in a quickly vanishing 'psuedo-bifrost' out of mana. Such a material is insufficient for any real use, though you seem to have harnessed it to create something useful for temporarily bridging gaps.
+silva.page.bifrost5=The second method uses similar methods to channel mana into a block of dragonstone, using the stability of the dragonstone to create more permanent shards, 18 to be exact. These shards can then be put together to form a full block of normal, permanent bifrost. Since you don't have any existing supply, you will need to make at least one batch with this method.
+silva.page.bifrost6=The third method uses an interesting property of the permanent blocks: when in contact with a block of dragonstone, they will convert it, resulting in a second block of Bifrost and nine shards without using any mana.
 silva.page.bifrost7=Crafting a bifrost block
 silva.page.bifrost8=Turning the block back into shards
 silva.page.bifrost9=Crafting bifrost stairs
@@ -293,7 +293,6 @@ silva.page.dwarvenChain0=The great chain Gleipnir was crafted by our kind to bin
 silva.page.dwarvenChain1=None the less, the same skills can be used to craft a mighty, if not completely unstoppable chain which can be used to bind other creatures even if they resist. A dwarven chain can act similar to a lead except that it functions on creatures which are more agressive than your ordinary pig.
 silva.page.dwarvenChain2=Trading for Dwarven Chain
 
-
 # -- DWARVEN MANA POOL
 silva.entry.dwarvenManaPool=Dwarven Mana Pool
 silva.page.dwarvenManaPool0=The Mana systems of us dwarves are a bit different from the system commonly used by the elves. We primarily use Mana Crystals and Mana Pools made of Deep Rock rather than living rock mana pools and spreaders. Our mana pools lack the ability to disperse power to nearby devices automatically, but have an increased storage capacity compared to livingrock ones. 
@@ -318,3 +317,26 @@ silva.entry.stoneHorse=Stone Horse
 silva.page.stoneHorse0=A classic final challange for an apprentice dwarven stonecarver is to carve a stone horse with such detail that it comes to life. As a result, we have a fair number of them, and will trade them readily.
 silva.page.stoneHorse1=Placing down the stone horse will animate it, resulting in a horse that needs no saddle, and while it can be equipped with armor will have some natural armor given its composition. Should the horse be sufficiently damaged, it will return to its statue state to be placed down again.
 silva.page.stoneHorse2=Trading for a stone horse
+
+# -- LAVA CAP
+silva.entry.lavaShroom=Lava Cap
+silva.page.lavaShroom0=The Lava cap is the dwarves answer to mana generation. Consuming large amounts of lava and other fuels, but generating extreme amounts of mana in the process, these massive mushrooms provide most of our mana generation. A lavacap generates mana more efficiently the more potent of a fuel which is used, along with generating the mana faster.
+silva.page.lavaShroom1=Creating and activating a lava cap requires one giant red mushroom, a red shimmering mushroom, a piece of deep rock, some lava, three runes of fire, one rune of earth, one rune of mana, and two runes of wrath.
+silva.page.lavaShroom2=Begin with a simple red mushroom placed.
+silva.page.lavaShroom3=Grow it into a giant mushroom.
+silva.page.lavaShroom4=Replace part of the stalk with a red shimmering mushroom above a piece of deep rock. The shimmering mushroom must be just below the edge of the cap. The next page shows what this will look like.
+silva.page.lavaShroom5=Looks like this
+silva.page.lavaShroom6=Use a wand to convert the mushroom into a lava cap
+silva.page.lavaShroom7=Place lava in the hole in the top
+silva.page.lavaShroom8=Throw the throw in the runes into the lava pool on the top. These runes will not be returned if you break the structure later.
+silva.page.lavaShroom9=The Lava cap constantly loses some of the heat from the lava in it, even when not in use, though when it is in use it uses the heat much faster, so it is recommended that you constantly feed it fuel. To feed it fuel simply burn the items in the enchanted lava on the sides of the cap as you would burn an item in normal lava.
+silva.page.lavaShroom10=As long as it has a good supply of lava, the enchanted lava flowing from the cap will pulse slightly. If it runs out of lava, any items will be burned without generating mana and the lava will dull. The mana generated will automatically output into mana pools or crystals which are touching the bottom of the lava cap's stalk, where the red shimmering mushroom was.
+
+# - THE DARK ELVES
+
+# -- ANOTHER MESSAGE FROM NUBLIA
+silva.entry.darkElfIntro=Another Message from Nublia
+silva.page.darkElfIntro0=I wish to begin this message by apologising for using your mana. Intercepting your connection took a fair bit, and strictly speaking I'm not supposed to be doing this, so I used some of your mana to camouflage my actions. 
+silva.page.darkElfIntro1=While I did warn you against opening this portal, I can't say I didn't see it coming. I'm neither Heimdallr nor a Vanir, but I have learned some divination, and with all due respect my little pupil you aren't the most subtle or unpredictable.
+silva.page.darkElfIntro2=I'm not going to chide you for your actions-while risky, I think that many of my kind have forgotten the importance of risks, especially since the shattering. I have included my notes on Svartalfheim and its people in the rest of these pages. I recommend you begin with "On the Nature of Dark Elves", and I and wish you the best of luck in your research.
+

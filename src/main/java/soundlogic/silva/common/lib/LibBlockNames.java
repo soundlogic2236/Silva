@@ -57,6 +57,18 @@ public class LibBlockNames {
 
 	public static final String DWARVEN_POOL = "dwarvenPool";
 
+	public static final String PORTAL_UPGRADE_REDSTONE = "portalUpgradeRedstone";
+
+	public static final String PORTAL_UPGRADE_INHIBIT = "portalUpgradeInhibit";
+
+	public static final String PORTAL_UPGRADE_CHARGE = "portalUpgradeCharge";
+
+	public static final String MULTIBLOCK_PROXY = "multiblockProxy";
+
+	public static final String MULTIBLOCK_CORE = "multiblockCore";
+
+	public static final String MULTIBLOCK_PROXY_LAVA = "multiblockProxyLava";
+
 
 
 		
