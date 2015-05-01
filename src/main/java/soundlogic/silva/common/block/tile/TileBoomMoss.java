@@ -187,29 +187,31 @@ public class TileBoomMoss extends TileMod implements IManaReceiver{
 		for(ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
 			TileEntity tileAt = worldObj.getTileEntity(xCoord + dir.offsetX, yCoord + dir.offsetY, zCoord + dir.offsetZ);
 			if(!(tileAt instanceof TileBoomMoss)) {
-				int targetX=xCoord + dir.offsetX;
-				int targetY=yCoord + dir.offsetY;
-				int targetZ=zCoord + dir.offsetZ;
-				Block block = worldObj.getBlock(targetX,targetY,targetZ);
-				int metadata = worldObj.getBlockMetadata(targetX,targetY,targetZ);
-				float hardness = block.getBlockHardness(worldObj, targetX,targetY,targetZ);
-				
-				if(block!=null && hardness != -1 && hardness < 70F) {
-					List<ItemStack> items = new ArrayList();
-					items.addAll(breakBlockForStacks(targetX,targetY,targetZ,upgraded));
-					float dropX=targetX+.5F;
-					float dropY=targetY+.5F;
-					float dropZ=targetZ+.5F;
-					if(upgraded) {
-						dropX=(float) (this.dropX+.5F);
-						dropY=(float) (this.dropY+.5F);
-						dropZ=(float) (this.dropZ+.5F);
+				if(canAttachToSide(dir)) {
+					int targetX=xCoord + dir.offsetX;
+					int targetY=yCoord + dir.offsetY;
+					int targetZ=zCoord + dir.offsetZ;
+					Block block = worldObj.getBlock(targetX,targetY,targetZ);
+					int metadata = worldObj.getBlockMetadata(targetX,targetY,targetZ);
+					float hardness = block.getBlockHardness(worldObj, targetX,targetY,targetZ);
+					
+					if(block!=null && hardness != -1 && hardness < 70F) {
+						List<ItemStack> items = new ArrayList();
+						items.addAll(breakBlockForStacks(targetX,targetY,targetZ,upgraded));
+						float dropX=targetX+.5F;
+						float dropY=targetY+.5F;
+						float dropZ=targetZ+.5F;
+						if(upgraded) {
+							dropX=(float) (this.dropX+.5F);
+							dropY=(float) (this.dropY+.5F);
+							dropZ=(float) (this.dropZ+.5F);
+						}
+						for(ItemStack stack_ : items) {
+							if(!dry)
+								worldObj.spawnEntityInWorld(new EntityItem(worldObj, dropX, dropY, dropZ , stack_));
+						}
+						items.clear();
 					}
-					for(ItemStack stack_ : items) {
-						if(!dry)
-							worldObj.spawnEntityInWorld(new EntityItem(worldObj, dropX, dropY, dropZ , stack_));
-					}
-					items.clear();
 				}
 			}
 		}
