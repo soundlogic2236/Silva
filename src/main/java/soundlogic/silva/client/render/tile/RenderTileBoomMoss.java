@@ -12,13 +12,12 @@ import soundlogic.silva.common.block.tile.TileManaEater;
 import vazkii.botania.client.core.handler.ClientTickHandler;
 import vazkii.botania.client.model.ModelSpreader;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderTileBoomMoss extends TileEntitySpecialRenderer{
-
-	private static final ResourceLocation texture = new ResourceLocation(LibResources.PREFIX_MOD + LibResources.MODEL_BOOM_MOSS.replaceAll(LibResources.PREFIX_MOD, "textures/blocks/")+".png");
 
 	private static final ModelBoomMoss model = new ModelBoomMoss();
 
@@ -32,10 +31,11 @@ public class RenderTileBoomMoss extends TileEntitySpecialRenderer{
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		GL11.glTranslated(d0, d1, d2);
+		GL11.glDisable(GL11.GL_LIGHTING);
 
 		GL11.glTranslatef(0F, 1F, 1F);
 
-		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
+		Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationBlocksTexture);
 		GL11.glScalef(1F, -1F, -1F);
 
 		double time = ClientTickHandler.ticksInGame + ticks;
@@ -73,6 +73,7 @@ public class RenderTileBoomMoss extends TileEntitySpecialRenderer{
 				model.renderSide(i);
 			}
 		}
+		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glPopMatrix();
 	}
 }

@@ -18,13 +18,6 @@ public class RenderBoomMoss implements ISimpleBlockRenderingHandler {
 
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
-		GL11.glPushMatrix();
-		GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
-
-		TileManaEater eater = new TileManaEater();
-		eater.rotationX = -180F;
-		TileEntityRendererDispatcher.instance.renderTileEntityAt(eater, 0.0D, 0.0D, 0.0D, 0.0F);
-		GL11.glPopMatrix();
 	}
 
 	@Override

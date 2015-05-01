@@ -43,6 +43,35 @@ public class BlockBoomMoss extends BlockContainer implements ILexiconable{
 	}
 	
 	@Override
+	public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
+		TileBoomMoss moss = (TileBoomMoss) world.getTileEntity(x, y, z);
+		int touched = 0;
+		ForgeDirection side=ForgeDirection.UNKNOWN;
+		for(int i=0;i<6;i++) {
+			if(moss.canAttachToSide(ForgeDirection.values()[i])) {
+				touched++;
+				side=ForgeDirection.values()[i];
+				if(touched>1)
+					break;
+			}
+		}
+		
+		switch(touched) {
+		case 1:
+			float width = 0.9375F;
+			float antiwidth = 1F-width;
+			float minx=side.offsetX == 0 ? 0 : ( side.offsetX > 0 ? width : 0);
+			float miny=side.offsetY == 0 ? 0 : ( side.offsetY > 0 ? width : 0);
+			float minz=side.offsetZ == 0 ? 0 : ( side.offsetZ > 0 ? width : 0);
+			float maxx=side.offsetX == 0 ? 1 : ( side.offsetX > 0 ? 1 : antiwidth);
+			float maxy=side.offsetY == 0 ? 1 : ( side.offsetY > 0 ? 1 : antiwidth);
+			float maxz=side.offsetZ == 0 ? 1 : ( side.offsetZ > 0 ? 1 : antiwidth);
+			this.setBlockBounds(minx,miny,minz,maxx,maxy,maxz);
+			break;
+		case 2:this.setBlockBounds(0, 0, 0, 1, 1, 1);break;
+		}
+	}
+	@Override
 	public boolean isReplaceable(IBlockAccess world, int x, int y, int z) {
 		return false;
 	}
@@ -53,13 +82,15 @@ public class BlockBoomMoss extends BlockContainer implements ILexiconable{
 	}
 	
 	@Override
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
+		if(!canPlaceBlockAt(world,x,y,z))
+			world.setBlockToAir(x, y, z);
+	}
+	
+	@Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
 		for(ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
-			int newX=x+dir.offsetX;
-			int newY=y+dir.offsetY;
-			int newZ=z+dir.offsetZ;
-			Block block=world.getBlock(newX,newY,newZ);
-			if(block.isNormalCube(world, newX, newY, newZ))
+			if(TileBoomMoss.canAttachToSide(world, x, y, z, dir))
 				return true;
 		}
 		return false;
@@ -104,6 +135,11 @@ public class BlockBoomMoss extends BlockContainer implements ILexiconable{
         return getRenderColor(0);
     }
 
+	@Override
+	public boolean isNormalCube() {
+		return false;
+	}
+    
 	@Override
 	public boolean isOpaqueCube() {
 		return false;

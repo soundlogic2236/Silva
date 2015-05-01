@@ -14,6 +14,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.FakePlayerFactory;
@@ -237,11 +238,15 @@ public class TileBoomMoss extends TileMod implements IManaReceiver{
 
 	
 	public boolean canAttachToSide(ForgeDirection direction) {
-		int newX=xCoord+direction.offsetX;
-		int newY=yCoord+direction.offsetY;
-		int newZ=zCoord+direction.offsetZ;
-		Block block=worldObj.getBlock(newX,newY,newZ);
-		return block.isNormalCube(worldObj, newX, newY, newZ);
+		return canAttachToSide(worldObj,xCoord,yCoord,zCoord,direction);
+	}
+
+	public static boolean canAttachToSide(World world, int x, int y, int z, ForgeDirection direction) {
+		int newX=x+direction.offsetX;
+		int newY=y+direction.offsetY;
+		int newZ=z+direction.offsetZ;
+		Block block=world.getBlock(newX,newY,newZ);
+		return block.isNormalCube(world, newX, newY, newZ) && block.getBlockHardness(world, newX, newY, newZ)!=-1;
 	}
 	
 	public int getMaxMana() {

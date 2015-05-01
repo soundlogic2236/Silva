@@ -45,8 +45,13 @@ public class BlockDropsHandler {
 		world.setBlockToAir(x, y, z);
 		instance.harvesting=false;
 		instance.fakePlayer.worldObj=null;
-		List<ItemStack> output=new ArrayList(instance.harvestResults);
-		instance.harvestResults.clear();
+		List<ItemStack> output;
+		if(instance.harvestResults!=null) {
+			output=new ArrayList(instance.harvestResults);
+			instance.harvestResults.clear();
+		}
+		else
+			output = new ArrayList();
 		return output;
 	}
 	
