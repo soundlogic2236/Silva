@@ -16,7 +16,7 @@ public class LibBlockNames {
 		"pylon.Valhalla",
 		"pylon.Helheim",
 		"pylon.Asgard",
-		"pylon.Minegard",
+		"pylon.Midgard",
 		"pylon.Jotunheimr",
 		"pylon.Svartalfheim",
 		"pylon.Muspelheim",
@@ -68,6 +68,8 @@ public class LibBlockNames {
 	public static final String MULTIBLOCK_CORE = "multiblockCore";
 
 	public static final String MULTIBLOCK_PROXY_LAVA = "multiblockProxyLava";
+
+	public static final String DARKENED_STONE = "darkenedStone";
 
 
 

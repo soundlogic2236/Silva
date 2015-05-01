@@ -2,12 +2,13 @@ package soundlogic.silva.common.lexicon;
 
 import soundlogic.silva.common.lib.LibLexicon;
 import vazkii.botania.api.BotaniaAPI;
+import vazkii.botania.api.lexicon.IAddonEntry;
 import vazkii.botania.api.lexicon.ITwoNamedPage;
 import vazkii.botania.api.lexicon.LexiconCategory;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.lexicon.LexiconPage;
 
-public class SLexiconEntry extends LexiconEntry {
+public class SLexiconEntry extends LexiconEntry implements IAddonEntry{
 
 	public SLexiconEntry(String unlocalizedName, LexiconCategory category) {
 		super(unlocalizedName, category);
@@ -33,6 +34,11 @@ public class SLexiconEntry extends LexiconEntry {
 
 	public String getLazyUnlocalizedName() {
 		return super.getUnlocalizedName();
+	}
+
+	@Override
+	public String getSubtitle() {
+		return "Silva";
 	}
 
 }

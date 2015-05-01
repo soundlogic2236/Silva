@@ -44,8 +44,6 @@ import vazkii.botania.common.lexicon.page.PageText;
 public class LexiconData {
 
 	public static LexiconCategory categoryWorldTree;
-	public static LexiconCategory categoryDwarven;
-	public static LexiconCategory categoryDarkElf;
 	public static KnowledgeType worldTreeKnowledge;
 	public static KnowledgeType dwarvenKnowledge;
 	public static KnowledgeType darkElfKnowledge;
@@ -67,7 +65,7 @@ public class LexiconData {
 	public static LexiconEntry dimHelheim;
 	public static LexiconEntry dimAsgard;
 	public static LexiconEntry dimAlfheim;
-	public static LexiconEntry dimMinegard;
+	public static LexiconEntry dimMidgard;
 	public static LexiconEntry dimJotunheimr;
 	public static LexiconEntry dimSvartalfheim;
 	public static LexiconEntry dimMuspelheim;
@@ -99,10 +97,6 @@ public class LexiconData {
 		
 		categoryWorldTree=new LexiconCategory(LibLexicon.CATEGORY_TREE);
 		BotaniaAPI.addCategory(categoryWorldTree);
-		categoryDwarven=new LexiconCategory(LibLexicon.CATEGORY_DWARVEN);
-		BotaniaAPI.addCategory(categoryDwarven);
-		categoryDarkElf=new LexiconCategory(LibLexicon.CATEGORY_DARK_ELF);
-		BotaniaAPI.addCategory(categoryDarkElf);
 		
 		ItemStack thrownPearl=new ItemStack(Items.ender_pearl);
 		thrownPearl.setStackDisplayName("Thrown Ender Pearl");
@@ -127,38 +121,38 @@ public class LexiconData {
 		
 		bifrost=new SLexiconEntry(LibLexicon.BIFROST, categoryWorldTree);
 		bifrost.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.ELVEN),
-				new PageAdvancedText("1",PageBackground.ELVEN),
-				new PageAdvancedText("2",PageBackground.ELVEN),
-				new PageAdvancedText("3",PageBackground.ELVEN),
-				new PageAdvancedText("4",PageBackground.ELVEN),
-				new PageAdvancedText("5",PageBackground.ELVEN),
-				new PageAdvancedText("6",PageBackground.ELVEN),
-				new PageAdvancedCraftingRecipe("7",ModCraftingRecipes.recipeBifrostBlock,PageBackground.ELVEN),
-				new PageAdvancedCraftingRecipe("8",ModCraftingRecipes.recipeBifrostShard,PageBackground.ELVEN),
-				new PageAdvancedCraftingRecipe("9",ModCraftingRecipes.recipeBifrostBlockStairs,PageBackground.ELVEN),
-				new PageAdvancedCraftingRecipe("10",ModCraftingRecipes.recipeBifrostBlockWall,PageBackground.ELVEN),
-				new PageAdvancedCraftingRecipe("11",ModCraftingRecipes.recipeBifrostBlockSlab,PageBackground.ELVEN),
-				new PageAdvancedCraftingRecipe("12",ModCraftingRecipes.recipeBifrostSparkling,PageBackground.ELVEN)).setPriority();
+				new PageAdvancedText("0",PageBackground.DEFAULT),
+				new PageAdvancedText("1",PageBackground.DEFAULT),
+				new PageAdvancedText("2",PageBackground.DEFAULT),
+				new PageAdvancedText("3",PageBackground.DEFAULT),
+				new PageAdvancedText("4",PageBackground.DEFAULT),
+				new PageAdvancedText("5",PageBackground.DEFAULT),
+				new PageAdvancedText("6",PageBackground.DEFAULT),
+				new PageAdvancedCraftingRecipe("7",ModCraftingRecipes.recipeBifrostBlock,PageBackground.DEFAULT),
+				new PageAdvancedCraftingRecipe("8",ModCraftingRecipes.recipeBifrostShard,PageBackground.DEFAULT),
+				new PageAdvancedCraftingRecipe("9",ModCraftingRecipes.recipeBifrostBlockStairs,PageBackground.DEFAULT),
+				new PageAdvancedCraftingRecipe("10",ModCraftingRecipes.recipeBifrostBlockWall,PageBackground.DEFAULT),
+				new PageAdvancedCraftingRecipe("11",ModCraftingRecipes.recipeBifrostBlockSlab,PageBackground.DEFAULT),
+				new PageAdvancedCraftingRecipe("12",ModCraftingRecipes.recipeBifrostSparkling,PageBackground.DEFAULT)).setPriority();
 		
 		advancedPortals=new SLexiconEntry(LibLexicon.ADVANCED_PORTALS, categoryWorldTree);
 		advancedPortals.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
-				new PageAdvancedText("0", PageBackground.ELVEN),
-				new PageAdvancedText("1", PageBackground.ELVEN),
-				new PageAdvancedText("2", PageBackground.ELVEN),
-				new PageAdvancedText("3", PageBackground.ELVEN),
-				new PageAdvancedCraftingRecipe("4",ModCraftingRecipes.recipePortalCore,PageBackground.ELVEN),
-				new PageAdvancedCraftingRecipe("5",ModCraftingRecipes.recipePortalPylon,PageBackground.ELVEN),
-				new PageAdvancedImage("6",LibResources.PORTAL_PICS[0],PageBackground.ELVEN),
-				new PageAdvancedImage("7",LibResources.PORTAL_PICS[1],PageBackground.ELVEN),
-				new PageAdvancedImage("8",LibResources.PORTAL_PICS[2],PageBackground.ELVEN),
-				new PageAdvancedImage("9",LibResources.PORTAL_PICS[3],PageBackground.ELVEN),
-				new PageAdvancedImage("10",LibResources.PORTAL_PICS[4],PageBackground.ELVEN),
-				new PageAdvancedImage("11",LibResources.PORTAL_PICS[5],PageBackground.ELVEN),
-				new PageAdvancedImage("12",LibResources.PORTAL_PICS[6],PageBackground.ELVEN),
+				new PageAdvancedText("0", PageBackground.DEFAULT),
+				new PageAdvancedText("1", PageBackground.DEFAULT),
+				new PageAdvancedText("2", PageBackground.DEFAULT),
+				new PageAdvancedText("3", PageBackground.DEFAULT),
+				new PageAdvancedCraftingRecipe("4",ModCraftingRecipes.recipePortalCore,PageBackground.DEFAULT),
+				new PageAdvancedCraftingRecipe("5",ModCraftingRecipes.recipePortalPylon,PageBackground.DEFAULT),
+				new PageAdvancedImage("6",LibResources.PORTAL_PICS[0],PageBackground.DEFAULT),
+				new PageAdvancedImage("7",LibResources.PORTAL_PICS[1],PageBackground.DEFAULT),
+				new PageAdvancedImage("8",LibResources.PORTAL_PICS[2],PageBackground.DEFAULT),
+				new PageAdvancedImage("9",LibResources.PORTAL_PICS[3],PageBackground.DEFAULT),
+				new PageAdvancedImage("10",LibResources.PORTAL_PICS[4],PageBackground.DEFAULT),
+				new PageAdvancedImage("11",LibResources.PORTAL_PICS[5],PageBackground.DEFAULT),
+				new PageAdvancedImage("12",LibResources.PORTAL_PICS[6],PageBackground.DEFAULT),
 				new PageAdvancedText("13",PageBackground.ELVEN)).setPriority();
 		
-		dwarfIntro=new SLexiconEntry(LibLexicon.DWARF_INTRO, categoryDwarven);
+		dwarfIntro=new SLexiconEntry(LibLexicon.DWARF_INTRO, categoryWorldTree);
 		dwarfIntro.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
 				new PageAdvancedText("0",PageBackground.DWARVEN),
 				new PageAdvancedText("1",PageBackground.DWARVEN),
@@ -168,163 +162,163 @@ public class LexiconData {
 				new PageAdvancedText("5",PageBackground.DWARVEN),
 				new PageAdvancedText("6",PageBackground.DWARVEN)).setPriority();
 		
-		basicDwarvenResources=new SLexiconEntry(LibLexicon.BASIC_DWARVEN_RESOURCES, categoryDwarven);
+		basicDwarvenResources=new SLexiconEntry(LibLexicon.BASIC_DWARVEN_RESOURCES, categoryWorldTree);
 		basicDwarvenResources.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
 				new PageAdvancedText("0",PageBackground.DWARVEN),
-				new PageAdvancedPortalTrade("1", ModPortalTradeRecipes.dwarfWeedRecipe,Dimension.NIDAVELLIR, PageBackground.DWARVEN),
-				new PageAdvancedPortalTrade("2", ModPortalTradeRecipes.dwarfDwarfRockRecipe,Dimension.NIDAVELLIR, PageBackground.DWARVEN),
-				new PageAdvancedPortalTrade("3", ModPortalTradeRecipes.dwarfMushroomRecipes,Dimension.NIDAVELLIR, PageBackground.DWARVEN),
-				new PageAdvancedPortalTrade("4", ModPortalTradeRecipes.dwarfLivingRockRecipe,Dimension.NIDAVELLIR, PageBackground.DWARVEN)).setPriority();
+				new PageAdvancedPortalTrade("1", ModPortalTradeRecipes.dwarfWeedRecipe,Dimension.NIDAVELLIR, PageBackground.DEFAULT),
+				new PageAdvancedPortalTrade("2", ModPortalTradeRecipes.dwarfDwarfRockRecipe,Dimension.NIDAVELLIR, PageBackground.DEFAULT),
+				new PageAdvancedPortalTrade("3", ModPortalTradeRecipes.dwarfMushroomRecipes,Dimension.NIDAVELLIR, PageBackground.DEFAULT),
+				new PageAdvancedPortalTrade("4", ModPortalTradeRecipes.dwarfLivingRockRecipe,Dimension.NIDAVELLIR, PageBackground.DEFAULT)).setPriority();
 		
-		boomMoss=new SLexiconEntry(LibLexicon.BOOM_MOSS, categoryDwarven);
+		boomMoss=new SLexiconEntry(LibLexicon.BOOM_MOSS, BotaniaAPI.categoryDevices);
 		boomMoss.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.DWARVEN),
-				new PageAdvancedText("1",PageBackground.DWARVEN),
-				new PageAdvancedCraftingRecipe("2",ModCraftingRecipes.recipeBoomMoss,PageBackground.DWARVEN),
-				new PageAdvancedText("3",PageBackground.DWARVEN),
-				new PageAdvancedText("4",PageBackground.DWARVEN),
-				new PageAdvancedPortalTrade("5", ModPortalTradeRecipes.dwarfMasterBoomMossTrade,Dimension.NIDAVELLIR, PageBackground.DWARVEN),
-				new PageAdvancedText("6",PageBackground.DWARVEN),
-				new PageAdvancedFurnaceRecipe("7", new ItemStack(ModBlocks.boomMoss, 1, 2), new ItemStack(ModBlocks.boomMoss, 1, 0), PageBackground.DWARVEN)
+				new PageAdvancedText("0",PageBackground.DEFAULT),
+				new PageAdvancedText("1",PageBackground.DEFAULT),
+				new PageAdvancedCraftingRecipe("2",ModCraftingRecipes.recipeBoomMoss,PageBackground.DEFAULT),
+				new PageAdvancedText("3",PageBackground.DEFAULT),
+				new PageAdvancedText("4",PageBackground.DEFAULT),
+				new PageAdvancedPortalTrade("5", ModPortalTradeRecipes.dwarfMasterBoomMossTrade,Dimension.NIDAVELLIR, PageBackground.DEFAULT),
+				new PageAdvancedText("6",PageBackground.DEFAULT),
+				new PageAdvancedFurnaceRecipe("7", new ItemStack(ModBlocks.boomMoss, 1, 2), new ItemStack(ModBlocks.boomMoss, 1, 0), PageBackground.DEFAULT)
 				);
 
-		dwarfForged=new SLexiconEntry(LibLexicon.DWARF_FORGED, categoryDwarven);
+		dwarfForged=new SLexiconEntry(LibLexicon.DWARF_FORGED, BotaniaAPI.categoryTools);
 		dwarfForged.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.DWARVEN),
-				new PageAdvancedText("1",PageBackground.DWARVEN),
-				new PageAdvancedText("2",PageBackground.DWARVEN),
-				new PageAdvancedText("3",PageBackground.DWARVEN),
-				new PageAdvancedText("4",PageBackground.DWARVEN),
-				new PageAdvancedText("5",PageBackground.DWARVEN),
-				new PageAdvancedPortalTrade("6", ModPortalTradeRecipes.dwarfForgingDisplay,Dimension.NIDAVELLIR, PageBackground.DWARVEN),
-				new PageAdvancedText("7",PageBackground.DWARVEN),
-				new PageAdvancedPortalTrade("8", ModPortalTradeRecipes.dwarfReforgingDisplay,Dimension.NIDAVELLIR, PageBackground.DWARVEN)
+				new PageAdvancedText("0",PageBackground.DEFAULT),
+				new PageAdvancedText("1",PageBackground.DEFAULT),
+				new PageAdvancedText("2",PageBackground.DEFAULT),
+				new PageAdvancedText("3",PageBackground.DEFAULT),
+				new PageAdvancedText("4",PageBackground.DEFAULT),
+				new PageAdvancedText("5",PageBackground.DEFAULT),
+				new PageAdvancedPortalTrade("6", ModPortalTradeRecipes.dwarfForgingDisplay,Dimension.NIDAVELLIR, PageBackground.DEFAULT),
+				new PageAdvancedText("7",PageBackground.DEFAULT),
+				new PageAdvancedPortalTrade("8", ModPortalTradeRecipes.dwarfReforgingDisplay,Dimension.NIDAVELLIR, PageBackground.DEFAULT)
 				).setIcon(new ItemStack(Blocks.anvil));
 		
-		manaCrystal=new SLexiconEntry(LibLexicon.MANA_CRYSTAL, categoryDwarven);
+		manaCrystal=new SLexiconEntry(LibLexicon.MANA_CRYSTAL, BotaniaAPI.categoryMana);
 		manaCrystal.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.DWARVEN),
-				new PageAdvancedText("1",PageBackground.DWARVEN),
-				new PageAdvancedPortalTrade("2", ModPortalTradeRecipes.dwarfManaCrystalTrade,Dimension.NIDAVELLIR, PageBackground.DWARVEN)
+				new PageAdvancedText("0",PageBackground.DEFAULT),
+				new PageAdvancedText("1",PageBackground.DEFAULT),
+				new PageAdvancedPortalTrade("2", ModPortalTradeRecipes.dwarfManaCrystalTrade,Dimension.NIDAVELLIR, PageBackground.DEFAULT)
 				);
 
-		dwarvenManaPool=new SLexiconEntry(LibLexicon.DWARVEN_MANA_POOL, categoryDwarven);
+		dwarvenManaPool=new SLexiconEntry(LibLexicon.DWARVEN_MANA_POOL, BotaniaAPI.categoryMana);
 		dwarvenManaPool.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.DWARVEN),
-				new PageAdvancedText("1",PageBackground.DWARVEN),
-				new PageAdvancedCraftingRecipe("2",ModCraftingRecipes.recipeDwarvenPool,PageBackground.DWARVEN));
+				new PageAdvancedText("0",PageBackground.DEFAULT),
+				new PageAdvancedText("1",PageBackground.DEFAULT),
+				new PageAdvancedCraftingRecipe("2",ModCraftingRecipes.recipeDwarvenPool,PageBackground.DEFAULT));
 
-		stoneHorse=new SLexiconEntry(LibLexicon.STONE_HORSE, categoryDwarven);
+		stoneHorse=new SLexiconEntry(LibLexicon.STONE_HORSE, BotaniaAPI.categoryTools);
 		stoneHorse.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.DWARVEN),
-				new PageAdvancedText("0",PageBackground.DWARVEN),
-				new PageAdvancedPortalTrade("2", ModPortalTradeRecipes.dwarfStoneHorseTrade,Dimension.NIDAVELLIR, PageBackground.DWARVEN)
+				new PageAdvancedText("0",PageBackground.DEFAULT),
+				new PageAdvancedText("0",PageBackground.DEFAULT),
+				new PageAdvancedPortalTrade("2", ModPortalTradeRecipes.dwarfStoneHorseTrade,Dimension.NIDAVELLIR, PageBackground.DEFAULT)
 				);
 
-		dwarvenMead=new SLexiconEntry(LibLexicon.DWARVEN_MEAD, categoryDwarven);
+		dwarvenMead=new SLexiconEntry(LibLexicon.DWARVEN_MEAD, BotaniaAPI.categoryTools);
 		dwarvenMead.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.DWARVEN),
-				new PageAdvancedText("1",PageBackground.DWARVEN),
-				new PageAdvancedText("2",PageBackground.DWARVEN),
-				new PageAdvancedPortalTrade("3", new IPortalRecipe[]{ModPortalTradeRecipes.dwarfMelonToMeadTrade,ModPortalTradeRecipes.dwarfPumpkinToMeadTrade},Dimension.NIDAVELLIR, PageBackground.DWARVEN));
+				new PageAdvancedText("0",PageBackground.DEFAULT),
+				new PageAdvancedText("1",PageBackground.DEFAULT),
+				new PageAdvancedText("2",PageBackground.DEFAULT),
+				new PageAdvancedPortalTrade("3", new IPortalRecipe[]{ModPortalTradeRecipes.dwarfMelonToMeadTrade,ModPortalTradeRecipes.dwarfPumpkinToMeadTrade},Dimension.NIDAVELLIR, PageBackground.DEFAULT));
 
-		dwarvenChain=new SLexiconEntry(LibLexicon.DWARVEN_CHAIN, categoryDwarven);
+		dwarvenChain=new SLexiconEntry(LibLexicon.DWARVEN_CHAIN, BotaniaAPI.categoryTools);
 		dwarvenChain.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.DWARVEN),
-				new PageAdvancedText("1",PageBackground.DWARVEN),
-				new PageAdvancedPortalTrade("2", ModPortalTradeRecipes.dwarfChainTrade,Dimension.NIDAVELLIR, PageBackground.DWARVEN));
+				new PageAdvancedText("0",PageBackground.DEFAULT),
+				new PageAdvancedText("1",PageBackground.DEFAULT),
+				new PageAdvancedPortalTrade("2", ModPortalTradeRecipes.dwarfChainTrade,Dimension.NIDAVELLIR, PageBackground.DEFAULT));
 
-		dwarvenBarrierStone=new SLexiconEntry(LibLexicon.DWARVEN_BARRIER_STONE, categoryDwarven);
+		dwarvenBarrierStone=new SLexiconEntry(LibLexicon.DWARVEN_BARRIER_STONE, BotaniaAPI.categoryTools);
 		dwarvenBarrierStone.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.DWARVEN),
-				new PageAdvancedText("1",PageBackground.DWARVEN),
-				new PageAdvancedPortalTrade("2", ModPortalTradeRecipes.dwarfBarrierTrade,Dimension.NIDAVELLIR, PageBackground.DWARVEN));
+				new PageAdvancedText("0",PageBackground.DEFAULT),
+				new PageAdvancedText("1",PageBackground.DEFAULT),
+				new PageAdvancedPortalTrade("2", ModPortalTradeRecipes.dwarfBarrierTrade,Dimension.NIDAVELLIR, PageBackground.DEFAULT));
 
 		dimGinnungagap=new SLexiconEntry(LibLexicon.DIM_GINNUNGAGAP, categoryWorldTree);
 		dimGinnungagap.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.ELVEN), 
-				new PageAdvancedText("1",PageBackground.ELVEN), 
-				new PageAdvancedText("2",PageBackground.ELVEN), 
-				new PageDimensionSignature("3",Dimension.GINNUNGAGAP, PageBackground.ELVEN));
+				new PageAdvancedText("0",PageBackground.DEFAULT), 
+				new PageAdvancedText("1",PageBackground.DEFAULT), 
+				new PageAdvancedText("2",PageBackground.DEFAULT), 
+				new PageDimensionSignature("3",Dimension.GINNUNGAGAP, PageBackground.DEFAULT));
 
 		dimVigridr=new SLexiconEntry(LibLexicon.DIM_VIGRIOR, categoryWorldTree);
 		dimVigridr.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.ELVEN), 
-				new PageAdvancedText("1",PageBackground.ELVEN), 
-				new PageDimensionSignature("2",Dimension.VIGRIDR, PageBackground.ELVEN));
+				new PageAdvancedText("0",PageBackground.DEFAULT), 
+				new PageAdvancedText("1",PageBackground.DEFAULT), 
+				new PageDimensionSignature("2",Dimension.VIGRIDR, PageBackground.DEFAULT));
 		
 		dimFolkvangr=new SLexiconEntry(LibLexicon.DIM_FOLKVANGR, categoryWorldTree);
 		dimFolkvangr.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.ELVEN), 
-				new PageAdvancedText("1",PageBackground.ELVEN), 
-				new PageDimensionSignature("2",Dimension.FOLKVANGR, PageBackground.ELVEN));
+				new PageAdvancedText("0",PageBackground.DEFAULT), 
+				new PageAdvancedText("1",PageBackground.DEFAULT), 
+				new PageDimensionSignature("2",Dimension.FOLKVANGR, PageBackground.DEFAULT));
 		
 		dimValhalla=new SLexiconEntry(LibLexicon.DIM_VALHALLA, categoryWorldTree);
 		dimValhalla.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.ELVEN), 
-				new PageAdvancedText("1",PageBackground.ELVEN), 
-				new PageDimensionSignature("2",Dimension.VALHALLA, PageBackground.ELVEN));
+				new PageAdvancedText("0",PageBackground.DEFAULT), 
+				new PageAdvancedText("1",PageBackground.DEFAULT), 
+				new PageDimensionSignature("2",Dimension.VALHALLA, PageBackground.DEFAULT));
 		
 		dimHelheim=new SLexiconEntry(LibLexicon.DIM_HELHEIM, categoryWorldTree);
 		dimHelheim.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.ELVEN), 
-				new PageAdvancedText("1",PageBackground.ELVEN), 
-				new PageDimensionSignature("2",Dimension.HELHEIM, PageBackground.ELVEN));
+				new PageAdvancedText("0",PageBackground.DEFAULT), 
+				new PageAdvancedText("1",PageBackground.DEFAULT), 
+				new PageDimensionSignature("2",Dimension.HELHEIM, PageBackground.DEFAULT));
 		
 		dimAsgard=new SLexiconEntry(LibLexicon.DIM_ASGARD, categoryWorldTree);
 		dimAsgard.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.ELVEN), 
-				new PageAdvancedText("1",PageBackground.ELVEN), 
-				new PageAdvancedText("2",PageBackground.ELVEN), 
-				new PageDimensionSignature("3",Dimension.ASGARD, PageBackground.ELVEN));
+				new PageAdvancedText("0",PageBackground.DEFAULT), 
+				new PageAdvancedText("1",PageBackground.DEFAULT), 
+				new PageAdvancedText("2",PageBackground.DEFAULT), 
+				new PageDimensionSignature("3",Dimension.ASGARD, PageBackground.DEFAULT));
 		
 		dimAlfheim=new SLexiconEntry(LibLexicon.DIM_ALFHEIM, categoryWorldTree);
 		dimAlfheim.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.ELVEN), 
-				new PageAdvancedText("1",PageBackground.ELVEN), 
-				new PageDimensionSignature("2",Dimension.ALFHEIM, PageBackground.ELVEN));
+				new PageAdvancedText("0",PageBackground.DEFAULT), 
+				new PageAdvancedText("1",PageBackground.DEFAULT), 
+				new PageDimensionSignature("2",Dimension.ALFHEIM, PageBackground.DEFAULT));
 		
-		dimMinegard=new SLexiconEntry(LibLexicon.DIM_MINEGARD, categoryWorldTree);
-		dimMinegard.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.ELVEN), 
-				new PageAdvancedText("1",PageBackground.ELVEN), 
-				new PageDimensionSignature("2",Dimension.MINEGARD, PageBackground.ELVEN));
+		dimMidgard=new SLexiconEntry(LibLexicon.DIM_MIDGARD, categoryWorldTree);
+		dimMidgard.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
+				new PageAdvancedText("0",PageBackground.DEFAULT), 
+				new PageAdvancedText("1",PageBackground.DEFAULT), 
+				new PageDimensionSignature("2",Dimension.MIDGARD, PageBackground.DEFAULT));
 		
 		dimJotunheimr=new SLexiconEntry(LibLexicon.DIM_JOTUNHEIMR, categoryWorldTree);
 		dimJotunheimr.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.ELVEN), 
-				new PageAdvancedText("1",PageBackground.ELVEN), 
-				new PageDimensionSignature("2",Dimension.JOTUNHEIMR, PageBackground.ELVEN));
+				new PageAdvancedText("0",PageBackground.DEFAULT), 
+				new PageAdvancedText("1",PageBackground.DEFAULT), 
+				new PageDimensionSignature("2",Dimension.JOTUNHEIMR, PageBackground.DEFAULT));
 		
 		dimSvartalfheim=new SLexiconEntry(LibLexicon.DIM_SVARTALFHEIM, categoryWorldTree);
 		dimSvartalfheim.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.ELVEN), 
-				new PageAdvancedText("1",PageBackground.ELVEN), 
-				new PageDimensionSignature("2",Dimension.SVARTALFHEIM, PageBackground.ELVEN));
+				new PageAdvancedText("0",PageBackground.DEFAULT), 
+				new PageAdvancedText("1",PageBackground.DEFAULT), 
+				new PageDimensionSignature("2",Dimension.SVARTALFHEIM, PageBackground.DEFAULT));
 		
 		dimMuspelheim=new SLexiconEntry(LibLexicon.DIM_MUSPELHEIM, categoryWorldTree);
 		dimMuspelheim.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.ELVEN), 
-				new PageAdvancedText("1",PageBackground.ELVEN), 
-				new PageDimensionSignature("2",Dimension.MUSPELHEIM, PageBackground.ELVEN));
+				new PageAdvancedText("0",PageBackground.DEFAULT), 
+				new PageAdvancedText("1",PageBackground.DEFAULT), 
+				new PageDimensionSignature("2",Dimension.MUSPELHEIM, PageBackground.DEFAULT));
 		
 		dimNiflheim=new SLexiconEntry(LibLexicon.DIM_NIFLHEIM, categoryWorldTree);
 		dimNiflheim.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.ELVEN), 
-				new PageAdvancedText("1",PageBackground.ELVEN), 
-				new PageDimensionSignature("2",Dimension.NIFLHEIM, PageBackground.ELVEN));
+				new PageAdvancedText("0",PageBackground.DEFAULT), 
+				new PageAdvancedText("1",PageBackground.DEFAULT), 
+				new PageDimensionSignature("2",Dimension.NIFLHEIM, PageBackground.DEFAULT));
 		
 		dimNidavellir=new SLexiconEntry(LibLexicon.DIM_NIDAVELLIR, categoryWorldTree);
 		dimNidavellir.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.ELVEN), 
-				new PageAdvancedText("1",PageBackground.ELVEN), 
-				new PageAdvancedText("2",PageBackground.ELVEN), 
-				new PageDimensionSignature("3",Dimension.NIDAVELLIR, PageBackground.ELVEN));
+				new PageAdvancedText("0",PageBackground.DEFAULT), 
+				new PageAdvancedText("1",PageBackground.DEFAULT), 
+				new PageAdvancedText("2",PageBackground.DEFAULT), 
+				new PageDimensionSignature("3",Dimension.NIDAVELLIR, PageBackground.DEFAULT));
 		
 		dimVanaheimr=new SLexiconEntry(LibLexicon.DIM_VANAHEIMR, categoryWorldTree);
 		dimVanaheimr.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
-				new PageAdvancedText("0",PageBackground.ELVEN),
-				new PageAdvancedText("1",PageBackground.ELVEN));
+				new PageAdvancedText("0",PageBackground.DEFAULT),
+				new PageAdvancedText("1",PageBackground.DEFAULT));
 		
 		nubliaMessage=new SLexiconEntry(LibLexicon.NUBLIA_MESSAGE, categoryWorldTree);
 		nubliaMessage.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
@@ -333,7 +327,7 @@ public class LexiconData {
 				new PageAdvancedText("2",PageBackground.ELVEN),
 				new PageAdvancedText("3",PageBackground.ELVEN)).setPriority();
 		
-		darkElfIntro=new SLexiconEntry(LibLexicon.DARK_ELF_INTRO, categoryDarkElf);
+		darkElfIntro=new SLexiconEntry(LibLexicon.DARK_ELF_INTRO, categoryWorldTree);
 		darkElfIntro.setKnowledgeType(darkElfKnowledge).setLexiconPages(
 				new PageAdvancedImage("0",vazkii.botania.client.lib.LibResources.ENTRY_ELVEN_GARDE,PageBackground.ELVEN),
 				new PageAdvancedText("1", PageBackground.ELVEN),
@@ -341,29 +335,29 @@ public class LexiconData {
 				new PageAdvancedText("3", PageBackground.ELVEN)
 				).setPriority();
 
-		manaEater=new SLexiconEntry(LibLexicon.MANA_EATER, categoryDarkElf);
+		manaEater=new SLexiconEntry(LibLexicon.MANA_EATER, BotaniaAPI.categoryMana);
 		manaEater.setKnowledgeType(darkElfKnowledge).setLexiconPages(
-				new PageAdvancedText("0", PageBackground.ELVEN),
-				new PageAdvancedDarkElfAct("1",new ItemStack(ModBlocks.manaEater),new ItemStack(vazkii.botania.common.block.ModBlocks.spreader),PageBackground.ELVEN));
+				new PageAdvancedText("0", PageBackground.DEFAULT),
+				new PageAdvancedDarkElfAct("1",new ItemStack(ModBlocks.manaEater),new ItemStack(vazkii.botania.common.block.ModBlocks.spreader),PageBackground.DEFAULT));
 
-		darkenedDust=new SLexiconEntry(LibLexicon.DARKENED_DUST, categoryDarkElf);
-		darkenedDust.setKnowledgeType(darkElfKnowledge).setLexiconPages(new PageAdvancedText("0", PageBackground.ELVEN));
+		darkenedDust=new SLexiconEntry(LibLexicon.DARKENED_DUST, BotaniaAPI.categoryDevices);
+		darkenedDust.setKnowledgeType(darkElfKnowledge).setLexiconPages(new PageAdvancedText("0", PageBackground.DEFAULT));
 
-		lavaShroom=new SLexiconEntry(LibLexicon.LAVA_SHROOM, categoryDwarven);
+		lavaShroom=new SLexiconEntry(LibLexicon.LAVA_SHROOM, BotaniaAPI.categoryGenerationFlowers);
 		lavaShroom.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
-				new PageAdvancedText("0", PageBackground.DWARVEN),
-				new PageAdvancedText("1", PageBackground.DWARVEN),
-				new PageAdvancedImage("2",LibResources.LAVA_SHROOM_PICS[0],PageBackground.DWARVEN),
-				new PageAdvancedImage("3",LibResources.LAVA_SHROOM_PICS[1],PageBackground.DWARVEN),
-				new PageAdvancedText("4", PageBackground.DWARVEN),
-				new PageAdvancedImage("5",LibResources.LAVA_SHROOM_PICS[2],PageBackground.DWARVEN),
-				new PageAdvancedImage("6",LibResources.LAVA_SHROOM_PICS[3],PageBackground.DWARVEN),
-				new PageAdvancedImage("7",LibResources.LAVA_SHROOM_PICS[4],PageBackground.DWARVEN),
-				new PageAdvancedText("8", PageBackground.DWARVEN),
-				new PageAdvancedText("9", PageBackground.DWARVEN),
-				new PageAdvancedText("10",PageBackground.DWARVEN));
+				new PageAdvancedText("0", PageBackground.DEFAULT),
+				new PageAdvancedText("1", PageBackground.DEFAULT),
+				new PageAdvancedImage("2",LibResources.LAVA_SHROOM_PICS[0],PageBackground.DEFAULT),
+				new PageAdvancedImage("3",LibResources.LAVA_SHROOM_PICS[1],PageBackground.DEFAULT),
+				new PageAdvancedText("4", PageBackground.DEFAULT),
+				new PageAdvancedImage("5",LibResources.LAVA_SHROOM_PICS[2],PageBackground.DEFAULT),
+				new PageAdvancedImage("6",LibResources.LAVA_SHROOM_PICS[3],PageBackground.DEFAULT),
+				new PageAdvancedImage("7",LibResources.LAVA_SHROOM_PICS[4],PageBackground.DEFAULT),
+				new PageAdvancedText("8", PageBackground.DEFAULT),
+				new PageAdvancedText("9", PageBackground.DEFAULT),
+				new PageAdvancedText("10",PageBackground.DEFAULT));
 		
-		darkElves=new SLexiconEntry(LibLexicon.DARK_ELVES_DESCRIPTION, categoryDarkElf);
+		darkElves=new SLexiconEntry(LibLexicon.DARK_ELVES_DESCRIPTION, categoryWorldTree);
 		darkElves.setKnowledgeType(darkElfKnowledge).setLexiconPages(
 				new PageAdvancedText("0",PageBackground.ELVEN), 
 				new PageAdvancedText("1",PageBackground.ELVEN), 

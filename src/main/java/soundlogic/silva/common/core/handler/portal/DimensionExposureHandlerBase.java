@@ -55,7 +55,7 @@ public class DimensionExposureHandlerBase implements IDimensionalExposureHandler
 		case ALFHEIM:
 			addAttributeModifier(SharedMonsterAttributes.movementSpeed,UUID.randomUUID(),1.02,1,60*20);
 			break;
-		case MINEGARD:
+		case MIDGARD:
 			break;
 		case JOTUNHEIMR:
 			addAttributeModifier(SharedMonsterAttributes.attackDamage,UUID.randomUUID(),1.05,1,60*20*1);

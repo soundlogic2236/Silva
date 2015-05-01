@@ -12,8 +12,7 @@ public class DimensionalBlockHandlerMuspelheim implements IDimensionalBlockHandl
 
 	@Override
 	public void init(Dimension dim) {
-		// TODO Auto-generated method stub
-		
+		// NO OP
 	}
 
 	@Override
@@ -44,6 +43,11 @@ public class DimensionalBlockHandlerMuspelheim implements IDimensionalBlockHandl
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void generalTick(TilePortalCore core) {
+		// NO OP
 	}
 
 }

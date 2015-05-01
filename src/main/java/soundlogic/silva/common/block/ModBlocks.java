@@ -35,11 +35,8 @@ public class ModBlocks {
 	public static Block darkenedStoneBrick;
 	public static Block darkenedWood;
 	public static Block darkenedWoodPlank;
-	public static Block darkenedPortalFrame;
-	public static Block darkenedPortalFrameCore;
 	public static Block darkenedDust;
 	public static Block drainedSoulsand;
-	public static Block darkenedQuartz;
 
 	// Enhanced Portal
 	public static Block portalCore;
@@ -149,6 +146,9 @@ public class ModBlocks {
 
 		multiblockProxyLava=new BlockMultiblockProxyLava().setBlockName(LibBlockNames.MULTIBLOCK_PROXY_LAVA);
 		GameRegistry.registerBlock(multiblockProxyLava, ItemBlockMod.class, LibBlockNames.MULTIBLOCK_PROXY_LAVA);
+		
+		darkenedStone=new BlockSimple(Material.rock).setBlockName(LibBlockNames.DARKENED_STONE);
+		GameRegistry.registerBlock(darkenedStone, ItemBlockModMultiple.class, LibBlockNames.DARKENED_STONE);
 		
 		initTileEntities();
 	}

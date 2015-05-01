@@ -42,4 +42,10 @@ public class DimensionalBlockHandlerSvartalfheim implements IDimensionalBlockHan
 		return false;
 	}
 
+	@Override
+	public void generalTick(TilePortalCore core) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

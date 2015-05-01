@@ -137,6 +137,7 @@ public class DimensionalEnergyHandler {
 			AxisAlignedBB aabb = getEnergyBoundingBoxForBlocks(core);
 			if(handler!=null)
 			{
+				handler.generalTick(core);
 				if((core.getTicksOpen() % handler.frequencyForSearch(core))==0 && handler.shouldTryApply(core)) {
 					int blocks = handler.getBlocksPerTick(core);
 					while(blocks!=0) {

@@ -63,8 +63,8 @@ public class DimensionHandler {
 				0x00c000,
 				null,
 				new DimensionExposureHandlerBase()), 
-		MINEGARD (
-				"minegard", 
+		MIDGARD (
+				"midgard", 
 				State.OVERWORLD, 
 				0x00c172, 
 				0x00c172,
@@ -86,7 +86,7 @@ public class DimensionHandler {
 				new DimensionExposureHandlerSvartalfheim()), 
 		MUSPELHEIM (
 				"muspelheim", 
-				State.DEFAULT, 
+				State.NETHER, 
 				0xe03d1d, 
 				0xe03d1d,
 				new DimensionalBlockHandlerMuspelheim(),
@@ -123,7 +123,8 @@ public class DimensionHandler {
 		public enum State {
 			DEFAULT,
 			LOCKED,
-			OVERWORLD,
+			OVERWORLD, 
+			NETHER,
 		}
 		
 		Dimension(String unlocalizedName,State state, int portalColor, int sparkColor, IDimensionalBlockHandler blockHandler, IDimensionalExposureHandler exposureHandler) {
@@ -273,7 +274,7 @@ public class DimensionHandler {
 				 {0,1,0,1,1},
 				 }); // Realm of the Elves
 		addSignature(
-				Dimension.MINEGARD, new int[][]	
+				Dimension.MIDGARD, new int[][]	
 				{{1,1,1,1,0},
 				 {1,0,1,0,1},
 				 {1,1,0,1,1},

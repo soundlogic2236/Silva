@@ -34,7 +34,7 @@ public class LibLexicon {
 	public static final String DIM_HELHEIM = "dimHelheim";
 	public static final String DIM_ASGARD = "dimAsgard";
 	public static final String DIM_ALFHEIM = "dimAlfheim";
-	public static final String DIM_MINEGARD = "dimMinegard";
+	public static final String DIM_MIDGARD = "dimMidgard";
 	public static final String DIM_JOTUNHEIMR = "dimJotunheimr";
 	public static final String DIM_SVARTALFHEIM = "dimSvartalfheim";
 	public static final String DIM_MUSPELHEIM = "dimMuspelheim";

@@ -12,4 +12,5 @@ public interface IDimensionalBlockHandler {
 	public int getBlocksPerTick(TilePortalCore core);
 	public int triesPerBlock(TilePortalCore core);
 	public boolean tryApplyToBlock(TilePortalCore core, World world, int[] coords);
+	public void generalTick(TilePortalCore core);
 }

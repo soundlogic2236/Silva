@@ -27,6 +27,8 @@ import soundlogic.silva.common.block.BlockPortalCore;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
+import soundlogic.silva.common.crafting.recipe.DarkElfActSimple;
+import soundlogic.silva.common.crafting.recipe.IDarkElfAct;
 import soundlogic.silva.common.crafting.recipe.IPortalRecipe;
 import soundlogic.silva.common.lexicon.PageBackground;
 import vazkii.botania.api.internal.IGuiLexiconEntry;
@@ -47,17 +49,22 @@ public class PageAdvancedDarkElfAct extends PageRecipe{
 
 	static boolean mouseDownLastTick = false;
 
-	List<ItemStack> inputs;
-	List<ItemStack> outputs;
+	List<IDarkElfAct> recipes;
 	
 	int ticksElapsed = 0;
 	int recipeAt = 0;
 	
-	public PageAdvancedDarkElfAct(String unlocalizedName,List<ItemStack> outputs, List<ItemStack> inputs, PageBackground background) {
+	public PageAdvancedDarkElfAct(String unlocalizedName,List<IDarkElfAct> recipes, PageBackground background) {
 		super(unlocalizedName);
-		this.inputs=inputs;
-		this.outputs=outputs;
+		this.recipes=recipes;
 		this.background=background;
+	}
+	public PageAdvancedDarkElfAct(String unlocalizedName,List<ItemStack> outputs, List<ItemStack> inputs, PageBackground background) {
+		this(unlocalizedName,null,background);
+		this.recipes=new ArrayList<IDarkElfAct>();
+		for(int i = 0 ; i< outputs.size() ; i++) {
+			recipes.add(new DarkElfActSimple(outputs.get(i), inputs.get(i)));
+		}
 	}
 
 	public PageAdvancedDarkElfAct(String unlocalizedName, ItemStack output, ItemStack input, PageBackground background) {
@@ -70,8 +77,11 @@ public class PageAdvancedDarkElfAct extends PageRecipe{
 	
 	@Override
 	public void onPageAdded(LexiconEntry entry, int index) {
-		for(ItemStack outputSingle : outputs)
-			LexiconRecipeMappings.map(outputSingle, entry, index);
+		for(IDarkElfAct recipe : recipes) {
+			List<ItemStack> output=recipe.getDisplayOutputs();
+			for(ItemStack outputSingle : output)
+				LexiconRecipeMappings.map(outputSingle, entry, index);
+		}
 	}
 
 	@Override
@@ -80,7 +90,7 @@ public class PageAdvancedDarkElfAct extends PageRecipe{
 		if(ticksElapsed % 20 == 0) {
 			recipeAt++;
 
-			if(recipeAt == inputs.size())
+			if(recipeAt == recipes.size())
 				recipeAt = 0;
 		}
 		++ticksElapsed;
@@ -98,11 +108,18 @@ public class PageAdvancedDarkElfAct extends PageRecipe{
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		((GuiScreen) gui).drawTexturedModalRect(gui.getLeft(), gui.getTop(), 0, 0, gui.getWidth(), gui.getHeight());
 		GL11.glDisable(GL11.GL_BLEND);
-		ItemStack output=outputs.get(recipeAt);
-		renderItemAtGridPos(gui, 3, 1, output, false);
+		IDarkElfAct recipe = recipes.get(recipeAt);
+		
+		List<ItemStack> output=recipe.getDisplayOutputs();
+		for(int i = 0;i<output.size();i++)
+			renderItemAtGridPos(gui, 3+i, 1, output.get(i), false);
 
-		ItemStack input = inputs.get(recipeAt);
-		renderItemAtInputPos(gui, 0, (ItemStack) input);
+		List<ItemStack> inputs = recipe.getDisplayInputs();
+		int i = 0;
+		for(ItemStack stack : inputs) {
+			renderItemAtInputPos(gui, i, stack);
+			i++;
+		}
 
 		IIcon portalTex=((BlockPortalCore)ModBlocks.portalCore).portalTex;
 		Color color=Dimension.SVARTALFHEIM.getPortalColor();
