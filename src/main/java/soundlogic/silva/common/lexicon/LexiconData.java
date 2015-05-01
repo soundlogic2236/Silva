@@ -167,8 +167,7 @@ public class LexiconData {
 				new PageAdvancedText("0",PageBackground.DWARVEN),
 				new PageAdvancedPortalTrade("1", ModPortalTradeRecipes.dwarfWeedRecipe,Dimension.NIDAVELLIR, PageBackground.DEFAULT),
 				new PageAdvancedPortalTrade("2", ModPortalTradeRecipes.dwarfDwarfRockRecipe,Dimension.NIDAVELLIR, PageBackground.DEFAULT),
-				new PageAdvancedPortalTrade("3", ModPortalTradeRecipes.dwarfMushroomRecipes,Dimension.NIDAVELLIR, PageBackground.DEFAULT),
-				new PageAdvancedPortalTrade("4", ModPortalTradeRecipes.dwarfLivingRockRecipe,Dimension.NIDAVELLIR, PageBackground.DEFAULT)).setPriority();
+				new PageAdvancedPortalTrade("3", ModPortalTradeRecipes.dwarfMushroomRecipes,Dimension.NIDAVELLIR, PageBackground.DEFAULT)).setPriority();
 		
 		boomMoss=new SLexiconEntry(LibLexicon.BOOM_MOSS, BotaniaAPI.categoryDevices);
 		boomMoss.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
@@ -211,7 +210,7 @@ public class LexiconData {
 		stoneHorse=new SLexiconEntry(LibLexicon.STONE_HORSE, BotaniaAPI.categoryTools);
 		stoneHorse.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
 				new PageAdvancedText("0",PageBackground.DEFAULT),
-				new PageAdvancedText("0",PageBackground.DEFAULT),
+				new PageAdvancedText("1",PageBackground.DEFAULT),
 				new PageAdvancedPortalTrade("2", ModPortalTradeRecipes.dwarfStoneHorseTrade,Dimension.NIDAVELLIR, PageBackground.DEFAULT)
 				);
 
@@ -312,8 +311,7 @@ public class LexiconData {
 		dimNidavellir.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
 				new PageAdvancedText("0",PageBackground.DEFAULT), 
 				new PageAdvancedText("1",PageBackground.DEFAULT), 
-				new PageAdvancedText("2",PageBackground.DEFAULT), 
-				new PageDimensionSignature("3",Dimension.NIDAVELLIR, PageBackground.DEFAULT));
+				new PageDimensionSignature("2",Dimension.NIDAVELLIR, PageBackground.DEFAULT));
 		
 		dimVanaheimr=new SLexiconEntry(LibLexicon.DIM_VANAHEIMR, categoryWorldTree);
 		dimVanaheimr.setKnowledgeType(worldTreeKnowledge).setLexiconPages(

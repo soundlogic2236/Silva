@@ -89,7 +89,6 @@ public class PageAdvancedPortalTrade extends PageRecipe{
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void renderRecipe(IGuiLexiconEntry gui, int mx, int my) {
-		ticksElapsed++;
 		boolean mouseDown = Mouse.isButtonDown(0);
 		
 		IPortalRecipe recipe = recipes.get(recipeAt);

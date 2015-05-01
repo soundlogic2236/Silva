@@ -38,7 +38,6 @@ public class ModPortalTradeRecipes {
 	public static IPortalRecipe[] dwarfForgeElementiumRecipes=new IPortalRecipe[8];
 	public static IPortalRecipe[] dwarfReforgeRecipes=new IPortalRecipe[8];
 	public static IPortalRecipe dwarfWeedRecipe;
-	public static IPortalRecipe dwarfLivingRockRecipe;
 	public static IPortalRecipe dwarfDwarfRockRecipe;
 	public static IPortalRecipe dwarfPumpkinToMeadTrade;
 	public static IPortalRecipe dwarfMelonToMeadTrade;
@@ -65,9 +64,6 @@ public class ModPortalTradeRecipes {
 		dwarfWeedRecipe=new DwarfTradeSimple(new ItemStack(ModBlocks.dwarfWeed),0,1,5,new ItemStack(Blocks.tallgrass));
 		PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfWeedRecipe);
 		
-		dwarfLivingRockRecipe=new DwarfTradeSimple(new ItemStack(vazkii.botania.common.block.ModBlocks.livingrock),0,1,5,new ItemStack(vazkii.botania.common.block.ModBlocks.livingwood));
-		PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfLivingRockRecipe);
-		
 		dwarfDwarfRockRecipe=new DwarfTradeSimple(new ItemStack(ModBlocks.dwarfRock),0,1,5,new ItemStack(vazkii.botania.common.block.ModBlocks.livingrock));
 		PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfDwarfRockRecipe);
 		
@@ -86,7 +82,7 @@ public class ModPortalTradeRecipes {
 		dwarfStoneHorseTrade=new DwarfTradeSimple(new ItemStack(ModItems.stoneHorse),7,5,16,new ItemStack(ModBlocks.dwarfRock), new ItemStack(Items.saddle),new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,5));
 		PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfStoneHorseTrade);
 		
-		dwarfManaCrystalTrade=new DwarfTradeSimple(new ItemStack(ModBlocks.manaCrystal),12,4,22,new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,2),new ItemStack(vazkii.botania.common.item.ModItems.overgrowthSeed));
+		dwarfManaCrystalTrade=new DwarfTradeSimple(new ItemStack(ModBlocks.manaCrystal),12,4,22,new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,2),new ItemStack(vazkii.botania.common.item.ModItems.manaBottle));
 		PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfManaCrystalTrade);
 		
 		dwarfMasterBoomMossTrade=new DwarfTradeSimple(new ItemStack(ModBlocks.boomMoss,1,1),11,3,20,new ItemStack(ModBlocks.boomMoss),new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,5),new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,5));
@@ -235,7 +231,6 @@ public class ModPortalTradeRecipes {
 		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfMushroomRecipes[15],200));
 
 		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfWeedRecipe,1600));
-		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfLivingRockRecipe,1600));
 		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfDwarfRockRecipe,1600));
 		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfPumpkinToMeadTrade,1600));
 		dwarfTradeWeights.add(new DwarfTradeWeight((DwarfTrade)dwarfMelonToMeadTrade,1600));
@@ -357,7 +352,6 @@ public class ModPortalTradeRecipes {
 		mapDwarfTrade("mushroom15",(DwarfTrade)dwarfMushroomRecipes[15]);
 		
 		mapDwarfTrade("dwarfweed",(DwarfTrade)dwarfWeedRecipe);
-		mapDwarfTrade("livingrock",(DwarfTrade)dwarfLivingRockRecipe);
 		mapDwarfTrade("dwarfrock",(DwarfTrade)dwarfDwarfRockRecipe);
 		mapDwarfTrade("pumpkinmead",(DwarfTrade)dwarfPumpkinToMeadTrade);
 		mapDwarfTrade("melonmead",(DwarfTrade)dwarfMelonToMeadTrade);

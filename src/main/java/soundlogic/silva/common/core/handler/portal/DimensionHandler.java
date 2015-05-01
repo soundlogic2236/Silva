@@ -18,6 +18,7 @@ public class DimensionHandler {
 		GINNUNGAGAP (
 				"ginnungagap", 
 				State.LOCKED, 
+				BaseDimension.END,
 				0x376332, 
 				0x782b79,
 				null,
@@ -25,6 +26,7 @@ public class DimensionHandler {
 		VIGRIDR (
 				"vigridr", 
 				State.DEFAULT, 
+				BaseDimension.NONE,
 				0x792b2b, 
 				0x792b2b,
 				null,
@@ -32,12 +34,14 @@ public class DimensionHandler {
 		FOLKVANGR (
 				"folkvangr", 
 				State.DEFAULT, 
+				BaseDimension.NONE,
 				0xf6d5a0, 
 				0xf6d5a0,
 				null,
 				new DimensionExposureHandlerBase()), 
 		VALHALLA ("valhalla", 
 				State.DEFAULT, 
+				BaseDimension.NONE,
 				0xe88787, 
 				0xe88787,
 				null,
@@ -45,6 +49,7 @@ public class DimensionHandler {
 		HELHEIM (
 				"helheim", 
 				State.DEFAULT, 
+				BaseDimension.NONE,
 				0x1d2457, 
 				0x1d2457,
 				null,
@@ -52,6 +57,7 @@ public class DimensionHandler {
 		ASGARD (
 				"asgard", 
 				State.DEFAULT, 
+				BaseDimension.NONE,
 				0xd8e825, 
 				0xd8e825,
 				null,
@@ -59,13 +65,15 @@ public class DimensionHandler {
 		ALFHEIM (
 				"alfheim", 
 				State.DEFAULT, 
+				BaseDimension.NONE,
 				0x5fff4a, 
 				0x00c000,
 				null,
 				new DimensionExposureHandlerBase()), 
 		MIDGARD (
 				"midgard", 
-				State.OVERWORLD, 
+				State.DEFAULT, 
+				BaseDimension.OVERWORLD,
 				0x00c172, 
 				0x00c172,
 				null,
@@ -73,6 +81,7 @@ public class DimensionHandler {
 		JOTUNHEIMR (
 				"jotunheimr", 
 				State.DEFAULT, 
+				BaseDimension.NONE,
 				0x94aba5, 
 				0x94aba5,
 				null,
@@ -80,13 +89,15 @@ public class DimensionHandler {
 		SVARTALFHEIM (
 				"svartalfheim", 
 				State.DEFAULT, 
+				BaseDimension.NONE,
 				0x381325,
 				0x381325,
 				new DimensionalBlockHandlerSvartalfheim(),
 				new DimensionExposureHandlerSvartalfheim()), 
 		MUSPELHEIM (
 				"muspelheim", 
-				State.NETHER, 
+				State.DEFAULT, 
+				BaseDimension.NETHER,
 				0xe03d1d, 
 				0xe03d1d,
 				new DimensionalBlockHandlerMuspelheim(),
@@ -94,6 +105,7 @@ public class DimensionHandler {
 		NIFLHEIM (
 				"niflheim", 
 				State.DEFAULT, 
+				BaseDimension.NONE,
 				0x1dc2e0, 
 				0x1dc2e0,
 				new DimensionalBlockHandlerNiflheim(),
@@ -101,6 +113,7 @@ public class DimensionHandler {
 		NIDAVELLIR (
 				"nidavellir", 
 				State.DEFAULT, 
+				BaseDimension.NONE,
 				0xd2d5e7, 
 				0xd2d5e7,
 				null,
@@ -108,6 +121,7 @@ public class DimensionHandler {
 		VANAHEIMR (
 				"vanaheimr", 
 				State.DEFAULT, 
+				BaseDimension.NONE,
 				0xcf52bf, 
 				0xcf52bf,
 				null,
@@ -119,27 +133,36 @@ public class DimensionHandler {
 		private final Color sparkColor;
 		private final IDimensionalBlockHandler blockHandler;
 		private final IDimensionalExposureHandler exposureHandler;
+		private final BaseDimension baseDimension;
 		
 		public enum State {
 			DEFAULT,
 			LOCKED,
-			OVERWORLD, 
+		}
+		public enum BaseDimension {
+			NONE,
+			OVERWORLD,
 			NETHER,
+			END,
 		}
 		
-		Dimension(String unlocalizedName,State state, int portalColor, int sparkColor, IDimensionalBlockHandler blockHandler, IDimensionalExposureHandler exposureHandler) {
+		Dimension(String unlocalizedName,State state, BaseDimension baseDimension, int portalColor, int sparkColor, IDimensionalBlockHandler blockHandler, IDimensionalExposureHandler exposureHandler) {
 			this.unlocalizedName=unlocalizedName;
 			this.state=state;
 			this.portalColor=new Color(portalColor);
 			this.sparkColor=new Color(sparkColor);
 			this.blockHandler=blockHandler;
 			this.exposureHandler=exposureHandler;
+			this.baseDimension=baseDimension;
 		}
 		public String getUnlocalizedName() {
 			return LibMisc.MOD_ID.toLowerCase() + ".dimension." + unlocalizedName;
 		}
 		public State getState() {
 			return state;
+		}
+		public BaseDimension getBaseDimension() {
+			return baseDimension;
 		}
 		public Color getPortalColor() {
 			return portalColor;

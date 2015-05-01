@@ -18,6 +18,7 @@ import soundlogic.silva.common.block.IPortalFocus;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
+import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension.BaseDimension;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension.State;
 import soundlogic.silva.common.core.handler.portal.DimensionalEnergyHandler;
 import soundlogic.silva.common.crafting.PortalDwarfData;
@@ -550,7 +551,11 @@ public class TilePortalCore extends TileMod{
 	}
 	
 	private void openPortal(ForgeDirection direction, Dimension dim) {
-		if(dim.getState() == State.OVERWORLD)
+		if(dim.getBaseDimension() == BaseDimension.OVERWORLD && worldObj.provider.dimensionId==0)
+			return;
+		if(dim.getBaseDimension() == BaseDimension.NETHER && worldObj.provider.dimensionId==-1)
+			return;
+		if(dim.getBaseDimension() == BaseDimension.END && worldObj.provider.dimensionId==1)
 			return;
 		this.direction=direction;
 		if(!drainMana(150000))

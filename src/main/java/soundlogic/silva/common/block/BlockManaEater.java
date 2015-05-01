@@ -25,6 +25,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 public class BlockManaEater extends BlockContainer implements IWandable, IWandHUD, ILexiconable, IWireframeAABBProvider{
@@ -99,10 +100,11 @@ public class BlockManaEater extends BlockContainer implements IWandable, IWandHU
 				return false;
 
 		if(isHeldItemLens) {
-//			par5EntityPlayer.
+			par5EntityPlayer.attackEntityFrom(DamageSource.generic, 2);
 		}
 		else if(wool) {
-//			par5EntityPlayer.
+			par5EntityPlayer.getCurrentEquippedItem().stackSize--;
+			par5EntityPlayer.setFire(4);
 		}
 		
 		return true;

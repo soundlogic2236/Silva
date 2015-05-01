@@ -49,8 +49,8 @@ tile.silva:pylon.Vanaheimr.name=Wisdom Pylon
 tile.silva:boomMoss.0.name=Boom Moss
 tile.silva:boomMoss.1.name=Master Boom Moss
 tile.silva:boomMoss.2.name=Dry Boom Moss
-tile.silva:bifrostBlock.name=Bifrost
-tile.silva:bifrostBlockSparkling.name=Sparkling Bifrost
+tile.silva:bifrostBlock.name=Bifrost Block
+tile.silva:bifrostBlockSparkling.name=Sparkling Bifrost Block
 tile.silva:bifrostBlockStairs.name=Bifrost Stairs
 tile.silva:bifrostBlockWall.name=Bifrost Wall
 tile.silva:bifrostBlockSlab.name=Bifrost Slab
@@ -168,7 +168,7 @@ silva.page.bifrost12=Crafting sparkling bifrost
 
 # -- Alfheim
 silva.entry.dimAlfheim=Alfheim
-silva.page.dimAlfheim0=Alfheim is one of the nine realms, and is inhabited by the Elves (us). Before the Shattering we had grand cities constructed in the most massive of trees, and have been rebuilding our previous grandeur ever since. We are skilled at magic and craftmanship, and the only ones with the secret of growing the elusive dreamwood. It is a beautiful realm of nature and magic that I wish you could visit. 
+silva.page.dimAlfheim0=Alfheim is one of the nine realms, and is inhabited by the Elves. Before the Shattering we had grand cities constructed in the most massive of trees, and have been rebuilding our previous grandeur ever since. We are skilled at magic and craftmanship, and the only ones with the secret of growing the elusive dreamwood. It is a beautiful realm of nature and magic that I wish you could visit. 
 silva.page.dimAlfheim1=Exposure to Alfheim energies results in a slight increase in grace and speed, our realm's little gift to you.
 
 # -- Asgard
@@ -215,7 +215,7 @@ silva.page.dimNiflheim1=Exposure to Niflheim energies will freeze and weaken thi
 
 # -- Svartalfheim
 silva.entry.dimSvartalfheim=Svartalfheim
-silva.page.dimSvartalfheim0=Svartalfheim is one of the nine realms, and is home to the Dark Elves. DO NOT OPEN A PORTAL TO IT. The Dark Elves are cowardly and evil creatures, and while most lack almost all intelligence, a few of them possess extraordinary cunning and teach the others to act on their behalf. 
+silva.page.dimSvartalfheim0=Svartalfheim is one of the nine realms, and is home to the Dark Elves. &nDo not open a &nportal to it&r. The Dark Elves are cowardly and evil creatures, and while most lack almost all intelligence, a few of them possess extraordinary cunning and teach the others to act on their behalf. 
 silva.page.dimSvartalfheim1=Dark Elves are the only creatures which know the secret of how to use these portals to travel between world, making opening a portal there extremely dangerous.
 silva.page.dimSvartalfheim2=Teasing out what results from the Dark Elves' actions and the essence of Svartalfheim itself is tricky. 
 

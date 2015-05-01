@@ -6,6 +6,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import soundlogic.silva.client.lib.LibResources;
+import soundlogic.silva.client.model.ModelManaCrystal;
 import soundlogic.silva.client.model.ModelPylon;
 import vazkii.botania.client.core.handler.ClientTickHandler;
 import vazkii.botania.client.core.helper.ShaderHelper;
@@ -19,14 +20,14 @@ public class RenderTileManaCrystal extends TileEntitySpecialRenderer {
 
 	private static final ResourceLocation texture = new ResourceLocation(vazkii.botania.client.lib.LibResources.MODEL_PYLON);
 
-	ModelPylon model;
+	ModelManaCrystal model;
 
 	public static int metadata;
 	
 	@Override
 	public void renderTileEntityAt(TileEntity tileentity, double d0, double d1, double d2, float pticks) {
 		if(model == null)
-			model = new ModelPylon();
+			model = new ModelManaCrystal();
 
 			GL11.glPushMatrix();
 			GL11.glEnable(GL12.GL_RESCALE_NORMAL);
@@ -44,37 +45,21 @@ public class RenderTileManaCrystal extends TileEntitySpecialRenderer {
 			if(tileentity != null)
 				worldTime += new Random(tileentity.xCoord ^ tileentity.yCoord ^ tileentity.zCoord).nextInt(360);
 
-			GL11.glTranslated(d0 + 0.2 + (false ? -0.1 : 0), d1 + 0.05, d2 + 0.8 + (false ? 0.1 : 0));
-			float scale = false ? 0.8F : 0.6F;
+			GL11.glTranslated(d0 + 0.2, d1 + 0.05, d2 + 0.8);
+			float scale = 0.6F;
 			GL11.glScalef(scale, 0.6F, scale);
-
-			if(!true) {
-				GL11.glPushMatrix();
-				if(!false)
-					GL11.glTranslatef(0.5F, 0F, -0.5F);
-				GL11.glRotatef((float) worldTime * 1.5F, 0F, 1F, 0F);
-				if(!false)
-					GL11.glTranslatef(-0.5F, 0F, 0.5F);
-
-				model.renderRing();
-				GL11.glTranslated(0D, Math.sin(worldTime / 20D) / 20 - 0.025, 0D);
-				model.renderGems();
-				GL11.glPopMatrix();
-			}
 
 			GL11.glPushMatrix();
 			GL11.glTranslated(0D, Math.sin(worldTime / 20D) / 17.5, 0D);
 
-			if(!false)
-				GL11.glTranslatef(0.5F, 0F, -0.5F);
+			GL11.glTranslatef(0.5F, 0F, -0.5F);
 
 			GL11.glRotatef((float) -worldTime, 0F, 1F, 0F);
-			if(!false)
-				GL11.glTranslatef(-0.5F, 0F, 0.5F);
+			GL11.glTranslatef(-0.5F, 0F, 0.5F);
 
 
 			GL11.glDisable(GL11.GL_CULL_FACE);
-			model.renderCrystal();
+			model.render();
 
 			GL11.glColor4f(1F, 1F, 1F, 1F);
 			if(!ShaderHelper.useShaders()) {
@@ -88,12 +73,10 @@ public class RenderTileManaCrystal extends TileEntitySpecialRenderer {
 
 			GL11.glDisable(GL11.GL_ALPHA_TEST);
 			GL11.glScalef(1.1F, 1.1F, 1.1F);
-			if(!false)
-				GL11.glTranslatef(-0.05F, -0.1F, 0.05F);
-			else GL11.glTranslatef(0F, -0.09F, 0F);
+			GL11.glTranslatef(-0.05F, -0.1F, 0.05F);
 
 			ShaderHelper.useShader(ShaderHelper.pylonGlow);
-			model.renderCrystal();
+			model.render();
 			ShaderHelper.releaseShader();
 
 			GL11.glEnable(GL11.GL_ALPHA_TEST);

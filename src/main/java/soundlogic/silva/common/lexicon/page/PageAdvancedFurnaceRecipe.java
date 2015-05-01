@@ -47,7 +47,7 @@ public class PageAdvancedFurnaceRecipe extends PageRecipe{
 
 	public PageAdvancedFurnaceRecipe(String unlocalizedName,
 			ItemStack output, ItemStack input, PageBackground background) {
-		this(unlocalizedName, Arrays.asList(input), Arrays.asList(output), background);
+		this(unlocalizedName, Arrays.asList(output), Arrays.asList(input), background);
 	}
 
 	@Override

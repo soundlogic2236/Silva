@@ -10,6 +10,7 @@ public class LibResources {
 	public static final String PREFIX_GUI = PREFIX_MOD + "textures/gui/";
 	public static final String PREFIX_ENTRIES = PREFIX_GUI + "entries/";
 	public static final String PREFIX_ENTITY = PREFIX_MOD + "textures/entity/";
+	public static final String PREFIX_OBJ_MODEL = PREFIX_MOD + "model/";
 
 	public static final String MODEL_PYLON_PORTAL = PREFIX_MODEL + "pylonPortal.png";
 	public static final String MODEL_PYLON_UNTUNED = PREFIX_MODEL + "pylonUntuned.png";
@@ -96,6 +97,8 @@ public class LibResources {
 		PREFIX_ENTRIES + "lavashroom3.png",
 		PREFIX_ENTRIES + "lavashroom4.png",
 	};
+
+	public static final String OBJ_MODEL_MANA_CRYSTAL = PREFIX_OBJ_MODEL + "manaCrystal.obj";
 
 
 
