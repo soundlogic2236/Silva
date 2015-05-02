@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-public abstract class BlockModSlab extends BlockSlab{
+public abstract class BlockModSlab extends BlockSlab {
 
 	public BlockModSlab(boolean full, Material material) {
 		super(full, material);

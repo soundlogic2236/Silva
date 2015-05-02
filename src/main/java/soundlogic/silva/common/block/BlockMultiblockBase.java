@@ -7,6 +7,8 @@ import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.tile.TileDwarvenPool;
 import soundlogic.silva.common.block.tile.multiblocks.TileMultiblockBase;
 import soundlogic.silva.common.block.tile.multiblocks.TileMultiblockProxy;
+import vazkii.botania.api.lexicon.ILexiconable;
+import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.wand.IWandHUD;
 import vazkii.botania.api.wand.IWandable;
 import net.minecraft.block.Block;
@@ -25,7 +27,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public abstract class BlockMultiblockBase extends BlockContainer implements IWandHUD, IWandable{
+public abstract class BlockMultiblockBase extends BlockContainer implements IWandHUD, IWandable, ILexiconable{
 	
 	protected BlockMultiblockBase(Material material) {
 		super(material);
@@ -75,5 +77,12 @@ public abstract class BlockMultiblockBase extends BlockContainer implements IWan
 		TileMultiblockBase tile = (TileMultiblockBase) world.getTileEntity(x, y, z);
 		tile.getCore().getData().onWanded(tile, tile.getCore(), player, stack);
 		return true;
+	}
+
+	@Override
+	public LexiconEntry getEntry(World world, int x, int y, int z,
+			EntityPlayer player, ItemStack stack) {
+		TileMultiblockBase tile = (TileMultiblockBase) world.getTileEntity(x, y, z);
+		return tile.getCore().getData().getLexiconEntry();
 	}
 }

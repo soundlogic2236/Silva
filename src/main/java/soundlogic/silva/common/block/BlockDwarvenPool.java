@@ -3,8 +3,11 @@ package soundlogic.silva.common.block;
 import soundlogic.silva.client.lib.LibRenderIDs;
 import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.tile.TileDwarvenPool;
+import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibBlockNames;
 import vazkii.botania.api.internal.VanillaPacketDispatcher;
+import vazkii.botania.api.lexicon.ILexiconable;
+import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.wand.IWandHUD;
 import vazkii.botania.api.wand.IWandable;
 import net.minecraft.block.BlockContainer;
@@ -20,7 +23,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-public class BlockDwarvenPool extends BlockContainer implements IWandHUD, IWandable {
+public class BlockDwarvenPool extends BlockContainer implements IWandHUD, IWandable, ILexiconable {
 
 	public BlockDwarvenPool() {
 		super(Material.rock);
@@ -95,5 +98,11 @@ public class BlockDwarvenPool extends BlockContainer implements IWandHUD, IWanda
 	public boolean onUsedByWand(EntityPlayer player, ItemStack stack, World world, int x, int y, int z, int side) {
 		((TileDwarvenPool) world.getTileEntity(x, y, z)).onWanded(player, stack);
 		return true;
+	}
+
+	@Override
+	public LexiconEntry getEntry(World arg0, int arg1, int arg2, int arg3,
+			EntityPlayer arg4, ItemStack arg5) {
+		return LexiconData.dwarvenManaPool;
 	}
 }

@@ -8,6 +8,7 @@ import soundlogic.silva.common.block.BlockMultiblockBase;
 import soundlogic.silva.common.block.BlockMultiblockCore;
 import soundlogic.silva.common.block.BlockMultiblockProxyLava;
 import soundlogic.silva.common.block.ModBlocks;
+import vazkii.botania.api.lexicon.LexiconEntry;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -321,5 +322,7 @@ public abstract class MultiblockDataBase {
 	}
 	
 	public abstract boolean shouldTryTransform(int trial, boolean mirrorX, boolean mirrorZ, int rot);
+
+	public abstract LexiconEntry getLexiconEntry();
 	
 }

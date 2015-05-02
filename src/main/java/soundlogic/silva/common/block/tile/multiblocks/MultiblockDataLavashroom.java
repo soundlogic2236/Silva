@@ -8,7 +8,9 @@ import org.lwjgl.opengl.GL11;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataBase.BlockData;
+import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibMultiblockNames;
+import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.mana.IManaPool;
 import vazkii.botania.client.core.handler.HUDHandler;
 import net.minecraft.block.Block;
@@ -438,4 +440,11 @@ public class MultiblockDataLavashroom extends MultiblockDataBase {
 
 
 	public boolean shouldTryTransform(int trial, boolean mirrorX, boolean mirrorZ, int rot) { return trial==0; }
+
+
+
+	@Override
+	public LexiconEntry getLexiconEntry() {
+		return LexiconData.lavaShroom;
+	}
 }

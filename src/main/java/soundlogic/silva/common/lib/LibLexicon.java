@@ -52,6 +52,8 @@ public class LibLexicon {
 	public static final String DWARVEN_BARRIER_STONE = "dwarvenBarrierStone";
 	public static final String LAVA_SHROOM = "lavaShroom";
 	public static final String DARK_ELVES_DESCRIPTION = "darkElfDesc";
+	public static final String PORTAL_UPGRADES = "portalUpgrades";
+	public static final String DARK_ELF_RESOURCES = "darkElfResources";
 
 
 

@@ -29,7 +29,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.Optional;
 
-public class BlockManaCrystal extends BlockContainer implements IWandHUD, IWandable {
+public class BlockManaCrystal extends BlockContainer implements IWandHUD, IWandable, ILexiconable {
 
 	protected BlockManaCrystal() {
 		super(Material.iron);
@@ -114,6 +114,12 @@ public class BlockManaCrystal extends BlockContainer implements IWandHUD, IWanda
 	public boolean onUsedByWand(EntityPlayer player, ItemStack stack, World world, int x, int y, int z, int side) {
 		((TileManaCrystal) world.getTileEntity(x, y, z)).onWanded(player, stack);
 		return true;
+	}
+
+	@Override
+	public LexiconEntry getEntry(World arg0, int arg1, int arg2, int arg3,
+			EntityPlayer arg4, ItemStack arg5) {
+		return LexiconData.manaCrystal;
 	}
 
 }

@@ -17,12 +17,15 @@ import net.minecraft.world.World;
 import soundlogic.silva.client.lib.LibRenderIDs;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.Silva;
+import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibBlockNames;
+import vazkii.botania.api.lexicon.ILexiconable;
+import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.common.Botania;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockDarkenedDust extends Block{
+public class BlockDarkenedDust extends Block implements ILexiconable{
 
 	protected BlockDarkenedDust() {
         super(Material.circuits);
@@ -104,5 +107,11 @@ public class BlockDarkenedDust extends Block{
         {
             return player.getBreakSpeed(this, false, metadata, x, y, z) / hardness / 30F;
         }
+	}
+
+	@Override
+	public LexiconEntry getEntry(World arg0, int arg1, int arg2, int arg3,
+			EntityPlayer arg4, ItemStack arg5) {
+		return LexiconData.darkenedDust;
 	}
 }

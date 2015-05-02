@@ -27,7 +27,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockDwarfWeed extends BlockBush implements IShearable {
+public class BlockDwarfWeed extends BlockBush implements IShearable, ILexiconable {
 
 	protected BlockDwarfWeed() {
 		super(Material.plants);
@@ -52,6 +52,12 @@ public class BlockDwarfWeed extends BlockBush implements IShearable {
 	public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world,
 			int x, int y, int z, int fortune) {
 		return (ArrayList<ItemStack>) Arrays.asList(new ItemStack[]{new ItemStack(this)});
+	}
+
+	@Override
+	public LexiconEntry getEntry(World arg0, int arg1, int arg2, int arg3,
+			EntityPlayer arg4, ItemStack arg5) {
+		return LexiconData.basicDwarvenResources;
 	}
     
 

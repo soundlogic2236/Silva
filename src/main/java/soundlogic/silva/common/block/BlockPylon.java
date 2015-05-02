@@ -21,8 +21,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.Optional;
 
-//@Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.crafting.IInfusionStabiliser", striprefs = true)
-public class BlockPylon extends BlockContainer implements ILexiconable, IInfusionStabiliser{
+@Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.crafting.IInfusionStabiliser", striprefs = true)
+public class BlockPylon extends BlockContainer implements ILexiconable, IInfusionStabiliser {
 
 	static final int pylonTypes=15;
 	

@@ -28,7 +28,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public class BlockManaEater extends BlockContainer implements IWandable, IWandHUD, ILexiconable, IWireframeAABBProvider{
+public class BlockManaEater extends BlockContainer implements IWandable, IWandHUD, ILexiconable, IWireframeAABBProvider {
 
 	Random random;
 

@@ -5,7 +5,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.tile.TileBoomMoss;
 import soundlogic.silva.common.block.tile.TileDwarvenSign;
+import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibBlockNames;
+import vazkii.botania.api.lexicon.ILexiconable;
+import vazkii.botania.api.lexicon.LexiconEntry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -16,7 +19,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockDwarvenSign extends BlockContainer{
+public class BlockDwarvenSign extends BlockContainer implements ILexiconable{
 
 	protected BlockDwarvenSign() {
 		super(Material.iron);
@@ -133,5 +136,11 @@ public class BlockDwarvenSign extends BlockContainer{
      @Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
 		return new TileDwarvenSign();
+	}
+
+	@Override
+	public LexiconEntry getEntry(World arg0, int arg1, int arg2, int arg3,
+			EntityPlayer arg4, ItemStack arg5) {
+		return LexiconData.dwarfIntro;
 	}
 }

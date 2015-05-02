@@ -9,6 +9,9 @@ import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.block.tile.TilePortalCore;
 import soundlogic.silva.common.block.tile.TilePortalUpgradeCharge;
 import soundlogic.silva.common.block.tile.TilePortalUpgradeRedstone;
+import soundlogic.silva.common.lexicon.LexiconData;
+import vazkii.botania.api.lexicon.ILexiconable;
+import vazkii.botania.api.lexicon.LexiconEntry;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
@@ -21,7 +24,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockPortalUpgradeCharge extends BlockPortalUpgradeBase{
+public class BlockPortalUpgradeCharge extends BlockPortalUpgradeBase implements ILexiconable {
 
 	public IIcon opening;
 	public IIcon side;
@@ -112,4 +115,10 @@ public class BlockPortalUpgradeCharge extends BlockPortalUpgradeBase{
         }
         super.breakBlock(world, x, y, z, block, meta);
     }
+
+	@Override
+	public LexiconEntry getEntry(World arg0, int arg1, int arg2, int arg3,
+			EntityPlayer arg4, ItemStack arg5) {
+		return LexiconData.portalUpgrades;
+	}
 }

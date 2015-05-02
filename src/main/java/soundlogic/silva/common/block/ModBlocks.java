@@ -21,6 +21,7 @@ import soundlogic.silva.common.item.block.ItemBlockMod;
 import soundlogic.silva.common.item.block.ItemBlockModMultiple;
 import soundlogic.silva.common.item.block.ItemBlockModSlab;
 import soundlogic.silva.common.item.block.ItemBlockPylon;
+import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibBlockNames;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
@@ -123,7 +124,7 @@ public class ModBlocks {
 		manaCrystal=new BlockManaCrystal();
 		GameRegistry.registerBlock(manaCrystal, ItemBlockManaCrystal.class, LibBlockNames.MANA_CRYSTAL);
 		
-		dwarfRock=new BlockSimpleMultiple(Material.rock,2).setBlockName(LibBlockNames.DWARF_ROCK);
+		dwarfRock=new BlockSimpleMultiple(Material.rock,2).setEntry(LexiconData.basicDwarvenResources).setBlockName(LibBlockNames.DWARF_ROCK);
 		GameRegistry.registerBlock(dwarfRock, ItemBlockModMultiple.class, LibBlockNames.DWARF_ROCK);
 		
 		dwarvenManaPool=new BlockDwarvenPool().setBlockName(LibBlockNames.DWARVEN_POOL);
@@ -147,7 +148,7 @@ public class ModBlocks {
 		multiblockProxyLava=new BlockMultiblockProxyLava().setBlockName(LibBlockNames.MULTIBLOCK_PROXY_LAVA);
 		GameRegistry.registerBlock(multiblockProxyLava, ItemBlockMod.class, LibBlockNames.MULTIBLOCK_PROXY_LAVA);
 		
-		darkenedStone=new BlockSimple(Material.rock).setBlockName(LibBlockNames.DARKENED_STONE);
+		darkenedStone=new BlockSimple(Material.rock).setEntry(LexiconData.darkElfResources).setBlockName(LibBlockNames.DARKENED_STONE);
 		GameRegistry.registerBlock(darkenedStone, ItemBlockModMultiple.class, LibBlockNames.DARKENED_STONE);
 		
 		initTileEntities();

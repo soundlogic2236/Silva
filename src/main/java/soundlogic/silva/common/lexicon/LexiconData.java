@@ -88,6 +88,8 @@ public class LexiconData {
 	public static LexiconEntry dwarvenChain;
 	public static LexiconEntry dwarvenBarrierStone;
 	public static LexiconEntry lavaShroom;
+	public static LexiconEntry portalUpgrades;
+	public static LexiconEntry darkElfResources;
 
 	public static void preInit() {
 		
@@ -340,6 +342,12 @@ public class LexiconData {
 
 		darkenedDust=new SLexiconEntry(LibLexicon.DARKENED_DUST, BotaniaAPI.categoryDevices);
 		darkenedDust.setKnowledgeType(darkElfKnowledge).setLexiconPages(new PageAdvancedText("0", PageBackground.DEFAULT));
+
+		portalUpgrades=new SLexiconEntry(LibLexicon.PORTAL_UPGRADES, categoryWorldTree);
+		portalUpgrades.setKnowledgeType(worldTreeKnowledge).setLexiconPages(new PageAdvancedText("0", PageBackground.DEFAULT));
+
+		darkElfResources=new SLexiconEntry(LibLexicon.DARK_ELF_RESOURCES, categoryWorldTree);
+		darkElfResources.setKnowledgeType(darkElfKnowledge).setLexiconPages(new PageAdvancedText("0", PageBackground.DEFAULT));
 
 		lavaShroom=new SLexiconEntry(LibLexicon.LAVA_SHROOM, BotaniaAPI.categoryGenerationFlowers);
 		lavaShroom.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
