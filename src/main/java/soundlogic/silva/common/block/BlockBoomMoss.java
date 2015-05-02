@@ -30,10 +30,12 @@ import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.tile.TileBoomMoss;
 import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibBlockNames;
+import vazkii.botania.api.internal.IManaBurst;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
+import vazkii.botania.api.mana.IManaTrigger;
 
-public class BlockBoomMoss extends BlockContainer implements ILexiconable{
+public class BlockBoomMoss extends BlockContainer implements ILexiconable, IManaTrigger{
 
 	public BlockBoomMoss() {
 		super(Material.vine);
@@ -181,4 +183,11 @@ public class BlockBoomMoss extends BlockContainer implements ILexiconable{
         p_149666_3_.add(new ItemStack(p_149666_1_, 1, 1));
         p_149666_3_.add(new ItemStack(p_149666_1_, 1, 2));
     }
+
+	@Override
+	public void onBurstCollision(IManaBurst burst, World world, int x,
+			int y, int z) {
+		TileBoomMoss moss = (TileBoomMoss) world.getTileEntity(x, y, z);
+		moss.onBurstCollision(burst);
+	}
 }

@@ -11,6 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -23,6 +24,8 @@ import net.minecraftforge.event.world.BlockEvent;
 import soundlogic.silva.common.block.BlockBoomMoss;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.core.handler.BlockDropsHandler;
+import vazkii.botania.api.internal.IManaBurst;
+import vazkii.botania.api.mana.ILens;
 import vazkii.botania.api.mana.IManaReceiver;
 import vazkii.botania.common.core.helper.Vector3;
 
@@ -256,6 +259,29 @@ public class TileBoomMoss extends TileMod implements IManaReceiver{
 	}
 	public int getCostMana() {
 		return MANA_PER_MOSS;
+	}
+
+	public void onBurstCollision(IManaBurst burst) {
+		if(checkLens(burst.getSourceLens()))
+			detonate();
+	}
+	
+	private boolean checkLens(ItemStack lens) {
+		if(lensCanIgnite(lens))
+			return true;
+		Item item = lens.getItem();
+		if(item instanceof ILens)
+			return lensCanIgnite(((ILens) item).getCompositeLens(lens));
+		return false;
+	}
+	
+	private boolean lensCanIgnite(ItemStack lens) {
+		if(lens==null)
+			return false;
+		if(lens.getItem()!=vazkii.botania.common.item.ModItems.lens)
+			return false;
+		int meta = lens.getItemDamage();
+		return meta == 7 || meta == 11 || meta == 15;
 	}
 
 }
