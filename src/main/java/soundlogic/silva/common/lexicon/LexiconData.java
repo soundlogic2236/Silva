@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.ResourceLocation;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
@@ -97,7 +98,7 @@ public class LexiconData {
 		dwarvenKnowledge=BotaniaAPI.registerKnowledgeType(LibLexicon.KNOWLEDGE_DWARVEN, EnumChatFormatting.DARK_GRAY, false);
 		darkElfKnowledge=BotaniaAPI.registerKnowledgeType(LibLexicon.KNOWLEDGE_DARK_ELF, EnumChatFormatting.WHITE, false);
 		
-		categoryWorldTree=new LexiconCategory(LibLexicon.CATEGORY_TREE);
+		categoryWorldTree=new LexiconCategory(LibLexicon.CATEGORY_TREE).setIcon(new ResourceLocation(LibResources.WORLD_TREE_ICON + ".png"));
 		BotaniaAPI.addCategory(categoryWorldTree);
 		
 		ItemStack thrownPearl=new ItemStack(Items.ender_pearl);

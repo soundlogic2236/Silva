@@ -9,6 +9,7 @@ public class LibResources {
 	public static final String PREFIX_MODEL = PREFIX_MOD + "textures/model/";
 	public static final String PREFIX_GUI = PREFIX_MOD + "textures/gui/";
 	public static final String PREFIX_ENTRIES = PREFIX_GUI + "entries/";
+	public static final String PREFIX_CATEGORIES = PREFIX_GUI + "categories/";
 	public static final String PREFIX_ENTITY = PREFIX_MOD + "textures/entity/";
 	public static final String PREFIX_OBJ_MODEL = PREFIX_MOD + "model/";
 
@@ -100,6 +101,6 @@ public class LibResources {
 
 	public static final String OBJ_MODEL_MANA_CRYSTAL = PREFIX_OBJ_MODEL + "manaCrystal.obj";
 
-
+	public static final String WORLD_TREE_ICON = PREFIX_CATEGORIES + "worldTree";
 
 }
