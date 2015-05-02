@@ -4,19 +4,24 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.item.ModItems;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityStoneHorse extends EntityHorse{
 
-	public boolean rendering=false;
+	public boolean overrideSaddle=false;
 	
 	public EntityStoneHorse(World p_i1685_1_) {
 		super(p_i1685_1_);
 		this.isImmuneToFire=true;
+		System.out.println(this instanceof EntityHorse);
 	}
 	
 	@Override
@@ -58,7 +63,28 @@ public class EntityStoneHorse extends EntityHorse{
 	@Override
 	public boolean isHorseSaddled()
     {
-        return !rendering || super.isHorseSaddled();
+        return overrideSaddle || super.isHorseSaddled();
     }
 
+    protected boolean isMovementBlocked()
+    {
+    	overrideSaddle=true;
+    	boolean result = super.isMovementBlocked();
+    	overrideSaddle=false;
+    	return result;
+    }
+
+    public void setJumpPower(int p_110206_1_)
+    {
+    	overrideSaddle=true;
+    	super.setJumpPower(p_110206_1_);
+    	overrideSaddle=false;
+    }
+    
+    public void moveEntityWithHeading(float p_70612_1_, float p_70612_2_)
+    {
+    	overrideSaddle=true;
+    	super.moveEntityWithHeading(p_70612_1_, p_70612_2_);
+    	overrideSaddle=false;
+    }
 }
