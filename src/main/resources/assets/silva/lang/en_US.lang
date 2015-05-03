@@ -11,6 +11,12 @@ death.attack.alcohol.0=%1$s needs a liver to be a liver
 death.attack.alcohol.1=%1$s is not a dwarf
 death.attack.alcohol.2=%1$s should have stuck to two glasses
 death.attack.alcohol.3=%1$s drunk too much
+death.attack.alcohol.4=%1$s died in a pool of their own vomit
+death.attack.alcohol.5=%1$s was invited to keep on partying in the afterlife
+death.attack.alcohol.6=%1$s had their brains smashed out by a slice of lemon wrapped around a large gold brick
+death.attack.alcohol.7=%1$s was thrown out of the bar
+death.attack.alcohol.8=%1$s forgot to wake up
+death.attack.alcohol.9=%1$s was slain by hangover
 
 
 # DIMENSIONS
