@@ -23,11 +23,10 @@ public class ItemPriceProxy extends ItemMod{
 		stacks.add(new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,5));
 	}
 	
-	@SideOnly(Side.CLIENT)
-	public IIcon getIconIndex(ItemStack stack) {
+	public ItemStack getCurrentPriceStack() {
 		int ticks=Silva.proxy.getTicks();
 		int slot = (ticks / 20) % stacks.size();
-    	return stacks.get(slot).getIconIndex();
+    	return stacks.get(slot);
     }
 
 }

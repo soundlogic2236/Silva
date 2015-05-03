@@ -2,7 +2,13 @@ package soundlogic.silva.client.core.proxy;
 
 import java.io.IOException;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.EntityRenderer;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderSnowball;
+import net.minecraft.client.shader.ShaderGroup;
+import net.minecraft.client.util.JsonException;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -105,10 +111,32 @@ public class ClientProxy extends CommonProxy{
     	return ClientTickHandler.ticks;
     }
 
+    @Override
 	public void convertBooks() {
 		try {
 			BookConverter.convertBooks();
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+    @Override
+	public void setShader(ResourceLocation loc) {
+		Minecraft mc = Minecraft.getMinecraft();
+		EntityRenderer rend = mc.entityRenderer;
+		if(!OpenGlHelper.shadersSupported)
+			return;
+		if(loc==null) {
+			if(rend.isShaderActive())
+				rend.deactivateShader();
+			return;
+		}
+		if(rend.isShaderActive() && rend.getShaderGroup().getShaderGroupName().equals(loc.toString()))
+			return;
+        try {
+			rend.theShaderGroup = new ShaderGroup(mc.getTextureManager(), mc.getResourceManager(), mc.getFramebuffer(), loc);
+	        rend.theShaderGroup.createBindFramebuffers(mc.displayWidth, mc.displayHeight);
+		} catch (JsonException e) {
 			e.printStackTrace();
 		}
 	}

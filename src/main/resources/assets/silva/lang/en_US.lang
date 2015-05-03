@@ -6,6 +6,13 @@ silva.tooltips.clickToSignature=Shift click to see signature
 silva.tooltips.dwarfForged=Dwarf-Forged
 silva.tooltips.exposure=%s Energy Exposure
 
+# DEATH MESSAGES
+death.attack.alcohol.0=%1$s needs a liver to be a liver
+death.attack.alcohol.1=%1$s is not a dwarf
+death.attack.alcohol.2=%1$s should have stuck to two glasses
+death.attack.alcohol.3=%1$s drunk too much
+
+
 # DIMENSIONS
 silva.dimension.ginnungagap=Ginnungagap
 silva.dimension.vigridr=Vigridr

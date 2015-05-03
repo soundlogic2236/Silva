@@ -7,6 +7,7 @@ import java.util.Random;
 import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.core.handler.BookHandler;
 import soundlogic.silva.common.core.handler.ConfigHandler;
+import soundlogic.silva.common.item.ItemDwarvenMead;
 import soundlogic.silva.common.potion.ModPotions;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,6 +31,8 @@ public class PotionMeadHandler {
 	HashMap<EntityPlayer,Integer> prev1SwingTime=new HashMap<EntityPlayer,Integer>();
 	HashMap<EntityPlayer,Integer> prev2SwingTime=new HashMap<EntityPlayer,Integer>();
 	
+	private boolean lastTickWasMead=false;
+	
 	@SubscribeEvent
 	public void onUseItem(PlayerInteractEvent event) {
 		ItemStack stack = event.entityPlayer.getCurrentEquippedItem();
@@ -46,15 +49,34 @@ public class PotionMeadHandler {
 	}
 	@SubscribeEvent
 	public void onTick(PlayerTickEvent event) {
-		if(event.phase == Phase.END && !event.player.worldObj.isRemote) {
-			if(event.player.isPotionActive(ModPotions.potionMead)) {
-				if(event.player.swingProgressInt==1) {
-					prev2SwingTime.put(event.player, prev1SwingTime.get(event.player));
-					prev1SwingTime.put(event.player, event.player.ticksExisted);
+		if(event.phase == Phase.END) {
+			if(!event.player.worldObj.isRemote) {
+				if(event.player.isPotionActive(ModPotions.potionMead)) {
+					if(event.player.swingProgressInt==1) {
+						prev2SwingTime.put(event.player, prev1SwingTime.get(event.player));
+						prev1SwingTime.put(event.player, event.player.ticksExisted);
+					}
+		        	PotionEffect effect = event.player.getActivePotionEffect(ModPotions.potionMead);
+		        	if(effect.getAmplifier()>=3)
+		        		event.player.attackEntityFrom(ItemDwarvenMead.ALCOHOL_DAMAGE, Float.MAX_VALUE);
+				}
+				else {
+					prev1SwingTime.put(event.player, null);
 				}
 			}
 			else {
-				prev1SwingTime.put(event.player, null);
+				if(event.player.isPotionActive(ModPotions.potionMead)) {
+		        	PotionEffect effect = event.player.getActivePotionEffect(ModPotions.potionMead);
+		        	switch(effect.getAmplifier()) {
+		        	case 1:Silva.proxy.setShader(ItemDwarvenMead.shader_blur);break;
+		        	case 2:Silva.proxy.setShader(ItemDwarvenMead.shader_phosphor);break;
+		        	}
+					lastTickWasMead=true;
+				}
+				else if(lastTickWasMead) {
+					Silva.proxy.setShader(null);
+					lastTickWasMead=false;
+				}
 			}
 		}
 	}
@@ -82,6 +104,9 @@ public class PotionMeadHandler {
 				}
 			}
 		}
+	}
+	public static void onEnd() {
+		Silva.proxy.setShader(null);
 	}
 	
 }

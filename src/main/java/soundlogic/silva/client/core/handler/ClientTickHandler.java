@@ -42,7 +42,8 @@ public class ClientTickHandler {
 				if(player != null) {
 					ItemStack stack = player.getCurrentEquippedItem();
 					if(stack != null && stack.getItem() instanceof ItemTwigWand) {
-						for(IForestClientTick renderer : Silva.proxy.ForestWandRenderers) {
+						List<IForestClientTick> renderers = new ArrayList<IForestClientTick>(Silva.proxy.ForestWandRenderers);
+						for(IForestClientTick renderer : renderers) {
 							((IForestClientTick) renderer).onClientDisplayTick();
 						}
 					}

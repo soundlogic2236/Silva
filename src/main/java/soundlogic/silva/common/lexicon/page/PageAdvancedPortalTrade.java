@@ -15,6 +15,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
@@ -27,6 +28,8 @@ import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
 import soundlogic.silva.common.crafting.recipe.IPortalRecipe;
+import soundlogic.silva.common.item.ItemPriceProxy;
+import soundlogic.silva.common.item.ModItems;
 import soundlogic.silva.common.lexicon.PageBackground;
 import vazkii.botania.api.internal.IGuiLexiconEntry;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -109,7 +112,9 @@ public class PageAdvancedPortalTrade extends PageRecipe{
 			Object input = obj;
 			if(input instanceof String)
 				input = OreDictionary.getOres((String) input).get(0);
-
+			Item it = ((ItemStack)input).getItem();
+			if (it instanceof ItemPriceProxy)
+				input = ((ItemPriceProxy) it).getCurrentPriceStack();
 			renderItemAtInputPos(gui, i, (ItemStack) input);
 			i++;
 		}

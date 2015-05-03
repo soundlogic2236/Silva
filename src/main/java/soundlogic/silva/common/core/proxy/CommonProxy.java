@@ -8,6 +8,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.ModBlocks;
@@ -107,5 +108,9 @@ public class CommonProxy {
 	
 	public void convertBooks() {
 		// Only done client side during dev
+	}
+
+	public void setShader(ResourceLocation loc) {
+		// Nothing here as shaders aren't for the server!
 	}
 }

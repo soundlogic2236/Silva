@@ -2,21 +2,43 @@ package soundlogic.silva.common.item;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import soundlogic.silva.common.potion.ModPotions;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityPotion;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.IChatComponent;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 public class ItemDwarvenMead extends ItemMod{
 
+	static Random random = new Random();
+	
+	public static DamageSource ALCOHOL_DAMAGE = new DamageSource("alcohol") {
+		public IChatComponent func_151519_b(EntityLivingBase p_151519_1_)
+	    {
+	        EntityLivingBase entitylivingbase1 = p_151519_1_.func_94060_bK();
+	        String s = "death.attack." + this.damageType +"." + random.nextInt(4);
+	        String s1 = s + ".player";
+	        return entitylivingbase1 != null && StatCollector.canTranslate(s1) ? new ChatComponentTranslation(s1, new Object[] {p_151519_1_.func_145748_c_(), entitylivingbase1.func_145748_c_()}): new ChatComponentTranslation(s, new Object[] {p_151519_1_.func_145748_c_()});
+	    }
+	}.setDamageBypassesArmor().setDamageIsAbsolute();
+	public static ResourceLocation shader_blur = new ResourceLocation("minecraft:shaders/post/blur.json");
+	public static ResourceLocation shader_phosphor = new ResourceLocation("minecraft:shaders/post/phosphor.json");
+	
 	public ItemDwarvenMead(String unLocalizedName) {
 		super(unLocalizedName);
 	}
+	
 
 	@Override
 	public ItemStack onEaten(ItemStack p_77654_1_, World p_77654_2_, EntityPlayer p_77654_3_)
@@ -28,7 +50,11 @@ public class ItemDwarvenMead extends ItemMod{
 
         if (!p_77654_2_.isRemote)
         {
-            p_77654_3_.addPotionEffect(new PotionEffect(ModPotions.potionMead.getId(),20*60*5));
+        	PotionEffect prev = p_77654_3_.getActivePotionEffect(ModPotions.potionMead);
+        	int level = 0;
+        	if(prev!=null)
+        		level = prev.getAmplifier();
+            p_77654_3_.addPotionEffect(new PotionEffect(ModPotions.potionMead.getId(),20*60*5,level+1));
         }
 
         if (!p_77654_3_.capabilities.isCreativeMode)
