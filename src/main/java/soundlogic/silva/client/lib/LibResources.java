@@ -103,4 +103,10 @@ public class LibResources {
 
 	public static final String WORLD_TREE_ICON = PREFIX_CATEGORIES + "worldTree";
 
+	public static final String CARNILOTUS_SKIN = PREFIX_MOD + "carnilotusSkin";
+
+	public static final String CARNILOTUS_STEM = PREFIX_MOD + "carnilotusStem";
+
+	public static final String CARNILOTUS_INSIDE = PREFIX_MOD + "carnilotusInside";
+
 }

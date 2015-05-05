@@ -16,6 +16,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -50,7 +51,7 @@ public abstract class MultiblockDataBase {
 	
 	public boolean tryCreate(World world, int x, int y, int z) {
 		int trial = 0;
-		while(trial < 10) {
+		while(trial < 16) {
 			boolean mirrorX = ( trial & 1 ) > 0;
 			boolean mirrorZ = ( trial & 2 ) > 0;
 			boolean rotation1 = ( trial & 4 ) > 0;
@@ -62,6 +63,7 @@ public abstract class MultiblockDataBase {
 					return true;
 				}
 			}
+			trial++;
 		}
 		return false;
 	}
@@ -74,8 +76,12 @@ public abstract class MultiblockDataBase {
 				for(int k = 0;k<templateSlice2.length;k++) {
 					BlockData data = templateSlice2[k];
 					int[] coords = getTransformedCoords(x,y,z,i,j,k,mirrorX,mirrorZ,rotation);
-					if(!data.isValid(world, coords[0], coords[1], coords[2]))
+					if(!data.isValid(world, coords[0], coords[1], coords[2])) {
+						System.out.println(coords[0]+","+coords[1]+","+coords[2]);
+						System.out.println(i+","+j+","+k);
+						System.out.println(world.getBlock(coords[0], coords[1], coords[2]));
 						return false;
+					}
 				}
 			}
 		}
@@ -103,9 +109,15 @@ public abstract class MultiblockDataBase {
 	public void create(World world, int x, int y, int z, boolean mirrorX, boolean mirrorZ, int rotation) {
 		Block curBlock = world.getBlock(x,y,z);
 		int curMeta = world.getBlockMetadata(x,y,z);
+		TileEntity tempTile = world.getTileEntity(x, y, z);
+		NBTTagCompound curCompound = null;
+		if(tempTile!=null) {
+			curCompound = new NBTTagCompound();
+			tempTile.writeToNBT(curCompound);
+		}
 		world.setBlock(x,y,z, ModBlocks.multiblockCore,0,0);
 		TileMultiblockCore core=(TileMultiblockCore)world.getTileEntity(x,y,z);
-		core.setOriginalBlock(curBlock, curMeta);
+		core.setOriginalBlock(curBlock, curMeta, curCompound);
 		core.setData(this);
 		core.mirrorX=mirrorX;
 		core.mirrorZ=mirrorZ;
@@ -120,13 +132,19 @@ public abstract class MultiblockDataBase {
 					int[] coords = getTransformedCoords(core,i,j,k);
 					curBlock = world.getBlock(coords[0], coords[1], coords[2]);
 					curMeta = world.getBlockMetadata(coords[0], coords[1], coords[2]);
+					tempTile = world.getTileEntity(coords[0],coords[1],coords[2]);
+					curCompound = null;
+					if(tempTile!=null) {
+						curCompound = new NBTTagCompound();
+						tempTile.writeToNBT(curCompound);
+					}
 					if(coords[0] != x || coords[1] != y || coords[2] != z) {
 						data.setBlock(world, coords[0], coords[1], coords[2]);
 						TileEntity tile = world.getTileEntity(coords[0], coords[1], coords[2]);
 						if(tile!=null && tile instanceof TileMultiblockProxy) {
 							TileMultiblockProxy proxy = (TileMultiblockProxy)world.getTileEntity(coords[0], coords[1], coords[2]);
 							if(proxy!=null) {
-								proxy.setOriginalBlock(curBlock, curMeta);
+								proxy.setOriginalBlock(curBlock, curMeta, curCompound);
 								proxy.relativeX=x-coords[0];
 								proxy.relativeY=y-coords[1];
 								proxy.relativeZ=z-coords[2];
@@ -159,7 +177,31 @@ public abstract class MultiblockDataBase {
 		}
 	}
 	
-	private int[] getTransformedCoords(TileMultiblockCore core, int i, int j, int k) {
+	protected int[] convertRelativeCoords(TileMultiblockCore core, TileMultiblockBase tile) {
+		int[] relative = tile.getRelativePos();
+		return convertRelativeCoords(core,relative[0],relative[1],relative[2]);
+	}
+	protected int[] convertRelativeCoords(TileMultiblockCore core, int x, int y, int z) {
+		int[] offset = new int[]{x,y,z};
+		if(core.rotation<1)
+			offset = rotate90(offset);
+		if(core.rotation<2)
+			offset = rotate90(offset);
+		if(core.rotation<3)
+			offset = rotate90(offset);
+		offset = rotate90(offset);
+		if(core.mirrorX)
+			offset[0]=-offset[0];
+		if(core.mirrorZ)
+			offset[2]=-offset[2];
+		return  new int[]{
+				templateOrigin[1]+offset[1],
+				templateOrigin[0]+offset[0],
+				templateOrigin[2]+offset[2],
+		};
+	}
+	
+	protected int[] getTransformedCoords(TileMultiblockCore core, int i, int j, int k) {
 		return getTransformedCoords(core.xCoord,core.yCoord,core.zCoord,i,j,k,core.mirrorX,core.mirrorZ,core.rotation);
 	}
 	
@@ -250,7 +292,7 @@ public abstract class MultiblockDataBase {
 			}
 		};
 
-		private BlockData()
+		protected BlockData()
 		{
 		}
 		

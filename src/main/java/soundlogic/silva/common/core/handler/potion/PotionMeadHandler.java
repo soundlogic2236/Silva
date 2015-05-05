@@ -68,8 +68,10 @@ public class PotionMeadHandler {
 				if(event.player.isPotionActive(ModPotions.potionMead)) {
 		        	PotionEffect effect = event.player.getActivePotionEffect(ModPotions.potionMead);
 		        	switch(effect.getAmplifier()) {
+		        	case 0:break;
 		        	case 1:Silva.proxy.setShader(ItemDwarvenMead.shader_blur);break;
 		        	case 2:Silva.proxy.setShader(ItemDwarvenMead.shader_phosphor);break;
+		        	default:Silva.proxy.setShader(ItemDwarvenMead.shader_phosphor);break;
 		        	}
 					lastTickWasMead=true;
 				}

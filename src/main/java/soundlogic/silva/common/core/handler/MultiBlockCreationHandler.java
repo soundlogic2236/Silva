@@ -3,6 +3,7 @@ package soundlogic.silva.common.core.handler;
 import java.util.List;
 
 import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataBase;
+import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataCarnilotus;
 import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataLavashroom;
 import soundlogic.silva.common.item.ModItems;
 import vazkii.botania.api.mana.ManaItemHandler;
@@ -20,6 +21,7 @@ public class MultiBlockCreationHandler {
 
 	public MultiBlockCreationHandler() {
 		new MultiblockDataLavashroom();
+		new MultiblockDataCarnilotus();
 	}
 	
 	@SubscribeEvent

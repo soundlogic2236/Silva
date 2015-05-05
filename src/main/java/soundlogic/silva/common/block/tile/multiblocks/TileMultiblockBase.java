@@ -12,11 +12,13 @@ public abstract class TileMultiblockBase extends TileMod{
 
 	private static final String TAG_ORIGINAL_BLOCK = "originalBlock";
 	private static final String TAG_ORIGINAL_METADATA = "originalMetadata";
+	private static final String TAG_ORIGINAL_NBT = "originalNBT";
 	private static final String TAG_SOLID = "isSolid";
 	private static final String TAG_NEEDS_REFRESH = "refresh";
 	
 	private Block originalBlock;
 	private int originalMetadata;
+	private NBTTagCompound originalNBT;
 	
 	public IIcon iconsForSides[] = new IIcon[6];
 	public boolean solid=true;
@@ -30,7 +32,7 @@ public abstract class TileMultiblockBase extends TileMod{
 	public void updateEntity() {
 		if(worldObj.isRemote && visualNeedsRefresh) {
 			int[] coords = getRelativePos();
-			if(getCore().data!=null) {
+			if(getCore()!=null && getCore().data!=null) {
 				getCore().data.setVisualData(getCore(), this, coords[0], coords[1], coords[2]);
 				worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 				visualNeedsRefresh = false;
@@ -42,6 +44,8 @@ public abstract class TileMultiblockBase extends TileMod{
 	
 	protected void breakMultiblock() {
 		this.getWorldObj().setBlock(xCoord, yCoord, zCoord, originalBlock, originalMetadata, 3);
+		if(originalNBT!=null)
+			this.getWorldObj().getTileEntity(xCoord, yCoord, zCoord).readFromNBT(originalNBT);
 	}
 
 	@Override
@@ -50,6 +54,8 @@ public abstract class TileMultiblockBase extends TileMod{
 		cmp.setInteger(TAG_ORIGINAL_BLOCK, Block.getIdFromBlock(originalBlock));
 		cmp.setInteger(TAG_ORIGINAL_METADATA, originalMetadata);
 		cmp.setBoolean(TAG_SOLID, solid);
+		if(originalNBT!=null)
+			cmp.setTag(TAG_ORIGINAL_NBT, originalNBT);
 	}
 
 	@Override
@@ -60,17 +66,23 @@ public abstract class TileMultiblockBase extends TileMod{
 		this.solid=cmp.getBoolean(TAG_SOLID);
 		if(cmp.hasKey(TAG_NEEDS_REFRESH))
 			this.visualNeedsRefresh = cmp.getBoolean(TAG_NEEDS_REFRESH);
+		if(cmp.hasKey(TAG_ORIGINAL_NBT))
+			originalNBT=cmp.getCompoundTag(TAG_ORIGINAL_NBT);
 	}
 	
-	public void setOriginalBlock(Block block, int meta) {
+	public void setOriginalBlock(Block block, int meta, NBTTagCompound cmp) {
 		this.originalBlock=block;
 		this.originalMetadata=meta;
+		this.originalNBT=cmp;
 	}
 	public Block getOriginalBlock() {
 		return this.originalBlock;
 	}
 	public int getOriginalMeta() {
 		return this.originalMetadata;
+	}
+	public NBTTagCompound getOriginalNBT() {
+		return this.originalNBT;
 	}
 	public void markForRefresh() {
 		this.visualNeedsRefresh=true;
