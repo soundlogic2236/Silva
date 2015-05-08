@@ -14,6 +14,7 @@ import soundlogic.silva.common.block.tile.TilePortalUpgradeRedstone;
 import soundlogic.silva.common.block.tile.TilePylon;
 import soundlogic.silva.common.block.tile.multiblocks.TileMultiblockCore;
 import soundlogic.silva.common.block.tile.multiblocks.TileMultiblockProxy;
+import soundlogic.silva.common.core.handler.DustHandler;
 import soundlogic.silva.common.item.block.ItemBlockBoomMoss;
 import soundlogic.silva.common.item.block.ItemBlockDwarvenSign;
 import soundlogic.silva.common.item.block.ItemBlockManaCrystal;
@@ -41,10 +42,12 @@ public class ModBlocks {
 
 	// Enhanced Portal
 	public static Block portalCore;
-	public static Block pixieDust;
 	public static Block portalUpgradeRedstone;
 	public static Block portalUpgradeInhibit;
 	public static Block portalUpgradeCharge;
+	public static Block pixieDust;
+	public static Block glowstoneDust;
+	public static Block blazeDust;
 
 	// Pylons
 	public static Block dimensionalPylon;
@@ -53,6 +56,7 @@ public class ModBlocks {
 	public static Block multiblockProxy;
 	public static Block multiblockCore;
 	public static Block multiblockProxyLava;
+	public static Block multiblockProxyNoRender;
 
 	public static Block consumingWeed;
 	public static Block dwarfWeed;
@@ -111,6 +115,15 @@ public class ModBlocks {
 		
 		pixieDust=new BlockPixieDust();
 		GameRegistry.registerBlock(pixieDust, ItemBlockMod.class, LibBlockNames.PIXIE_DUST);
+		DustHandler.registerBlock((IDustBlock) pixieDust);
+
+		glowstoneDust=new BlockGlowstoneDust();
+		GameRegistry.registerBlock(glowstoneDust, ItemBlockMod.class, LibBlockNames.GLOWSTONE_DUST);
+		DustHandler.registerBlock((IDustBlock) glowstoneDust);
+
+		blazeDust=new BlockBlazeDust();
+		GameRegistry.registerBlock(blazeDust, ItemBlockMod.class, LibBlockNames.BLAZE_DUST);
+		DustHandler.registerBlock((IDustBlock) blazeDust);
 
 		darkenedDust=new BlockDarkenedDust();
 		GameRegistry.registerBlock(darkenedDust, ItemBlockMod.class, LibBlockNames.DARKENED_DUST);
@@ -148,6 +161,9 @@ public class ModBlocks {
 		multiblockProxyLava=new BlockMultiblockProxyLava().setBlockName(LibBlockNames.MULTIBLOCK_PROXY_LAVA);
 		GameRegistry.registerBlock(multiblockProxyLava, ItemBlockMod.class, LibBlockNames.MULTIBLOCK_PROXY_LAVA);
 		
+		multiblockProxyNoRender=new BlockMultiblockProxyNoRender(Material.glass).setBlockName(LibBlockNames.MULTIBLOCK_PROXY_NO_RENDER);
+		GameRegistry.registerBlock(multiblockProxyNoRender, ItemBlockMod.class, LibBlockNames.MULTIBLOCK_PROXY_NO_RENDER);
+		
 		darkenedStone=new BlockSimple(Material.rock).setEntry(LexiconData.darkElfResources).setBlockName(LibBlockNames.DARKENED_STONE);
 		GameRegistry.registerBlock(darkenedStone, ItemBlockModMultiple.class, LibBlockNames.DARKENED_STONE);
 		
@@ -169,6 +185,7 @@ public class ModBlocks {
 		registerTile(TileMultiblockProxy.class, LibBlockNames.MULTIBLOCK_PROXY);
 		registerTile(TileMultiblockCore.class, LibBlockNames.MULTIBLOCK_CORE);
 		registerTile(TileMultiblockProxy.class, LibBlockNames.MULTIBLOCK_PROXY_LAVA);
+		registerTile(TileMultiblockProxy.class, LibBlockNames.MULTIBLOCK_PROXY_NO_RENDER);
 	}
 	
 	private static void registerTile(Class<? extends TileEntity> clazz, String key) {

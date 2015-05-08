@@ -25,50 +25,19 @@ import vazkii.botania.common.Botania;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockDarkenedDust extends Block implements ILexiconable{
+public class BlockDarkenedDust extends BlockDust implements ILexiconable{
 
 	protected BlockDarkenedDust() {
-        super(Material.circuits);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
+        super();
         this.setHardness(-1);
 		setBlockName(LibBlockNames.DARKENED_DUST);
 		setCreativeTab(Silva.creativeTab);
 	}
 	
-    @Override
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
-    {
-        return null;
-    }
-
-    @Override
-    public boolean isOpaqueCube()
-    {
-        return false;
-    }
-
-    @Override
-    public boolean renderAsNormalBlock()
-    {
-        return false;
-    }
-
-    @Override
-    public int getRenderType()
-    {
-        return LibRenderIDs.idDarkenedDust;
-    }
-
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister Reg)
     {
         blockIcon = Reg.registerIcon(LibResources.DARKENED_DUST);
-    }
-    
-    @Override
-    public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_, int p_149742_3_, int p_149742_4_)
-    {
-        return World.doesBlockHaveSolidTopSurface(p_149742_1_, p_149742_2_, p_149742_3_ - 1, p_149742_4_) || p_149742_1_.getBlock(p_149742_2_, p_149742_3_ - 1, p_149742_4_) == Blocks.glowstone;
     }
     
     @Override

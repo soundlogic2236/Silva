@@ -28,31 +28,19 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockPixieDust extends BlockDust implements ILexiconable{
+public class BlockGlowstoneDust extends BlockDust {
 
-	protected BlockPixieDust() {
-        super(new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,8));
-		setBlockName(LibBlockNames.PIXIE_DUST);
+	protected BlockGlowstoneDust() {
+        super(new ItemStack(Items.glowstone_dust));
+		setBlockName(LibBlockNames.GLOWSTONE_DUST);
+		setLightLevel(.5F);
 	}
 	
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, int x, int y, int z, Random random)
-    {
-        for(int i=0;i<3;i++) {
-	        double d0 = (double)x + 0.5D + ((double)random.nextFloat() - 0.5D) * 0.2D;
-	        double d1 = (double)((float)y + 0.0625F);
-	        double d2 = (double)z + 0.5D + ((double)random.nextFloat() - 0.5D) * 0.2D;
-	
-	        Botania.proxy.sparkleFX(world, d0, d1, d2, 1F, 0.25F, 0.9F, 0.1F + random.nextFloat() * 0.25F, 12);
-        }
-    }
-    
-    @Override
-    @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess p_149720_1_, int p_149720_2_, int p_149720_3_, int p_149720_4_)
     {
-        return 0xf51fff;
+        return 0xdfdf00;
     }
 
     @Override
@@ -63,10 +51,4 @@ public class BlockPixieDust extends BlockDust implements ILexiconable{
         return output;
     }
     
-	@Override
-	public LexiconEntry getEntry(World arg0, int arg1, int arg2, int arg3,
-			EntityPlayer arg4, ItemStack arg5) {
-		return LexiconData.elvenResources;
-	}
-
 }

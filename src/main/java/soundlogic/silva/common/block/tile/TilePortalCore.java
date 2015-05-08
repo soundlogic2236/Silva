@@ -14,6 +14,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import soundlogic.silva.common.block.IDustBlock;
 import soundlogic.silva.common.block.IPortalFocus;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
@@ -776,7 +777,7 @@ public class TilePortalCore extends TileMod{
 	}
 	
 	private boolean isSignatureBlock(Block block) {
-		return block==ModBlocks.pixieDust || block==Blocks.redstone_wire || block==ModBlocks.darkenedDust;
+		return block==Blocks.redstone_wire || block instanceof IDustBlock;
 	}
 	
 	public boolean upgradesPermitBlockExposureTicks() {

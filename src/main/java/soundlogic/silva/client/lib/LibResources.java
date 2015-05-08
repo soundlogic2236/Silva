@@ -109,4 +109,10 @@ public class LibResources {
 
 	public static final String CARNILOTUS_INSIDE = PREFIX_MOD + "carnilotusInside";
 
+	public static final String CARNILOTUS_ACID = PREFIX_MOD + "carnilotusAcid";
+
+	public static final String CARNILOTUS_TEETH_LIP = PREFIX_MOD + "carnilotusTeethLip";
+
+	public static final String CARNILOTUS_TEETH_INNER = PREFIX_MOD + "carnilotusTeethInner";
+
 }

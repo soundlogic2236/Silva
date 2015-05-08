@@ -1,8 +1,11 @@
 package soundlogic.silva.common.block.tile.multiblocks;
 
+import java.util.ArrayList;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.util.IIcon;
@@ -13,20 +16,23 @@ public abstract class TileMultiblockBase extends TileMod{
 	private static final String TAG_ORIGINAL_BLOCK = "originalBlock";
 	private static final String TAG_ORIGINAL_METADATA = "originalMetadata";
 	private static final String TAG_ORIGINAL_NBT = "originalNBT";
-	private static final String TAG_SOLID = "isSolid";
 	private static final String TAG_NEEDS_REFRESH = "refresh";
+	private static final String TAG_SOLID = "isSolid";
+	private static final String TAG_LIGHT = "light";
+	private static final String TAG_HARDNESS = "hardness";
+	private static final String TAG_HARDNESS_ORIGINAL = "hardnessOriginal";
 	
 	private Block originalBlock;
 	private int originalMetadata;
 	private NBTTagCompound originalNBT;
+	public float originalHardness;
 	
 	public IIcon iconsForSides[] = new IIcon[6];
 	public boolean solid=true;
 	
 	private boolean visualNeedsRefresh = true;
 	public int lightValue = -1;
-	public boolean canCollideCheck = true;
-	public int hardness = -2;
+	public float hardness = -2;
 	
 	@Override
 	public void updateEntity() {
@@ -42,7 +48,7 @@ public abstract class TileMultiblockBase extends TileMod{
 			breakMultiblock();
 	}
 	
-	protected void breakMultiblock() {
+	public void breakMultiblock() {
 		this.getWorldObj().setBlock(xCoord, yCoord, zCoord, originalBlock, originalMetadata, 3);
 		if(originalNBT!=null)
 			this.getWorldObj().getTileEntity(xCoord, yCoord, zCoord).readFromNBT(originalNBT);
@@ -54,6 +60,9 @@ public abstract class TileMultiblockBase extends TileMod{
 		cmp.setInteger(TAG_ORIGINAL_BLOCK, Block.getIdFromBlock(originalBlock));
 		cmp.setInteger(TAG_ORIGINAL_METADATA, originalMetadata);
 		cmp.setBoolean(TAG_SOLID, solid);
+		cmp.setInteger(TAG_LIGHT, lightValue);
+		cmp.setFloat(TAG_HARDNESS, hardness);
+		cmp.setFloat(TAG_HARDNESS_ORIGINAL, originalHardness);
 		if(originalNBT!=null)
 			cmp.setTag(TAG_ORIGINAL_NBT, originalNBT);
 	}
@@ -64,16 +73,20 @@ public abstract class TileMultiblockBase extends TileMod{
 		this.originalBlock=Block.getBlockById(cmp.getInteger(TAG_ORIGINAL_BLOCK));
 		this.originalMetadata=cmp.getInteger(TAG_ORIGINAL_METADATA);
 		this.solid=cmp.getBoolean(TAG_SOLID);
+		this.lightValue=cmp.getInteger(TAG_LIGHT);
+		this.hardness=cmp.getFloat(TAG_HARDNESS);
+		this.originalHardness=cmp.getFloat(TAG_HARDNESS_ORIGINAL);
 		if(cmp.hasKey(TAG_NEEDS_REFRESH))
 			this.visualNeedsRefresh = cmp.getBoolean(TAG_NEEDS_REFRESH);
 		if(cmp.hasKey(TAG_ORIGINAL_NBT))
 			originalNBT=cmp.getCompoundTag(TAG_ORIGINAL_NBT);
 	}
 	
-	public void setOriginalBlock(Block block, int meta, NBTTagCompound cmp) {
+	public void setOriginalBlock(Block block, int meta, NBTTagCompound cmp, float hardness) {
 		this.originalBlock=block;
 		this.originalMetadata=meta;
 		this.originalNBT=cmp;
+		this.originalHardness=hardness;
 	}
 	public Block getOriginalBlock() {
 		return this.originalBlock;

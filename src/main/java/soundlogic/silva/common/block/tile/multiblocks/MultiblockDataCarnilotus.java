@@ -25,6 +25,7 @@ import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -57,6 +58,9 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 	IIcon iconSkin;
 	IIcon iconStem;
 	IIcon iconInside;
+	public IIcon iconAcid;
+	public IIcon iconTeethLip;
+	public IIcon[] iconTeethInner = new IIcon[9];
 	
 	public MultiblockDataCarnilotus() {
 		super(new BlockData(vazkii.botania.common.block.ModBlocks.livingwood,0));
@@ -193,11 +197,11 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 				 {BlockData.MULTIBLOCK, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.WILDCARD},
 				 {BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK, BlockData.WILDCARD,BlockData.WILDCARD}},
 					
-				{{BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK, BlockData.WILDCARD,BlockData.WILDCARD},
-				 {BlockData.MULTIBLOCK, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.WILDCARD},
-				 {BlockData.MULTIBLOCK, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.WILDCARD},
-				 {BlockData.MULTIBLOCK, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.WILDCARD},
-				 {BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK, BlockData.WILDCARD,BlockData.WILDCARD}},
+				{{BlockData.WILDCARD, BlockData.MULTIBLOCK_NO_RENDER, BlockData.MULTIBLOCK_NO_RENDER, BlockData.MULTIBLOCK_NO_RENDER, BlockData.WILDCARD,BlockData.WILDCARD},
+				 {BlockData.MULTIBLOCK_NO_RENDER, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.WILDCARD},
+				 {BlockData.MULTIBLOCK_NO_RENDER, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.WILDCARD},
+				 {BlockData.MULTIBLOCK_NO_RENDER, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.WILDCARD},
+				 {BlockData.WILDCARD, BlockData.MULTIBLOCK_NO_RENDER, BlockData.MULTIBLOCK_NO_RENDER, BlockData.MULTIBLOCK_NO_RENDER, BlockData.WILDCARD,BlockData.WILDCARD}},
 						
 				{{BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD,BlockData.WILDCARD},
 				 {BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.WILDCARD},
@@ -230,182 +234,114 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 	}
 
 	boolean captureDrops;
-	List<EntityItem> capturedDrops;
+	List<EntityItem> capturedDrops = new ArrayList<EntityItem>();
 	
 	@SubscribeEvent
 	public void onDrops(LivingDropsEvent event) {
 		if(!captureDrops)
 			return;
-		capturedDrops=event.drops;
+		capturedDrops=new ArrayList<EntityItem>(event.drops);
 		event.setCanceled(true);
 	}
 	
+	DamageSource acid = new DamageSource("carnilotus");
 
 	@Override
 	public void onTick(TileMultiblockCore core) {
-		boolean hasWater=checkForWater(core);
 		CarnilotusTileData data = (CarnilotusTileData) core.tileData;
-		if(hasWater) {
-			AxisAlignedBB aabb = getWaterBounds(core);
-			if(!data.activated) {
-				List<EntityItem> items = core.getWorldObj().getEntitiesWithinAABB(EntityItem.class, aabb);
-				for(EntityItem ent : items) {
-					ItemStack stack = ent.getEntityItem();
-					int count = stack.stackSize;
-					int meta = stack.getItemDamage();
-					int toRemove = 0;
-					System.out.println(stack);
-					if(stack.getItem() == vazkii.botania.common.item.ModItems.rune) {
-						if(meta == 0) {
-							toRemove = Math.min(count, data.waterRunesNeeded);
-							data.waterRunesNeeded-=toRemove;
-						}
-						else if (meta == 10) {
-							toRemove = Math.min(count, data.gluttonyRunesNeeded);
-							data.gluttonyRunesNeeded-=toRemove;
-						}
-						else if (meta == 8) {
-							toRemove = Math.min(count, data.manaRunesNeeded);
-							data.manaRunesNeeded-=toRemove;
-						}
-						else if (meta == 13) {
-							toRemove = Math.min(count, data.wrathRunesNeeded);
-							data.wrathRunesNeeded-=toRemove;
-						}
-					}
-					else if(stack.getItem() == Items.sugar) {
-						toRemove = Math.min(count, data.sugarNeeded);
-						data.sugarNeeded-=toRemove;
-					}
-					stack.stackSize-=toRemove;
-				}
-				if(data.waterRunesNeeded == 0 && data.gluttonyRunesNeeded == 0 && data.manaRunesNeeded == 0 && data.wrathRunesNeeded == 0 && data.sugarNeeded == 0) {
-					data.activated=true;
-				}
-			}
-			else {
-				List<EntityLiving> ents = core.getWorldObj().getEntitiesWithinAABB(EntityLiving.class, aabb);
-				for(EntityLiving ent : ents) {
-					if(Math.random()<.2) {
-						captureDrops=true;
-						ent.attackEntityFrom(DamageSource.magic, 1);
-						captureDrops=false;
-						if(ent.isDead) {
-							for(EntityItem drop : capturedDrops) {
-								ItemStack stack = drop.getEntityItem();
-								ItemStack toAdd = stack.copy();
-								toAdd.stackSize=1;
-								for(int i = 0 ; i < stack.stackSize ; i ++)
-									data.drops.add(toAdd.copy());
-							}
-						}
-					}
-				}
-				if(data.drops.size()>0) {
-					ItemStack stack = data.drops.get(0);
-					ItemStack smelted = FurnaceRecipes.smelting().getSmeltingResult(stack);
-					boolean isBone = stack.getItem() == Items.bone;
-					boolean isFood = stack.getItem() instanceof ItemFood;
-					boolean isSmeltedFood = smelted.getItem() instanceof ItemFood;
-					int levelUnsmelted = 0;
-					int levelSmelted = 0;
-					float satUnsmelted = 0F;
-					float satSmelted = 0F;
-					if(isBone)
-						data.bonemealLevel+=3*300;
-					if(isFood) {
-						ItemFood item = (ItemFood) stack.getItem();
-						levelUnsmelted = item.func_150905_g(stack);
-						satUnsmelted = item.func_150906_h(stack);
-					}
-					if(isSmeltedFood) {
-						ItemFood item = (ItemFood) smelted.getItem();
-						levelSmelted = item.func_150905_g(smelted);
-						satSmelted = item.func_150906_h(smelted);
-					}
-					if(stack.getItem() == Items.spider_eye) {
-						
-					}
-					int mana = levelUnsmelted+levelUnsmelted*(64+16*levelSmelted);
-					if(data.bonemealLevel>0) {
-						mana = (int) (mana * (1F+Math.min(5, data.bonemealLevel/300F)));
-						data.bonemealLevel=Math.max(0, data.bonemealLevel-30);
-					}
-					data.currentMana=Math.min(mana+data.currentMana, maxMana);
-					data.drops.remove(0);
-				}
-			}
-		}
-/*		int lavaX = core.xCoord;
-		int lavaY = core.yCoord+4;
-		int lavaZ = core.zCoord;
-		LavashroomTileData data = (LavashroomTileData) core.tileData;
-		Block block = core.getWorldObj().getBlock(lavaX, lavaY, lavaZ);
-		if(data.activated && block == Blocks.lava) {
-			if(data.lavaAmount<=maxLava-1000) {
-				data.lavaAmount += 1000;
-				if(data.lavaAmount==1000)
-					core.markForVisualUpdate();
-				core.getWorldObj().setBlockToAir(lavaX, lavaY, lavaZ);
-			}
-		}
-		else if(!data.activated && block == Blocks.red_mushroom_block) {
-			core.getWorldObj().setBlockToAir(lavaX, lavaY, lavaZ);
-		}
-		else if(!data.activated && block == Blocks.lava) {
-			AxisAlignedBB aabb= AxisAlignedBB.getBoundingBox(lavaX,lavaY,lavaZ,lavaX+1,lavaY+1,lavaZ+1);
+		AxisAlignedBB aabb = getWaterBounds(core);
+		if(!data.activated && checkForWater(core)) {
 			List<EntityItem> items = core.getWorldObj().getEntitiesWithinAABB(EntityItem.class, aabb);
 			for(EntityItem ent : items) {
 				ItemStack stack = ent.getEntityItem();
-				if(stack.getItem() != vazkii.botania.common.item.ModItems.rune)
-					continue;
 				int count = stack.stackSize;
 				int meta = stack.getItemDamage();
 				int toRemove = 0;
-				if(meta == 1) {
-					toRemove = Math.min(count, data.fireRunesNeeded);
-					data.fireRunesNeeded-=toRemove;
+				if(stack.getItem() == vazkii.botania.common.item.ModItems.rune) {
+					if(meta == 0) {
+						toRemove = Math.min(count, data.waterRunesNeeded);
+						data.waterRunesNeeded-=toRemove;
+					}
+					else if (meta == 10) {
+						toRemove = Math.min(count, data.gluttonyRunesNeeded);
+						data.gluttonyRunesNeeded-=toRemove;
+					}
+					else if (meta == 8) {
+						toRemove = Math.min(count, data.manaRunesNeeded);
+						data.manaRunesNeeded-=toRemove;
+					}
+					else if (meta == 13) {
+						toRemove = Math.min(count, data.wrathRunesNeeded);
+						data.wrathRunesNeeded-=toRemove;
+					}
 				}
-				else if (meta == 2) {
-					toRemove = Math.min(count, data.earthRunesNeeded);
-					data.earthRunesNeeded-=toRemove;
-				}
-				else if (meta == 8) {
-					toRemove = Math.min(count, data.manaRunesNeeded);
-					data.manaRunesNeeded-=toRemove;
-				}
-				else if (meta == 13) {
-					toRemove = Math.min(count, data.wrathRunesNeeded);
-					data.wrathRunesNeeded-=toRemove;
+				else if(stack.getItem() == Items.sugar) {
+					toRemove = Math.min(count, data.sugarNeeded);
+					data.sugarNeeded-=toRemove;
 				}
 				stack.stackSize-=toRemove;
 			}
-			if(data.fireRunesNeeded == 0 && data.earthRunesNeeded == 0 && data.manaRunesNeeded == 0 && data.wrathRunesNeeded == 0) {
+			if(data.waterRunesNeeded == 0 && data.gluttonyRunesNeeded == 0 && data.manaRunesNeeded == 0 && data.wrathRunesNeeded == 0 && data.sugarNeeded == 0) {
 				data.activated=true;
+				clearWater(core);
+				core.getWorldObj().markBlockForUpdate(core.xCoord, core.yCoord, core.zCoord);
 			}
 		}
-		if(data.activated) {
-			if(data.lavaAmount>0) {
-				data.lavaAmount = Math.max(0, data.lavaAmount-2);
-				if(data.currentMana <= maxMana) {
-					if(data.fuels.size()>0 && data.lavaAmount>0) {
-						data.lavaAmount = Math.max(0, data.lavaAmount-10);
-						data.fuelTicks+=100;
-						data.currentMana= Math.min(maxMana, data.currentMana + data.fuels.get(0)/20);
-						if(data.fuelTicks>=data.fuels.get(0))
-							data.fuels.remove(0);
+		else if (data.activated && checkForEmpty(core)) {
+			List<EntityLivingBase> ents = core.getWorldObj().getEntitiesWithinAABB(EntityLivingBase.class, aabb);
+			for(EntityLivingBase ent : ents) {
+				ent.fallDistance=0;
+				if(Math.random()<.2) {
+					if(ent instanceof EntityLiving)
+						captureDrops=true;
+					ent.attackEntityFrom(acid, 1);
+					captureDrops=false;
+					if(!capturedDrops.isEmpty()) {
+						for(EntityItem drop : capturedDrops) {
+							ItemStack stack = drop.getEntityItem();
+							ItemStack toAdd = stack.copy();
+							toAdd.stackSize=1;
+							for(int i = 0 ; i < stack.stackSize ; i ++)
+								data.drops.add(toAdd.copy());
+						}
+						capturedDrops.clear();
 					}
 				}
-				if(data.lavaAmount==0) {
-					core.markForVisualUpdate();
-				}
 			}
-			else {
-				data.fuels.clear();
-				data.fuelTicks=0;
+			if(data.drops.size()>0) {
+				ItemStack stack = data.drops.get(0);
+				ItemStack smelted = FurnaceRecipes.smelting().getSmeltingResult(stack);
+				boolean isBone = stack.getItem() == Items.bone;
+				boolean isFood = stack.getItem() instanceof ItemFood;
+				boolean isSmeltedFood = smelted==null ? false : smelted.getItem() instanceof ItemFood;
+				int levelUnsmelted = 0;
+				int levelSmelted = 0;
+				float satUnsmelted = 0F;
+				float satSmelted = 0F;
+				if(isBone)
+					data.bonemealLevel+=3*300;
+				if(isFood) {
+					ItemFood item = (ItemFood) stack.getItem();
+					levelUnsmelted = item.func_150905_g(stack);
+					satUnsmelted = item.func_150906_h(stack);
+				}
+				if(isSmeltedFood) {
+					ItemFood item = (ItemFood) smelted.getItem();
+					levelSmelted = item.func_150905_g(smelted);
+					satSmelted = item.func_150906_h(smelted);
+				}
+				if(stack.getItem() == Items.spider_eye) {
+					
+				}
+				int mana = levelUnsmelted*levelUnsmelted*(64+16*levelSmelted);
+				if(data.bonemealLevel>0) {
+					mana = (int) (mana * (1F+Math.min(5, data.bonemealLevel/300F)));
+					data.bonemealLevel=Math.max(0, data.bonemealLevel-30);
+				}
+				data.currentMana=Math.min(mana+data.currentMana, maxMana);
+				data.drops.remove(0);
 			}
 		}
-		
 		if(data.currentMana>0) {
 			ForgeDirection[] directions = new ForgeDirection[] {
 					ForgeDirection.NORTH,
@@ -428,7 +364,7 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 					core.getWorldObj().markBlockForUpdate(x,y,z);
 				}
 			}
-		}*/
+		}
 	}
 
 
@@ -438,6 +374,26 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 			for( int j = 0 ; j < 3 ; j++) {
 				int[] coords = getTransformedCoords(core, 1, i+1, j+1);
 				if(core.getWorldObj().getBlock(coords[0], coords[1],coords[2])!=Blocks.water)
+					return false;
+			}
+		}
+		return true;
+	}
+
+	private void clearWater(TileMultiblockCore core) {
+		for(int i = 0; i < 3 ; i++) {
+			for( int j = 0 ; j < 3 ; j++) {
+				int[] coords = getTransformedCoords(core, 1, i+1, j+1);
+				core.getWorldObj().setBlockToAir(coords[0], coords[1],coords[2]);
+			}
+		}
+	}
+
+	public boolean checkForEmpty(TileMultiblockCore core) {
+		for(int i = 0; i < 3 ; i++) {
+			for( int j = 0 ; j < 3 ; j++) {
+				int[] coords = getTransformedCoords(core, 1, i+1, j+1);
+				if(!core.getWorldObj().isAirBlock(coords[0], coords[1],coords[2]))
 					return false;
 			}
 		}
@@ -459,28 +415,17 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 	@Override
 	public void onCollision(TileMultiblockBase tile,
 			TileMultiblockCore core, Entity entity) {
-		//NO OP
+		// NO OP
 	}
 
 	@Override
 	public void setVisualData(TileMultiblockCore core, TileMultiblockBase tile, int x, int y, int z) {
 		int[] coords = this.convertRelativeCoords(core, tile);
 		IIcon outside = null;
-		IIcon[] genIcons = new IIcon[] {
-				Blocks.iron_ore.getIcon(0, 0),
-				Blocks.redstone_block.getIcon(0, 0),
-				Blocks.redstone_lamp.getIcon(0, 0),
-				Blocks.iron_block.getIcon(0, 0),
-				Blocks.bookshelf.getIcon(0, 0),
-				Blocks.tnt.getIcon(0, 0),
-				};
 		if(tile.getOriginalBlock()==vazkii.botania.common.block.ModBlocks.livingwood) {
-			outside = iconStem;
+			tile.iconsForSides=new IIcon[]{iconStem,iconStem,iconStem,iconStem,iconStem,iconStem};
 		}
 		else if(tile.getOriginalBlock()==vazkii.botania.common.block.ModBlocks.petalBlock) {
-			outside = iconSkin;
-		}
-		if(outside!=null) {
 			int innerFace = -1;
 			if(coords[2] == 0)
 				switch(core.rotation) {
@@ -510,56 +455,29 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 				case 2: innerFace = 5;break;
 				case 3: innerFace = 2;break;
 				}
-			tile.iconsForSides=new IIcon[]{outside,outside,outside,outside,outside,outside};
-			if(innerFace!=-1)
+			else {
+				innerFace = 1;
+			}
+			tile.iconsForSides=new IIcon[]{iconSkin,iconSkin,iconSkin,iconSkin,iconSkin,iconSkin};
+			if(innerFace!=-1) {
 				tile.iconsForSides[innerFace]=iconInside;
-		}
-//		tile.iconsForSides=genIcons;
-/*		LavashroomTileData data = (LavashroomTileData) core.tileData;
-		IIcon icon = data.lavaAmount > 0 ? iconLava : iconDullLava;
-		IIcon[] lavaIcons = new IIcon[] {icon,icon,icon,icon,icon,icon};
-		IIcon skinNonEdgeIcon = data.lavaAmount > 0 ? iconMushroom_skin : iconMushroom_dullSkin;
-		IIcon skinEdgeIcon = data.lavaAmount > 0 ? iconMushroom_skinEdge : iconMushroom_dullSkinEdge;
-		int lavaLight = data.lavaAmount > 0 ? 15 : 10;
-		if(y<=1 && (x!=0 || z!=0)) {
-			tile.iconsForSides=lavaIcons;
-			tile.lightValue = lavaLight;
-		}
-		else if (x != 0 || y != 0 || z != 0){
-			for(int side = 0 ; side < 6 ; side++) {
-				int meta = tile.getOriginalMeta();
-				IIcon skinIcon = skinNonEdgeIcon;
-				IIcon insideIcon = this.iconMushroom_inside;
-				if(y==2) {
-					skinIcon=skinEdgeIcon;
-					insideIcon=data.lavaAmount> 0 ? this.iconMushroom_inside_edge : this.iconMushroom_inside_edge_dull;
-				}
-				IIcon current = ( meta == 10 && side > 1 ? iconMushroom_stem : (meta >= 1 && meta <= 9 && side == 1 ? skinIcon : (meta >= 1 && meta <= 3 && side == 2 ? skinIcon : (meta >= 7 && meta <= 9 && side == 3 ? skinIcon : ((meta == 1 || meta == 4 || meta == 7) && side == 4 ? skinIcon : ((meta == 3 || meta == 6 || meta == 9) && side == 5 ? skinIcon : (meta == 14 ? skinIcon : (meta == 15 ? iconMushroom_stem : insideIcon))))))));
-				tile.iconsForSides[side]=current;
 			}
 		}
-		else {
-			for(int side = 0 ; side < 6 ; side++) {
-				int meta = 10;
-				IIcon skinIcon = skinNonEdgeIcon;
-				IIcon current = ( meta == 10 && side > 1 ? iconMushroom_stem : (meta >= 1 && meta <= 9 && side == 1 ? skinIcon : (meta >= 1 && meta <= 3 && side == 2 ? skinIcon : (meta >= 7 && meta <= 9 && side == 3 ? skinIcon : ((meta == 1 || meta == 4 || meta == 7) && side == 4 ? skinIcon : ((meta == 3 || meta == 6 || meta == 9) && side == 5 ? skinIcon : (meta == 14 ? skinIcon : (meta == 15 ? iconMushroom_stem : iconMushroom_inside))))))));
-				tile.iconsForSides[side]=current;
-			}
-		}*/
+		else if(tile.getOriginalBlock()==ModBlocks.manaEater) {
+			int[] cCoords = getTransformedCoords(core, 1, 2, 2);
+			int dx = cCoords[0] - tile.xCoord;
+			int dz = cCoords[2] - tile.zCoord;
+			int slot = (-dx+1)+(-dz+1)*3;
+			tile.iconsForSides=new IIcon[]{iconSkin,iconTeethInner[slot],iconSkin,iconSkin,iconSkin,iconSkin};
+		}
 	}
 
     @Override
 	public void onLoad(TileMultiblockCore core) {
-/*		LavashroomTileData data = (LavashroomTileData) core.tileData;
 		for(TileMultiblockProxy proxy : core.proxies) {
-			int[] pos = proxy.getRelativePos();
-			int x = pos[0];
-			int y = pos[1];
-			int z = pos[2];
-			if(y<=2 && (x!=0 || z!=0)) {
+			if(proxy.getOriginalBlock() == Blocks.iron_bars)
 				proxy.solid=false;
-			}
-		}*/
+		}
 	}
 
 
@@ -614,6 +532,10 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 		iconSkin = par1IconRegister.registerIcon(LibResources.CARNILOTUS_SKIN);
 		iconStem = par1IconRegister.registerIcon(LibResources.CARNILOTUS_STEM);
 		iconInside = par1IconRegister.registerIcon(LibResources.CARNILOTUS_INSIDE);
+		iconAcid = par1IconRegister.registerIcon(LibResources.CARNILOTUS_ACID);
+		iconTeethLip = par1IconRegister.registerIcon(LibResources.CARNILOTUS_TEETH_LIP);
+		for(int i = 0 ; i < 9 ; i++)
+		iconTeethInner[i] = par1IconRegister.registerIcon(LibResources.CARNILOTUS_TEETH_INNER+i);
 	}
 
 

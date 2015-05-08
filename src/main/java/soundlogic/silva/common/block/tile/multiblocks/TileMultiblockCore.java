@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.AxisAlignedBB;
 import soundlogic.silva.common.block.tile.TileMod;
 
 public class TileMultiblockCore extends TileMultiblockBase{
@@ -77,6 +78,11 @@ public class TileMultiblockCore extends TileMultiblockBase{
 		if(data!=null)
 			return data.matchesTemplateForPersistance(worldObj, xCoord, yCoord, zCoord, mirrorX, mirrorZ, rotation);
 		return false;
+	}
+
+	@Override
+	public AxisAlignedBB getRenderBoundingBox() {
+		return INFINITE_EXTENT_AABB;
 	}
 
 	@Override

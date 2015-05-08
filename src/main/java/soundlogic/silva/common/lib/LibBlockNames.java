@@ -44,6 +44,8 @@ public class LibBlockNames {
 	public static final String PORTAL_CORE = "portalCore";
 
 	public static final String PIXIE_DUST = "pixieDust";
+	public static final String GLOWSTONE_DUST = "glowstoneDust";
+	public static final String BLAZE_DUST = "blazeDust";
 
 	public static final String DARKENED_DUST = "darkenedDust";
 
@@ -69,7 +71,11 @@ public class LibBlockNames {
 
 	public static final String MULTIBLOCK_PROXY_LAVA = "multiblockProxyLava";
 
+	public static final String MULTIBLOCK_PROXY_NO_RENDER = "multiblockProxyNoRender";
+
 	public static final String DARKENED_STONE = "darkenedStone";
+
+
 
 
 

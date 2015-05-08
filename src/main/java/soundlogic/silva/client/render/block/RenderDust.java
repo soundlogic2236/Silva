@@ -15,7 +15,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
-public class RenderDarkenedDust implements ISimpleBlockRenderingHandler {
+public class RenderDust implements ISimpleBlockRenderingHandler {
 
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelId,
@@ -27,12 +27,12 @@ public class RenderDarkenedDust implements ISimpleBlockRenderingHandler {
 	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z,
 			Block block, int modelId, RenderBlocks renderer) {
         Tessellator tessellator = Tessellator.instance;
-        Color color = new Color(ModBlocks.darkenedDust.colorMultiplier(world, x, y, z));
+        Color color = new Color(block.colorMultiplier(world, x, y, z));
         IIcon iicon = BlockRedstoneWire.getRedstoneWireIcon("cross");
         IIcon iicon1 = BlockRedstoneWire.getRedstoneWireIcon("line");
         IIcon iicon2 = BlockRedstoneWire.getRedstoneWireIcon("cross_overlay");
         IIcon iicon3 = BlockRedstoneWire.getRedstoneWireIcon("line_overlay");
-        tessellator.setBrightness(ModBlocks.darkenedDust.getMixedBrightnessForBlock(world, x, y, z));
+        tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
 
         float red = (float)color.getRed() / 255F;
         float green = (float)color.getGreen() / 255F;
@@ -41,29 +41,29 @@ public class RenderDarkenedDust implements ISimpleBlockRenderingHandler {
         tessellator.setColorOpaque_F(red, green, blue);
         double d0 = 0.015625D;
         double d1 = 0.015625D;
-        boolean flag = shouldConnect(world, x - 1, y, z, 1) || !world.getBlock(x - 1, y, z).isBlockNormalCube() && shouldConnect(world, x - 1, y - 1, z, -1);
-        boolean flag1 = shouldConnect(world, x + 1, y, z, 3) || !world.getBlock(x + 1, y, z).isBlockNormalCube() && shouldConnect(world, x + 1, y - 1, z, -1);
-        boolean flag2 = shouldConnect(world, x, y, z - 1, 2) || !world.getBlock(x, y, z - 1).isBlockNormalCube() && shouldConnect(world, x, y - 1, z - 1, -1);
-        boolean flag3 = shouldConnect(world, x, y, z + 1, 0) || !world.getBlock(x, y, z + 1).isBlockNormalCube() && shouldConnect(world, x, y - 1, z + 1, -1);
+        boolean flag = shouldConnect(block, world, x - 1, y, z, 1) || !world.getBlock(x - 1, y, z).isBlockNormalCube() && shouldConnect(block, world, x - 1, y - 1, z, -1);
+        boolean flag1 = shouldConnect(block, world, x + 1, y, z, 3) || !world.getBlock(x + 1, y, z).isBlockNormalCube() && shouldConnect(block, world, x + 1, y - 1, z, -1);
+        boolean flag2 = shouldConnect(block, world, x, y, z - 1, 2) || !world.getBlock(x, y, z - 1).isBlockNormalCube() && shouldConnect(block, world, x, y - 1, z - 1, -1);
+        boolean flag3 = shouldConnect(block, world, x, y, z + 1, 0) || !world.getBlock(x, y, z + 1).isBlockNormalCube() && shouldConnect(block, world, x, y - 1, z + 1, -1);
 
         if (!world.getBlock(x, y + 1, z).isBlockNormalCube())
         {
-            if (world.getBlock(x - 1, y, z).isBlockNormalCube() && shouldConnect(world, x - 1, y + 1, z, -1))
+            if (world.getBlock(x - 1, y, z).isBlockNormalCube() && shouldConnect(block, world, x - 1, y + 1, z, -1))
             {
                 flag = true;
             }
 
-            if (world.getBlock(x + 1, y, z).isBlockNormalCube() && shouldConnect(world, x + 1, y + 1, z, -1))
+            if (world.getBlock(x + 1, y, z).isBlockNormalCube() && shouldConnect(block, world, x + 1, y + 1, z, -1))
             {
                 flag1 = true;
             }
 
-            if (world.getBlock(x, y, z - 1).isBlockNormalCube() && shouldConnect(world, x, y + 1, z - 1, -1))
+            if (world.getBlock(x, y, z - 1).isBlockNormalCube() && shouldConnect(block, world, x, y + 1, z - 1, -1))
             {
                 flag2 = true;
             }
 
-            if (world.getBlock(x, y, z + 1).isBlockNormalCube() && shouldConnect(world, x, y + 1, z + 1, -1))
+            if (world.getBlock(x, y, z + 1).isBlockNormalCube() && shouldConnect(block, world, x, y + 1, z + 1, -1))
             {
                 flag3 = true;
             }
@@ -172,7 +172,7 @@ public class RenderDarkenedDust implements ISimpleBlockRenderingHandler {
         {
             float f8 = 0.021875F;
 
-            if (world.getBlock(x - 1, y, z).isBlockNormalCube() && world.getBlock(x - 1, y + 1, z) == Blocks.redstone_wire)
+            if (world.getBlock(x - 1, y, z).isBlockNormalCube() && world.getBlock(x - 1, y + 1, z) == block)
             {
                 tessellator.setColorOpaque_F(red, green, blue);
                 tessellator.addVertexWithUV((double)x + 0.015625D, (double)((float)(y + 1) + 0.021875F), (double)(z + 1), (double)iicon1.getMaxU(), (double)iicon1.getMinV());
@@ -186,7 +186,7 @@ public class RenderDarkenedDust implements ISimpleBlockRenderingHandler {
                 tessellator.addVertexWithUV((double)x + 0.015625D, (double)((float)(y + 1) + 0.021875F), (double)(z + 0), (double)iicon3.getMaxU(), (double)iicon3.getMaxV());
             }
 
-            if (world.getBlock(x + 1, y, z).isBlockNormalCube() && world.getBlock(x + 1, y + 1, z) == Blocks.redstone_wire)
+            if (world.getBlock(x + 1, y, z).isBlockNormalCube() && world.getBlock(x + 1, y + 1, z) == block)
             {
                 tessellator.setColorOpaque_F(red, green, blue);
                 tessellator.addVertexWithUV((double)(x + 1) - 0.015625D, (double)(y + 0), (double)(z + 1), (double)iicon1.getMinU(), (double)iicon1.getMaxV());
@@ -200,7 +200,7 @@ public class RenderDarkenedDust implements ISimpleBlockRenderingHandler {
                 tessellator.addVertexWithUV((double)(x + 1) - 0.015625D, (double)(y + 0), (double)(z + 0), (double)iicon3.getMinU(), (double)iicon3.getMinV());
             }
 
-            if (world.getBlock(x, y, z - 1).isBlockNormalCube() && world.getBlock(x, y + 1, z - 1) == Blocks.redstone_wire)
+            if (world.getBlock(x, y, z - 1).isBlockNormalCube() && world.getBlock(x, y + 1, z - 1) == block)
             {
                 tessellator.setColorOpaque_F(red, green, blue);
                 tessellator.addVertexWithUV((double)(x + 1), (double)(y + 0), (double)z + 0.015625D, (double)iicon1.getMinU(), (double)iicon1.getMaxV());
@@ -214,7 +214,7 @@ public class RenderDarkenedDust implements ISimpleBlockRenderingHandler {
                 tessellator.addVertexWithUV((double)(x + 0), (double)(y + 0), (double)z + 0.015625D, (double)iicon3.getMinU(), (double)iicon3.getMinV());
             }
 
-            if (world.getBlock(x, y, z + 1).isBlockNormalCube() && world.getBlock(x, y + 1, z + 1) == Blocks.redstone_wire)
+            if (world.getBlock(x, y, z + 1).isBlockNormalCube() && world.getBlock(x, y + 1, z + 1) == block)
             {
                 tessellator.setColorOpaque_F(red, green, blue);
                 tessellator.addVertexWithUV((double)(x + 1), (double)((float)(y + 1) + 0.021875F), (double)(z + 1) - 0.015625D, (double)iicon1.getMaxU(), (double)iicon1.getMinV());
@@ -232,8 +232,8 @@ public class RenderDarkenedDust implements ISimpleBlockRenderingHandler {
         return true;
 	}
 
-	private boolean shouldConnect(IBlockAccess world, int x, int y, int z, int side) {
-		return world.getBlock(x, y, z) == ModBlocks.darkenedDust;
+	private boolean shouldConnect(Block block, IBlockAccess world, int x, int y, int z, int side) {
+		return world.getBlock(x, y, z) == block;
 	}
 
 	@Override
@@ -243,7 +243,7 @@ public class RenderDarkenedDust implements ISimpleBlockRenderingHandler {
 
 	@Override
 	public int getRenderId() {
-		return LibRenderIDs.idDarkenedDust;
+		return LibRenderIDs.idDust;
 	}
 
 }

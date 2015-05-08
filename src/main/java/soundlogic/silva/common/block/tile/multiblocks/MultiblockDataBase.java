@@ -6,7 +6,9 @@ import java.util.List;
 
 import soundlogic.silva.common.block.BlockMultiblockBase;
 import soundlogic.silva.common.block.BlockMultiblockCore;
+import soundlogic.silva.common.block.BlockMultiblockProxy;
 import soundlogic.silva.common.block.BlockMultiblockProxyLava;
+import soundlogic.silva.common.block.BlockMultiblockProxyNoRender;
 import soundlogic.silva.common.block.ModBlocks;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import net.minecraft.block.Block;
@@ -109,6 +111,7 @@ public abstract class MultiblockDataBase {
 	public void create(World world, int x, int y, int z, boolean mirrorX, boolean mirrorZ, int rotation) {
 		Block curBlock = world.getBlock(x,y,z);
 		int curMeta = world.getBlockMetadata(x,y,z);
+		float curHardness = curBlock.getBlockHardness(world, x, y, z);
 		TileEntity tempTile = world.getTileEntity(x, y, z);
 		NBTTagCompound curCompound = null;
 		if(tempTile!=null) {
@@ -117,7 +120,7 @@ public abstract class MultiblockDataBase {
 		}
 		world.setBlock(x,y,z, ModBlocks.multiblockCore,0,0);
 		TileMultiblockCore core=(TileMultiblockCore)world.getTileEntity(x,y,z);
-		core.setOriginalBlock(curBlock, curMeta, curCompound);
+		core.setOriginalBlock(curBlock, curMeta, curCompound, curHardness);
 		core.setData(this);
 		core.mirrorX=mirrorX;
 		core.mirrorZ=mirrorZ;
@@ -132,6 +135,7 @@ public abstract class MultiblockDataBase {
 					int[] coords = getTransformedCoords(core,i,j,k);
 					curBlock = world.getBlock(coords[0], coords[1], coords[2]);
 					curMeta = world.getBlockMetadata(coords[0], coords[1], coords[2]);
+					curHardness = curBlock.getBlockHardness(world, coords[0], coords[1], coords[2]);
 					tempTile = world.getTileEntity(coords[0],coords[1],coords[2]);
 					curCompound = null;
 					if(tempTile!=null) {
@@ -144,7 +148,7 @@ public abstract class MultiblockDataBase {
 						if(tile!=null && tile instanceof TileMultiblockProxy) {
 							TileMultiblockProxy proxy = (TileMultiblockProxy)world.getTileEntity(coords[0], coords[1], coords[2]);
 							if(proxy!=null) {
-								proxy.setOriginalBlock(curBlock, curMeta, curCompound);
+								proxy.setOriginalBlock(curBlock, curMeta, curCompound, curHardness);
 								proxy.relativeX=x-coords[0];
 								proxy.relativeY=y-coords[1];
 								proxy.relativeZ=z-coords[2];
@@ -201,7 +205,7 @@ public abstract class MultiblockDataBase {
 		};
 	}
 	
-	protected int[] getTransformedCoords(TileMultiblockCore core, int i, int j, int k) {
+	public int[] getTransformedCoords(TileMultiblockCore core, int i, int j, int k) {
 		return getTransformedCoords(core.xCoord,core.yCoord,core.zCoord,i,j,k,core.mirrorX,core.mirrorZ,core.rotation);
 	}
 	
@@ -267,7 +271,7 @@ public abstract class MultiblockDataBase {
 		
 		public static BlockData MULTIBLOCK = new BlockData() {
 			public boolean isValid(World world, int x, int y, int z) {
-				return world.getBlock(x, y, z) instanceof BlockMultiblockBase;
+				return world.getBlock(x, y, z) instanceof BlockMultiblockProxy;
 			}
 			public void setBlock(World world, int x, int y, int z) {
 				world.setBlock(x, y, z, ModBlocks.multiblockProxy,0,0);
@@ -292,6 +296,15 @@ public abstract class MultiblockDataBase {
 			}
 		};
 
+		public static BlockData MULTIBLOCK_NO_RENDER = new BlockData() {
+			public boolean isValid(World world, int x, int y, int z) {
+				return world.getBlock(x, y, z) instanceof BlockMultiblockProxyNoRender;
+			}
+			public void setBlock(World world, int x, int y, int z) {
+				world.setBlock(x, y, z, ModBlocks.multiblockProxyNoRender,0,0);
+			}
+		};
+		
 		protected BlockData()
 		{
 		}

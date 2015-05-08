@@ -28,31 +28,30 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockPixieDust extends BlockDust implements ILexiconable{
+public class BlockBlazeDust extends BlockDust {
 
-	protected BlockPixieDust() {
-        super(new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,8));
-		setBlockName(LibBlockNames.PIXIE_DUST);
+	protected BlockBlazeDust() {
+        super(new ItemStack(Items.blaze_powder));
+		setBlockName(LibBlockNames.BLAZE_DUST);
+		setLightLevel(.25F);
 	}
 	
     @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, int x, int y, int z, Random random)
     {
-        for(int i=0;i<3;i++) {
-	        double d0 = (double)x + 0.5D + ((double)random.nextFloat() - 0.5D) * 0.2D;
-	        double d1 = (double)((float)y + 0.0625F);
-	        double d2 = (double)z + 0.5D + ((double)random.nextFloat() - 0.5D) * 0.2D;
-	
-	        Botania.proxy.sparkleFX(world, d0, d1, d2, 1F, 0.25F, 0.9F, 0.1F + random.nextFloat() * 0.25F, 12);
-        }
+        double d0 = (double)x + 0.5D + ((double)random.nextFloat() - 0.5D) * 0.2D;
+        double d1 = (double)((float)y + 0.0625F);
+        double d2 = (double)z + 0.5D + ((double)random.nextFloat() - 0.5D) * 0.2D;
+
+        world.spawnParticle("flame", d0, d1, d2, (random.nextDouble() - .5D)/10D, (random.nextDouble() - .5D)/10D, (random.nextDouble() - .5D)/10D);
     }
     
     @Override
     @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess p_149720_1_, int p_149720_2_, int p_149720_3_, int p_149720_4_)
     {
-        return 0xf51fff;
+        return 0xffa300;
     }
 
     @Override
@@ -63,10 +62,4 @@ public class BlockPixieDust extends BlockDust implements ILexiconable{
         return output;
     }
     
-	@Override
-	public LexiconEntry getEntry(World arg0, int arg1, int arg2, int arg3,
-			EntityPlayer arg4, ItemStack arg5) {
-		return LexiconData.elvenResources;
-	}
-
 }

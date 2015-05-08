@@ -5,8 +5,7 @@ public class LibRenderIDs {
 	public static int idPylon = -1;
 	public static int idManaEater = -1;
 	public static int idBoomMoss = -1;
-	public static int idPixieDust = -1;
-	public static int idDarkenedDust = -1;
+	public static int idDust = -1;
 	public static int idManaCrystal = -1;
 	public static int idDwarvenPool = -1;
 	public static int idPortalUpgradeCharge = -1;
