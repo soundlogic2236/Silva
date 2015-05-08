@@ -61,6 +61,7 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 	public IIcon iconAcid;
 	public IIcon iconTeethLip;
 	public IIcon[] iconTeethInner = new IIcon[9];
+	IIcon[] iconTransition = new IIcon[7];
 	
 	public MultiblockDataCarnilotus() {
 		super(new BlockData(vazkii.botania.common.block.ModBlocks.livingwood,0));
@@ -289,12 +290,16 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 		}
 		else if (data.activated && checkForEmpty(core)) {
 			List<EntityLivingBase> ents = core.getWorldObj().getEntitiesWithinAABB(EntityLivingBase.class, aabb);
+			AxisAlignedBB bite = this.getBiteBounds(core);
 			for(EntityLivingBase ent : ents) {
-				ent.fallDistance=0;
-				if(Math.random()<.2) {
+				if(Math.random()<.6) {
+					float damage = 1;
+					if(ent.boundingBox.intersectsWith(bite))
+						damage+=3;
+					ent.fallDistance=0;
 					if(ent instanceof EntityLiving)
 						captureDrops=true;
-					ent.attackEntityFrom(acid, 1);
+					ent.attackEntityFrom(acid, damage);
 					captureDrops=false;
 					if(!capturedDrops.isEmpty()) {
 						for(EntityItem drop : capturedDrops) {
@@ -372,9 +377,11 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 	private boolean checkForWater(TileMultiblockCore core) {
 		for(int i = 0; i < 3 ; i++) {
 			for( int j = 0 ; j < 3 ; j++) {
-				int[] coords = getTransformedCoords(core, 1, i+1, j+1);
-				if(core.getWorldObj().getBlock(coords[0], coords[1],coords[2])!=Blocks.water)
-					return false;
+				for( int k = 0 ; k < 2 ; k++) {
+					int[] coords = getTransformedCoords(core, k+1, i+1, j+1);
+					if(core.getWorldObj().getBlock(coords[0], coords[1],coords[2])!=Blocks.water)
+						return false;
+				}
 			}
 		}
 		return true;
@@ -383,8 +390,10 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 	private void clearWater(TileMultiblockCore core) {
 		for(int i = 0; i < 3 ; i++) {
 			for( int j = 0 ; j < 3 ; j++) {
-				int[] coords = getTransformedCoords(core, 1, i+1, j+1);
-				core.getWorldObj().setBlockToAir(coords[0], coords[1],coords[2]);
+				for( int k = 0 ; k < 2 ; k++) {
+					int[] coords = getTransformedCoords(core, k+1, i+1, j+1);
+					core.getWorldObj().setBlockToAir(coords[0], coords[1],coords[2]);
+				}
 			}
 		}
 	}
@@ -392,9 +401,11 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 	public boolean checkForEmpty(TileMultiblockCore core) {
 		for(int i = 0; i < 3 ; i++) {
 			for( int j = 0 ; j < 3 ; j++) {
-				int[] coords = getTransformedCoords(core, 1, i+1, j+1);
-				if(!core.getWorldObj().isAirBlock(coords[0], coords[1],coords[2]))
-					return false;
+				for( int k = 0 ; k < 2 ; k++) {
+					int[] coords = getTransformedCoords(core, k+1, i+1, j+1);
+					if(!core.getWorldObj().isAirBlock(coords[0], coords[1],coords[2]))
+						return false;
+				}
 			}
 		}
 		return true;
@@ -402,7 +413,7 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 
 	private AxisAlignedBB getWaterBounds(TileMultiblockCore core) {
 		int[] coords1 = getTransformedCoords(core, 1, 1, 1);
-		int[] coords2 = getTransformedCoords(core, 1, 3, 3);
+		int[] coords2 = getTransformedCoords(core, 2, 3, 3);
 		int minX=Math.min(coords1[0], coords2[0]);
 		int minY=Math.min(coords1[1], coords2[1]);
 		int minZ=Math.min(coords1[2], coords2[2]);
@@ -412,6 +423,18 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 		return AxisAlignedBB.getBoundingBox(minX, minY, minZ, maxX+1, maxY+1, maxZ+1);
 	}
 
+	private AxisAlignedBB getBiteBounds(TileMultiblockCore core) {
+		int[] coords1 = getTransformedCoords(core, 1, 1, 1);
+		int[] coords2 = getTransformedCoords(core, 1, 3, 3);
+		int minX=Math.min(coords1[0], coords2[0]);
+		int minY=Math.min(coords1[1], coords2[1]);
+		int minZ=Math.min(coords1[2], coords2[2]);
+		int maxX=Math.max(coords1[0], coords2[0]);
+		double maxY=Math.max(coords1[1], coords2[1])+.1;
+		int maxZ=Math.max(coords1[2], coords2[2]);
+		return AxisAlignedBB.getBoundingBox(minX, minY, minZ, maxX+1, maxY+1, maxZ+1);
+	}
+	
 	@Override
 	public void onCollision(TileMultiblockBase tile,
 			TileMultiblockCore core, Entity entity) {
@@ -460,7 +483,29 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 			}
 			tile.iconsForSides=new IIcon[]{iconSkin,iconSkin,iconSkin,iconSkin,iconSkin,iconSkin};
 			if(innerFace!=-1) {
-				tile.iconsForSides[innerFace]=iconInside;
+				IIcon inside = iconInside;
+				if(tile.getOriginalMeta()==15) {
+					if(coords[0]==6 && coords[1] == 3)
+						inside = iconTransition[0];
+					else if(coords[0]==6 && coords[1] == 2)
+						inside = iconTransition[1];
+					else if(coords[0]==6 && coords[1] == 1)
+						inside = iconTransition[2];
+					else if(coords[1] == 3)
+						inside = iconTransition[3];
+					else if(coords[1] == 1)
+						inside = iconTransition[4];
+				}
+				else if(coords[0] == 3) {
+					if(coords[2]==4 && coords[1] == 3)
+						inside = iconTransition[5];
+					else if(coords[2]==4 && coords[1] == 1)
+						inside = iconTransition[6];
+					else if(coords[2]!=4)
+						inside = iconTransition[1];
+						
+				}
+				tile.iconsForSides[innerFace]=inside;
 			}
 		}
 		else if(tile.getOriginalBlock()==ModBlocks.manaEater) {
@@ -475,8 +520,44 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
     @Override
 	public void onLoad(TileMultiblockCore core) {
 		for(TileMultiblockProxy proxy : core.proxies) {
-			if(proxy.getOriginalBlock() == Blocks.iron_bars)
+			if(proxy.getOriginalBlock() == Blocks.iron_bars) {
 				proxy.solid=false;
+				proxy.maxBBY=.5F;
+			}
+			if(proxy.getOriginalBlock()==vazkii.botania.common.block.ModBlocks.petalBlock || proxy.getOriginalBlock() == Blocks.iron_bars) {
+				int[] coords = this.convertRelativeCoords(core, proxy);
+				int innerFace = -1;
+				if(coords[2] == 0)
+					switch(core.rotation) {
+					case 0: innerFace = 3;break;
+					case 1: innerFace = 5;break;
+					case 2: innerFace = 2;break;
+					case 3: innerFace = 4;break;
+					}
+				else if(coords[2] == 4)
+					innerFace = -1;
+				else if(coords[1] == 0)
+					switch(core.rotation) {
+					case 0: innerFace = 5;break;
+					case 1: innerFace = 2;break;
+					case 2: innerFace = 4;break;
+					case 3: innerFace = 3;break;
+					}
+				else if(coords[1] == 4)
+					switch(core.rotation) {
+					case 0: innerFace = 4;break;
+					case 1: innerFace = 3;break;
+					case 2: innerFace = 5;break;
+					case 3: innerFace = 2;break;
+					}
+				if(innerFace!=-1) {
+					ForgeDirection dir = ForgeDirection.values()[innerFace];
+					proxy.minBBX=dir.offsetX>0 ? .5F : 0F;
+					proxy.minBBZ=dir.offsetZ>0 ? .5F : 0F;
+					proxy.maxBBX=dir.offsetX<0 ? .5F : 1F;
+					proxy.maxBBZ=dir.offsetZ<0 ? .5F : 1F;
+				}
+			}
 		}
 	}
 
@@ -535,7 +616,9 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 		iconAcid = par1IconRegister.registerIcon(LibResources.CARNILOTUS_ACID);
 		iconTeethLip = par1IconRegister.registerIcon(LibResources.CARNILOTUS_TEETH_LIP);
 		for(int i = 0 ; i < 9 ; i++)
-		iconTeethInner[i] = par1IconRegister.registerIcon(LibResources.CARNILOTUS_TEETH_INNER+i);
+			iconTeethInner[i] = par1IconRegister.registerIcon(LibResources.CARNILOTUS_TEETH_INNER+i);
+		for(int i = 0 ; i < 7 ; i++)
+			iconTransition[i] = par1IconRegister.registerIcon(LibResources.CARNILOTUS_TRANSITION+i);
 	}
 
 

@@ -50,6 +50,8 @@ public abstract class BlockMultiblockBase extends BlockContainer implements IWan
 		tile.getCore().getData().onCollision(tile, tile.getCore(), ent);
 	}
 	
+	
+	
 	public float getBlockHardness(World world, int x, int y, int z) {
 		TileMultiblockBase tile = (TileMultiblockBase) world.getTileEntity(x, y, z);
 		float hardness = tile.hardness;
@@ -96,7 +98,7 @@ public abstract class BlockMultiblockBase extends BlockContainer implements IWan
                     double d0 = (double)x + ((double)i1 + 0.5D) / (double)b0;
                     double d1 = (double)y + ((double)j1 + 0.5D) / (double)b0;
                     double d2 = (double)z + ((double)k1 + 0.5D) / (double)b0;
-                    EntityDiggingFX effect = (new EntityDiggingFX(world, d0, d1, d2, d0 - (double)x - 0.5D, d1 - (double)y - 0.5D, d2 - (double)z - 0.5D, block, tile.blockMetadata)).applyColourMultiplier(x, y, z);
+                    EntityDiggingFX effect = (new EntityDiggingFX(world, d0, d1, d2, d0 - (double)x - 0.5D, d1 - (double)y - 0.5D, d2 - (double)z - 0.5D, block, tile.getOriginalMeta())).applyColourMultiplier(x, y, z);
                     if(override!=null)
                     	effect.setParticleIcon(override);
                     effectRenderer.addEffect(effect);
@@ -166,7 +168,7 @@ public abstract class BlockMultiblockBase extends BlockContainer implements IWan
                 d0 = (double)x + block.getBlockBoundsMaxX() + (double)f;
             }
 
-            EntityFX effect = (new EntityDiggingFX(world, d0, d1, d2, 0.0D, 0.0D, 0.0D, block, world.getBlockMetadata(x, y, z))).applyColourMultiplier(x, y, z).multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F);
+            EntityFX effect = (new EntityDiggingFX(world, d0, d1, d2, 0.0D, 0.0D, 0.0D, block, tile.getOriginalMeta())).applyColourMultiplier(x, y, z).multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F);
             if(override!=null)
             	effect.setParticleIcon(override);
             effectRenderer.addEffect(effect);
@@ -195,6 +197,7 @@ public abstract class BlockMultiblockBase extends BlockContainer implements IWan
 	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
 		TileMultiblockBase tile = (TileMultiblockBase) world.getTileEntity(x, y, z);
+	    setBlockBoundsBasedOnState(world,x,y,z);
 		return tile.solid ? super.getCollisionBoundingBoxFromPool(world, x, y, z) : null;
 	}
 
@@ -218,4 +221,15 @@ public abstract class BlockMultiblockBase extends BlockContainer implements IWan
 		TileMultiblockBase tile = (TileMultiblockBase) world.getTileEntity(x, y, z);
 		return tile.getCore().getData().getLexiconEntry();
 	}
+	
+	@Override
+    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
+		TileMultiblockBase tile = (TileMultiblockBase) world.getTileEntity(x, y, z);
+		this.minX=tile.minBBX;
+		this.minY=tile.minBBY;
+		this.minZ=tile.minBBZ;
+		this.maxX=tile.maxBBX;
+		this.maxY=tile.maxBBY;
+		this.maxZ=tile.maxBBZ;
+    }
 }

@@ -15,12 +15,13 @@ public abstract class TileMultiblockBase extends TileMod{
 
 	private static final String TAG_ORIGINAL_BLOCK = "originalBlock";
 	private static final String TAG_ORIGINAL_METADATA = "originalMetadata";
+	private static final String TAG_ORIGINAL_HARDNESS = "originalHardness";
 	private static final String TAG_ORIGINAL_NBT = "originalNBT";
 	private static final String TAG_NEEDS_REFRESH = "refresh";
 	private static final String TAG_SOLID = "isSolid";
 	private static final String TAG_LIGHT = "light";
 	private static final String TAG_HARDNESS = "hardness";
-	private static final String TAG_HARDNESS_ORIGINAL = "hardnessOriginal";
+	private static final String TAG_BB = "BB";
 	
 	private Block originalBlock;
 	private int originalMetadata;
@@ -29,6 +30,12 @@ public abstract class TileMultiblockBase extends TileMod{
 	
 	public IIcon iconsForSides[] = new IIcon[6];
 	public boolean solid=true;
+	public float minBBX = 0;
+	public float minBBY = 0;
+	public float minBBZ = 0;
+	public float maxBBX = 1;
+	public float maxBBY = 1;
+	public float maxBBZ = 1;
 	
 	private boolean visualNeedsRefresh = true;
 	public int lightValue = -1;
@@ -59,10 +66,16 @@ public abstract class TileMultiblockBase extends TileMod{
 		super.writeCustomNBT(cmp);
 		cmp.setInteger(TAG_ORIGINAL_BLOCK, Block.getIdFromBlock(originalBlock));
 		cmp.setInteger(TAG_ORIGINAL_METADATA, originalMetadata);
+		cmp.setFloat(TAG_ORIGINAL_HARDNESS, originalHardness);
 		cmp.setBoolean(TAG_SOLID, solid);
 		cmp.setInteger(TAG_LIGHT, lightValue);
 		cmp.setFloat(TAG_HARDNESS, hardness);
-		cmp.setFloat(TAG_HARDNESS_ORIGINAL, originalHardness);
+		cmp.setFloat(TAG_BB+"minX", minBBX);
+		cmp.setFloat(TAG_BB+"minY", minBBY);
+		cmp.setFloat(TAG_BB+"minZ", minBBZ);
+		cmp.setFloat(TAG_BB+"maxX", maxBBX);
+		cmp.setFloat(TAG_BB+"maxY", maxBBY);
+		cmp.setFloat(TAG_BB+"maxZ", maxBBZ);
 		if(originalNBT!=null)
 			cmp.setTag(TAG_ORIGINAL_NBT, originalNBT);
 	}
@@ -72,10 +85,16 @@ public abstract class TileMultiblockBase extends TileMod{
 		super.readCustomNBT(cmp);
 		this.originalBlock=Block.getBlockById(cmp.getInteger(TAG_ORIGINAL_BLOCK));
 		this.originalMetadata=cmp.getInteger(TAG_ORIGINAL_METADATA);
+		this.originalHardness=cmp.getFloat(TAG_ORIGINAL_HARDNESS);
 		this.solid=cmp.getBoolean(TAG_SOLID);
 		this.lightValue=cmp.getInteger(TAG_LIGHT);
 		this.hardness=cmp.getFloat(TAG_HARDNESS);
-		this.originalHardness=cmp.getFloat(TAG_HARDNESS_ORIGINAL);
+		this.minBBX=cmp.getFloat(TAG_BB+"minX");
+		this.minBBY=cmp.getFloat(TAG_BB+"minY");
+		this.minBBZ=cmp.getFloat(TAG_BB+"minZ");
+		this.maxBBX=cmp.getFloat(TAG_BB+"maxX");
+		this.maxBBY=cmp.getFloat(TAG_BB+"maxY");
+		this.maxBBZ=cmp.getFloat(TAG_BB+"maxZ");
 		if(cmp.hasKey(TAG_NEEDS_REFRESH))
 			this.visualNeedsRefresh = cmp.getBoolean(TAG_NEEDS_REFRESH);
 		if(cmp.hasKey(TAG_ORIGINAL_NBT))

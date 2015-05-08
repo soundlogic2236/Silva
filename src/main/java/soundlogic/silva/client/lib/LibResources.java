@@ -115,4 +115,6 @@ public class LibResources {
 
 	public static final String CARNILOTUS_TEETH_INNER = PREFIX_MOD + "carnilotusTeethInner";
 
+	public static final String CARNILOTUS_TRANSITION = PREFIX_MOD + "carnilotusTransition";
+
 }

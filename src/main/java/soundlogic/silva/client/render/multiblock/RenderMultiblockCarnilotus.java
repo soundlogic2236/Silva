@@ -6,6 +6,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -35,7 +36,7 @@ public class RenderMultiblockCarnilotus extends RenderMultiblock{
 		if(data.activated && multiblock.checkForEmpty(tile)) {
 			for(int i = 0; i < 3 ; i++) {
 				for( int j = 0 ; j < 3 ; j++) {
-					int[] coords = multiblock.getTransformedCoords(tile, 1, i+1, j+1);
+					int[] coords = multiblock.getTransformedCoords(tile, 2, i+1, j+1);
 					GL11.glPushMatrix();
 					GL11.glTranslated(d0, d1, d2);
 					GL11.glTranslatef(-tile.xCoord,-tile.yCoord,-tile.zCoord);
@@ -65,7 +66,7 @@ public class RenderMultiblockCarnilotus extends RenderMultiblock{
 			double d2, float time) {
 		MultiblockDataCarnilotus multiblock = (MultiblockDataCarnilotus) tile.getData();
 		toothIcon = multiblock.iconTeethLip;
-		float fraction = (time / 20F) % 1F;
+		float fraction = (time / 40F) % 1F;
 		CarnilotusTileData data = (CarnilotusTileData) tile.getTileData();
 		if(!data.activated) {
 			return;
@@ -95,9 +96,9 @@ public class RenderMultiblockCarnilotus extends RenderMultiblock{
 					int dx = angle == 90 ? 1 : angle == 270 ? -1 : 0;
 					int dz = angle == 0 ? -1 : angle == 180 ? 1 : 0;
 					
-					x+=dx*.8F;
+					x+=dx*.85F;
 					y-=.2F;
-					z+=dz*.8F;
+					z+=dz*.85F;
 					
 					float pitch = angle + 90 + 180 * dz * dz;
 					for(int k = 0 ; k < 4 ; k++) { 
