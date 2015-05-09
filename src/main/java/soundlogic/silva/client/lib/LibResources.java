@@ -12,6 +12,7 @@ public class LibResources {
 	public static final String PREFIX_CATEGORIES = PREFIX_GUI + "categories/";
 	public static final String PREFIX_ENTITY = PREFIX_MOD + "textures/entity/";
 	public static final String PREFIX_OBJ_MODEL = PREFIX_MOD + "model/";
+	public static final String PREFIX_SUBTILE = PREFIX_MOD + "subtile/";
 
 	public static final String MODEL_PYLON_PORTAL = PREFIX_MODEL + "pylonPortal.png";
 	public static final String MODEL_PYLON_UNTUNED = PREFIX_MODEL + "pylonUntuned.png";

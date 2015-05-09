@@ -17,6 +17,7 @@ import soundlogic.silva.common.block.tile.TilePortalCore;
 import soundlogic.silva.common.core.handler.BifrostCreationHandler;
 import soundlogic.silva.common.core.handler.BlockDropsHandler;
 import soundlogic.silva.common.core.handler.BookHandler;
+import soundlogic.silva.common.core.handler.ChunkHandler;
 import soundlogic.silva.common.core.handler.ConfigHandler;
 import soundlogic.silva.common.core.handler.DwarfForgedHandler;
 import soundlogic.silva.common.core.handler.DwarvenChainHandler;
@@ -89,6 +90,7 @@ public class CommonProxy {
 		FMLCommonHandler.instance().bus().register(potionMeadHandler);
 		MinecraftForge.EVENT_BUS.register(new DimensionalEnergyHandler());
 		MinecraftForge.EVENT_BUS.register(new MultiBlockCreationHandler());
+		MinecraftForge.EVENT_BUS.register(new ChunkHandler());
 	}
 	
 	public void postInit(FMLPostInitializationEvent event) {

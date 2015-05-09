@@ -40,7 +40,6 @@ public abstract class BlockDust extends Block implements IDustBlock {
 	
 	protected BlockDust() {
 		this(null);
-		this.dustStack=new ItemStack((Block)this);
 	}
 	
     @Override
@@ -97,11 +96,22 @@ public abstract class BlockDust extends Block implements IDustBlock {
 
 	@Override
 	public ItemStack getDustStack() {
+		if(dustStack == null)
+			dustStack = new ItemStack(this);
 		return dustStack.copy();
 	}
 
     @Override
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
-    	return dustStack.copy();
+    	return getDustStack();
     }
+
+    @Override
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
+    {
+    	ArrayList<ItemStack> output=new ArrayList<ItemStack>();
+    	output.add(getDustStack());
+        return output;
+    }
+    
 }

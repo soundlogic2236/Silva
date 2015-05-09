@@ -79,9 +79,6 @@ public abstract class MultiblockDataBase {
 					BlockData data = templateSlice2[k];
 					int[] coords = getTransformedCoords(x,y,z,i,j,k,mirrorX,mirrorZ,rotation);
 					if(!data.isValid(world, coords[0], coords[1], coords[2])) {
-						System.out.println(coords[0]+","+coords[1]+","+coords[2]);
-						System.out.println(i+","+j+","+k);
-						System.out.println(world.getBlock(coords[0], coords[1], coords[2]));
 						return false;
 					}
 				}

@@ -51,7 +51,7 @@ public class ItemDwarvenMead extends ItemMod{
         if (!p_77654_2_.isRemote)
         {
         	PotionEffect prev = p_77654_3_.getActivePotionEffect(ModPotions.potionMead);
-        	int level = 0;
+        	int level = -1;
         	if(prev!=null)
         		level = prev.getAmplifier();
             p_77654_3_.addPotionEffect(new PotionEffect(ModPotions.potionMead.getId(),20*60*5,level+1));

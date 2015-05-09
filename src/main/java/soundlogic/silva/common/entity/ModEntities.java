@@ -13,6 +13,7 @@ public class ModEntities {
 		EntityRegistry.registerModEntity(EntityStoneHorse.class, LibEntityNames.STONE_HORSE, id++, Silva.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityDwarvenBarrier.class, LibEntityNames.DWARVEN_BARRIER, id++, Silva.instance, 64, 10, true);
 		EntityRegistry.registerModEntity(EntityDwarvenChainKnot.class, LibEntityNames.DWARVEN_CHAIN_KNOT, id++, Silva.instance, 160, Integer.MAX_VALUE, false);
+		EntityRegistry.registerModEntity(EntityEnderPearlRedirected.class, LibEntityNames.CUSTOM_ENDER_PEARL, id++, Silva.instance, 64, 10, true);
 	}
 
 }

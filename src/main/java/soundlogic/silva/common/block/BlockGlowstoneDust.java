@@ -43,12 +43,4 @@ public class BlockGlowstoneDust extends BlockDust {
         return 0xdfdf00;
     }
 
-    @Override
-    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
-    {
-    	ArrayList<ItemStack> output=new ArrayList<ItemStack>();
-    	output.add(new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,8));
-        return output;
-    }
-    
 }

@@ -70,6 +70,8 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 	public int burstParticleTick = 0;
 
 	List<PositionProperties> lastTentativeBurst;
+	boolean invalidTentativeBurst = false;
+
 
 	@Override
 	public boolean isFull() {
@@ -228,14 +230,16 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 			return true;
 
 		for(PositionProperties props : lastTentativeBurst)
-			if(!props.contentsEqual(worldObj))
-				return true;
+			if(!props.contentsEqual(worldObj)) {
+				invalidTentativeBurst = props.invalid;
+				return !invalidTentativeBurst;
+			}
 
 		return false;
 	}
 
 	public void tryShootBurst() {
-		if(receiver != null) {
+		if(receiver != null && !invalidTentativeBurst) {
 			if(canShootBurst && ( receiver.getCurrentMana() > 0)) {
 				EntityManaBurst burst = getBurst(false);
 				if(burst != null) {
@@ -265,11 +269,13 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 	public EntityManaBurst getBurst(boolean fake) {
 		EntityManaBurst burst = new EntityEaterManaBurst(this,fake);
 		burst.setColor(0xFFAA33);
-		burst.setMana(1);
-		burst.setStartingMana(1);
-		burst.setMinManaLoss(300);
+		burst.setMana(2);
+		burst.setStartingMana(2);
+		burst.setMinManaLoss(150);
 		burst.setManaLossPerTick(1F);
 		burst.setGravity(0F);
+		float motionModifier = 2.1F;
+		burst.setMotion(burst.motionX * motionModifier, burst.motionY * motionModifier, burst.motionZ * motionModifier);
 		
 		return burst;
 	}

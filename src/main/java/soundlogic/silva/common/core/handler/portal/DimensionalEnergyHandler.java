@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import soundlogic.silva.common.block.BlockPylon;
 import soundlogic.silva.common.block.tile.TilePortalCore;
 import soundlogic.silva.common.core.handler.DwarvenChainHandler;
 import soundlogic.silva.common.core.handler.DwarvenChainHandler.LeashProperties;
@@ -153,6 +154,10 @@ public class DimensionalEnergyHandler {
 						blocks--;
 					}
 				}
+			}
+			if(dim.canTunePylonWithPortal() && world.rand.nextFloat()<.3F) {
+				int[] coords = getRandomBlockInBox(aabb);
+				BlockPylon.tryTunePylon(world, coords[0], coords[1], coords[2], dim);
 			}
 		}
 	}

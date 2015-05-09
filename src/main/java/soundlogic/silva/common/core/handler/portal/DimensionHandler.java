@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import net.minecraft.potion.Potion;
+import net.minecraft.world.World;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
 import soundlogic.silva.common.lib.LibMisc;
 import soundlogic.silva.common.potion.ModPotions;
@@ -22,7 +23,8 @@ public class DimensionHandler {
 				0x376332, 
 				0x782b79,
 				null,
-				new DimensionExposureHandlerBase()), 
+				new DimensionExposureHandlerBase(),
+				false), 
 		VIGRIDR (
 				"vigridr", 
 				State.DEFAULT, 
@@ -30,7 +32,8 @@ public class DimensionHandler {
 				0x792b2b, 
 				0x792b2b,
 				null,
-				new DimensionExposureHandlerVigridr()), 
+				new DimensionExposureHandlerVigridr(),
+				true), 
 		FOLKVANGR (
 				"folkvangr", 
 				State.DEFAULT, 
@@ -38,14 +41,16 @@ public class DimensionHandler {
 				0xf6d5a0, 
 				0xf6d5a0,
 				null,
-				new DimensionExposureHandlerBase()), 
+				new DimensionExposureHandlerBase(),
+				true), 
 		VALHALLA ("valhalla", 
 				State.DEFAULT, 
 				BaseDimension.NONE,
 				0xe88787, 
 				0xe88787,
 				null,
-				new DimensionExposureHandlerBase()), 
+				new DimensionExposureHandlerBase(),
+				true), 
 		HELHEIM (
 				"helheim", 
 				State.DEFAULT, 
@@ -53,7 +58,8 @@ public class DimensionHandler {
 				0x1d2457, 
 				0x1d2457,
 				null,
-				new DimensionExposureHandlerHelheim()), 
+				new DimensionExposureHandlerHelheim(),
+				true), 
 		ASGARD (
 				"asgard", 
 				State.DEFAULT, 
@@ -61,7 +67,8 @@ public class DimensionHandler {
 				0xd8e825, 
 				0xd8e825,
 				null,
-				new DimensionExposureHandlerBase()), 
+				new DimensionExposureHandlerBase(),
+				true), 
 		ALFHEIM (
 				"alfheim", 
 				State.DEFAULT, 
@@ -69,7 +76,8 @@ public class DimensionHandler {
 				0x5fff4a, 
 				0x00c000,
 				null,
-				new DimensionExposureHandlerBase()), 
+				new DimensionExposureHandlerBase(),
+				true), 
 		MIDGARD (
 				"midgard", 
 				State.DEFAULT, 
@@ -77,7 +85,8 @@ public class DimensionHandler {
 				0x00c172, 
 				0x00c172,
 				null,
-				new DimensionExposureHandlerBase()), 
+				new DimensionExposureHandlerBase(),
+				false), 
 		JOTUNHEIMR (
 				"jotunheimr", 
 				State.DEFAULT, 
@@ -85,7 +94,8 @@ public class DimensionHandler {
 				0x94aba5, 
 				0x94aba5,
 				null,
-				new DimensionExposureHandlerBase()), 
+				new DimensionExposureHandlerBase(),
+				true), 
 		SVARTALFHEIM (
 				"svartalfheim", 
 				State.DEFAULT, 
@@ -93,7 +103,8 @@ public class DimensionHandler {
 				0x381325,
 				0x381325,
 				new DimensionalBlockHandlerSvartalfheim(),
-				new DimensionExposureHandlerSvartalfheim()), 
+				new DimensionExposureHandlerSvartalfheim(),
+				true), 
 		MUSPELHEIM (
 				"muspelheim", 
 				State.DEFAULT, 
@@ -101,7 +112,8 @@ public class DimensionHandler {
 				0xe03d1d, 
 				0xe03d1d,
 				new DimensionalBlockHandlerMuspelheim(),
-				new DimensionExposureHandlerMuspelheim()), 
+				new DimensionExposureHandlerMuspelheim(),
+				false), 
 		NIFLHEIM (
 				"niflheim", 
 				State.DEFAULT, 
@@ -109,7 +121,8 @@ public class DimensionHandler {
 				0x1dc2e0, 
 				0x1dc2e0,
 				new DimensionalBlockHandlerNiflheim(),
-				new DimensionExposureHandlerBase()), 
+				new DimensionExposureHandlerBase(),
+				true), 
 		NIDAVELLIR (
 				"nidavellir", 
 				State.DEFAULT, 
@@ -117,7 +130,8 @@ public class DimensionHandler {
 				0xd2d5e7, 
 				0xd2d5e7,
 				null,
-				new DimensionExposureHandlerBase()),
+				new DimensionExposureHandlerBase(),
+				true),
 		VANAHEIMR (
 				"vanaheimr", 
 				State.DEFAULT, 
@@ -125,7 +139,8 @@ public class DimensionHandler {
 				0xcf52bf, 
 				0xcf52bf,
 				null,
-				new DimensionExposureHandlerVanaheimr());
+				new DimensionExposureHandlerVanaheimr(),
+				true);
 		
 		private final String unlocalizedName;
 		private final State state;
@@ -134,19 +149,35 @@ public class DimensionHandler {
 		private final IDimensionalBlockHandler blockHandler;
 		private final IDimensionalExposureHandler exposureHandler;
 		private final BaseDimension baseDimension;
+		private final boolean canTunePylon;
 		
 		public enum State {
 			DEFAULT,
 			LOCKED,
 		}
 		public enum BaseDimension {
-			NONE,
-			OVERWORLD,
-			NETHER,
-			END,
+			NONE (),
+			OVERWORLD (0),
+			NETHER (-1),
+			END (1);
+			
+			private final int dimensionID;
+			BaseDimension() {
+				dimensionID = 0;
+			}
+
+			BaseDimension(int dimensionID) {
+				this.dimensionID=dimensionID;
+			}
+			
+			public boolean worldMatches(World world) {
+				if(this==NONE)
+					return false;
+				return world.provider.dimensionId==dimensionID;
+			}
 		}
 		
-		Dimension(String unlocalizedName,State state, BaseDimension baseDimension, int portalColor, int sparkColor, IDimensionalBlockHandler blockHandler, IDimensionalExposureHandler exposureHandler) {
+		Dimension(String unlocalizedName,State state, BaseDimension baseDimension, int portalColor, int sparkColor, IDimensionalBlockHandler blockHandler, IDimensionalExposureHandler exposureHandler, boolean canTunePylon) {
 			this.unlocalizedName=unlocalizedName;
 			this.state=state;
 			this.portalColor=new Color(portalColor);
@@ -154,6 +185,7 @@ public class DimensionHandler {
 			this.blockHandler=blockHandler;
 			this.exposureHandler=exposureHandler;
 			this.baseDimension=baseDimension;
+			this.canTunePylon=canTunePylon;
 		}
 		public String getUnlocalizedName() {
 			return LibMisc.MOD_ID.toLowerCase() + ".dimension." + unlocalizedName;
@@ -181,6 +213,12 @@ public class DimensionHandler {
 				this.blockHandler.init(this);
 			if(this.exposureHandler!=null)
 				this.exposureHandler.init(this);
+		}
+		public boolean canTunePylonWithPortal() {
+			return this.canTunePylon;
+		}
+		public boolean canTunePylonWithGaia() {
+			return true;
 		}
 	}
 	
@@ -442,4 +480,11 @@ public class DimensionHandler {
 		signatureEntries.put(dimension, entryData);
 	}
 
+	public static Dimension getDimensionFromWorld(World world) {
+		for(Dimension dim : Dimension.values())
+			if(dim.baseDimension.worldMatches(world))
+				return dim;
+		return null;
+	}
+	
 }

@@ -55,14 +55,6 @@ public class BlockPixieDust extends BlockDust implements ILexiconable{
         return 0xf51fff;
     }
 
-    @Override
-    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
-    {
-    	ArrayList<ItemStack> output=new ArrayList<ItemStack>();
-    	output.add(new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,8));
-        return output;
-    }
-    
 	@Override
 	public LexiconEntry getEntry(World arg0, int arg1, int arg2, int arg3,
 			EntityPlayer arg4, ItemStack arg5) {

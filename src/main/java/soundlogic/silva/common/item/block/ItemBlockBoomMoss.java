@@ -13,6 +13,7 @@ public class ItemBlockBoomMoss extends ItemBlockMod{
 
     public ItemBlockBoomMoss(Block block) {
 		super(block);
+		this.setHasSubtypes(true);
 	}
 
 	@SideOnly(Side.CLIENT)

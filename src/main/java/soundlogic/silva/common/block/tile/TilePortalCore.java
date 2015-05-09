@@ -552,11 +552,7 @@ public class TilePortalCore extends TileMod{
 	}
 	
 	private void openPortal(ForgeDirection direction, Dimension dim) {
-		if(dim.getBaseDimension() == BaseDimension.OVERWORLD && worldObj.provider.dimensionId==0)
-			return;
-		if(dim.getBaseDimension() == BaseDimension.NETHER && worldObj.provider.dimensionId==-1)
-			return;
-		if(dim.getBaseDimension() == BaseDimension.END && worldObj.provider.dimensionId==1)
+		if(dim.getBaseDimension().worldMatches(worldObj))
 			return;
 		this.direction=direction;
 		if(!drainMana(150000))

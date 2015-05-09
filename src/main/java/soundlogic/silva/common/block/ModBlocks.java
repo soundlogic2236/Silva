@@ -2,6 +2,8 @@ package soundlogic.silva.common.block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import soundlogic.silva.client.lib.LibResources;
+import soundlogic.silva.common.block.subtile.BasicSignature;
+import soundlogic.silva.common.block.subtile.functional.SubTileRhododender;
 import soundlogic.silva.common.block.tile.TileBoomMoss;
 import soundlogic.silva.common.block.tile.TileDwarvenPool;
 import soundlogic.silva.common.block.tile.TileDwarvenSign;
@@ -24,6 +26,8 @@ import soundlogic.silva.common.item.block.ItemBlockModSlab;
 import soundlogic.silva.common.item.block.ItemBlockPylon;
 import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibBlockNames;
+import vazkii.botania.api.BotaniaAPI;
+import vazkii.botania.api.subtile.SubTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
@@ -186,10 +190,18 @@ public class ModBlocks {
 		registerTile(TileMultiblockCore.class, LibBlockNames.MULTIBLOCK_CORE);
 		registerTile(TileMultiblockProxy.class, LibBlockNames.MULTIBLOCK_PROXY_LAVA);
 		registerTile(TileMultiblockProxy.class, LibBlockNames.MULTIBLOCK_PROXY_NO_RENDER);
+		
+		registerSubTile(SubTileRhododender.class, LibBlockNames.SUBTILE_RHODODENDER);
 	}
 	
 	private static void registerTile(Class<? extends TileEntity> clazz, String key) {
 		GameRegistry.registerTileEntityWithAlternatives(clazz, LibResources.PREFIX_MOD + key, key);
+	}
+	
+	private static void registerSubTile(Class<? extends SubTileEntity> clazz, String key) {
+		BotaniaAPI.registerSubTile(key, clazz);
+		BotaniaAPI.registerSubTileSignature(clazz, new BasicSignature(key));
+		BotaniaAPI.addSubTileToCreativeMenu(key);
 	}
 
 }

@@ -57,7 +57,7 @@ public class PotionMeadHandler {
 						prev1SwingTime.put(event.player, event.player.ticksExisted);
 					}
 		        	PotionEffect effect = event.player.getActivePotionEffect(ModPotions.potionMead);
-		        	if(effect.getAmplifier()>=3)
+		        	if(effect.getAmplifier()>=2)
 		        		event.player.attackEntityFrom(ItemDwarvenMead.ALCOHOL_DAMAGE, Float.MAX_VALUE);
 				}
 				else {
@@ -68,9 +68,8 @@ public class PotionMeadHandler {
 				if(event.player.isPotionActive(ModPotions.potionMead)) {
 		        	PotionEffect effect = event.player.getActivePotionEffect(ModPotions.potionMead);
 		        	switch(effect.getAmplifier()) {
-		        	case 0:break;
-		        	case 1:Silva.proxy.setShader(ItemDwarvenMead.shader_blur);break;
-		        	case 2:Silva.proxy.setShader(ItemDwarvenMead.shader_phosphor);break;
+		        	case 0:Silva.proxy.setShader(ItemDwarvenMead.shader_blur);break;
+		        	case 1:Silva.proxy.setShader(ItemDwarvenMead.shader_phosphor);break;
 		        	default:Silva.proxy.setShader(ItemDwarvenMead.shader_phosphor);break;
 		        	}
 					lastTickWasMead=true;
