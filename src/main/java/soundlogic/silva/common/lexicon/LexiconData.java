@@ -16,6 +16,7 @@ import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
 import soundlogic.silva.common.crafting.ModCraftingRecipes;
+import soundlogic.silva.common.crafting.ModPetalRecipes;
 import soundlogic.silva.common.crafting.ModPortalTradeRecipes;
 import soundlogic.silva.common.crafting.recipe.IPortalRecipe;
 import soundlogic.silva.common.item.ItemPapers;
@@ -39,6 +40,7 @@ import vazkii.botania.common.item.ItemLexicon;
 import vazkii.botania.common.lexicon.page.PageCraftingRecipe;
 import vazkii.botania.common.lexicon.page.PageElvenRecipe;
 import vazkii.botania.common.lexicon.page.PageLoreText;
+import vazkii.botania.common.lexicon.page.PagePetalRecipe;
 import vazkii.botania.common.lexicon.page.PageRecipe;
 import vazkii.botania.common.lexicon.page.PageText;
 
@@ -89,8 +91,11 @@ public class LexiconData {
 	public static LexiconEntry dwarvenChain;
 	public static LexiconEntry dwarvenBarrierStone;
 	public static LexiconEntry lavaShroom;
+	public static LexiconEntry carnilotus;
+	public static LexiconEntry rhododender;
 	public static LexiconEntry portalUpgrades;
 	public static LexiconEntry darkElfResources;
+	public static LexiconEntry placeableDust;
 
 	public static void preInit() {
 		
@@ -345,7 +350,16 @@ public class LexiconData {
 		darkenedDust.setKnowledgeType(darkElfKnowledge).setLexiconPages(new PageAdvancedText("0", PageBackground.DEFAULT));
 
 		portalUpgrades=new SLexiconEntry(LibLexicon.PORTAL_UPGRADES, categoryWorldTree);
-		portalUpgrades.setKnowledgeType(worldTreeKnowledge).setLexiconPages(new PageAdvancedText("0", PageBackground.DEFAULT));
+		portalUpgrades.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
+				new PageAdvancedText("0", PageBackground.DEFAULT),
+				new PageAdvancedText("1", PageBackground.DEFAULT),
+				new PageAdvancedCraftingRecipe("2", ModCraftingRecipes.recipeUpgradeRedstone, PageBackground.DEFAULT),
+				new PageAdvancedText("3", PageBackground.DEFAULT),
+				new PageAdvancedCraftingRecipe("4", ModCraftingRecipes.recipeUpgradeInhibit, PageBackground.DEFAULT),
+				new PageAdvancedText("5", PageBackground.DEFAULT),
+				new PageAdvancedCraftingRecipe("6", ModCraftingRecipes.recipeChargedStone, PageBackground.DEFAULT),
+				new PageAdvancedCraftingRecipe("7", ModCraftingRecipes.recipeUpgradeCharge, PageBackground.DEFAULT)
+				);
 
 		darkElfResources=new SLexiconEntry(LibLexicon.DARK_ELF_RESOURCES, categoryWorldTree);
 		darkElfResources.setKnowledgeType(darkElfKnowledge).setLexiconPages(new PageAdvancedText("0", PageBackground.DEFAULT));
@@ -379,6 +393,30 @@ public class LexiconData {
 				new PageAdvancedText("10",PageBackground.ELVEN), 
 				new PageAdvancedText("11",PageBackground.ELVEN)).setPriority();
 		
+		carnilotus=new SLexiconEntry(LibLexicon.CARNILOTUS, BotaniaAPI.categoryGenerationFlowers);
+		carnilotus.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
+				new PageAdvancedText("0", PageBackground.DEFAULT),
+				new PageAdvancedText("1", PageBackground.DEFAULT),
+				new PageAdvancedText("2", PageBackground.DEFAULT),
+				new PageAdvancedImage("3",LibResources.CARNILOTUS_PICKS[0],PageBackground.DEFAULT),
+				new PageAdvancedImage("4",LibResources.CARNILOTUS_PICKS[1],PageBackground.DEFAULT),
+				new PageAdvancedImage("5",LibResources.CARNILOTUS_PICKS[2],PageBackground.DEFAULT),
+				new PageAdvancedImage("6",LibResources.CARNILOTUS_PICKS[3],PageBackground.DEFAULT),
+				new PageAdvancedImage("7",LibResources.CARNILOTUS_PICKS[4],PageBackground.DEFAULT),
+				new PageAdvancedImage("8",LibResources.CARNILOTUS_PICKS[5],PageBackground.DEFAULT),
+				new PageAdvancedImage("9",LibResources.CARNILOTUS_PICKS[6],PageBackground.DEFAULT),
+				new PageAdvancedImage("19",LibResources.CARNILOTUS_PICKS[7],PageBackground.DEFAULT)
+				);
+
+		rhododender=new SLexiconEntry(LibLexicon.RHODODENDER, BotaniaAPI.categoryFunctionalFlowers);
+		rhododender.setKnowledgeType(BotaniaAPI.basicKnowledge).setLexiconPages(
+				new PageAdvancedText("0", PageBackground.DEFAULT),
+				new PageAdvancedText("1", PageBackground.DEFAULT),
+				new PagePetalRecipe("2", ModPetalRecipes.rhododender)
+				);
+
+		placeableDust=new SLexiconEntry(LibLexicon.PLACEABLE_DUST, BotaniaAPI.categoryMisc);
+		placeableDust.setKnowledgeType(BotaniaAPI.basicKnowledge).setLexiconPages(new PageAdvancedText("0", PageBackground.DEFAULT)).setPriority();
 
 		definePapers();
 	}

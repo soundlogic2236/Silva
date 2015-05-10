@@ -629,6 +629,6 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 
 	@Override
 	public LexiconEntry getLexiconEntry() {
-		return LexiconData.lavaShroom;
+		return LexiconData.carnilotus;
 	}
 }

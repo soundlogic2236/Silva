@@ -7,6 +7,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 import soundlogic.silva.common.core.handler.DustHandler;
 import soundlogic.silva.common.entity.EntityEnderPearlRedirected;
+import soundlogic.silva.common.lexicon.LexiconData;
+import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.subtile.SubTileFunctional;
 
 public class SubTileRhododender extends SubTileFunctional {
@@ -63,5 +65,10 @@ public class SubTileRhododender extends SubTileFunctional {
 		int z = supertile.zCoord;
 		
 		return AxisAlignedBB.getBoundingBox(x-1, y-1, z-1, x+2, y+2, z+2);
+	}
+
+	@Override
+	public LexiconEntry getEntry() {
+		return LexiconData.rhododender;
 	}
 }

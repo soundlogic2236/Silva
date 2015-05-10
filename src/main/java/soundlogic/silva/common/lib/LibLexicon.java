@@ -54,6 +54,9 @@ public class LibLexicon {
 	public static final String DARK_ELVES_DESCRIPTION = "darkElfDesc";
 	public static final String PORTAL_UPGRADES = "portalUpgrades";
 	public static final String DARK_ELF_RESOURCES = "darkElfResources";
+	public static final String CARNILOTUS = "carnilotus";
+	public static final String RHODODENDER = "rhododender";
+	public static final String PLACEABLE_DUST = "placeableDust";
 
 
 

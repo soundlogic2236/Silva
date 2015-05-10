@@ -1,5 +1,7 @@
 package soundlogic.silva.common.crafting;
 
+import java.util.List;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -26,6 +28,10 @@ public class ModCraftingRecipes {
 	public static IRecipe recipePortalCore;
 	public static IRecipe recipeBifrostSparkling;
 	public static IRecipe recipeDwarvenPool;
+	public static IRecipe recipeUpgradeRedstone;
+	public static IRecipe recipeUpgradeInhibit;
+	public static IRecipe recipeChargedStone;
+	public static IRecipe recipeUpgradeCharge;
 
 	public static void preInit() {
 		addOreDictRecipe(new ItemStack(ModBlocks.dimensionalPylon,1,0),
@@ -107,6 +113,42 @@ public class ModCraftingRecipes {
 				'D', new ItemStack(vazkii.botania.common.block.ModBlocks.pool));
 		recipeDwarvenPool = BotaniaAPI.getLatestAddedRecipe();
 		
+		addOreDictRecipe(new ItemStack(ModBlocks.portalUpgradeRedstone),
+				" R ",
+				"RSR",
+				" R ",
+				'S', new ItemStack(ModBlocks.bifrostBlockSparkling),
+				'R', new ItemStack(Items.redstone));
+		recipeUpgradeRedstone = BotaniaAPI.getLatestAddedRecipe();
+		
+		addOreDictRecipe(new ItemStack(ModBlocks.portalUpgradeInhibit),
+				" P ",
+				"ISI",
+				" Q ",
+				'S', new ItemStack(ModBlocks.bifrostBlockSparkling),
+				'P', "manaPearl",
+				'I', new ItemStack(Items.iron_ingot),
+				'Q', new ItemStack(Items.quartz));
+		recipeUpgradeInhibit = BotaniaAPI.getLatestAddedRecipe();
+		
+		addOreDictRecipe(new ItemStack(ModBlocks.portalUpgradeCharge),
+				"BPB",
+				"MSE",
+				"BDB",
+				'S', new ItemStack(ModBlocks.bifrostBlockSparkling),
+				'P', "manaPearl",
+				'M', "ingotManasteel",
+				'E', "ingotElvenElementium",
+				'D', "elvenDragonstone",
+				'B', new ItemStack(ModItems.bifrostShard));
+		recipeUpgradeCharge = BotaniaAPI.getLatestAddedRecipe();
+		
+		addShapelessOreDictRecipe(new ItemStack(ModItems.chargedStone),
+				new ItemStack(Items.diamond),
+				new ItemStack(ModItems.bifrostShard),
+				"manaPearl",
+				"elvenPixieDust");
+		recipeChargedStone = BotaniaAPI.getLatestAddedRecipe();
 		
 	}
 

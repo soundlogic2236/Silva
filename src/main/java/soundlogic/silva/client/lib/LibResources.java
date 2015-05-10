@@ -118,4 +118,15 @@ public class LibResources {
 
 	public static final String CARNILOTUS_TRANSITION = PREFIX_MOD + "carnilotusTransition";
 
+	public static final String[] CARNILOTUS_PICKS = new String[] {
+		PREFIX_ENTRIES + "carnilotus0.png",
+		PREFIX_ENTRIES + "carnilotus1.png",
+		PREFIX_ENTRIES + "carnilotus2.png",
+		PREFIX_ENTRIES + "carnilotus3.png",
+		PREFIX_ENTRIES + "carnilotus4.png",
+		PREFIX_ENTRIES + "carnilotus5.png",
+		PREFIX_ENTRIES + "carnilotus6.png",
+		PREFIX_ENTRIES + "carnilotus7.png",
+	};
+
 }

@@ -75,7 +75,9 @@ tile.silva:manaCrystal.name=Mana Crystal
 tile.silva:dwarfRock0.name=Deep Rock
 tile.silva:dwarfRock1.name=Deep Brick
 tile.silva:dwarvenPool.name=Dwarven Mana Pool
-
+tile.silva:portalUpgradeRedstone.name=Redstone Control Portal Upgrade
+tile.silva:portalUpgradeInhibit.name=Inhibitor Portal Upgrade
+tile.silva:portalUpgradeCharge.name=Charging Portal Upgrade
 
 # ITEM NAMES
 item.silva:itemProxy.questionMark.name=Who knows?
@@ -97,6 +99,7 @@ item.silva:stoneHorse.name=Stone Horse
 item.silva:dwarfMead.name=Mead of Poetry
 item.silva:dwarfChain.name=Dwarven Chain
 item.silva:dwarfBarrier.name=Dwarven Barrier Stone
+item.silva:chargedStone.name=Realm Stone
 
 # FLOWER NAMES
 
@@ -368,3 +371,38 @@ silva.page.darkElfDesc8=An illustrative example would be one 'recipe' the fools 
 silva.page.darkElfDesc9=However, due to fools' lack of understanding, they cannot check if it is truly part of a vulnerable mechanism-simply placing a spreader near an unattended portal results in them converting it, and the new device can be used, in a somewhat unorthodox manner, to distribute mana at a greater rate than even a gaia spreader!
 silva.page.darkElfDesc10=The third relationship is the most dangerous, and fortunately extremely rare: armies. Through some mechanism, a menace may manage to recruit a vast number of fools and/or lesser menaces for an extended period of time, enabling them to form a somwehat coherent army. Such armies carry terrible and destructive weapons invented by the menaces.
 silva.page.darkElfDesc11=No such army has been seen since the Shattering, which, given their knowledge of how to traverse Bifrost portals, is incredibly fortunate. Should they form an army, they would be a devastating force against all the realms.
+
+# -- CARNILOTUS
+silva.entry.carnilotus=Carnilotus
+silva.page.carnilotus0=Using the aggressive tendencies of the mana manipulating Mana Spreaders? and mimicking certain carnivorous plants in large scale, a carnilotus may be created to consume mobs for mana. It specifically uses food drops and bone drops from the mobs it consumes in a way similar to the gourmaryllis, though a bit... meaner.
+silva.page.carnilotus1=It can only use items which are dropped by the mobs which fall into its acid, and it then processes them quite rapidly. For food items which cannot be cooked, it generates as much mana as if you put them in a gourmaryllis. If an item can be smelted, it generates an increased amount of mana compared to a gourmaryllis. Bones will boost the mana per food item.
+silva.page.carnilotus2=Creating and activating the Carnilotus requires 9 Mana Spreaders? 36 purple petal blocks, 9 black petal blocks, 9 iron bars, 2 livingwood, some water, three runes of water, two runes of gluttony, one rune of wrath, one rune of mana, and thirty-two sugar.
+silva.page.carnilotus3=Construct the base
+silva.page.carnilotus4=Place the Stem
+silva.page.carnilotus5=Make the bowl
+silva.page.carnilotus6=Using iron bars, supply material for the lip teeth
+silva.page.carnilotus7=Construct the lifted lid
+silva.page.carnilotus8=Using a wand, activate the flower
+silva.page.carnilotus9=Fill the interior with water
+silva.page.carnilotus10=From a safe distance, drop in the runes and sugar.
+
+# -- RHODODENDER
+silva.entry.rhododender=Rhododender
+silva.page.rhododender0=The Rhododender is a simple enough concept-simply catching and throwing an ender pearl. Each time the pearl is thrown however, the damage you will take when it finally lands increases, so be careful. In addition, if the pearl goes far enough that time might stop, it will continue along anyway, loading the chunks it passes through temporarily.
+silva.page.rhododender1=How it throws the ender pearl can be controlled by placing dusts around it-each dust in a given cardinal direction increases how much it throws in that direction, and each dust also increases how much it throws the pearl upwards. Dusts on opposite sides counter each other, except for the upwards portion.
+silva.page.rhododender2=Play ball!
+
+# -- PLACEABLE DUST
+silva.entry.placeableDust=Placeable Dust
+silva.page.placeableDust0=While not always as useful as redstone dust, the world contains a variety of similar materials-glowstone forms a dust when not in blocks, a blaze rod can be ground into a fine powder, and even the magical pixie's of alfheim leave behind a useful dust. Naturally, all of these can be smeared on the ground like redstone, though you aren't sure how useful they would be.
+
+# -- PORTAL UPGRADES
+silva.entry.portalUpgrades=Portal Upgrades
+silva.page.portalUpgrades0=Your advanced portal, while well and good, still could be improved. Fortunately, it has a modular design permitting you to upgrade it easily. Any of the sparkling bifrost blocks which make it up can be replaced with an upgrade for various effects.
+silva.page.portalUpgrades1=A simple upgrade will permit you to easily control it via redstone-an active signal opening the portal, and its absence closing it. Of course, opening the portal will still cost a lot of mana, but perhaps you will find use for it.
+silva.page.portalUpgrades2=Redstone Control Portal Upgrade
+silva.page.portalUpgrades3=The energies which leak through the portal are often useful, but in some cases you don't want snow to pile up or things to light on fire. A simple enough upgrade will inhibit most energies passing through the portal while still permitting items to travel.
+silva.page.portalUpgrades4=Inhibitor Portal Upgrade
+silva.page.portalUpgrades5=If you do want the energies from the portal to effect you, sitting and waiting in front of it can be tedious. To make things easier you can create a Realm Stone and charge it up with energies from the portal, and then simply discharge the stone into yourself at a later time. You could even put multiple energies in it.
+silva.page.portalUpgrades6=Realm Stone (Uncharged)
+silva.page.portalUpgrades7=Charging Portal Upgrade
