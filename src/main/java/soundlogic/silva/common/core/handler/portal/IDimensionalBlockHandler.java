@@ -1,5 +1,6 @@
 package soundlogic.silva.common.core.handler.portal;
 
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import soundlogic.silva.common.block.tile.TilePortalCore;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
@@ -13,4 +14,5 @@ public interface IDimensionalBlockHandler {
 	public int triesPerBlock(TilePortalCore core);
 	public boolean tryApplyToBlock(TilePortalCore core, World world, int[] coords);
 	public void generalTick(TilePortalCore core);
+	public AxisAlignedBB modifyBoundingBox(TilePortalCore core, AxisAlignedBB aabb);
 }

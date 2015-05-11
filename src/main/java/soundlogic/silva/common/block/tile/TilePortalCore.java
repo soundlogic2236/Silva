@@ -752,6 +752,10 @@ public class TilePortalCore extends TileMod{
 		return output;
 	}
 	
+	public int[] getDimensionalSignatureBlockCoords(int row, int column) {
+		return getDimensionalSignatureBlockCoords(direction,row,column);
+	}
+	
 	private int[] getDimensionalSignatureBlockCoords(ForgeDirection direction, int row, int column) {
 		int x=xCoord;
 		int y=yCoord;

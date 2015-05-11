@@ -28,6 +28,7 @@ import soundlogic.silva.common.core.handler.portal.DimensionHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionalEnergyHandler;
 import soundlogic.silva.common.core.handler.potion.PotionMeadHandler;
 import soundlogic.silva.common.crafting.ModCraftingRecipes;
+import soundlogic.silva.common.crafting.ModDarkElfActs;
 import soundlogic.silva.common.crafting.ModFurnaceRecipes;
 import soundlogic.silva.common.crafting.ModPetalRecipes;
 import soundlogic.silva.common.crafting.ModPortalTradeRecipes;
@@ -70,6 +71,7 @@ public class CommonProxy {
 		ModPortalTradeRecipes.preInit();
 		ModFurnaceRecipes.preInit();
 		ModPetalRecipes.preInit();
+		ModDarkElfActs.preInit();
 		
 		DimensionHandler.init();
 

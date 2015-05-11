@@ -168,8 +168,11 @@ public class ModBlocks {
 		multiblockProxyNoRender=new BlockMultiblockProxyNoRender(Material.glass).setBlockName(LibBlockNames.MULTIBLOCK_PROXY_NO_RENDER);
 		GameRegistry.registerBlock(multiblockProxyNoRender, ItemBlockMod.class, LibBlockNames.MULTIBLOCK_PROXY_NO_RENDER);
 		
-		darkenedStone=new BlockSimple(Material.rock).setEntry(LexiconData.darkElfResources).setBlockName(LibBlockNames.DARKENED_STONE);
-		GameRegistry.registerBlock(darkenedStone, ItemBlockModMultiple.class, LibBlockNames.DARKENED_STONE);
+		darkenedStone=new BlockContrary(Material.rock).setEntry(LexiconData.darkElfResources).setBlockName(LibBlockNames.DARKENED_STONE);
+		GameRegistry.registerBlock(darkenedStone, ItemBlockMod.class, LibBlockNames.DARKENED_STONE);
+		
+		darkenedWood=new BlockContrary(Material.wood).setEntry(LexiconData.darkElfResources).setBlockName(LibBlockNames.DARKENED_WOOD);
+		GameRegistry.registerBlock(darkenedWood, ItemBlockMod.class, LibBlockNames.DARKENED_WOOD);
 		
 		initTileEntities();
 	}

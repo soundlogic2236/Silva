@@ -2,6 +2,7 @@ package soundlogic.silva.common.core.handler.portal;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -48,6 +49,12 @@ public class DimensionalBlockHandlerMuspelheim implements IDimensionalBlockHandl
 	@Override
 	public void generalTick(TilePortalCore core) {
 		// NO OP
+	}
+
+	@Override
+	public AxisAlignedBB modifyBoundingBox(TilePortalCore core,
+			AxisAlignedBB aabb) {
+		return aabb;
 	}
 
 }

@@ -77,6 +77,8 @@ public class LibBlockNames {
 
 	public static final String SUBTILE_RHODODENDER = "subtileRhododender";
 
+	public static final String DARKENED_WOOD = "darkenedWood";
+
 
 
 

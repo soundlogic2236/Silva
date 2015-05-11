@@ -139,6 +139,7 @@ public class DimensionalEnergyHandler {
 			if(handler!=null)
 			{
 				handler.generalTick(core);
+				aabb=handler.modifyBoundingBox(core, aabb);
 				if((core.getTicksOpen() % handler.frequencyForSearch(core))==0 && handler.shouldTryApply(core)) {
 					int blocks = handler.getBlocksPerTick(core);
 					while(blocks!=0) {
@@ -155,6 +156,7 @@ public class DimensionalEnergyHandler {
 					}
 				}
 			}
+			aabb = getEnergyBoundingBoxForBlocks(core);
 			if(dim.canTunePylonWithPortal() && world.rand.nextFloat()<.3F) {
 				int[] coords = getRandomBlockInBox(aabb);
 				BlockPylon.tryTunePylon(world, coords[0], coords[1], coords[2], dim);

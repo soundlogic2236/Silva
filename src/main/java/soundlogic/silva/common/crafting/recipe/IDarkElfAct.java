@@ -9,7 +9,6 @@ import net.minecraft.world.World;
 
 public interface IDarkElfAct {
 
-	boolean blockIsValidTarget(Block block);
 	boolean tryApplyToBlock(World world, int x, int y, int z, TilePortalCore core);
 	List<ItemStack> getDisplayInputs();
 	List<ItemStack> getDisplayOutputs();

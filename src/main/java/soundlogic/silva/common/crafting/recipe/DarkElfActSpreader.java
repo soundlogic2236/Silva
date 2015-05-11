@@ -7,29 +7,25 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import soundlogic.silva.common.block.ModBlocks;
+import soundlogic.silva.common.block.tile.TileManaEater;
 import soundlogic.silva.common.block.tile.TilePortalCore;
+import vazkii.botania.api.mana.IManaSpreader;
 
-public class DarkElfActSimple implements IDarkElfAct{
+public class DarkElfActSpreader implements IDarkElfAct{
 
 	Block inputBlock;
 	int inputMetadata;
 	Block outputBlock;
 	int outputMetadata;
 	
-	public DarkElfActSimple(Block outputBlock, int outputMetadata, Block inputBlock, int inputMetadata) {
-		this.outputBlock=outputBlock;
-		this.outputMetadata=outputMetadata;
-		this.inputBlock=inputBlock;
-		this.inputMetadata=inputMetadata;
+	public DarkElfActSpreader(int meta) {
+		inputBlock = vazkii.botania.common.block.ModBlocks.spreader;
+		inputMetadata = meta;
+		outputBlock = ModBlocks.manaEater;
+		outputMetadata = 0;
 	}
 	
-	public DarkElfActSimple(ItemStack output, ItemStack input) {
-		this((ItemBlock)output.getItem(), output, (ItemBlock)input.getItem(), input);
-	}
-	
-	private DarkElfActSimple(ItemBlock outputItem, ItemStack output, ItemBlock inputItem, ItemStack input) {
-		this(outputItem.field_150939_a, outputItem.getMetadata(output.getItemDamage()), inputItem.field_150939_a, inputItem.getMetadata(input.getItemDamage()));
-	}
 	
 	@Override
 	public boolean tryApplyToBlock(World world, int x, int y, int z,
@@ -38,7 +34,13 @@ public class DarkElfActSimple implements IDarkElfAct{
 		int metadata = world.getBlockMetadata(x, y, z);
 		if(block != inputBlock || inputMetadata != metadata)
 			return false;
+		IManaSpreader spreader = (IManaSpreader) world.getTileEntity(x, y, z);
+		float rotationX = spreader.getRotationX();
+		float rotationY = spreader.getRotationY();
 		world.setBlock(x, y, z, outputBlock, outputMetadata, 3);
+		TileManaEater eater = (TileManaEater) world.getTileEntity(x, y, z);
+		eater.rotationX=rotationX;
+		eater.rotationY=rotationY;
 		return true;
 	}
 
