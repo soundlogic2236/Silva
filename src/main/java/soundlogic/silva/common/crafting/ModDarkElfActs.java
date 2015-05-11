@@ -7,9 +7,13 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.crafting.recipe.DarkElfActFake;
+import soundlogic.silva.common.crafting.recipe.DarkElfActFurnace;
+import soundlogic.silva.common.crafting.recipe.DarkElfActNoteBlock;
 import soundlogic.silva.common.crafting.recipe.DarkElfActOreDict;
+import soundlogic.silva.common.crafting.recipe.DarkElfActRedstoneControl;
 import soundlogic.silva.common.crafting.recipe.DarkElfActSimple;
 import soundlogic.silva.common.crafting.recipe.DarkElfActSpreader;
+import soundlogic.silva.common.crafting.recipe.DarkElfActTNT;
 import soundlogic.silva.common.crafting.recipe.IDarkElfAct;
 
 public class ModDarkElfActs {
@@ -40,7 +44,10 @@ public class ModDarkElfActs {
 		fakeDustConversions.add(new DarkElfActFake(new ItemStack(ModBlocks.darkenedDust), new ItemStack(Items.blaze_powder)));
 		fakeDustConversions.add(new DarkElfActFake(new ItemStack(ModBlocks.darkenedDust), new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,8)));
 		
-		
+		DarkElfActs.addAct(new DarkElfActFurnace());
+		DarkElfActs.addAct(new DarkElfActNoteBlock());
+		DarkElfActs.addAct(new DarkElfActRedstoneControl());
+		DarkElfActs.addAct(new DarkElfActTNT());
 	}
 	
 }

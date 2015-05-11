@@ -48,7 +48,6 @@ public class DimensionalBlockHandlerSvartalfheim implements IDimensionalBlockHan
 	public boolean tryApplyToBlock(TilePortalCore core, World world, int[] coords) {
 		for(IDarkElfAct act : DarkElfActs.acts) {
 			if(act.tryApplyToBlock(world, coords[0], coords[1], coords[2], core)) {
-				System.out.println(world.getBlock(coords[0], coords[1], coords[2]));
 				return true;
 			}
 		}
