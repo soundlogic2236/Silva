@@ -18,8 +18,10 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntitySign;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+import net.minecraft.util.Vec3;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class RenderTileDwarvenSign extends TileEntitySpecialRenderer{
@@ -28,8 +30,18 @@ public class RenderTileDwarvenSign extends TileEntitySpecialRenderer{
 	private static final ResourceLocation textureOn = new ResourceLocation(LibResources.MODEL_DWARVEN_SIGN_ON);
     private final ModelSign model = new ModelSign();
 
+    int currentLookX;
+    int currentLookY;
+    boolean doTooltip;
+    public static List<String> tooltipData;
+    public static boolean hasTooltip;
+    public static boolean heldItemValid;
+    public static boolean tooltipInput;
+    
     public void renderTileEntityAt(TileEntity tile, double d0, double d1, double d2, float ticks) {
     	TileDwarvenSign sign=(TileDwarvenSign)tile;
+    	
+    	updateLookLocation(sign);
 
     	Random random=new Random();
     	
@@ -103,13 +115,12 @@ public class RenderTileDwarvenSign extends TileEntitySpecialRenderer{
 				inputStacks.add((ItemStack)o);
 		}
 		for(int i=0;i<output.size();i++)
-			renderStack(output.get(i),false,i);
+			renderStack(output.get(i),false,i, trade, sign);
 		for(int i=0;i<inputStacks.size();i++)
-			renderStack(inputStacks.get(i),true,i);
-		ItemStack tempStack=new ItemStack(ModItems.stoneHorse);
+			renderStack(inputStacks.get(i),true,i, trade, sign);
 	}
 	
-	private void renderStack(ItemStack stack, boolean input, int slot) {
+	private void renderStack(ItemStack stack, boolean input, int slot, DwarfTrade trade, TileDwarvenSign sign) {
 		
 		if(stack==null || stack.getItem()==null)
 			return;
@@ -120,5 +131,48 @@ public class RenderTileDwarvenSign extends TileEntitySpecialRenderer{
 		RenderItem render = new RenderItem();
 		render.renderItemAndEffectIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), stack, x, y);
 		render.renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), stack, x, y);
+		
+		if(doTooltip)
+			renderStackTooltip(stack, input, slot, trade, sign, x, y);
+	}
+	
+	private void updateLookLocation(TileDwarvenSign sign) {
+		MovingObjectPosition pos = Minecraft.getMinecraft().objectMouseOver;
+		
+		doTooltip=false;
+		
+		if(pos.blockX!=sign.xCoord || pos.blockY!=sign.yCoord || pos.blockZ!=sign.zCoord)
+			return;
+		if(pos.sideHit!=sign.getBlockMetadata())
+			return;
+		Vec3 hit = pos.hitVec;
+		double subX = 0;
+		double subY = 1 - (hit.yCoord - sign.yCoord);
+		switch(sign.getBlockMetadata()) {
+		case 2: subX = 1 - (hit.xCoord - sign.xCoord); break;
+		case 3: subX = hit.xCoord - sign.xCoord; break;
+		case 4: subX = hit.zCoord - sign.zCoord; break;
+		case 5: subX = 1 - (hit.zCoord - sign.zCoord); break;
+		}
+		currentLookX = (int) (subX * 90)-3;
+		currentLookY = (int) (subY * 90)-25;
+		doTooltip=true;
+		hasTooltip=false;
+	}
+
+	private void renderStackTooltip(ItemStack stack, boolean input, int slot,
+			DwarfTrade trade, TileDwarvenSign sign, int x, int y) {
+		if(currentLookX>=x && currentLookX <= x+16 && currentLookY>=y && currentLookY<=y+16) {
+			tooltipData =stack.getTooltip(Minecraft.getMinecraft().thePlayer, Minecraft.getMinecraft().gameSettings.advancedItemTooltips);
+			hasTooltip=true;
+			tooltipInput = input;
+			if(input) {
+				ItemStack heldItem = Minecraft.getMinecraft().thePlayer.getCurrentEquippedItem();
+				if(heldItem==null)
+					heldItemValid=false;
+				else
+					heldItemValid=trade.doesStackMatchSlotForDisplay(heldItem, slot);
+			}
+		}
 	}
 }

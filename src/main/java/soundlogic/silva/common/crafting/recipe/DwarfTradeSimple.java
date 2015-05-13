@@ -114,4 +114,10 @@ public class DwarfTradeSimple extends DwarfTrade{
 		return reputation>=this.requiredRep;
 	}
 
+	@Override
+	public boolean doesStackMatchSlotForDisplay(ItemStack stack, int slot) {
+		Object target = getInputs().get(slot);
+		return stackMatches(stack, target);
+	}
+
 }

@@ -3,6 +3,8 @@ package soundlogic.silva.common.item;
 import java.util.Iterator;
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import soundlogic.silva.common.core.handler.DwarvenChainHandler;
 import soundlogic.silva.common.entity.EntityDwarvenChainKnot;
 import net.minecraft.block.Block;
@@ -23,6 +25,12 @@ public class ItemDwarvenChain extends ItemMod{
 	public ItemDwarvenChain(String unLocalizedName) {
 		super(unLocalizedName);
 	}
+
+    @SideOnly(Side.CLIENT)
+    public boolean hasEffect(ItemStack p_77636_1_)
+    {
+        return true;
+    }
 	
     @Override
     public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity) {

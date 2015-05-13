@@ -197,4 +197,13 @@ public class DwarfTradeReforging extends DwarfTrade{
 		}
 	}
 
+	@Override
+	public boolean doesStackMatchSlotForDisplay(ItemStack stack, int slot) {
+		if(slot==0) {
+			return isValidReforgeTarget(type, stack);
+		}
+		Object target = getInputs().get(slot);
+		return stackMatches(stack, target);
+	}
+
 }

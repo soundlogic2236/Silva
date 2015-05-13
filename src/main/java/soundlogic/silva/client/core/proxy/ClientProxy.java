@@ -19,6 +19,7 @@ import soundlogic.silva.client.core.handler.BookConverter;
 import soundlogic.silva.client.core.handler.ClientTickHandler;
 import soundlogic.silva.client.core.handler.DimensionalExposureRenderHandler;
 import soundlogic.silva.client.core.handler.DwarfChainRenderHandler;
+import soundlogic.silva.client.core.handler.DwarvenTradeHUDRenderHandler;
 import soundlogic.silva.client.lib.LibRenderIDs;
 import soundlogic.silva.client.render.block.RenderBoomMoss;
 import soundlogic.silva.client.render.block.RenderDwarvenPool;
@@ -70,6 +71,7 @@ public class ClientProxy extends CommonProxy{
 		DimensionalExposureRenderHandler dimensionalExposureRenderHandler = new DimensionalExposureRenderHandler();
 		MinecraftForge.EVENT_BUS.register(dimensionalExposureRenderHandler);
 		FMLCommonHandler.instance().bus().register(dimensionalExposureRenderHandler);
+		FMLCommonHandler.instance().bus().register(new DwarvenTradeHUDRenderHandler());
 
 		DimensionalExposureRenderHandler.defineGUILocation("", 0, 0, "", 0, false);
 		DimensionalExposureRenderHandler.defineGUILocation("", 0, 0, "", 0, true);

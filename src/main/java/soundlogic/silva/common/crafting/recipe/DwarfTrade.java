@@ -89,4 +89,5 @@ public abstract class DwarfTrade implements IPortalRecipe {
 		return value;
 	}
 	
+	public abstract boolean doesStackMatchSlotForDisplay(ItemStack stack, int slot);
 }
