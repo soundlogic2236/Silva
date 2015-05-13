@@ -26,6 +26,7 @@ import net.minecraft.client.renderer.InventoryEffectRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.StringUtils;
@@ -38,8 +39,8 @@ import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 
 public class DwarvenTradeHUDRenderHandler {
 
-	private static final String check_mark = "\u2714";
-	private static final String x_mark = "\u2718";
+	private static final String check_mark = EnumChatFormatting.GREEN+"\u2714";
+	private static final String x_mark = EnumChatFormatting.RED+"\u2718";
 	
 	@SubscribeEvent
 	public void clientTickEnd(TickEvent.RenderTickEvent event) {
