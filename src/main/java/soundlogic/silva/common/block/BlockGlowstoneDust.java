@@ -31,7 +31,7 @@ import net.minecraft.world.World;
 public class BlockGlowstoneDust extends BlockDust {
 
 	protected BlockGlowstoneDust() {
-        super(new ItemStack(Items.glowstone_dust));
+        super(new ItemStack(Items.glowstone_dust),true);
 		setBlockName(LibBlockNames.GLOWSTONE_DUST);
 		setLightLevel(.5F);
 	}

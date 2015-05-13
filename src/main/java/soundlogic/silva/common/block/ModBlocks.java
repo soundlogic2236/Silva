@@ -20,6 +20,7 @@ import soundlogic.silva.common.block.tile.multiblocks.TileMultiblockCore;
 import soundlogic.silva.common.block.tile.multiblocks.TileMultiblockProxy;
 import soundlogic.silva.common.core.handler.DustHandler;
 import soundlogic.silva.common.item.block.ItemBlockBoomMoss;
+import soundlogic.silva.common.item.block.ItemBlockColoredDust;
 import soundlogic.silva.common.item.block.ItemBlockDwarvenSign;
 import soundlogic.silva.common.item.block.ItemBlockManaCrystal;
 import soundlogic.silva.common.item.block.ItemBlockMod;
@@ -86,6 +87,7 @@ public class ModBlocks {
 	public static Block dwarvenManaPool;
 	public static Block enchantPlate;
 	public static Block blazeFire;
+	public static Block coloredDust;
 	
 	public static void preInit() {
 		
@@ -186,6 +188,9 @@ public class ModBlocks {
 		
 		blazeFire=new BlockBlazeFire().setBlockName(LibBlockNames.BLAZE_FIRE);
 		GameRegistry.registerBlock(blazeFire, LibBlockNames.BLAZE_FIRE);
+		
+		coloredDust=new BlockColoredDust().setBlockName(LibBlockNames.COLORED_DUST);
+		GameRegistry.registerBlock(coloredDust, ItemBlockColoredDust.class, LibBlockNames.COLORED_DUST);
 		
 		initTileEntities();
 	}

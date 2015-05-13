@@ -28,7 +28,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockDarkenedDust extends BlockDust implements ILexiconable{
 
 	protected BlockDarkenedDust() {
-        super();
+        super(true);
         this.setHardness(-1);
 		setBlockName(LibBlockNames.DARKENED_DUST);
 		setCreativeTab(Silva.creativeTab);

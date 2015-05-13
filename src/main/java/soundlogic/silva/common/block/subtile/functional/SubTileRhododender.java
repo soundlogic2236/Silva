@@ -44,7 +44,7 @@ public class SubTileRhododender extends SubTileFunctional {
 			for(int i = 0 ; i < 5 ; i ++) {
 				x+=dir.offsetX;
 				z+=dir.offsetZ;
-				if(!DustHandler.isDust(supertile.getWorldObj(),x,y,z))
+				if(!DustHandler.isMagicDust(supertile.getWorldObj(),x,y,z))
 					break;
 				totX+=dir.offsetX;
 				totZ+=dir.offsetZ;

@@ -8,4 +8,6 @@ public interface IDustBlock {
 
 	public ItemStack getDustStack();
 
+	public boolean isDustMagic();
+	
 }

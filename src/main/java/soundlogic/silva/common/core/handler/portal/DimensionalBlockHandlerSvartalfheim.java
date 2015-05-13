@@ -71,7 +71,7 @@ public class DimensionalBlockHandlerSvartalfheim implements IDimensionalBlockHan
 		for(int row = 0; row < DimensionHandler.SIGNATURE_HEIGHT; row++) {
 			for(int column = 0; column < DimensionHandler.SIGNATURE_WIDTH; column++) {
 				int[] coords=core.getDimensionalSignatureBlockCoords(row,column);
-				if(DustHandler.isDust(core.getWorldObj(), coords[0], coords[1], coords[2])) {
+				if(DustHandler.isMagicDust(core.getWorldObj(), coords[0], coords[1], coords[2])) {
 					core.getWorldObj().setBlock(coords[0], coords[1], coords[2], ModBlocks.darkenedDust, 0, 3);
 				}
 			}

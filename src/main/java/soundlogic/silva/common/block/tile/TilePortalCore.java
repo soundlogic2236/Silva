@@ -777,7 +777,7 @@ public class TilePortalCore extends TileMod{
 	}
 	
 	private boolean isSignatureBlock(Block block) {
-		return block==Blocks.redstone_wire || block instanceof IDustBlock;
+		return block==Blocks.redstone_wire || ( block instanceof IDustBlock && ((IDustBlock) block).isDustMagic());
 	}
 	
 	public boolean upgradesPermitBlockExposureTicks() {

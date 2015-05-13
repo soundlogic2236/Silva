@@ -129,4 +129,6 @@ public class LibResources {
 		PREFIX_ENTRIES + "carnilotus7.png",
 	};
 
+	public static final String COLORED_DUST = PREFIX_MOD + "coloredDust";
+
 }

@@ -32,15 +32,17 @@ import net.minecraft.world.World;
 public abstract class BlockDust extends Block implements IDustBlock {
 
 	ItemStack dustStack;
+	boolean magic;
 	
-	protected BlockDust(ItemStack dustStack) {
+	protected BlockDust(ItemStack dustStack, boolean magic) {
         super(Material.circuits);
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
         this.dustStack=dustStack;
+        this.magic=magic;
 	}
 	
-	protected BlockDust() {
-		this(null);
+	protected BlockDust(boolean magic) {
+		this(null,magic);
 	}
 	
     @Override
@@ -119,6 +121,10 @@ public abstract class BlockDust extends Block implements IDustBlock {
     	ArrayList<ItemStack> output=new ArrayList<ItemStack>();
     	output.add(getDustStack());
         return output;
+    }
+    
+    public boolean isDustMagic() {
+    	return magic;
     }
     
 }

@@ -31,7 +31,7 @@ import net.minecraft.world.World;
 public class BlockBlazeDust extends BlockDust {
 
 	protected BlockBlazeDust() {
-        super(new ItemStack(Items.blaze_powder));
+        super(new ItemStack(Items.blaze_powder),true);
 		setBlockName(LibBlockNames.BLAZE_DUST);
 		setLightLevel(.25F);
 	}

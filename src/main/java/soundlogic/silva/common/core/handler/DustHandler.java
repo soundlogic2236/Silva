@@ -69,6 +69,10 @@ public class DustHandler {
 		return getStackFromBlock(world, x, y, z)!=null;
 	}
 	
+	public static boolean isMagicDust(World world, int x, int y, int z) {
+		return getStackFromBlock(world, x, y, z)!=null && ((IDustBlock) world.getBlock(x, y, z)).isDustMagic();
+	}
+
 	public static Block getBlockForStack(ItemStack stack) {
 		for(Entry<ItemStack,Block> entry : overrideDustBlocks.entrySet()) {
 			if(entry.getKey().isItemEqual(stack))

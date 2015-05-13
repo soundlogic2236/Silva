@@ -31,7 +31,7 @@ import net.minecraft.world.World;
 public class BlockPixieDust extends BlockDust implements ILexiconable{
 
 	protected BlockPixieDust() {
-        super(new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,8));
+        super(new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,8),true);
 		setBlockName(LibBlockNames.PIXIE_DUST);
 	}
 	

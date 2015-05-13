@@ -89,4 +89,6 @@ public class LibBlockNames {
 
 	public static final String BLAZE_FIRE = "blazeFire";
 
+	public static final String COLORED_DUST = "coloredDust";
+
 }
