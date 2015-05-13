@@ -21,7 +21,7 @@ import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.subtile.SubTileFunctional;
 import vazkii.botania.common.block.decor.IFloatingFlower;
 
-public class SubTileConflagrelle extends SubTileFunctional {
+public class SubTileBlazeBloom extends SubTileFunctional {
 
 	ForgeDirection[] mainDirs = new ForgeDirection[] {
 			ForgeDirection.NORTH,
@@ -331,6 +331,6 @@ public class SubTileConflagrelle extends SubTileFunctional {
 	
 	@Override
 	public LexiconEntry getEntry() {
-		return LexiconData.conflagrelle;
+		return LexiconData.blazeBloom;
 	}
 }

@@ -85,7 +85,7 @@ public class LibBlockNames {
 
 	public static final String ENCHANT_PLATE = "enchantPlate";
 
-	public static final String SUBTILE_CONFLAGRELLE = "subtileConflagrelle";
+	public static final String SUBTILE_BLAZEBLOOM = "subtileBlazebloom";
 
 	public static final String BLAZE_FIRE = "blazeFire";
 

@@ -3,7 +3,7 @@ package soundlogic.silva.common.block;
 import cpw.mods.fml.common.registry.GameRegistry;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.block.subtile.BasicSignature;
-import soundlogic.silva.common.block.subtile.functional.SubTileConflagrelle;
+import soundlogic.silva.common.block.subtile.functional.SubTileBlazeBloom;
 import soundlogic.silva.common.block.subtile.functional.SubTileRhododender;
 import soundlogic.silva.common.block.tile.TileBoomMoss;
 import soundlogic.silva.common.block.tile.TileDwarvenPool;
@@ -209,7 +209,7 @@ public class ModBlocks {
 		registerTile(TileEnchantPlate.class, LibBlockNames.ENCHANT_PLATE);
 		
 		registerSubTile(SubTileRhododender.class, LibBlockNames.SUBTILE_RHODODENDER);
-		registerSubTile(SubTileConflagrelle.class, LibBlockNames.SUBTILE_CONFLAGRELLE);
+		registerSubTile(SubTileBlazeBloom.class, LibBlockNames.SUBTILE_BLAZEBLOOM);
 	}
 	
 	private static void registerTile(Class<? extends TileEntity> clazz, String key) {
