@@ -159,7 +159,8 @@ public class TileEnchantPlate extends TileMod implements ISparkAttachable {
 						(float) vb
 				)).getRGB();
 
-				Botania.proxy.wispFX(worldObj, x, y, z, colorsfx1[0], colorsfx1[1], colorsfx1[2], 0.85F, (float)g * 0.05F, 0.25F);
+				if(particleTicks%2==0)
+					Botania.proxy.wispFX(worldObj, x, y, z, colorsfx1[0], colorsfx1[1], colorsfx1[2], 0.85F, (float)g * 0.05F, 0.25F);
 
 				Vector3 start = new Vector3(x,y,z);
 				Vector3 end = new Vector3(
@@ -167,8 +168,8 @@ public class TileEnchantPlate extends TileMod implements ISparkAttachable {
 						y+(worldObj.rand.nextDouble()-.5D)/2D,
 						z+(worldObj.rand.nextDouble()-.5D)/2D
 						);
-
-				Botania.proxy.lightningFX(worldObj, start, end, 4, colorsfx2, colorsfx2);
+				if(particleTicks%4==0)
+					Botania.proxy.lightningFX(worldObj, start, end, 1, colorsfx2, colorsfx2);
 			}
 		}
 	}

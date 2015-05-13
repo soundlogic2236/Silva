@@ -140,7 +140,7 @@ public class EnchantmentMoverHandler {
 	public static int getFirstValidHolderInPlayerInventory(EntityPlayer player) {
 		for(int i = 0; i<player.inventory.getSizeInventory(); i++) {
 			ItemStack stack = player.inventory.getStackInSlot(i);
-			if(stack!=null && stack.getItem() instanceof ItemEnchantHolder && holderMissingXP(stack)>0)
+			if(stack!=null && stack.getItem() instanceof ItemEnchantHolder && holderHasEnchantmentData(stack) && holderMissingXP(stack)>0)
 				return i;
 		}
 		return -1;
