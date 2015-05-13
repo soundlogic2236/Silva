@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import soundlogic.silva.common.block.ModBlocks;
+import soundlogic.silva.common.crafting.recipe.DarkElfActDarkenedDust;
 import soundlogic.silva.common.crafting.recipe.DarkElfActFake;
 import soundlogic.silva.common.crafting.recipe.DarkElfActFurnace;
 import soundlogic.silva.common.crafting.recipe.DarkElfActNoteBlock;
@@ -48,6 +49,7 @@ public class ModDarkElfActs {
 		DarkElfActs.addAct(new DarkElfActNoteBlock());
 		DarkElfActs.addAct(new DarkElfActRedstoneControl());
 		DarkElfActs.addAct(new DarkElfActTNT());
+		DarkElfActs.addAct(new DarkElfActDarkenedDust());
 	}
 	
 }

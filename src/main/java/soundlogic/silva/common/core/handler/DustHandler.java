@@ -70,7 +70,12 @@ public class DustHandler {
 	}
 	
 	public static boolean isMagicDust(World world, int x, int y, int z) {
-		return getStackFromBlock(world, x, y, z)!=null && ((IDustBlock) world.getBlock(x, y, z)).isDustMagic();
+		Block block = world.getBlock(x, y, z);
+		if(block == Blocks.redstone_wire)
+			return true;
+		else if(block instanceof IDustBlock)
+			return ((IDustBlock) block).isDustMagic();
+		return false;
 	}
 
 	public static Block getBlockForStack(ItemStack stack) {
