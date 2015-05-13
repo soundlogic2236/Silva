@@ -15,6 +15,8 @@ public class TileDwarvenPool extends TilePool{
 	
 	@Override
 	public void updateEntity() {
+		if(manaCap==-1)
+			manaCap=MAX_MANA;
 		super.updateEntity();
 		ManaNetworkEvent.removePool(this);
 	}
