@@ -99,6 +99,7 @@ public class LexiconData {
 	public static LexiconEntry darkElfResources;
 	public static LexiconEntry placeableDust;
 	public static LexiconEntry enchantmentMoving;
+	public static LexiconEntry conflagrelle;
 
 	public static void preInit() {
 		

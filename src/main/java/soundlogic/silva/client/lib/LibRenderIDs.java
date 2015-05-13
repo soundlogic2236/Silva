@@ -9,4 +9,5 @@ public class LibRenderIDs {
 	public static int idManaCrystal = -1;
 	public static int idDwarvenPool = -1;
 	public static int idPortalUpgradeCharge = -1;
+	public static int idBlazeFire = -1;
 }
