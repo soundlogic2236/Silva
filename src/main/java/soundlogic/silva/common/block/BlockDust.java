@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import scala.actors.threadpool.Arrays;
 import soundlogic.silva.client.lib.LibRenderIDs;
+import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.lib.LibBlockNames;
 import vazkii.botania.api.lexicon.ILexiconable;
@@ -47,6 +48,12 @@ public abstract class BlockDust extends Block implements IDustBlock {
     {
         return null;
     }
+
+    @Override
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister par1IconRegister) {
+		//NO OP
+	}
 
     @Override
     public boolean isOpaqueCube()

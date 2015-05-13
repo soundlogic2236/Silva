@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import soundlogic.silva.common.Silva;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -28,5 +29,11 @@ public class ItemPriceProxy extends ItemMod{
 		int slot = (ticks / 20) % stacks.size();
     	return stacks.get(slot);
     }
+
+    @Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IIconRegister par1IconRegister) {
+		//NO OP
+	}
 
 }
