@@ -2,6 +2,7 @@ package soundlogic.silva.common.core.handler;
 
 import java.util.Random;
 
+import soundlogic.silva.common.core.helper.EquipmentHelper;
 import soundlogic.silva.common.lib.LibGUI;
 import vazkii.botania.api.mana.ManaItemHandler;
 import vazkii.botania.common.item.ItemRegenIvy;
@@ -18,6 +19,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
@@ -45,12 +47,12 @@ public class DwarfForgedHandler {
 		return stack != null && stack.hasTagCompound() && stack.getTagCompound().getBoolean(TAG_DWARF_FORGED);
 	}
 	
-	public static boolean isWeaponDwarfForged(EntityPlayer player) {
-		return isDwarfForged(player.getCurrentEquippedItem()) && player.getCurrentEquippedItem().getItem() instanceof ItemSword;
+	public static boolean isMeleeWeaponDwarfForged(EntityPlayer player) {
+		return isDwarfForged(player.getCurrentEquippedItem()) && EquipmentHelper.isEquipmentType(player.getCurrentEquippedItem(), EquipmentHelper.EquipmentType.ANY_MELEE_WEAPON);
 	}
 	
-	public static boolean isToolDwarfForged(EntityPlayer player) {
-		return isDwarfForged(player.getCurrentEquippedItem()) && player.getCurrentEquippedItem().getItem() instanceof ItemTool;
+	public static boolean isDiggingToolDwarfForged(EntityPlayer player) {
+		return isDwarfForged(player.getCurrentEquippedItem()) && EquipmentHelper.isEquipmentType(player.getCurrentEquippedItem(), EquipmentHelper.EquipmentType.ANY_TOOL);
 	}
 	
 	public static int dwarfForgedArmorCount(EntityPlayer player) {
@@ -97,13 +99,20 @@ public class DwarfForgedHandler {
 	public void onPlayerAttack(LivingHurtEvent event) {
 		if(event.source.getEntity() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.source.getEntity();
-			if(isWeaponDwarfForged(player)) {
+			if(isMeleeWeaponDwarfForged(player)) {
 				if(random.nextFloat()<.2F)
 					event.ammount *=1.1F;
 				if(random.nextFloat()<.05F)
 					event.ammount *=2F;
 				ISpecialArmor armor;
 			}
+		}
+	}
+	@SubscribeEvent
+	public void onGetBreakSpeed(PlayerEvent.BreakSpeed event) {
+		if(isDiggingToolDwarfForged(event.entityPlayer)) {
+			if(event.newSpeed>0)
+				event.newSpeed=event.newSpeed*1.05F;
 		}
 	}
 }

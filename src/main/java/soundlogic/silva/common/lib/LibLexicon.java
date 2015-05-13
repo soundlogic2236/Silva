@@ -57,6 +57,7 @@ public class LibLexicon {
 	public static final String CARNILOTUS = "carnilotus";
 	public static final String RHODODENDER = "rhododender";
 	public static final String PLACEABLE_DUST = "placeableDust";
+	public static final String ENCHANTMENT_MOVING = "movingEnchantments";
 
 
 

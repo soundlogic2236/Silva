@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
 import soundlogic.silva.common.Silva;
+import soundlogic.silva.common.crafting.recipe.PapersCloneRecipe;
 import soundlogic.silva.common.crafting.recipe.PapersIntoLexiconRecipe;
 import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibGUI;
@@ -26,7 +27,6 @@ public class ItemPapers extends ItemMod{
 	public ItemPapers(String unLocalizedName) {
 		super(unLocalizedName);
 		this.hasSubtypes=true;
-		GameRegistry.addRecipe(new PapersIntoLexiconRecipe());
 	}
 	
 	public static ItemStack setKnowledgeType(ItemStack stack,KnowledgeType type) {

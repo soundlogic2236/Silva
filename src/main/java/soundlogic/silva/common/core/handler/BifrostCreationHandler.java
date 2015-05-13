@@ -37,6 +37,6 @@ public class BifrostCreationHandler {
 
 	private void makeBifrostShards(int x, int y, int z, World world) {
 		world.setBlockToAir(x, y, z);
-		world.spawnEntityInWorld(new EntityItem(world, x + 0.5, y + 0.5, z + 0.5, new ItemStack(ModItems.bifrostShard,18)));
+		world.spawnEntityInWorld(new EntityItem(world, x + 0.5, y + 0.5, z + 0.5, new ItemStack(ModItems.simpleResource,18,0)));
 	}
 }

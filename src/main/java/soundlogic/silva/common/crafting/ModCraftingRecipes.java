@@ -2,6 +2,7 @@ package soundlogic.silva.common.crafting;
 
 import java.util.List;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -12,6 +13,9 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
 import soundlogic.silva.common.crafting.recipe.AlfheimPortalRecipeWrapper;
+import soundlogic.silva.common.crafting.recipe.HolderIntoBookRecipe;
+import soundlogic.silva.common.crafting.recipe.PapersCloneRecipe;
+import soundlogic.silva.common.crafting.recipe.PapersIntoLexiconRecipe;
 import soundlogic.silva.common.item.ModItems;
 import vazkii.botania.api.BotaniaAPI;
 
@@ -32,13 +36,16 @@ public class ModCraftingRecipes {
 	public static IRecipe recipeUpgradeInhibit;
 	public static IRecipe recipeChargedStone;
 	public static IRecipe recipeUpgradeCharge;
+	public static List<IRecipe> holderEnchantRecipes;
+	public static IRecipe enchantPlateRecipe;
+	public static IRecipe enchantOfferingRecipe;
 
 	public static void preInit() {
 		addOreDictRecipe(new ItemStack(ModBlocks.dimensionalPylon,1,0),
 				" S ",
 				"GPG",
 				" S ",
-				'S',new ItemStack(ModItems.bifrostShard),
+				'S',new ItemStack(ModItems.simpleResource,1,0),
 				'G',new ItemStack(Blocks.gold_block),
 				'P',new ItemStack(vazkii.botania.common.block.ModBlocks.pylon,1,0));
 		recipePortalPylon = BotaniaAPI.getLatestAddedRecipe();
@@ -56,10 +63,10 @@ public class ModCraftingRecipes {
 				"SSS",
 				"SSS",
 				"SSS",
-				'S',new ItemStack(ModItems.bifrostShard));
+				'S',new ItemStack(ModItems.simpleResource,1,0));
 		recipeBifrostBlock = BotaniaAPI.getLatestAddedRecipe();
 
-		addOreDictRecipe(new ItemStack(ModItems.bifrostShard,9),
+		addOreDictRecipe(new ItemStack(ModItems.simpleResource,9,0),
 				"B",
 				'B',new ItemStack(ModBlocks.bifrostBlock));
 		recipeBifrostShard = BotaniaAPI.getLatestAddedRecipe();
@@ -102,7 +109,7 @@ public class ModCraftingRecipes {
 				"STS",
 				"GSG",
 				'G', vazkii.botania.common.lib.LibOreDict.LIFE_ESSENCE,
-				'S',new ItemStack(ModItems.bifrostShard),
+				'S',new ItemStack(ModItems.simpleResource,1,0),
 				'T',new ItemStack(vazkii.botania.common.block.ModBlocks.storage,1,1));
 		recipePortalCore = BotaniaAPI.getLatestAddedRecipe();
 		
@@ -140,16 +147,111 @@ public class ModCraftingRecipes {
 				'M', "ingotManasteel",
 				'E', "ingotElvenElementium",
 				'D', "elvenDragonstone",
-				'B', new ItemStack(ModItems.bifrostShard));
+				'B', new ItemStack(ModItems.simpleResource,1,0));
 		recipeUpgradeCharge = BotaniaAPI.getLatestAddedRecipe();
 		
 		addShapelessOreDictRecipe(new ItemStack(ModItems.chargedStone),
 				new ItemStack(Items.diamond),
-				new ItemStack(ModItems.bifrostShard),
+				new ItemStack(ModItems.simpleResource,1,0),
 				"manaPearl",
 				"elvenPixieDust");
 		recipeChargedStone = BotaniaAPI.getLatestAddedRecipe();
 		
+		addOreDictRecipe(new ItemStack(ModItems.enchantHolder, 1, 0),
+				"SSS",
+				"S S",
+				'S', new ItemStack(ModBlocks.paradoxStone, 1, 0),
+				'T', new ItemStack(ModItems.simpleResource, 1, 2));
+		addOreDictRecipe(new ItemStack(ModItems.enchantHolder, 1, 1),
+				"S S",
+				"SSS",
+				"SSS",
+				'S', new ItemStack(ModBlocks.paradoxStone, 1, 0),
+				'T', new ItemStack(ModItems.simpleResource, 1, 2));
+		addOreDictRecipe(new ItemStack(ModItems.enchantHolder, 1, 2),
+				"SSS",
+				"S S",
+				"S S",
+				'S', new ItemStack(ModBlocks.paradoxStone, 1, 0),
+				'T', new ItemStack(ModItems.simpleResource, 1, 2));
+		addOreDictRecipe(new ItemStack(ModItems.enchantHolder, 1, 3),
+				"S S",
+				"S S",
+				'S', new ItemStack(ModBlocks.paradoxStone, 1, 0),
+				'T', new ItemStack(ModItems.simpleResource, 1, 2));
+		addOreDictRecipe(new ItemStack(ModItems.enchantHolder, 1, 4),
+				"SSS",
+				" T ",
+				" T ",
+				'S', new ItemStack(ModBlocks.paradoxStone, 1, 0),
+				'T', new ItemStack(ModItems.simpleResource, 1, 2));
+		addOreDictRecipe(new ItemStack(ModItems.enchantHolder, 1, 5),
+				"S",
+				"T",
+				"T",
+				'S', new ItemStack(ModBlocks.paradoxStone, 1, 0),
+				'T', new ItemStack(ModItems.simpleResource, 1, 2));
+		addOreDictRecipe(new ItemStack(ModItems.enchantHolder, 1, 6),
+				"SS",
+				"TS",
+				"T ",
+				'S', new ItemStack(ModBlocks.paradoxStone, 1, 0),
+				'T', new ItemStack(ModItems.simpleResource, 1, 2));
+		addOreDictRecipe(new ItemStack(ModItems.enchantHolder, 1, 7),
+				"S",
+				"S",
+				"T",
+				'S', new ItemStack(ModBlocks.paradoxStone, 1, 0),
+				'T', new ItemStack(ModItems.simpleResource, 1, 2));
+		addOreDictRecipe(new ItemStack(ModItems.enchantHolder, 1, 8),
+				" TS",
+				"T S",
+				" TS",
+				'S', "manaString",
+				'T', new ItemStack(ModItems.simpleResource, 1, 2));
+		addOreDictRecipe(new ItemStack(ModItems.enchantHolder, 1, 9),
+				"SS",
+				"T ",
+				"T ",
+				'S', new ItemStack(ModBlocks.paradoxStone, 1, 0),
+				'T', new ItemStack(ModItems.simpleResource, 1, 2));
+		addOreDictRecipe(new ItemStack(ModItems.enchantHolder, 1, 10),
+				"S ",
+				" S",
+				'S', new ItemStack(ModBlocks.paradoxStone, 1, 0),
+				'T', new ItemStack(ModItems.simpleResource, 1, 2));
+		holderEnchantRecipes=BotaniaAPI.getLatestAddedRecipes(11);
+		
+		addOreDictRecipe(new ItemStack(ModBlocks.enchantPlate),
+				"SGS",
+				"RPR",
+				"123",
+				'S', new ItemStack(ModBlocks.paradoxStone, 1, 0),
+				'G', new ItemStack(Blocks.gold_block),
+				'P', "manaPearl",
+				'R', "runeManaB",
+				'1', "runeGreedB",
+				'2', "runeSlothB",
+				'3', "runePrideB");
+		enchantPlateRecipe=BotaniaAPI.getLatestAddedRecipe();
+		addOreDictRecipe(new ItemStack(ModItems.simpleResource, 1, 3),
+				"QDQ",
+				"DPD",
+				"QDQ",
+				'P', "manaPearl",
+				'D', new ItemStack(ModBlocks.darkenedDust),
+				'Q', new ItemStack(Items.quartz));
+		enchantOfferingRecipe=BotaniaAPI.getLatestAddedRecipe();
+		
+		
+		defineCustomRecipes();
+	}
+
+	private static void defineCustomRecipes() {
+		GameRegistry.addRecipe(new PapersIntoLexiconRecipe());
+		GameRegistry.addRecipe(new PapersCloneRecipe());
+		GameRegistry.addRecipe(new HolderIntoBookRecipe());
+
 	}
 
 	private static void addOreDictRecipe(ItemStack output, Object... recipe) {

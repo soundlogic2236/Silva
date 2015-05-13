@@ -34,6 +34,7 @@ import soundlogic.silva.client.render.multiblock.RenderMultiblockCarnilotus;
 import soundlogic.silva.client.render.tile.RenderTileBoomMoss;
 import soundlogic.silva.client.render.tile.RenderTileDwarvenPool;
 import soundlogic.silva.client.render.tile.RenderTileDwarvenSign;
+import soundlogic.silva.client.render.tile.RenderTileEnchantPlate;
 import soundlogic.silva.client.render.tile.RenderTileManaCrystal;
 import soundlogic.silva.client.render.tile.RenderTileManaEater;
 import soundlogic.silva.client.render.tile.RenderTileMultiblockCore;
@@ -44,6 +45,7 @@ import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.tile.TileBoomMoss;
 import soundlogic.silva.common.block.tile.TileDwarvenPool;
 import soundlogic.silva.common.block.tile.TileDwarvenSign;
+import soundlogic.silva.common.block.tile.TileEnchantPlate;
 import soundlogic.silva.common.block.tile.TileManaCrystal;
 import soundlogic.silva.common.block.tile.TileManaEater;
 import soundlogic.silva.common.block.tile.TilePortalCore;
@@ -102,6 +104,7 @@ public class ClientProxy extends CommonProxy{
     	ClientRegistry.bindTileEntitySpecialRenderer(TileDwarvenPool.class, new RenderTileDwarvenPool());
     	ClientRegistry.bindTileEntitySpecialRenderer(TilePortalUpgradeCharge.class, new RenderTilePortalUpgradeCharge());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileMultiblockCore.class, new RenderTileMultiblockCore());
+    	ClientRegistry.bindTileEntitySpecialRenderer(TileEnchantPlate.class, new RenderTileEnchantPlate());
     	
     	RenderingRegistry.registerEntityRenderingHandler(EntityStoneHorse.class, new RenderEntityStoneHorse());
     	RenderingRegistry.registerEntityRenderingHandler(EntityDwarvenBarrier.class, new RenderSnowball(ModItems.dwarfBarrier));

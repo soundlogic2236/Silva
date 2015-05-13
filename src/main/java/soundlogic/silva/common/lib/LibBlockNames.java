@@ -79,9 +79,10 @@ public class LibBlockNames {
 
 	public static final String DARKENED_WOOD = "darkenedWood";
 
+	public static final String PARADOX_STONE = "paradoxStone";
 
+	public static final String PARADOX_WOOD = "paradoxWood";
 
+	public static final String ENCHANT_PLATE = "enchantPlate";
 
-
-		
 }

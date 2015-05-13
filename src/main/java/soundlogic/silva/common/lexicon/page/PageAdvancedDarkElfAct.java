@@ -60,7 +60,7 @@ public class PageAdvancedDarkElfAct extends PageRecipe{
 		this.background=background;
 	}
 	public PageAdvancedDarkElfAct(String unlocalizedName,List<ItemStack> outputs, List<ItemStack> inputs, PageBackground background) {
-		this(unlocalizedName,null,background);
+		this(unlocalizedName,(List<IDarkElfAct>)null,background);
 		this.recipes=new ArrayList<IDarkElfAct>();
 		for(int i = 0 ; i< outputs.size() ; i++) {
 			recipes.add(new DarkElfActSimple(outputs.get(i), inputs.get(i)));
@@ -75,6 +75,10 @@ public class PageAdvancedDarkElfAct extends PageRecipe{
 		this(unlocalizedName, Arrays.asList(outputs), Arrays.asList(inputs),background);
 	}
 	
+	public PageAdvancedDarkElfAct(String unlocalizedName,
+			IDarkElfAct act, PageBackground background){
+		this(unlocalizedName, Arrays.asList(act), background);
+	}
 	@Override
 	public void onPageAdded(LexiconEntry entry, int index) {
 		for(IDarkElfAct recipe : recipes) {

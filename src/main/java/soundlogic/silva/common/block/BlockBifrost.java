@@ -58,7 +58,7 @@ public class BlockBifrost extends Block implements IBifrostBlock, ILexiconable{
 		world.setBlockToAir(x, y, z);
 		world.setBlock(x, y, z, this,0,3);
 		this.onNeighborBlockChange(world, x, y, z, ModBlocks.bifrostBlock);
-		world.spawnEntityInWorld(new EntityItem(world, x + 0.5, y + 0.5, z + 0.5, new ItemStack(ModItems.bifrostShard,9)));
+		world.spawnEntityInWorld(new EntityItem(world, x + 0.5, y + 0.5, z + 0.5, new ItemStack(ModItems.simpleResource,9,0)));
 	}
 	
 	@Override

@@ -12,10 +12,10 @@ import net.minecraft.util.WeightedRandom;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.core.handler.DwarfForgedHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
+import soundlogic.silva.common.core.helper.EquipmentHelper;
 import soundlogic.silva.common.crafting.recipe.DwarfTrade;
 import soundlogic.silva.common.crafting.recipe.DwarfTradeForging;
 import soundlogic.silva.common.crafting.recipe.DwarfTradeReforging;
-import soundlogic.silva.common.crafting.recipe.DwarfTradeReforging.ReforgeType;
 import soundlogic.silva.common.crafting.recipe.DwarfTradeSimple;
 import soundlogic.silva.common.crafting.recipe.IPortalRecipe;
 import soundlogic.silva.common.crafting.recipe.PortalRecipeSimple;
@@ -53,7 +53,7 @@ public class ModPortalTradeRecipes {
 	
 	
 	public static void preInit() {
-		dwarfSignRecipe=new PortalRecipeSimple(new ItemStack(ModBlocks.dwarvenSign),new ItemStack(Items.sign),new ItemStack(Blocks.iron_block),new ItemStack(ModItems.bifrostShard));
+		dwarfSignRecipe=new PortalRecipeSimple(new ItemStack(ModBlocks.dwarvenSign),new ItemStack(Items.sign),new ItemStack(Blocks.iron_block),new ItemStack(ModItems.simpleResource,1,0));
 		PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfSignRecipe);
 		
 		for(int i=0;i<16;i++) {
@@ -87,7 +87,7 @@ public class ModPortalTradeRecipes {
 		
 		dwarfMasterBoomMossTrade=new DwarfTradeSimple(new ItemStack(ModBlocks.boomMoss,1,1),11,3,20,new ItemStack(ModBlocks.boomMoss),new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,5),new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,5));
 		PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfMasterBoomMossTrade);
-	
+
 		dwarfForgeIronRecipes=getForgeRecipes(1,3,2,10,new ItemStack(Items.iron_ingot),
 				new ItemStack(Items.iron_helmet),
 				new ItemStack(Items.iron_chestplate),
@@ -143,23 +143,23 @@ public class ModPortalTradeRecipes {
 				new ItemStack(vazkii.botania.common.item.ModItems.elementiumAxe),
 				new ItemStack(vazkii.botania.common.item.ModItems.elementiumSword));
 
-		dwarfReforgeRecipes[0]=new DwarfTradeReforging(ReforgeType.HELMET,18,12,40);
-		dwarfReforgeRecipes[1]=new DwarfTradeReforging(ReforgeType.CHESTPLATE,18,15,40);
-		dwarfReforgeRecipes[2]=new DwarfTradeReforging(ReforgeType.LEGGINGS,18,13,40);
-		dwarfReforgeRecipes[3]=new DwarfTradeReforging(ReforgeType.BOOTS,18,10,40);
-		dwarfReforgeRecipes[4]=new DwarfTradeReforging(ReforgeType.PICKAXE,21,10,40);
-		dwarfReforgeRecipes[5]=new DwarfTradeReforging(ReforgeType.SHOVEL,18,8,40);
-		dwarfReforgeRecipes[6]=new DwarfTradeReforging(ReforgeType.AXE,18,6,40);
-		dwarfReforgeRecipes[7]=new DwarfTradeReforging(ReforgeType.SWORD,21,9,40);
+		dwarfReforgeRecipes[0]=new DwarfTradeReforging(EquipmentHelper.EquipmentType.HELMET,18,12,40);
+		dwarfReforgeRecipes[1]=new DwarfTradeReforging(EquipmentHelper.EquipmentType.CHESTPLATE,18,15,40);
+		dwarfReforgeRecipes[2]=new DwarfTradeReforging(EquipmentHelper.EquipmentType.LEGGINGS,18,13,40);
+		dwarfReforgeRecipes[3]=new DwarfTradeReforging(EquipmentHelper.EquipmentType.BOOTS,18,10,40);
+		dwarfReforgeRecipes[4]=new DwarfTradeReforging(EquipmentHelper.EquipmentType.PICKAXE,21,10,40);
+		dwarfReforgeRecipes[5]=new DwarfTradeReforging(EquipmentHelper.EquipmentType.SHOVEL,18,8,40);
+		dwarfReforgeRecipes[6]=new DwarfTradeReforging(EquipmentHelper.EquipmentType.AXE,18,6,40);
+		dwarfReforgeRecipes[7]=new DwarfTradeReforging(EquipmentHelper.EquipmentType.SWORD,21,9,40);
 
-		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(ItemProxy.getStackForReforgeType(ReforgeType.HELMET)),ItemProxy.getStackForReforgeType(ReforgeType.HELMET), new ItemStack(ModItems.priceProxyItem)));
-		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(ItemProxy.getStackForReforgeType(ReforgeType.CHESTPLATE)),ItemProxy.getStackForReforgeType(ReforgeType.CHESTPLATE), new ItemStack(ModItems.priceProxyItem)));
-		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(ItemProxy.getStackForReforgeType(ReforgeType.LEGGINGS)),ItemProxy.getStackForReforgeType(ReforgeType.LEGGINGS), new ItemStack(ModItems.priceProxyItem)));
-		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(ItemProxy.getStackForReforgeType(ReforgeType.BOOTS)),ItemProxy.getStackForReforgeType(ReforgeType.BOOTS), new ItemStack(ModItems.priceProxyItem)));
-		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(ItemProxy.getStackForReforgeType(ReforgeType.PICKAXE)),ItemProxy.getStackForReforgeType(ReforgeType.PICKAXE), new ItemStack(ModItems.priceProxyItem)));
-		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(ItemProxy.getStackForReforgeType(ReforgeType.SHOVEL)),ItemProxy.getStackForReforgeType(ReforgeType.SHOVEL), new ItemStack(ModItems.priceProxyItem)));
-		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(ItemProxy.getStackForReforgeType(ReforgeType.AXE)),ItemProxy.getStackForReforgeType(ReforgeType.AXE), new ItemStack(ModItems.priceProxyItem)));
-		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(ItemProxy.getStackForReforgeType(ReforgeType.SWORD)),ItemProxy.getStackForReforgeType(ReforgeType.SWORD), new ItemStack(ModItems.priceProxyItem)));
+		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(EquipmentHelper.getProxyStackForType(EquipmentHelper.EquipmentType.HELMET)),EquipmentHelper.getProxyStackForType(EquipmentHelper.EquipmentType.HELMET), new ItemStack(ModItems.priceProxyItem)));
+		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(EquipmentHelper.getProxyStackForType(EquipmentHelper.EquipmentType.CHESTPLATE)),EquipmentHelper.getProxyStackForType(EquipmentHelper.EquipmentType.CHESTPLATE), new ItemStack(ModItems.priceProxyItem)));
+		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(EquipmentHelper.getProxyStackForType(EquipmentHelper.EquipmentType.LEGGINGS)),EquipmentHelper.getProxyStackForType(EquipmentHelper.EquipmentType.LEGGINGS), new ItemStack(ModItems.priceProxyItem)));
+		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(EquipmentHelper.getProxyStackForType(EquipmentHelper.EquipmentType.BOOTS)),EquipmentHelper.getProxyStackForType(EquipmentHelper.EquipmentType.BOOTS), new ItemStack(ModItems.priceProxyItem)));
+		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(EquipmentHelper.getProxyStackForType(EquipmentHelper.EquipmentType.PICKAXE)),EquipmentHelper.getProxyStackForType(EquipmentHelper.EquipmentType.PICKAXE), new ItemStack(ModItems.priceProxyItem)));
+		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(EquipmentHelper.getProxyStackForType(EquipmentHelper.EquipmentType.SHOVEL)),EquipmentHelper.getProxyStackForType(EquipmentHelper.EquipmentType.SHOVEL), new ItemStack(ModItems.priceProxyItem)));
+		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(EquipmentHelper.getProxyStackForType(EquipmentHelper.EquipmentType.AXE)),EquipmentHelper.getProxyStackForType(EquipmentHelper.EquipmentType.AXE), new ItemStack(ModItems.priceProxyItem)));
+		dwarfReforgingDisplay.add(new PortalRecipeSimple(DwarfForgedHandler.dwarfForgeStack(EquipmentHelper.getProxyStackForType(EquipmentHelper.EquipmentType.SWORD)),EquipmentHelper.getProxyStackForType(EquipmentHelper.EquipmentType.SWORD), new ItemStack(ModItems.priceProxyItem)));
 		
 		for(int i=0;i<8;i++) {
 			PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfForgeIronRecipes[i]);
@@ -327,11 +327,6 @@ public class ModPortalTradeRecipes {
 			this.trade=trade;
 		}
 	}
-	
-	public static IPortalRecipe getSampleReforgeRecipe(ReforgeType type) {
-		return null;
-	}
-
 
 	private static void indexDwarfRecipes() {
 		mapDwarfTrade("mushroom0",(DwarfTrade)dwarfMushroomRecipes[0]);

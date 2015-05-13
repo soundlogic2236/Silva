@@ -1,7 +1,6 @@
 package soundlogic.silva.common.item;
 
 import soundlogic.silva.client.lib.LibResources;
-import soundlogic.silva.common.crafting.recipe.DwarfTradeReforging.ReforgeType;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -55,27 +54,5 @@ public class ItemProxy extends ItemMod{
     public IIcon getIconFromDamage(int damage) {
     	return icons[damage];
     }
-
-	public static ItemStack getStackForReforgeType(ReforgeType type) {
-		switch(type) {
-		case HELMET:
-			return new ItemStack(ModItems.proxyItem,1,1);
-		case CHESTPLATE:
-			return new ItemStack(ModItems.proxyItem,1,2);
-		case LEGGINGS:
-			return new ItemStack(ModItems.proxyItem,1,3);
-		case BOOTS:
-			return new ItemStack(ModItems.proxyItem,1,4);
-		case PICKAXE:
-			return new ItemStack(ModItems.proxyItem,1,5);
-		case SHOVEL:
-			return new ItemStack(ModItems.proxyItem,1,6);
-		case AXE:
-			return new ItemStack(ModItems.proxyItem,1,7);
-		case SWORD:
-			return new ItemStack(ModItems.proxyItem,1,8);
-		}
-		return null;
-	}
 
 }

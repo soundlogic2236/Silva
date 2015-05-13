@@ -16,6 +16,7 @@ import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
 import soundlogic.silva.common.crafting.ModCraftingRecipes;
+import soundlogic.silva.common.crafting.ModDarkElfActs;
 import soundlogic.silva.common.crafting.ModPetalRecipes;
 import soundlogic.silva.common.crafting.ModPortalTradeRecipes;
 import soundlogic.silva.common.crafting.recipe.IPortalRecipe;
@@ -28,6 +29,7 @@ import soundlogic.silva.common.lexicon.page.PageAdvancedImage;
 import soundlogic.silva.common.lexicon.page.PageAdvancedPortalTrade;
 import soundlogic.silva.common.lexicon.page.PageAdvancedText;
 import soundlogic.silva.common.lexicon.page.PageDimensionSignature;
+import soundlogic.silva.common.lexicon.page.PageEnchantmentMoving;
 import soundlogic.silva.common.lib.LibLexicon;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.lexicon.ILexicon;
@@ -96,6 +98,7 @@ public class LexiconData {
 	public static LexiconEntry portalUpgrades;
 	public static LexiconEntry darkElfResources;
 	public static LexiconEntry placeableDust;
+	public static LexiconEntry enchantmentMoving;
 
 	public static void preInit() {
 		
@@ -344,7 +347,7 @@ public class LexiconData {
 		manaEater=new SLexiconEntry(LibLexicon.MANA_EATER, BotaniaAPI.categoryMana);
 		manaEater.setKnowledgeType(darkElfKnowledge).setLexiconPages(
 				new PageAdvancedText("0", PageBackground.DEFAULT),
-				new PageAdvancedDarkElfAct("1",new ItemStack(ModBlocks.manaEater),new ItemStack(vazkii.botania.common.block.ModBlocks.spreader),PageBackground.DEFAULT));
+				new PageAdvancedDarkElfAct("1",ModDarkElfActs.spreaderConversions,PageBackground.DEFAULT));
 
 		darkenedDust=new SLexiconEntry(LibLexicon.DARKENED_DUST, BotaniaAPI.categoryDevices);
 		darkenedDust.setKnowledgeType(darkElfKnowledge).setLexiconPages(new PageAdvancedText("0", PageBackground.DEFAULT));
@@ -362,7 +365,12 @@ public class LexiconData {
 				);
 
 		darkElfResources=new SLexiconEntry(LibLexicon.DARK_ELF_RESOURCES, categoryWorldTree);
-		darkElfResources.setKnowledgeType(darkElfKnowledge).setLexiconPages(new PageAdvancedText("0", PageBackground.DEFAULT));
+		darkElfResources.setKnowledgeType(darkElfKnowledge).setLexiconPages(
+				new PageAdvancedText("0", PageBackground.DEFAULT),
+				new PageAdvancedText("1", PageBackground.DEFAULT),
+				new PageAdvancedDarkElfAct("2",ModDarkElfActs.stoneConversion,PageBackground.DEFAULT),
+				new PageAdvancedDarkElfAct("3",ModDarkElfActs.woodConversion,PageBackground.DEFAULT)
+					);
 
 		lavaShroom=new SLexiconEntry(LibLexicon.LAVA_SHROOM, BotaniaAPI.categoryGenerationFlowers);
 		lavaShroom.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
@@ -418,6 +426,20 @@ public class LexiconData {
 		placeableDust=new SLexiconEntry(LibLexicon.PLACEABLE_DUST, BotaniaAPI.categoryMisc);
 		placeableDust.setKnowledgeType(BotaniaAPI.basicKnowledge).setLexiconPages(new PageAdvancedText("0", PageBackground.DEFAULT)).setPriority();
 
+		enchantmentMoving=new SLexiconEntry(LibLexicon.ENCHANTMENT_MOVING, BotaniaAPI.categoryDevices);
+		enchantmentMoving.setKnowledgeType(darkElfKnowledge).setLexiconPages(
+				new PageAdvancedText("0", PageBackground.DEFAULT),
+				new PageAdvancedText("1", PageBackground.DEFAULT),
+				new PageAdvancedText("2", PageBackground.DEFAULT),
+				new PageAdvancedCraftingRecipe("3", ModCraftingRecipes.enchantPlateRecipe, PageBackground.DEFAULT),
+				new PageAdvancedCraftingRecipe("4", ModCraftingRecipes.enchantOfferingRecipe, PageBackground.DEFAULT),
+				new PageAdvancedCraftingRecipe("5", ModCraftingRecipes.holderEnchantRecipes, PageBackground.DEFAULT),
+				new PageAdvancedText("6", PageBackground.DEFAULT),
+				new PageEnchantmentMoving("7"),
+				new PageAdvancedText("8", PageBackground.DEFAULT),
+				new PageAdvancedText("9", PageBackground.DEFAULT)
+				);
+		
 		definePapers();
 	}
 

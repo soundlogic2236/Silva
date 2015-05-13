@@ -13,6 +13,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import scala.actors.threadpool.Arrays;
 import soundlogic.silva.common.block.tile.TilePortalCore;
 import soundlogic.silva.common.core.handler.DwarfForgedHandler;
+import soundlogic.silva.common.core.helper.EquipmentHelper;
 import soundlogic.silva.common.item.ItemProxy;
 import soundlogic.silva.common.item.ModItems;
 
@@ -22,26 +23,13 @@ public class DwarfTradeReforging extends DwarfTrade{
 	private final String TAG_EXTRA_COST = "extraCost";
 	private final String TAG_EXTRA_COST_STRING = "extraCostString";
 	
-	public enum ReforgeType {
-		HELMET,
-		CHESTPLATE,
-		LEGGINGS,
-		BOOTS,
-		PICKAXE,
-		SHOVEL,
-		AXE,
-		SWORD,
-	};
-	
-	
-	
 	List<Object> extraCost;
-	ReforgeType type;
+	EquipmentHelper.EquipmentType type;
 	int requiredRep;
 	int repBoost;
 	int maxRep;
 	
-	public DwarfTradeReforging(ReforgeType type, int requiredRep, int repBoost, int maxRep) {
+	public DwarfTradeReforging(EquipmentHelper.EquipmentType type, int requiredRep, int repBoost, int maxRep) {
 		this.type = type;
 
 		this.requiredRep=requiredRep;
@@ -109,35 +97,10 @@ public class DwarfTradeReforging extends DwarfTrade{
 	}
 	
 
-	private boolean isValidReforgeTarget(ReforgeType type, ItemStack stack) {
-		ItemTool tool=null;
-		if(stack.getItem() instanceof ItemTool)
-			tool=(ItemTool)stack.getItem();
-		switch(type) {
-		case HELMET:
-			return stack.getItem().isValidArmor(stack, 0, null);
-		case CHESTPLATE:
-			return stack.getItem().isValidArmor(stack, 1, null);
-		case LEGGINGS:
-			return stack.getItem().isValidArmor(stack, 2, null);
-		case BOOTS:
-			return stack.getItem().isValidArmor(stack, 3, null);
-		case PICKAXE:
-			if(tool==null)
-				return false;
-			return tool.getHarvestLevel(stack, "pickaxe") != -1;
-		case SHOVEL:
-			if(tool==null)
-				return false;
-			return tool.getHarvestLevel(stack, "shovel") != -1;
-		case AXE:
-			if(tool==null)
-				return false;
-			return tool.getHarvestLevel(stack, "axe") != -1;
-		case SWORD:
-			return stack.getItem() instanceof ItemSword;
-		}
-		return false;
+	private boolean isValidReforgeTarget(EquipmentHelper.EquipmentType type, ItemStack stack) {
+		if(DwarfForgedHandler.isDwarfForged(stack))
+			return false;
+		return EquipmentHelper.isEquipmentType(stack, type);
 	}
 
 	protected int getMaxRep() {
@@ -169,14 +132,14 @@ public class DwarfTradeReforging extends DwarfTrade{
 	@Override
 	public List<ItemStack> getOutput() {
 		ArrayList<ItemStack> result=new ArrayList<ItemStack>();
-		result.add(DwarfForgedHandler.dwarfForgeStack(ItemProxy.getStackForReforgeType(type)));
+		result.add(DwarfForgedHandler.dwarfForgeStack(EquipmentHelper.getProxyStackForType(type)));
 		return result;
 	}
 
 	@Override
 	public List<Object> getInputs() {
 		ArrayList<Object> result=new ArrayList<Object>();
-		result.add(ItemProxy.getStackForReforgeType(type));
+		result.add(EquipmentHelper.getProxyStackForType(type));
 		result.addAll(extraCost);
 		return result;
 	}

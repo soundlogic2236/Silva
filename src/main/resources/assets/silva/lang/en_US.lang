@@ -5,6 +5,7 @@ silva.tooltips.fake_knowledge=More Knowledge!
 silva.tooltips.clickToSignature=Shift click to see signature
 silva.tooltips.dwarfForged=Dwarf-Forged
 silva.tooltips.exposure=%s Energy Exposure
+silva.tooltips.enchantXP=%1$s/%2$s
 
 # DEATH MESSAGES
 death.attack.alcohol.0=%1$s needs a liver to be a liver
@@ -406,3 +407,23 @@ silva.page.portalUpgrades4=Inhibitor Portal Upgrade
 silva.page.portalUpgrades5=If you do want the energies from the portal to affect you, sitting and waiting in front of it can be tedious. To make things easier you can create a Realm Stone and charge it up with energies from the portal, and then simply discharge the stone into yourself at a later time. You could even put multiple energies in it.
 silva.page.portalUpgrades6=Realm Stone (Uncharged)
 silva.page.portalUpgrades7=Charging Portal Upgrade
+
+# -- DARK ELF RESOURCES
+silva.entry.darkElfResources=Dark Elf Resources
+silva.page.darkElfResources0=A common form of Dark Elf sabotage is converting simple blocks like stone and wood into a darkened form. These darkened blocks are fairly easy to break normally, but crumble to dust unless you use a silk touch tool. They are enchanted so that if you are using such a tool, they are difficult to break. 
+silva.page.darkElfResources1=By design, the darkened blocks are basically useless, however, a pure daisy can convert them into paradox blocks, which have interesting magical properties due to the conflicting magical energies within them.
+silva.page.darkElfResources2=Darkening Stone
+silva.page.darkElfResources3=Darkening Wood
+
+# -- MOVING ENCHANTMENTS
+silva.entry.movingEnchantments=Moving Enchantments
+silva.page.movingEnchantments0=While you can create armor and tools from paradox blocks, the conflicting energies in paradox blocks render them slightly unpleasant to the touch and they aren't very strong at all, rendering them worthless for any direct use. However, said magical energies do cause them to have interesting properties with enchanting. 
+silva.page.movingEnchantments1=While you cannot enchant them directly, you can transfer enchantments from a more mundane matching item to the paradox item, and then from the paradox item to a book. 
+silva.page.movingEnchantments2=To do so you will need an enchantment redistribution plate, setup on top of a checkerboard pattern of patterened framed paradox wood and paradox rock. You will also need a enchantment allocation catalyst, mana, the item you are transfering from, and the item to transfer to.
+silva.page.movingEnchantments3=Creating the plate
+silva.page.movingEnchantments4=Creating a catalyst
+silva.page.movingEnchantments5=Creating a paradox item
+silva.page.movingEnchantments6=After the plate is set up and ready to recieve mana, toss the required items on top of it and it will begin the transfer. The transfer will consume the original item and the catalyst.
+silva.page.movingEnchantments7=Transfering Enchantments (there's paradox wood under the plate)
+silva.page.movingEnchantments8=After the transfer the paradox item will require additional power to fully prepare the enchantments for moving them into a book. This power can be gained by killing creatures while having the item in your inventory, and will gain power in proportion to the xp dropped. Once it is full, simply craft the item with a book.
+silva.page.movingEnchantments9=The entire process is rather expensive, and doing multiple enchantments at once will be cheaper in both mana and xp then doing them individually, not to mention the costs in items.

@@ -21,6 +21,7 @@ import soundlogic.silva.common.core.handler.ChunkHandler;
 import soundlogic.silva.common.core.handler.ConfigHandler;
 import soundlogic.silva.common.core.handler.DwarfForgedHandler;
 import soundlogic.silva.common.core.handler.DwarvenChainHandler;
+import soundlogic.silva.common.core.handler.EnchantmentMoverHandler;
 import soundlogic.silva.common.core.handler.EnderPearlPortalHandler;
 import soundlogic.silva.common.core.handler.MultiBlockCreationHandler;
 import soundlogic.silva.common.core.handler.DustHandler;
@@ -30,8 +31,10 @@ import soundlogic.silva.common.core.handler.potion.PotionMeadHandler;
 import soundlogic.silva.common.crafting.ModCraftingRecipes;
 import soundlogic.silva.common.crafting.ModDarkElfActs;
 import soundlogic.silva.common.crafting.ModFurnaceRecipes;
+import soundlogic.silva.common.crafting.ModOreDict;
 import soundlogic.silva.common.crafting.ModPetalRecipes;
 import soundlogic.silva.common.crafting.ModPortalTradeRecipes;
+import soundlogic.silva.common.crafting.ModPureDaisyRecipes;
 import soundlogic.silva.common.crafting.PortalRecipes;
 import soundlogic.silva.common.entity.ModEntities;
 import soundlogic.silva.common.item.ModItems;
@@ -66,12 +69,15 @@ public class CommonProxy {
 		ModItems.preInit();
 		ModEntities.preInit();
 
+		ModOreDict.preInit();
+
 		ModCraftingRecipes.preInit();
 		PortalRecipes.preInit();
 		ModPortalTradeRecipes.preInit();
 		ModFurnaceRecipes.preInit();
 		ModPetalRecipes.preInit();
 		ModDarkElfActs.preInit();
+		ModPureDaisyRecipes.preInit();
 		
 		DimensionHandler.init();
 
@@ -95,6 +101,7 @@ public class CommonProxy {
 		MinecraftForge.EVENT_BUS.register(new DimensionalEnergyHandler());
 		MinecraftForge.EVENT_BUS.register(new MultiBlockCreationHandler());
 		MinecraftForge.EVENT_BUS.register(new ChunkHandler());
+		MinecraftForge.EVENT_BUS.register(new EnchantmentMoverHandler());
 	}
 	
 	public void postInit(FMLPostInitializationEvent event) {

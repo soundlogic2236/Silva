@@ -12,7 +12,7 @@ import net.minecraft.item.Item;
 
 public class ModItems {
 	
-	public static Item bifrostShard;
+	public static Item simpleResource;
 	public static Item proxyItem;
 	public static Item priceProxyItem;
 	public static Item pageBundle;
@@ -23,10 +23,11 @@ public class ModItems {
 	public static Item dwarfChain;
 	public static Item dwarfBarrier;
 	public static Item chargedStone;
+	public static Item enchantHolder;
 
 	public static void preInit() {
 	
-		bifrostShard=new ItemMod(LibItemNames.BIFROST_SHARD);
+		simpleResource= new ItemSimpleResource();
 		proxyItem=new ItemProxy(LibItemNames.ITEM_PROXY);
 		priceProxyItem=new ItemPriceProxy(LibItemNames.ITEM_PRICE_PROXY);
 		pageBundle=new ItemPapers(LibItemNames.PAGE_BUNDLE);
@@ -37,6 +38,7 @@ public class ModItems {
 		dwarfChain=new ItemDwarvenChain(LibItemNames.DWARF_CHAIN);
 		dwarfBarrier=new ItemDwarvenBarrier(LibItemNames.DWARF_BARRIER);
 		chargedStone=new ItemChargedStone(LibItemNames.CHARGED_STONE);
+		enchantHolder=new ItemEnchantHolder(LibItemNames.ENCHANT_HOLDER);
 	}
 	
 }

@@ -2,7 +2,6 @@ package soundlogic.silva.common.lib;
 
 public class LibItemNames {
 
-	public static final String BIFROST_SHARD = "bifrostShard";
 	public static final String ITEM_PROXY = "itemProxy";
 	public static final String PAGE_BUNDLE = "pageBundle";
 	public static final String PAPER_ERROR = "pageBundle.error";
@@ -13,4 +12,13 @@ public class LibItemNames {
 	public static final String DWARF_CHAIN = "dwarfChain";
 	public static final String DWARF_BARRIER = "dwarfBarrier";
 	public static final String CHARGED_STONE = "chargedStone";
+	public static final String SIMPLE_RESOURCE = "simpleResource";
+	
+	public static final String[] SIMPLE_RESOURCE_NAMES = new String[] {
+		"bifrostShard",
+		"darkenedTwig",
+		"paradoxTwig",
+		"enchantOffering",
+	};
+	public static final String ENCHANT_HOLDER = "enchantHolder";
 }

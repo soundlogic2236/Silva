@@ -7,6 +7,7 @@ import soundlogic.silva.common.block.subtile.functional.SubTileRhododender;
 import soundlogic.silva.common.block.tile.TileBoomMoss;
 import soundlogic.silva.common.block.tile.TileDwarvenPool;
 import soundlogic.silva.common.block.tile.TileDwarvenSign;
+import soundlogic.silva.common.block.tile.TileEnchantPlate;
 import soundlogic.silva.common.block.tile.TileManaCrystal;
 import soundlogic.silva.common.block.tile.TileManaEater;
 import soundlogic.silva.common.block.tile.TilePortalCore;
@@ -38,9 +39,7 @@ public class ModBlocks {
 
 	// Darkened Blocks
 	public static Block darkenedStone;
-	public static Block darkenedStoneBrick;
 	public static Block darkenedWood;
-	public static Block darkenedWoodPlank;
 	public static Block darkenedDust;
 	public static Block drainedSoulsand;
 
@@ -78,13 +77,13 @@ public class ModBlocks {
 	public static Block paradoxStone;
 	public static Block paradoxStoneBrick;
 	public static Block paradoxWood;
-	public static Block paradoxWoodPlank;
 
 	public static Block manaEater;
 	public static Block dwarvenSign;
 	public static Block dwarfRock;
 	public static Block manaCrystal;
 	public static Block dwarvenManaPool;
+	public static Block enchantPlate;
 	
 	public static void preInit() {
 		
@@ -168,11 +167,20 @@ public class ModBlocks {
 		multiblockProxyNoRender=new BlockMultiblockProxyNoRender(Material.glass).setBlockName(LibBlockNames.MULTIBLOCK_PROXY_NO_RENDER);
 		GameRegistry.registerBlock(multiblockProxyNoRender, ItemBlockMod.class, LibBlockNames.MULTIBLOCK_PROXY_NO_RENDER);
 		
-		darkenedStone=new BlockContrary(Material.rock).setEntry(LexiconData.darkElfResources).setBlockName(LibBlockNames.DARKENED_STONE);
-		GameRegistry.registerBlock(darkenedStone, ItemBlockMod.class, LibBlockNames.DARKENED_STONE);
+		darkenedStone=new BlockContraryMultiple(Material.rock,5).setEntry(LexiconData.darkElfResources).setBlockName(LibBlockNames.DARKENED_STONE);
+		GameRegistry.registerBlock(darkenedStone, ItemBlockModMultiple.class, LibBlockNames.DARKENED_STONE);
 		
-		darkenedWood=new BlockContrary(Material.wood).setEntry(LexiconData.darkElfResources).setBlockName(LibBlockNames.DARKENED_WOOD);
-		GameRegistry.registerBlock(darkenedWood, ItemBlockMod.class, LibBlockNames.DARKENED_WOOD);
+		darkenedWood=new BlockContraryMultiple(Material.wood,5).setEntry(LexiconData.darkElfResources).setBlockName(LibBlockNames.DARKENED_WOOD);
+		GameRegistry.registerBlock(darkenedWood, ItemBlockModMultiple.class, LibBlockNames.DARKENED_WOOD);
+		
+		paradoxStone=new BlockSimpleMultiple(Material.rock,5).setEntry(LexiconData.darkElfResources).setBlockName(LibBlockNames.PARADOX_STONE);
+		GameRegistry.registerBlock(paradoxStone, ItemBlockModMultiple.class, LibBlockNames.PARADOX_STONE);
+		
+		paradoxWood=new BlockSimpleMultiple(Material.wood,5).setEntry(LexiconData.darkElfResources).setBlockName(LibBlockNames.PARADOX_WOOD);
+		GameRegistry.registerBlock(paradoxWood, ItemBlockModMultiple.class, LibBlockNames.PARADOX_WOOD);
+		
+		enchantPlate=new BlockEnchantPlate();
+		GameRegistry.registerBlock(enchantPlate, ItemBlockMod.class, LibBlockNames.ENCHANT_PLATE);
 		
 		initTileEntities();
 	}
@@ -193,6 +201,7 @@ public class ModBlocks {
 		registerTile(TileMultiblockCore.class, LibBlockNames.MULTIBLOCK_CORE);
 		registerTile(TileMultiblockProxy.class, LibBlockNames.MULTIBLOCK_PROXY_LAVA);
 		registerTile(TileMultiblockProxy.class, LibBlockNames.MULTIBLOCK_PROXY_NO_RENDER);
+		registerTile(TileEnchantPlate.class, LibBlockNames.ENCHANT_PLATE);
 		
 		registerSubTile(SubTileRhododender.class, LibBlockNames.SUBTILE_RHODODENDER);
 	}
