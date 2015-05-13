@@ -23,6 +23,7 @@ public class BlockBifrostStairs extends BlockStairs implements IBifrostBlock, IL
 		super(ModBlocks.bifrostBlock, 0);
 		setBlockName(LibBlockNames.BIFROST_BLOCK_STAIRS);
 		setCreativeTab(Silva.creativeTab);
+		useNeighborBrightness = true;
 	}
 
 	@Override
