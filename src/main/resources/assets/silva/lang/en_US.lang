@@ -338,7 +338,7 @@ silva.page.stoneHorse2=Trading for a stone horse
 # -- LAVACAP
 silva.entry.lavaShroom=Lavacap
 silva.page.lavaShroom0=The Lavacap is us dwarves' primary answer to mana generation. Consuming large amounts of both lava and solid fuel, but generating extreme amounts of mana in the process, these massive mushrooms provide most of our mana. A Lavacap generates more mana if the fuel is more potent, in relation to both fuel spent and time elapsed.
-silva.page.lavaShroom1=Creating and activating a lavacap requires one giant red mushroom, a red shimmering mushroom, a piece of deeprock, some lava, three runes of fire, one rune of earth, one rune of mana, and two runes of wrath.
+silva.page.lavaShroom1=Creating and activating a lavacap requires one giant red mushroom, a red shimmering mushroom, a piece of deeprock, some lava, a rune of mana, three runes of fire, a rune of earth,  and two runes of wrath.
 silva.page.lavaShroom2=Begin with a simple red mushroom placed.
 silva.page.lavaShroom3=Grow it into a giant mushroom.
 silva.page.lavaShroom4=Replace part of the stalk with a red shimmering mushroom above a piece of deep rock. The shimmering mushroom must be just below the edge of the cap, this may require removing bits of the bottom from the stalk. The next page shows what this will look like.
@@ -377,7 +377,7 @@ silva.page.darkElfDesc11=No such army has been seen since the Shattering, which,
 silva.entry.carnilotus=Carnilotus
 silva.page.carnilotus0=Using the aggressive tendencies of the modified spreaders, and mimicking certain carnivorous mundane plants at a larger scale, an eternally hungering flower can be created. The Carnilotus consumes creatures in exchange for Mana, like the Gourmaryllis but a bit...meaner.
 silva.page.carnilotus1=The Carnilotus prefers its food still-moving, and will simply dissolve any items dropped in. If a drop can be cooked, like most meat, it generates Mana more efficiently than a Gourmaryllis would. Items that can't be cooked, it generates mana at the standard rate. It's worth noting that while skeletal creatures don't yield anything edible, the Carnilotus, being a plant, is nourished by bones, and the plant-friendly nutrients within will act as a boost for a few future digestions.
-silva.page.carnilotus2=Creating and activating the Carnilotus requires 9 Mana Spreaders? 36 purple petal blocks, 9 black petal blocks, 9 iron bars, 2 livingwood, some water, three runes of water, two runes of gluttony, one rune of wrath, one rune of mana, and thirty-two sugar.
+silva.page.carnilotus2=Creating and activating the Carnilotus requires 9 Mana Spreaders? 36 purple petal blocks, 9 black petal blocks, 9 iron bars, 2 livingwood, some water, a rune of mana, three runes of water, two runes of gluttony, a rune of wrath, and 32 sugar.
 silva.page.carnilotus3=Construct the base
 silva.page.carnilotus4=Place the Stem
 silva.page.carnilotus5=Make the bowl
@@ -389,7 +389,7 @@ silva.page.carnilotus10=From a safe distance, drop in the runes and sugar.
 
 # -- RHODODENDER
 silva.entry.rhododender=Rhododender
-silva.page.rhododender0=The Rhododender is simple enough in concept, it simply throws Ender Pearls in a relaying fashion. Each time the pearl is thrown however, the damage you will take when it finally lands increases, so be careful. In addition, if the pearl goes far enough that time might stop, it will continue along anyway, loading the chunks it passes through temporarily.
+silva.page.rhododender0=The Rhododender is simple enough in concept, it simply throws Ender Pearls in a relaying fashion. Each time the pearl is thrown however, the damage you will take when it finally lands increases, so be careful. This flower, unlike the Spectranthemum, is not governed by the axiom of chunkloading, and will temporarily load chunks as necessary. 
 silva.page.rhododender1=How it throws the ender pearl can be controlled by placing dusts around it-each dust in a given cardinal direction increases strength, both in that direction and upwards. Dusts on opposite sides counter each other laterally, but each one still contributes to vertical strength.
 silva.page.rhododender2=Play ball!
 
