@@ -1,6 +1,7 @@
 package soundlogic.silva.client.core.handler;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 import java.util.Map.Entry;
 
@@ -21,9 +22,11 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class DwarfChainRenderHandler {
 
+	private static final int[] color1 = new int[]{154,154,154};
+	private static final int[] color2 = new int[]{ 86, 86, 86};
+	
 	@SubscribeEvent
 	public void renderLiving(RenderLivingEvent.Pre event) {
-		
 		if ( event.entity instanceof EntityCreature) {
 			LeashProperties props = DwarvenChainHandler.getChainForEntity((EntityCreature) event.entity);
 			props.searchTick(event.entity, true);
@@ -35,14 +38,14 @@ public class DwarfChainRenderHandler {
 		}
 	}
 
-    protected void renderChain(EntityLiving entity, Entity attachedTo, double p_110827_2_, double p_110827_4_, double p_110827_6_, float p_110827_8_, float p_110827_9_)
+    protected void renderChain(EntityLiving entity, Entity attachedTo, double x, double y, double z, float partialTicks, float rotation)
     {
         if (attachedTo != null)
         {
-            p_110827_4_ -= (1.6D - (double)entity.height) * 0.5D;
+            y -= (1.6D - (double)entity.height) * 0.5D;
             Tessellator tessellator = Tessellator.instance;
-            double d3 = this.func_110828_a((double)attachedTo.prevRotationYaw, (double)attachedTo.rotationYaw, (double)(p_110827_9_ * 0.5F)) * 0.01745329238474369D;
-            double d4 = this.func_110828_a((double)attachedTo.prevRotationPitch, (double)attachedTo.rotationPitch, (double)(p_110827_9_ * 0.5F)) * 0.01745329238474369D;
+            double d3 = this.func_110828_a((double)attachedTo.prevRotationYaw, (double)attachedTo.rotationYaw, (double)(rotation * 0.5F)) * 0.01745329238474369D;
+            double d4 = this.func_110828_a((double)attachedTo.prevRotationPitch, (double)attachedTo.rotationPitch, (double)(rotation * 0.5F)) * 0.01745329238474369D;
             double d5 = Math.cos(d3);
             double d6 = Math.sin(d3);
             double d7 = Math.sin(d4);
@@ -55,17 +58,17 @@ public class DwarfChainRenderHandler {
             }
 
             double d8 = Math.cos(d4);
-            double d9 = this.func_110828_a(attachedTo.prevPosX, attachedTo.posX, (double)p_110827_9_) - d5 * 0.7D - d6 * 0.5D * d8;
-            double d10 = this.func_110828_a(attachedTo.prevPosY + (double)attachedTo.getEyeHeight() * 0.7D, attachedTo.posY + (double)attachedTo.getEyeHeight() * 0.7D, (double)p_110827_9_) - d7 * 0.5D - 0.25D;
-            double d11 = this.func_110828_a(attachedTo.prevPosZ, attachedTo.posZ, (double)p_110827_9_) - d6 * 0.7D + d5 * 0.5D * d8;
-            double d12 = this.func_110828_a((double)entity.prevRenderYawOffset, (double)entity.renderYawOffset, (double)p_110827_9_) * 0.01745329238474369D + (Math.PI / 2D);
+            double d9 = this.func_110828_a(attachedTo.prevPosX, attachedTo.posX, (double)rotation) - d5 * 0.7D - d6 * 0.5D * d8;
+            double d10 = this.func_110828_a(attachedTo.prevPosY + (double)attachedTo.getEyeHeight() * 0.7D, attachedTo.posY + (double)attachedTo.getEyeHeight() * 0.7D, (double)rotation) - d7 * 0.5D - 0.25D;
+            double d11 = this.func_110828_a(attachedTo.prevPosZ, attachedTo.posZ, (double)rotation) - d6 * 0.7D + d5 * 0.5D * d8;
+            double d12 = this.func_110828_a((double)entity.prevRenderYawOffset, (double)entity.renderYawOffset, (double)rotation) * 0.01745329238474369D + (Math.PI / 2D);
             d5 = Math.cos(d12) * (double)entity.width * 0.4D;
             d6 = Math.sin(d12) * (double)entity.width * 0.4D;
-            double d13 = this.func_110828_a(entity.prevPosX, entity.posX, (double)p_110827_9_) + d5;
-            double d14 = this.func_110828_a(entity.prevPosY, entity.posY, (double)p_110827_9_);
-            double d15 = this.func_110828_a(entity.prevPosZ, entity.posZ, (double)p_110827_9_) + d6;
-            p_110827_2_ += d5;
-            p_110827_6_ += d6;
+            double d13 = this.func_110828_a(entity.prevPosX, entity.posX, (double)rotation) + d5;
+            double d14 = this.func_110828_a(entity.prevPosY, entity.posY, (double)rotation);
+            double d15 = this.func_110828_a(entity.prevPosZ, entity.posZ, (double)rotation) + d6;
+            x += d5;
+            z += d6;
             double d16 = (double)((float)(d9 - d13));
             double d17 = (double)((float)(d10 - d14));
             double d18 = (double)((float)(d11 - d15));
@@ -82,16 +85,16 @@ public class DwarfChainRenderHandler {
             {
                 if (i % 2 == 0)
                 {
-                    tessellator.setColorRGBA_F(0.5F, 0.4F, 0.3F, 1.0F);
+                    tessellator.setColorOpaque(color1[0], color1[1], color1[2]);
                 }
                 else
                 {
-                    tessellator.setColorRGBA_F(0.35F, 0.28F, 0.21000001F, 1.0F);
+                    tessellator.setColorOpaque(color2[0], color2[1], color2[2]);
                 }
 
                 f2 = (float)i / 24.0F;
-                tessellator.addVertex(p_110827_2_ + d16 * (double)f2 + 0.0D, p_110827_4_ + d17 * (double)(f2 * f2 + f2) * 0.5D + (double)((24.0F - (float)i) / 18.0F + 0.125F), p_110827_6_ + d18 * (double)f2);
-                tessellator.addVertex(p_110827_2_ + d16 * (double)f2 + 0.025D, p_110827_4_ + d17 * (double)(f2 * f2 + f2) * 0.5D + (double)((24.0F - (float)i) / 18.0F + 0.125F) + 0.025D, p_110827_6_ + d18 * (double)f2);
+                tessellator.addVertex(x + d16 * (double)f2 + 0.0D, y + d17 * (double)(f2 * f2 + f2) * 0.5D + (double)((24.0F - (float)i) / 18.0F + 0.125F), z + d18 * (double)f2);
+                tessellator.addVertex(x + d16 * (double)f2 + 0.025D, y + d17 * (double)(f2 * f2 + f2) * 0.5D + (double)((24.0F - (float)i) / 18.0F + 0.125F) + 0.025D, z + d18 * (double)f2);
             }
 
             tessellator.draw();
@@ -101,16 +104,16 @@ public class DwarfChainRenderHandler {
             {
                 if (i % 2 == 0)
                 {
-                    tessellator.setColorRGBA_F(0.5F, 0.4F, 0.3F, 1.0F);
+                    tessellator.setColorOpaque(color1[0], color1[1], color1[2]);
                 }
                 else
                 {
-                    tessellator.setColorRGBA_F(0.35F, 0.28F, 0.21000001F, 1.0F);
+                    tessellator.setColorOpaque(color2[0], color2[1], color2[2]);
                 }
 
                 f2 = (float)i / 24.0F;
-                tessellator.addVertex(p_110827_2_ + d16 * (double)f2 + 0.0D, p_110827_4_ + d17 * (double)(f2 * f2 + f2) * 0.5D + (double)((24.0F - (float)i) / 18.0F + 0.125F) + 0.025D, p_110827_6_ + d18 * (double)f2);
-                tessellator.addVertex(p_110827_2_ + d16 * (double)f2 + 0.025D, p_110827_4_ + d17 * (double)(f2 * f2 + f2) * 0.5D + (double)((24.0F - (float)i) / 18.0F + 0.125F), p_110827_6_ + d18 * (double)f2 + 0.025D);
+                tessellator.addVertex(x + d16 * (double)f2 + 0.0D, y + d17 * (double)(f2 * f2 + f2) * 0.5D + (double)((24.0F - (float)i) / 18.0F + 0.125F) + 0.025D, z + d18 * (double)f2);
+                tessellator.addVertex(x + d16 * (double)f2 + 0.025D, y + d17 * (double)(f2 * f2 + f2) * 0.5D + (double)((24.0F - (float)i) / 18.0F + 0.125F), z + d18 * (double)f2 + 0.025D);
             }
 
             tessellator.draw();

@@ -6,8 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
+import cpw.mods.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.ReflectionHelper;
+import cpw.mods.fml.relauncher.ReflectionHelper.UnableToFindMethodException;
 import soundlogic.silva.common.item.ItemEnchantHolder;
+import soundlogic.silva.common.lib.LibReflectionNames;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,6 +24,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 public class EnchantmentMoverHandler {
 
+	private static final Method getExperiencePoints = ReflectionHelper.findMethod(EntityLivingBase.class, null, LibReflectionNames.getExperiencePoints, EntityPlayer.class);
 	
 	private static final String TAG_XP_REQUIREMENT = "xpRequirement";
 	private static final String TAG_XP_CURRENT = "xpCurrent";
@@ -183,7 +189,7 @@ public class EnchantmentMoverHandler {
 	
 	private int getExperiencePoints(EntityLivingBase entity, EntityPlayer player) {
 		try {
-			return tryGetExperiencePoints(entity, player);
+			return (Integer) getExperiencePoints.invoke(entity, player);
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -198,18 +204,5 @@ public class EnchantmentMoverHandler {
 			e.printStackTrace();
 		}
 		return 0;
-	}
-	
-	private int tryGetExperiencePoints(EntityLivingBase entity, EntityPlayer player) throws SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		Class clazz = entity.getClass();
-		while(true) {
-			try {
-				Method getExperiencePoints = clazz.getDeclaredMethod("getExperiencePoints", EntityPlayer.class);
-				getExperiencePoints.setAccessible(true);
-				return (Integer) getExperiencePoints.invoke(entity, player);
-			} catch(NoSuchMethodException e) {
-				clazz=clazz.getSuperclass();
-			}
-		}
 	}
 }

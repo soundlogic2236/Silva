@@ -131,4 +131,6 @@ public class LibResources {
 
 	public static final String COLORED_DUST = PREFIX_MOD + "coloredDust";
 
+	public static final String CHAIN_KNOT = PREFIX_ENTITY + "chain_knot.png";
+
 }

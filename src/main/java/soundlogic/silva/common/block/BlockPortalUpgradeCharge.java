@@ -12,6 +12,7 @@ import soundlogic.silva.common.block.tile.TilePortalUpgradeRedstone;
 import soundlogic.silva.common.lexicon.LexiconData;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
+import vazkii.botania.api.wand.IWandable;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
@@ -23,8 +24,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.RotationHelper;
 
-public class BlockPortalUpgradeCharge extends BlockPortalUpgradeBase implements ILexiconable {
+public class BlockPortalUpgradeCharge extends BlockPortalUpgradeBase implements ILexiconable, IWandable {
 
 	public IIcon opening;
 	public IIcon side;
@@ -49,7 +51,7 @@ public class BlockPortalUpgradeCharge extends BlockPortalUpgradeBase implements 
 	@Override
 	@SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-    	return side==meta ? this.opening :this.side;
+    	return side==meta ? this.opening : this.side;
     }
 	
     public int onBlockPlaced(World p_149660_1_, int p_149660_2_, int p_149660_3_, int p_149660_4_, int p_149660_5_, float p_149660_6_, float p_149660_7_, float p_149660_8_, int p_149660_9_)
@@ -69,6 +71,7 @@ public class BlockPortalUpgradeCharge extends BlockPortalUpgradeBase implements 
 			par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, null);
 			tile.setInventorySlotContents(0, heldItem.copy());
 			tile.markDirty();
+			return true;
 		}
 		else if (currentStone != null) {
 			ItemStack add = currentStone.copy();
@@ -76,8 +79,9 @@ public class BlockPortalUpgradeCharge extends BlockPortalUpgradeBase implements 
 				par5EntityPlayer.dropPlayerItemWithRandomChoice(add, false);
 			tile.setInventorySlotContents(0, null);
 			tile.markDirty();
+			return true;
 		}
-		return true;
+		return false;
     }
     public void breakBlock(World world, int x, int y, int z, Block block, int meta)
     {
@@ -120,5 +124,12 @@ public class BlockPortalUpgradeCharge extends BlockPortalUpgradeBase implements 
 	public LexiconEntry getEntry(World arg0, int arg1, int arg2, int arg3,
 			EntityPlayer arg4, ItemStack arg5) {
 		return LexiconData.portalUpgrades;
+	}
+
+	@Override
+	public boolean onUsedByWand(EntityPlayer player, ItemStack stack, World world,
+			int x, int y, int z, int meta) {
+		world.setBlockMetadataWithNotify(x, y, z, (world.getBlockMetadata(x, y, z)+1)%6, 3);
+		return true;
 	}
 }

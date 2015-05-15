@@ -34,6 +34,8 @@ public class MessageEntityData implements IMessage{
 	}
 
     public static void updateExtendedEntityData(Entity entity, String identifier) {
+    	if(entity.worldObj.isRemote)
+    		return;
     	NBTTagCompound tag = new NBTTagCompound();
     	entity.getExtendedProperties(identifier).saveNBTData(tag);
     	MessageEntityData message = new MessageEntityData();

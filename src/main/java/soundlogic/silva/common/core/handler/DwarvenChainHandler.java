@@ -31,6 +31,8 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 
 public class DwarvenChainHandler {
 
+	public final static double MAX_LENGTH = 30D;
+	
 	private final static String TAG_LEASH="SilvaLeash";
 	
 	public static HashMap<EntityCreature,EntityAIBase> AITasks=new HashMap<EntityCreature,EntityAIBase>();
@@ -115,9 +117,13 @@ public class DwarvenChainHandler {
 		}
 		
 		public void searchTick(Entity ent, boolean client) {
+			if(!entityMatchesData()) {
+				entity=null;
+				searching=true;
+			}
 			if(client) {
 				if(entity == null && entitySharedID != -1 ) {
-					entity=ent.worldObj.getEntityByID(entitySharedID);
+					attachToEntity(ent.worldObj.getEntityByID(entitySharedID));
 				}
 				return;
 			}
@@ -127,14 +133,15 @@ public class DwarvenChainHandler {
 			if(!searching || ! active || entity != null)
 				return;
             List<Entity> list;
+            if(searchSpace==null)
+            	searchSpace = AxisAlignedBB.getBoundingBox(ent.posX,ent.posY,ent.posZ,ent.posX,ent.posY,ent.posZ).expand(MAX_LENGTH, MAX_LENGTH, MAX_LENGTH);
             if(!knot)
             	list = ent.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, searchSpace);
             else
             	list = ent.worldObj.getEntitiesWithinAABB(EntityDwarvenChainKnot.class, searchSpace);
             for(Entity check : list) {
             	if(check.getPersistentID().equals(entityUUID)) {
-            		entity = check;
-            		searching=false;
+            		attachToEntity(check);
             		return;
             	}
             }
@@ -143,6 +150,12 @@ public class DwarvenChainHandler {
             }
 		}
 		
+		private boolean entityMatchesData() {
+			if(entity==null)
+				return true;
+			return entity.getEntityId()==entitySharedID;
+		}
+
 		public Entity getEntity() {
 			return entity;
 		}
@@ -164,6 +177,11 @@ public class DwarvenChainHandler {
 		
 		public void attachToEntity(Entity bindTo) {
 			this.entity=bindTo;
+			this.entitySharedID=this.entity.getEntityId();
+			if(entity instanceof EntityDwarvenChainKnot)
+				knot=true;
+			else
+				knot=false;
 			this.searching=false;
 			this.setActive(true);
 			
@@ -181,6 +199,35 @@ public class DwarvenChainHandler {
 			props.attachToEntity(bindTo);
 		}
 	}
+
+    public static void attachChainToBlock(EntityPlayer player, World world, int x,
+			int y, int z) {
+        EntityDwarvenChainKnot entitychainknot = EntityDwarvenChainKnot.getKnotForBlock(world, x, y, z);
+        double d0 = MAX_LENGTH;
+        List<EntityCreature> list = findChainedCreatures(player);
+        for(EntityCreature creature : list) {
+	        if (entitychainknot == null)
+	        {
+	        	entitychainknot = EntityDwarvenChainKnot.createKnotForBlock(world, x, y, z);
+	        }
+	        entitychainknot.chainCount++;
+	        DwarvenChainHandler.attachChainToEntity(creature, entitychainknot);
+        }
+	}
+    
+    public static List<EntityCreature> findChainedCreatures(Entity holder) {
+        double d0 = MAX_LENGTH;
+        List<EntityCreature> list = holder.worldObj.getEntitiesWithinAABB(EntityCreature.class, AxisAlignedBB.getBoundingBox((double)holder.posX - d0, (double)holder.posY - d0, (double)holder.posZ - d0, (double)holder.posX + d0, (double)holder.posY + d0, (double)holder.posZ + d0));
+        List<EntityCreature> result = new ArrayList<EntityCreature>();
+        for(EntityCreature creature : list) {
+        	LeashProperties props = DwarvenChainHandler.getChainForEntity(creature);
+        	if(props.getActive() && props.getEntity()==holder) {
+        		result.add(creature);
+        	}
+        }
+        return result;
+    }
+
 	
 	public static boolean isChainAttached(EntityCreature creature, Entity holder) {
 		if(holder instanceof EntityPlayer) {
@@ -189,7 +236,6 @@ public class DwarvenChainHandler {
 					player.getHeldItem().getItem()==ModItems.dwarfChain &&
 					!player.isDead &&
 					player.worldObj == creature.worldObj;
-				
 		}
 		if(holder instanceof EntityDwarvenChainKnot) {
 			EntityDwarvenChainKnot knot = (EntityDwarvenChainKnot) holder;
@@ -256,6 +302,11 @@ public class DwarvenChainHandler {
 		}
 		
 		float f = creature.getDistanceToEntity(entity);
+
+        if (f > MAX_LENGTH)
+        {
+			props.setActive(false);
+        }
 		
         if (f > 4.0F)
         {

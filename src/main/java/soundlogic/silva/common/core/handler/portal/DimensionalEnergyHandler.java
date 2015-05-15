@@ -126,6 +126,8 @@ public class DimensionalEnergyHandler {
 		if(dim.getState()==State.LOCKED)
 			return;
 		World world = core.getWorldObj();
+		if(world.isRemote)
+			return;
 		if(core.upgradesPermitEntityExposureTicks()) {
 			AxisAlignedBB aabb = getEnergyBoundingBox(core);
 			List<EntityLivingBase> ents = world.getEntitiesWithinAABB(EntityLivingBase.class, aabb);
