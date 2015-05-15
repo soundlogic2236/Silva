@@ -91,4 +91,6 @@ public class LibBlockNames {
 
 	public static final String COLORED_DUST = "coloredDust";
 
+	public static final String SUBTILE_GLITTERELLE = "subtileGlitterelle";
+
 }

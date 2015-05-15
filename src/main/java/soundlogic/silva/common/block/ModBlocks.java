@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.block.subtile.BasicSignature;
 import soundlogic.silva.common.block.subtile.functional.SubTileBlazeBloom;
+import soundlogic.silva.common.block.subtile.functional.SubTileGlitterelle;
 import soundlogic.silva.common.block.subtile.functional.SubTileRhododender;
 import soundlogic.silva.common.block.tile.TileBoomMoss;
 import soundlogic.silva.common.block.tile.TileDwarvenPool;
@@ -215,6 +216,7 @@ public class ModBlocks {
 		
 		registerSubTile(SubTileRhododender.class, LibBlockNames.SUBTILE_RHODODENDER);
 		registerSubTile(SubTileBlazeBloom.class, LibBlockNames.SUBTILE_BLAZEBLOOM);
+		registerSubTile(SubTileGlitterelle.class, LibBlockNames.SUBTILE_GLITTERELLE);
 	}
 	
 	private static void registerTile(Class<? extends TileEntity> clazz, String key) {

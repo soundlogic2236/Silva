@@ -100,6 +100,7 @@ public class LexiconData {
 	public static LexiconEntry placeableDust;
 	public static LexiconEntry enchantmentMoving;
 	public static LexiconEntry blazeBloom;
+	public static LexiconEntry glitterelle;
 
 	public static void preInit() {
 		
