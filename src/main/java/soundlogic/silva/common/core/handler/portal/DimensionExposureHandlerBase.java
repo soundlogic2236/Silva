@@ -35,43 +35,43 @@ public class DimensionExposureHandlerBase implements IDimensionalExposureHandler
 		case VIGRIDR:
 			break;
 		case FOLKVANGR:
-			addAttributeModifier(SharedMonsterAttributes.attackDamage,UUID.randomUUID(),1.02,1,60*20*2);
-			addAttributeModifier(SharedMonsterAttributes.movementSpeed,UUID.randomUUID(),0.99,1,60*20*2);
-			addAttributeModifier(SharedMonsterAttributes.knockbackResistance,UUID.randomUUID(),1.05,1,60*20*2);
+			addAttributeModifier(SharedMonsterAttributes.attackDamage,UUID.randomUUID(),0.02,2,60*20*2);
+			addAttributeModifier(SharedMonsterAttributes.movementSpeed,UUID.randomUUID(),-0.01,2,60*20*2);
+			addAttributeModifier(SharedMonsterAttributes.knockbackResistance,UUID.randomUUID(),0.05,2,60*20*2);
 			break;
 		case VALHALLA:
-			addAttributeModifier(SharedMonsterAttributes.attackDamage,UUID.randomUUID(),1.10,1,60*20*2);
-			addAttributeModifier(SharedMonsterAttributes.movementSpeed,UUID.randomUUID(),1.10,1,60*20*2);
-			addAttributeModifier(SharedMonsterAttributes.knockbackResistance,UUID.randomUUID(),0.75,1,60*20*2);
+			addAttributeModifier(SharedMonsterAttributes.attackDamage,UUID.randomUUID(),0.10,2,60*20*2);
+			addAttributeModifier(SharedMonsterAttributes.movementSpeed,UUID.randomUUID(),0.10,2,60*20*2);
+			addAttributeModifier(SharedMonsterAttributes.knockbackResistance,UUID.randomUUID(),-0.25,2,60*20*2);
 			break;
 		case HELHEIM:
-			addAttributeModifier(SharedMonsterAttributes.attackDamage,UUID.randomUUID(),0.95,1,60*20);
-			addAttributeModifier(SharedMonsterAttributes.movementSpeed,UUID.randomUUID(),0.95,1,60*20);
+			addAttributeModifier(SharedMonsterAttributes.attackDamage,UUID.randomUUID(),-0.05,2,60*20);
+			addAttributeModifier(SharedMonsterAttributes.movementSpeed,UUID.randomUUID(),-0.05,2,60*20);
 			break;
 		case ASGARD:
-			addAttributeModifier(SharedMonsterAttributes.maxHealth,UUID.randomUUID(),2,0,60*20*3);
-			addAttributeModifier(SharedMonsterAttributes.attackDamage,UUID.randomUUID(),1.02,1,60*20*3);
+			addAttributeModifier(SharedMonsterAttributes.maxHealth,UUID.randomUUID(),0.1,2,60*20*3);
+			addAttributeModifier(SharedMonsterAttributes.attackDamage,UUID.randomUUID(),0.02,2,60*20*3);
 			break;
 		case ALFHEIM:
-			addAttributeModifier(SharedMonsterAttributes.movementSpeed,UUID.randomUUID(),1.02,1,60*20);
+			addAttributeModifier(SharedMonsterAttributes.movementSpeed,UUID.randomUUID(),0.02,2,60*20);
 			break;
 		case MIDGARD:
 			break;
 		case JOTUNHEIMR:
-			addAttributeModifier(SharedMonsterAttributes.attackDamage,UUID.randomUUID(),1.05,1,60*20*1);
-			addAttributeModifier(SharedMonsterAttributes.movementSpeed,UUID.randomUUID(),.95,1,60*20*1);
-			addAttributeModifier(SharedMonsterAttributes.attackDamage,UUID.randomUUID(),1.15,1,60*20*3);
-			addAttributeModifier(SharedMonsterAttributes.movementSpeed,UUID.randomUUID(),.85,1,60*20*3);
-			addAttributeModifier(SharedMonsterAttributes.attackDamage,UUID.randomUUID(),1.25,1,60*20*5);
-			addAttributeModifier(SharedMonsterAttributes.movementSpeed,UUID.randomUUID(),.75,1,60*20*5);
+			addAttributeModifier(SharedMonsterAttributes.attackDamage,UUID.randomUUID(),0.05,2,60*20*1);
+			addAttributeModifier(SharedMonsterAttributes.movementSpeed,UUID.randomUUID(),-0.05,2,60*20*1);
+			addAttributeModifier(SharedMonsterAttributes.attackDamage,UUID.randomUUID(),0.15,2,60*20*3);
+			addAttributeModifier(SharedMonsterAttributes.movementSpeed,UUID.randomUUID(),-0.15,2,60*20*3);
+			addAttributeModifier(SharedMonsterAttributes.attackDamage,UUID.randomUUID(),0.25,2,60*20*5);
+			addAttributeModifier(SharedMonsterAttributes.movementSpeed,UUID.randomUUID(),-0.25,2,60*20*5);
 			break;
 		case SVARTALFHEIM:
 			break;
 		case MUSPELHEIM:
 			break;
 		case NIFLHEIM:
-			addAttributeModifier(SharedMonsterAttributes.attackDamage,UUID.randomUUID(),0.95,1,60*20);
-			addAttributeModifier(SharedMonsterAttributes.movementSpeed,UUID.randomUUID(),0.95,1,60*20);
+			addAttributeModifier(SharedMonsterAttributes.attackDamage,UUID.randomUUID(),-0.05,2,60*20);
+			addAttributeModifier(SharedMonsterAttributes.movementSpeed,UUID.randomUUID(),-0.05,2,60*20);
 			break;
 		case NIDAVELLIR:
 			addPotionEffect(Potion.digSpeed, 0, 60*20*1);
