@@ -121,19 +121,19 @@ silva.category.darkElf=The Dark Elves
 # - MISC
 # -- BUNDLES OF PAPER
 silva.entry.paperBundles=Bundles of Paper
-silva.page.paperBundles0=While having all your knowledge in one simple lexicon is wonderful, occasionally you might get knowledge from other sources. Such knowledge should of course be put in your lexicon. Simply crafting a paper bundle with your lexicon will add it to the lexicon as a new knowledge type, or craft it with paper to copy it
-silva.page.paperBundles1=Crafting with a lexicon
-silva.page.paperBundles2=Crafting with paper
+silva.page.paperBundles0=While having all your &4knowledge&0 in one simple lexicon is wonderful, occasionally you might get some from other sources. Such &4knowledge&0 should of course be put in your lexicon. Simply crafting a paper bundle with your lexicon will add it to the &1Lexica Botania&0 as a new knowledge type, and crafting it with &1Paper&0 will duplicate it.
+silva.page.paperBundles1=Crafting with the &1Lexica Botania&0
+silva.page.paperBundles2=Crafting with &1Paper&0
 
 # - ALFHOMANCY
 # -- DIMENSIONAL TRAVEL
 silva.entry.dimensionalTravelAttempt=Dimensional Travel
-silva.page.dimensionalTravelAttempt0=The &4Portal to Alfheim&0 you constructed is incapable of transporting living things. However, &4Ender Pearls&0 have an unusual property: When thrown, the thrower is teleported to wherever it lands. In addition, the pearls seem to be capable of travelling through the portal without issue. &4Throwing&0 an Ender Pearl through the portal might allow travel to Alfheim.
-silva.page.dimensionalTravelAttempt1=What will happen when you throw an &4Ender Pearl&0?
+silva.page.dimensionalTravelAttempt0=The &4Portal to Alfheim&0 you constructed is incapable of transporting living things. However, &1Ender Pearls&0 have an unusual property: When thrown, the thrower is teleported to wherever it lands. In addition, the pearls seem to be capable of traversing the link through the portal without issue. Throwing an &1Ender Pearl&0 through the portal might allow travel to &4Alfheim&0.
+silva.page.dimensionalTravelAttempt1=What will happen when you throw an &1Ender Pearl&0?
 
 # -- DIMENSIONAL TRAVEL FAILURE
 silva.entry.dimensionalTravelFailure=Dimensional Travel II
-silva.page.dimensionalTravelFailure0=That was...not as expected in the slightest. Well, it could have been worse. You should still read the rest of the papers they sent you, starting with that message from Nublia.
+silva.page.dimensionalTravelFailure0=That was...not as expected in the slightest. Well, it could have been worse. You should still read the rest of the papers they sent you, starting with that message.
 
 # - WORLD TREE
 
@@ -146,284 +146,284 @@ silva.page.nubliaMessage3=I have included notes on both portal creation and the 
 
 # -- WORLD TREE INTRO
 silva.entry.worldTreeIntro=Introduction to the World Tree
-silva.page.worldTreeIntro0=The World Tree is the great tree which holds our worlds together. From its branches come the nine realms: Asgard, Alfheim (our realm), Midgard (your realm), Jotunheimr, Svartalfheim, Muspelheim, Niflheim, Nidavellir, and Vanaheimr. 
-silva.page.worldTreeIntro1=Some realms contain locations of great enough significance to have their own dimensional signature.
-silva.page.worldTreeIntro2=The World Tree is surrounded by the Great Ginnungagap - a powerful void of great and terrible energies, and the origin of the phenomena witnessed during your...incident.
+silva.page.worldTreeIntro0=The &4World Tree&0 is the great tree which holds our worlds together. From its branches come the nine realms: &4Asgard&0, &4Alfheim&0 (our realm), &4Midgard&0 (your realm), &4Jotunheimr&0, &4Svartalfheim&0, &4Muspelheim&0, &4Niflheim&0, &4Nidavellir&0, and &4Vanaheimr&0.
+silva.page.worldTreeIntro1=Some realms contain locations of great enough significance to have their own &4dimensional signature&0.
+silva.page.worldTreeIntro2=The &4World Tree&0 is surrounded by the great &4Ginnungagap&0 - a powerful void of great and terrible energies, and the origin of the &4phenomena&0 witnessed during your...incident.
 
 # -- ADVANCED PORTALS
 silva.entry.advancedPortals=Advanced Portals
-silva.page.advancedPortals0=Since Thor shattered the original bridge, we have had an increasing dependence on smaller, weaker portals akin to the one you initially created. While they do not, at least by methods known to us, permit the travel of living beings, they have facilitated a partial reconstruction of the trade network between realms. While the portal you created out of wood and metal is impressive for such an
-silva.page.advancedPortals1=ad-hoc creation, blocks of &4Bifrost&0 permit a far more refined, adaptable, and efficient portal. Said portal can be tuned to connect to any of the nine realms, and any locations within with their own signature. The portal not only permits trade, but also lets some of each realm's underlying magical essence leak through, manifesting as specific effects in the portal's vicinity.
-silva.page.advancedPortals2=The full requirements for the portal are as follows: 8 Bifrost blocks, 4 Bifrost Stairs, 3 Sparkling Bifrost Blocks, 1 Portal Core (read on) and two Portal Pylons (read on), and a Dimensional Signature (read on)
-silva.page.advancedPortals3=A dimensional signature tunes the portal to its target location, usually a realm, but occasionally a location within. A signature is drawn in front of the portal, usually with pixie dust in Alfheim, though any dust with some magical nature should suffice. Each signature has a specific shape, all of them fitting within a 5 by 3 space. I have included the signatures known to us in these papers.
-silva.page.advancedPortals4=Creating the Portal Core
-silva.page.advancedPortals5=Creating Portal Pylons
-silva.page.advancedPortals6=Make a frame of Bifrost Blocks
-silva.page.advancedPortals7=Add Sparkling Bifrost Blocks
-silva.page.advancedPortals8=Add Bifrost Stairs
-silva.page.advancedPortals9=Place the Portal Core
-silva.page.advancedPortals10=Add Mana Pools
-silva.page.advancedPortals11=Place Portal Pylons above the Pools
-silva.page.advancedPortals12=Create a Dimensional Signature
-silva.page.advancedPortals13=This portal requires a fair bit more mana to open than the wooden one, but once opened it has a fraction of the continuous drain. In addition, the portal allows for stronger dilation of time, accelerating bulk trades.
+silva.page.advancedPortals0=Since Thor shattered the original bridge, we have had an increasing dependence on smaller, weaker portals akin to the one you initially created. While they do not, at least by methods known to us, permit the travel of living beings, they have facilitated a partial reconstruction of the &4trade network&0 between realms. While the portal you created out of wood and metal is impressive for such an
+silva.page.advancedPortals1=ad-hoc creation, portals constructed from &4Bifrost&0 are far more refined, adaptable, and efficient. Said portal can be tuned to connect to any of the nine realms, and any locations within with their own signature. The portal not only permits trade, but also lets some of each realm's underlying magical essence leak through, manifesting as specific effects in the portal's vicinity.
+silva.page.advancedPortals2=The full requirements for the portal are as follows: 8 &1Bifrost Blocks&0, 4 &1Bifrost Stairs&0, 3 &1Sparkling Bifrost Blocks&0, a &1Portal Core&0 (read on), and 2 &1Portal Pylons&0 (read on), as well as a &4dimensional signature&0 (read on)
+silva.page.advancedPortals3=A &4dimensional signature&0 tunes the portal to its target location, usually a realm, but occasionally a location within. A signature is drawn in front of the portal, normally with &1pixie dust&0 in &4Alfheim&0, though any dust with some magical nature should suffice. Each signature has a specific shape, all of them fitting within a 5 by 3 space. I have included the signatures known to us in these papers.
+silva.page.advancedPortals4=Creating the &1Portal Core&0
+silva.page.advancedPortals5=Creating &1Portal Pylons&0
+silva.page.advancedPortals6=Make a frame of &1Bifrost Blocks&0
+silva.page.advancedPortals7=Add &1Sparkling Bifrost Blocks&0
+silva.page.advancedPortals8=Add &1Bifrost Stairs&0
+silva.page.advancedPortals9=Place the &1Portal Core&0
+silva.page.advancedPortals10=Add &1Mana Pools&0
+silva.page.advancedPortals11=Place &1Portal Pylons&0 above the pools
+silva.page.advancedPortals12=Create a &4dimensional signature&0
+silva.page.advancedPortals13=This portal requires a fair bit more &4Mana&0 to open than the wooden one, but once opened it has a fraction of the continuous drain. In addition, the portal allows for stronger dilation of time, accelerating &4bulk trades&0.
 
 # -- BIFROST
 silva.entry.bifrost=The Bifrost
-silva.page.bifrost0='Bifrost' refers both to the now-shattered rainbow bridge of Asgard and that bridge's material. Said material was the only known thing to have the properties required for such a bridge. Unfortunately, the amount of the material that would be required to rebuild the bridge has exceeded our supply by several orders of magnitude.
-silva.page.bifrost1=Regardless, what of it we do have is useful for a few different tasks. For starters, while individual blocks of Bifrost are weak, it becomes stronger when adjacent to other blocks of Bifrost, eventually being rendered almost indestructible. Thor's abilities permitted him to shatter it in one blow, but short of such power, destroying a block surrounded by four others is impossible.
-silva.page.bifrost2=A more common use ever since the Shattering, however, is to harness its interworldly nature for the creation of portals between the realms. Such a portal is described under 'Advanced Portals'.
-silva.page.bifrost3=There are ways known to us to create the material, one of which is useless for portal creation, the second of which is rather tedious, and the third of which requires an existing supply of the stuff.
-silva.page.bifrost4=The first method summons the blocks purely from mana, resulting in a quickly vanishing 'psuedo-bifrost'. Such a material, though reportedly a crucial portion of the bridge, has little use in feasible quantities, though you seem to have harnessed it to create something useful for temporarily bridging gaps.
-silva.page.bifrost5=The second method uses similar techniques, but instead channels the mana into a block of dragonstone, using the stability of the dragonstone to create more permanent shards, 18 to be exact. These shards can then be put together to form a full block of normal, permanent bifrost. Since you don't have any existing supply, you will need to make at least one batch with this method.
-silva.page.bifrost6=The third method uses an interesting property of the permanent blocks: when in contact with a block of dragonstone, they will convert it, resulting in a second block of Bifrost and nine shards without using any additional mana.
-silva.page.bifrost7=Crafting a bifrost block
+silva.page.bifrost0='Bifrost' refers both to the now-shattered rainbow bridge of &4Asgard&0 and that bridge's material. Said material was the only known thing to have the properties required for such a bridge. Unfortunately, the amount of the material that would be required to rebuild the bridge has exceeded the existing supply by several orders of magnitude.
+silva.page.bifrost1=Regardless, what of it we do have is useful for a few different tasks. For starters, while individual blocks of &4Bifrost&0 are weak, it becomes stronger when adjacent to others, eventually being rendered almost indestructible. Thor's abilities permitted him to shatter it in one blow, but short of such power, destroying a block surrounded by four others is impossible.
+silva.page.bifrost2=A more common use ever since the &4Shattering&0, however, is to harness its interworldly nature for the creation of portals between the realms. Such a portal is described under 'Advanced Portals'.
+silva.page.bifrost3=There are three ways known to us to create the material, one of which is useless for portal creation, the second of which demands a lot of &4Mana&0, and the third of which requires an existing supply.
+silva.page.bifrost4=The first method summons the blocks purely from &4Mana&0, resulting in a quickly vanishing &1psuedo-Bifrost&0. Such a material, though reportedly a crucial portion of the bridge, has little use in feasible quantities, though you seem to have harnessed it to create something useful for temporarily bridging gaps.
+silva.page.bifrost5=The second method uses similar techniques, but instead channels the &4Mana&0 into a &1Block of Dragonstone&0, using the stability of the &4Dragonstone&0 to create 18 &1Shards of Bifrost&0, which are more permanent. These shards can then be put together to form a full block of normal, permanent &4Bifrost&0. Since you don't have any existing supply, you will need to make at least one batch with this method.
+silva.page.bifrost6=The third method uses an interesting property of the permanent &1Bifrost Blocks&0: when in contact with a &1Block of Dragonstone&0, they will convert it, resulting in a second &1Bifrost Block&0 and nine &1Shards of Bifrost&0 without using any additional &4Mana&0.
+silva.page.bifrost7=Crafting a &1Bifrost Block&0
 silva.page.bifrost8=Turning the block back into shards
-silva.page.bifrost9=Crafting bifrost stairs
-silva.page.bifrost10=Crafting bifrost walls
-silva.page.bifrost11=Crafting bifrost slabs
-silva.page.bifrost12=Crafting sparkling bifrost
+silva.page.bifrost9=Crafting &1Bifrost Stairs&0
+silva.page.bifrost10=Crafting &1Bifrost Walls&0
+silva.page.bifrost11=Crafting &1Bifrost Slabs&0
+silva.page.bifrost12=Crafting &1Sparkling Bifrost Blocks&0
 
 # -- Alfheim
 silva.entry.dimAlfheim=Alfheim
-silva.page.dimAlfheim0=Alfheim is one of the nine realms, and is inhabited by the Elves. Before the Shattering we had grand cities constructed in the most massive of trees, and have been rebuilding our previous grandeur ever since. We are skilled at magic and craftmanship, and the only ones with the secret of growing the elusive dreamwood. It is a beautiful realm of nature and magic that I wish you could visit. 
-silva.page.dimAlfheim1=Exposure to Alfheim's energies results in a slight increase in grace and speed, our realm's little gift to you.
+silva.page.dimAlfheim0=&4Alfheim&0 is one of the nine realms, and is inhabited by us &4Elves&0. Before the &4Shattering&0 we had grand cities constructed in the most massive of trees, and have been rebuilding our previous grandeur ever since. We are skilled at magic and craftmanship, and are the only ones with the secret of growing the elusive &1Dreamwood&0. It is a beautiful realm of nature and magic that I wish you could visit.
+silva.page.dimAlfheim1=Exposure to &4Alfheim&0's energies results in a slight increase in grace and speed, our realm's little gift to you.
 
 # -- Asgard
 silva.entry.dimAsgard=Asgard
-silva.page.dimAsgard0=Asgard is one of the nine realms, and is inhabited by the Asgardians. It was previously a place of grand spires and trade. It was home to the Bifrost before the Shattering, making it a nexus of culture and industry. Since the Shattering, we have had little contact despite our best efforts. 
-silva.page.dimAsgard1=From what we have gathered there is some force there which still threatens the Asgardians, though they are almost completely unwilling to share any further information. Whether or not this is simply the legendary Asgardian pride is unknown.
-silva.page.dimAsgard2=Exposure to Asgard's energies results in a slight increase in strength and toughness, though nothing like a native Asgardian.
+silva.page.dimAsgard0=&4Asgard&0 is one of the nine realms, and is inhabited by the &4Asgardians&0. It was previously a place of grand spires and trade. It was home to the &4Bifrost&0 before the &4Shattering&0, making it a nexus of culture and industry. Since the &4Shattering&0, we have had little contact despite our best efforts.
+silva.page.dimAsgard1=From what we have gathered there is some force there which still threatens the &4Asgardians&0, though they are almost completely unwilling to share any further information. Whether or not this is simply the legendary &4Asgardian pride&0 is unknown.
+silva.page.dimAsgard2=Exposure to &4Asgard&0's energies results in a slight increase in strength and toughness, though nothing like a native &4Asgardian&0.
 
 # -- Ginnungagap
 silva.entry.dimGinnungagap=Ginnungagap
-silva.page.dimGinnungagap0=Ginnungagap is the energised void outside of the World Tree. It is massive, seemingly without limit. Unlike the nine realms, we know of multiple signatures associated with it, however a powerful being of massive dimensional energies which resides within it prevents us from opening a portal there. 
-silva.page.dimGinnungagap1=We can only speculate as to how one could reach the Ginnungagap-we have records of some sort of creature in Midgard with a connection to it, and before the Shattering, your kind had some sort of link to it, but little else is known. No method known to our kind can create a portal to it.
-silva.page.dimGinnungagap2=What exposure to the Ginnungagap's energies would do is unknown due to our inability to open a portal to it.
+silva.page.dimGinnungagap0=&4Ginnungagap&0 is the energized void outside of the &4World Tree&0. It is massive, seemingly without limit. Unlike the nine realms, we know of multiple signatures associated with it, however a powerful being of massive dimensional energies which resides within it prevents us from opening a portal there.
+silva.page.dimGinnungagap1=We can only speculate as to how one could reach the &4Ginnungagap&0-we have records of some sort of creature in &4Midgard&0 with a connection to it, and before the &4Shattering&0, your kind had some sort of link to it, but little else is known. No method known to our kind can create a portal to it.
+silva.page.dimGinnungagap2=What exposure to the &4Ginnungagap&0's energies would do is unknown due to our inability to open a portal to it.
 
 # -- Helheim
 silva.entry.dimHelheim=Helheim
-silva.page.dimHelheim0=Helheim is a hall on the edge of Niflheim. It is ruled over by Hel and is where those who die of sickness are taken. Since the Shattering we can sense that the dead are on the other side, but neither they nor Hel reply to any message we send through.
-silva.page.dimHelheim1=Exposure to Helheim's energies results in weakness to mortals and instant deanimation to necrotic beings.
+silva.page.dimHelheim0=&4Helheim&0 is a hall on the edge of &4Niflheim&0. It is ruled over by Hel and is where those who die of sickness are taken. Since the &4Shattering&0 we can sense that the dead are on the other side, but neither they nor Hel reply to any message we send through.
+silva.page.dimHelheim1=Exposure to &4Helheim&0's energies results in weakness to mortals and instant deanimation to necrotic beings.
 
 # -- Jotunheimr
 silva.entry.dimJotunheimr=Jotunheimr
-silva.page.dimJotunheimr0=Jotunheimr is one of the nine realms, and is inhabited by the Giants. Most of the Giants died during the Shattering as holes opened in Jotunheimr, though they have recovered somewhat. They are mostly lacking in the way of civilization, and we have found little use for portals to their realm.
-silva.page.dimJotunheimr1=Exposure to Jotunheimr's energies results in gaining the power of a giant at the cost of the slowness of a giant. We find the trade inconvenient, but you may like it.
+silva.page.dimJotunheimr0=&4Jotunheimr&0 is one of the nine realms, and is inhabited by the &4Giants&0. Most of the &4Giants&0 died during the &4Shattering&0 as holes opened in &4Jotunheimr&0, though they have recovered somewhat. They are mostly lacking in the way of civilization, and we have found little use for portals to their realm.
+silva.page.dimJotunheimr1=Exposure to &4Jotunheimr&0's energies results in gaining the power of a giant at the cost of the slowness of a giant. We find the trade inconvenient, but you may like it.
 
 # -- Midgard
 silva.entry.dimMidgard=Midgard
-silva.page.dimMidgard0=Midgard is one of the nine realms, and is the one in which you live. You probably know more about it than us. For obvious reasons, you cannot open a portal to it.
-silva.page.dimMidgard1=Exposure to Midgard's energies results in trees growing at an extraordinarily rapid rate into incredibly small trees by our standards, though you would find such things normal. In our world trees take years to centuries to grow and can easily be big enough for us to form houses in.
+silva.page.dimMidgard0=&4Midgard&0 is one of the nine realms, and is the one in which you live. You probably know more about it than we do. For obvious reasons, you cannot open a portal to it.
+silva.page.dimMidgard1=Exposure to &4Midgard&0's energies results in trees growing at an extraordinarily rapid rate into incredibly small trees by our standards, though you would find such things normal. In our world, trees take years to centuries to grow and can easily be big enough for us to form houses in.
 
 # -- Muspelheim
 silva.entry.dimMuspelheim=Muspelheim
-silva.page.dimMuspelheim0=Muspelheim is one of the nine realms, and was one of the original two realms which resulted in the world tree. It was inhabited by the Fire Giants until the Shattering, during which it crashed into Midgard. Since then, we haven't found any evidence of sentient life within. However, your book makes references to a place of fire and heat, one you have traversable links to.
-silva.page.dimMuspelheim1=Exposure to Muspelheim's energies results in fire and charring. We occasionally use it as a furnace, and despite Midgard's more local connection, you can probably do the same with a Bifrost portal.
+silva.page.dimMuspelheim0=&4Muspelheim&0 is one of the nine realms, and was one of the original two realms which resulted in the world tree. It was inhabited by the &4Fire Giants&0 until the &4Shattering&0, during which it crashed into &4Midgard&0. Since then, we haven't found any evidence of sentient life within. However, your book makes references to a place of fire and heat, one you have traversable links to.
+silva.page.dimMuspelheim1=Exposure to &4Muspelheim&0's energies results in fire and charring. We occasionally use it as a furnace, and you can probably do the same by using a &4Bifrost portal&0.
 
 # -- Nidavellir
 silva.entry.dimNidavellir=Nidavellir
-silva.page.dimNidavellir0=Nidavellir is one of the nine realms, and is home to the Dwarves. They live underground and are expert miners and smiths. Their resistance helped them recover quickly from the Shattering, and while they haven't rebuilt all of their tunnel networks, the individual tribes are faring quite well in both life and trade.
-silva.page.dimNidavellir1=Exposure to Nidavellir's energies results in increased mining finesse, and in the case of longer exposure, enhanced night vision.
+silva.page.dimNidavellir0=&4Nidavellir&0 is one of the nine realms, and is home to the &4Dwarves&0. They live underground and are expert miners and smiths. Their resistance helped them recover quickly from the &4Shattering&0, and while they haven't rebuilt all of their tunnel networks, the individual tribes are faring quite well in both life and trade.
+silva.page.dimNidavellir1=Exposure to &4Nidavellir&0's energies results in increased mining finesse, and in the case of longer exposure, enhanced night vision.
 
 # -- Niflheim
 silva.entry.dimNiflheim=Niflheim
-silva.page.dimNiflheim0=Niflheim is one of the nine realms, and was one of the original two realms responsible for the creation of the world tree. It was almost completely uninhabited, save for Helheim on its edge. During the Shattering nothing much seemed to happen to it, especially due to its lack of inhabitants.
-silva.page.dimNiflheim1=Exposure to Niflheim's energies will freeze and weaken things.
+silva.page.dimNiflheim0=&4Niflheim&0 is one of the nine realms, and was one of the original two realms responsible for the creation of the world tree. It was almost completely uninhabited, save for Helheim on its edge. During the &4Shattering&0 nothing much seemed to happen to it, especially due to its lack of inhabitants.
+silva.page.dimNiflheim1=Exposure to &4Niflheim&0's energies will freeze and weaken things.
 
 # -- Svartalfheim
 silva.entry.dimSvartalfheim=Svartalfheim
-silva.page.dimSvartalfheim0=Svartalfheim is one of the nine realms, and is home to the Dark Elves. &nDo not open a &nportal to it&r. The Dark Elves are cowardly and evil creatures, and while most lack almost all intelligence, a few of them possess extraordinary cunning and teach the others to act on their behalf. 
-silva.page.dimSvartalfheim1=Dark Elves are the only creatures which know the secret of how to use these portals to travel between realms, making opening a portal there extremely dangerous.
-silva.page.dimSvartalfheim2=Teasing out what results from the Dark Elves' actions and the essence of Svartalfheim would be tricky, and is a risk us elves have not been willing to take.
+silva.page.dimSvartalfheim0=&4Svartalfheim&0 is one of the nine realms, and is home to the &4Dark Elves&0. &nDo not open a portal to it&r. The &4Dark Elves&0 are cowardly and evil creatures, and while most lack almost any intelligence, a few of them possess extraordinary cunning and teach the others to act on their behalf.
+silva.page.dimSvartalfheim1=&4Dark Elves&0 are the only creatures which know the secret of how to use &4Bifrost portals&0 to travel between realms, making opening a portal there extremely dangerous.
+silva.page.dimSvartalfheim2=Teasing out what results from the &4Dark Elves&0' actions and the essence of &4Svartalfheim&0 would be tricky, and is a risk we &4Elves&0 have not been willing to take.
 
 # -- Valhalla
 silva.entry.dimValhalla=Valhalla
-silva.page.dimValhalla0=Valhalla is a hall within Asgard where Odin takes half of those who are slain in combat. Since the Shattering, Odin has not been seen in it according to reports, though Thor has occasionally feasted there. However, he is reported to have an atypically small appetite, eating only a dozen times as much as the others.
-silva.page.dimValhalla1=Exposure to Valhalla's energies results in strength in battle and powerful strikes.
+silva.page.dimValhalla0=&4Valhalla&0 is a hall within &4Asgard&0 where Odin takes half of those who are slain in combat. Since the &4Shattering&0, Odin has not been seen in it according to reports, though Thor has occasionally feasted there. However, he is reported to have an atypically small appetite, eating only a dozen times as much as the others.
+silva.page.dimValhalla1=Exposure to &4Valhalla&0's energies results in strength in battle and powerful strikes.
 
 # -- Vanaheimr
 silva.entry.dimVanaheimr=Vanaheimr
-silva.page.dimVanaheimr0=Vanaheimr is one of the nine realms, and is home to the Vanir-powerful beings of wisdom and forsight. When the Bifrost existed gaining permission to visit Vanaheimr was difficult, and permission to form a lasting link outside of Folkvangr unheard of. As a result, I do not know its dimensional signature nor details of its energies.
-silva.page.dimVanaheimr1=What exposure to Vanaheimr's energies would do is not known to us due to the secrecy of its signature.
+silva.page.dimVanaheimr0=&4Vanaheimr&0 is one of the nine realms, and is home to the &4Vanir&0-powerful beings of wisdom and forsight. Even when the &4Bifrost&0 existed, gaining permission to visit &4Vanaheimr&0 was difficult, and permission to form a lasting link outside of &4Folkvangr&0 unheard of. As a result, I do not know its dimensional signature nor details of its energies.
+silva.page.dimVanaheimr1=What exposure to &4Vanaheimr&0's energies would do is unknown to us due to the secrecy of its signature.
 
 # -- Folkvangr
 silva.entry.dimFolkvangr=Folkvangr
-silva.page.dimFolkvangr0=Folkvangr is the accessable portion of Vanaheimr, though how to get from it to Vanaheimr is a closely guarded secret. It is ruled over by Freyja of the Vanir and holds half of those slain in battle. A portal to it leads to the hall Sessrúmnir. Before the Shattering, one could use such a portal to call on the wisdom of Freyja, though she has not been seen since.
-silva.page.dimFolkvangr1=Exposure to Folkvangr's energies results in calmness in battle, permitting one's strikes to fall on ones foes with the precision that those in Sessrúmnir possess.
+silva.page.dimFolkvangr0=&4Folkvangr&0 is the accessable portion of &4Vanaheimr&0, though how to get from it to &4Vanaheimr&0 is a closely guarded secret. It is ruled over by Freyja of the &4Vanir&0 and holds half of those slain in battle. A portal to it leads to the hall &4Sessrúmnir&0. Before the &4Shattering&0, one could use such a portal to call on the wisdom of Freyja, though she has not been seen since.
+silva.page.dimFolkvangr1=Exposure to &4Folkvangr&0's energies results in calmness in battle, permitting one's strikes to fall on ones foes with the precision that those in &4Sessrúmnir&0 possess.
 
 # -- Vigridr
 silva.entry.dimVigridr=Vigridr
-silva.page.dimVigridr0=Vigridr is the great field where the battle Ragnarok is foretold to occur. Even now the ground there is filled with the energy of battle cries and death. No one lives there but strange things sometimes occur on it, echoes of the future.
-silva.page.dimVigridr1=Exposure to Vigridr's energies results in strange happenings in battle as the power of the future battle stretches backwards to touch the present. Exposed mice have slain men, men giants, and Asgardians  armies, all without any apparent difficulty. Exposed warriors have also forgotten their skills, dropped their weapons, and surrendered to their enemies.
+silva.page.dimVigridr0=&4Vigridr&0 is the great field where the battle &4Ragnarok&0 is foretold to occur. Even now the ground there is filled with the energy of battle cries and death. No one lives there, but strange things sometimes occur on it, echoes of the future.
+silva.page.dimVigridr1=Exposure to &4Vigridr&0's energies results in strange happenings in battle as the power of the future battle stretches backwards to touch the present. Exposed mice have slain men, men giants, and Asgardians  armies, all without any apparent difficulty. Exposed warriors have also forgotten their skills, dropped their weapons, and surrendered to their enemies.
 
 # - DWARVEN TRADE
 # -- DWARF INTRO
 silva.entry.dwarfIntro=Dwarven Trade
-silva.page.dwarfIntro0=Greetings and Good Mining from Nidavellir! It is wonderful to have new trading partners! We hope that we can build a great relationship with our skills. We have many things to offer, which are detailed in the attached pages. To start however, we need a easier method of indicating what trades we are offering. 
-silva.page.dwarfIntro1=For this, us dwarves use Trade Signs, which use a bit of Bifrost and the energies of a portal to synchronise themselves with ones on the other side. If you provide the required materials, we will craft them free of charge for you.
-silva.page.dwarfIntro2=Trading for Dwarven Trade Signs.
-silva.page.dwarfIntro3=The rest of the trades will show up on the signs, what we want on the left, and what we will give on the right. Simply press a sign like a button and it will become selected, a fact which will be mirrored on our end. Then if you send your half of the deal through we will reply in kind.
-silva.page.dwarfIntro4=Deals are offered on a Dwarf by Dwarf basis, and they are free to change their deals at any time, though it is considered rude to change down a selected deal, so that of course isn't done.
-silva.page.dwarfIntro5=As you build up a reputation as a trading partner, you will find that we will be willing to offer more advanced trades. Participating in trades that require a greater level of skill will also boost your reputation more than simply trading trinkets ever could.
-silva.page.dwarfIntro6=A final word of warning: While the Elves of Alfheim centralise their portals, our portals are dispersed between the different tribes of dwarves. While simply closing and reopening the portal will still have it lead to the same portal on our side, if you were to disrupt the portal core itself it would be unlikely to reopen to our tribe, and you would have to develop a reputation with whatever new tribe you connect to.
+silva.page.dwarfIntro0=Greetings and Good Mining from Nidavellir! It is wonderful to have new trading partners! We hope that we can build a great relationship with our skills. We have many things to offer, which are detailed in the attached pages. To start however, we need an easier method of indicating our trade offers.
+silva.page.dwarfIntro1=For this, we dwarves use &1Trade Signs&0, which use a bit of &4Bifrost&0 and the energies of a portal to synchronize themselves with a corresponding sign on the other side. If you provide the required materials, we will craft them free of charge for you.
+silva.page.dwarfIntro2=Trading for &1Dwarven Trade Signs&0.
+silva.page.dwarfIntro3=The rest of the trades will show up on the signs, what we want on the left, and what we will give on the right. Simply press a sign like a button and it will become selected, a fact which will be mirrored on our end. Then, if you send your half through, we will reply in kind.
+silva.page.dwarfIntro4=Deals are offered on a dwarf by dwarf basis, and they are free to change their deals at any time, though it is considered rude to change down a selected deal, so that of course isn't done.
+silva.page.dwarfIntro5=As you build up a &4reputation&0 as a trading partner, you will find that we will be willing to offer &4more advanced trades&0. Participating in trades that require a greater level of skill will also boost your &4reputation&0 more than simply trading trinkets ever could.
+silva.page.dwarfIntro6=A final word of warning: While the &4Elves&0 centralize their portals, our portals are dispersed between the different tribes of dwarves. While simply closing and reopening the portal will still have it lead to the same portal on our side, if you were to disrupt the portal core itself it would be unlikely to reopen to our tribe, and you would have to develop a &4reputation&0 with whatever new tribe you connect to.
 
 # -- BASIC DWARVEN RESOURCES
 silva.entry.basicDwarvenResources=The Resources of Nidavellir
 silva.page.basicDwarvenResources0=Some more common resources of our realm we will trade easily, and are mostly used in crafting. We hope you enjoy them. They form a firm foundation for further trades.
-silva.page.basicDwarvenResources1=Trading for Deepweed
-silva.page.basicDwarvenResources2=Trading for Deeprock
-silva.page.basicDwarvenResources3=Trading for Mushrooms
-silva.page.basicDwarvenResources4=Trading for Livingrock
+silva.page.basicDwarvenResources1=Trading for &1Deepweed&0
+silva.page.basicDwarvenResources2=Trading for &1Deeprock&0
+silva.page.basicDwarvenResources3=Trading for &1Mushrooms&0
+silva.page.basicDwarvenResources4=Trading for &1Livingrock&0
 
 # -- BOOM MOSS
 silva.entry.boomMoss=Boom Moss
-silva.page.boomMoss0=Boom Moss is a wonderful creation, and a staple of dwarven mining. Simply place down a patch of it and apply mana and it will grow at an incredible speed! Then, use a light tap to detonate it, causing a chain reaction to mine out large areas, though just the surface. 
-silva.page.boomMoss1=We often use it for prospecting to reveal entire new layers at a time before selecting where to dig, or letting it grow between things to expand large areas in a single blow. 
-silva.page.boomMoss2=Crafting Boom Moss
-silva.page.boomMoss3=In addition to regular Boom Moss, some dwarves know the secret of enchanting it, creating something known as "Master Boom Moss". It requires no additional mana beyond that of regular boom moss, but when detonated it carves out the stone with silken precision, letting miners handle all minerals in their original form. 
+silva.page.boomMoss0=&1Boom Moss&0 is a wonderful creation, and a staple of dwarven mining. Simply place down a patch of it and apply &4Mana&0 and it will grow at an incredible speed! Then, use a light tap to detonate it, causing a chain reaction to mine out large areas, though just the surface.
+silva.page.boomMoss1=We often use it for prospecting to reveal entire new layers at a time before selecting where to dig, or letting it grow between things to expand large areas in a single blow.
+silva.page.boomMoss2=Crafting &1Boom Moss&0
+silva.page.boomMoss3=In addition to regular &1Boom Moss&0, some dwarves know the secret of enchanting it, creating something known as &1Master Boom Moss&0. It requires no additional &4Mana&0 beyond that of regular &1Boom Moss&0, but when detonated it carves out the stone with &4silken precision&0, letting miners handle all minerals in their original form.
 silva.page.boomMoss4=Even better, it moves all the blocks thus mined back to the origin of the detonation, allowing the user to pick everything up with ease!
-silva.page.boomMoss5=Trading For Master Boom Moss
-silva.page.boomMoss6=Boom Moss can be disrupted by higher heat levels such as those created in a furnace. When dried out it will still explode, but will turn the things in its explosion to dust in the wind. Perhaps you could find a use for this variety simply to create tunnels.
-silva.page.boomMoss7=Drying Boom Moss
+silva.page.boomMoss5=Trading for &1Master Boom Moss&0
+silva.page.boomMoss6=&1Boom Moss&0 can be disrupted by higher heat levels such as those created in a &1Furnace&0. When dried out it will still explode, but will turn the things in its explosion to dust in the wind. Perhaps you could find a use for this variety.
+silva.page.boomMoss7=Drying &1Boom Moss&0
 
 # -- DWARF FORGING
 silva.entry.dwarfForged=Dwarf-Forged!
-silva.page.dwarfForged0=The Elves' skills at enchanting are well known, and a dwarf who goes into battle will be as covered in enchantments and runes as any elf. Nonetheless, at the core of any dwarf's weapon and tools, below the layers of enchantment and runes lies the precise skill of a dwarven forgemaster.
-silva.page.dwarfForged1=Such creations are superior in a multitude of both tiny and not-so-tiny ways, adding up to a steady and reliable base. While these advantages are not on the level of actual magic, dwarf-forged tools are of course completely compatible with enchanting.
-silva.page.dwarfForged2=A dwarf-forged sword's edge has tiny serrations which cause its hits to occasionally tear skin for a slight boost in damage, and its sharpness means that when it hits just right it can do absolutely massive damage! 
-silva.page.dwarfForged3=Dwarf-forged armor has carefully created interlocking pieces which will sometimes completely nullify even the most powerful blows! 
-silva.page.dwarfForged4=In addition, our smiths put careful grooves into their creations permitting things like timeless ivy to mesh better, allowing it to repair at a faster rate and for less mana.
-silva.page.dwarfForged5=Any armor, tool, or weapon you get from us will be of dwarven make, and many of our smiths may be willing to craft armor for you should you provide the materials and a fee. Such is their skill that they usually require less materials than ordinary crafters, wasting less and making each ingot go further.
-silva.page.dwarfForged6=Paying Dwarven Smiths to craft
-silva.page.dwarfForged7=Should you have object which are not of dwarven make, not all hope is lost! While reforging existing armor to our exacting standards is beyond the capability of most of our smiths, it is still possible to reforge the majority of equipment, even that of materials foreign to our world.
-silva.page.dwarfForged8=Paying Dwarven Smiths to reforge
+silva.page.dwarfForged0=The &4Elves&0' skills at enchanting are well known, and a dwarf who goes into battle will be as covered in enchantments and runes as any elf. Nonetheless, at the core of any dwarf's weapon and tools, below the layers of enchantment and runes, lies the precise skill of a dwarven forgemaster.
+silva.page.dwarfForged1=Such creations are superior in a multitude of both tiny and not-so-tiny ways, adding up to a steady and reliable base. While these advantages are not on the level of actual magic, &4dwarf-forged tools&0 are of course completely compatible with enchanting.
+silva.page.dwarfForged2=A &4dwarf-forged sword&0's edge has tiny serrations which cause its hits to occasionally tear skin for a slight boost in damage, and its sharpness means that when it hits just right it can do absolutely massive damage!
+silva.page.dwarfForged3=&4Dwarf-forged armor&0 has carefully-created interlocking pieces which will sometimes completely nullify even the most powerful blows!
+silva.page.dwarfForged4=In addition, our smiths put careful grooves into their creations permitting things like &1Timeless Ivy&0 to mesh better, allowing it to repair at a faster rate and for less &1Mana&0.
+silva.page.dwarfForged5=Any armor, tool, or weapon you get from us will be of dwarven make, and many of our smiths may be willing to craft equipment for you should you provide the materials and a fee. Such is their skill that they usually require less material than ordinary crafters, wasting less and making each ingot go further.
+silva.page.dwarfForged6=Paying dwarven smiths to craft
+silva.page.dwarfForged7=Should you have objects not of dwarven make, not all hope is lost! While &4reforging&0 existing armor to our exacting standards is beyond the capability of most of our smiths, it is still possible to reforge the majority of equipment, even that of materials foreign to our world.
+silva.page.dwarfForged8=Paying dwarven smiths to reforge
 
 # -- DWARVEN BARRIER STONE
 silva.entry.dwarvenBarrierStone=Dwarven Barrier Stones
-silva.page.dwarvenBarrierStone0=Dwarven Barrier Stones are a clever creation of the dwarves. By infusing deeprock with a mana pearl and inscribing it with certain runes we can create a stone which, upon impact with a surface, expands in two directions, forming a barrier. 
+silva.page.dwarvenBarrierStone0=&1Dwarven Barrier Stones&0 are a clever creation of us Dwarves. By infusing &1Deeprock&0 with a &1Mana Pearl&0 and inscribing it with certain runes, we can create a stone which, upon impact with a surface, expands in two directions, forming a barrier.
 silva.page.dwarvenBarrierStone1=It is useful for rapidly blocking up tunnels when necessary, or quickly creating bridges across pits. In addition, the high density of the stone within puts a nasty bruise on any foe it hits.
-silva.page.dwarvenBarrierStone2=Trading For Dwarven Barrier Stones
+silva.page.dwarvenBarrierStone2=Trading for &1Dwarven Barrier Stones&0
 
 # -- DWARVEN CHAIN
 silva.entry.dwarvenChain=Dwarven Chain
 silva.page.dwarvenChain0=The great chain Gleipnir was crafted by our kind to bind the mighty wolf Fenrir, and is the only object known to be able to. Crafted from the sound of a cat's footfall, the beard of a woman, the roots of a mountain, the sinews of a bear, the breath of a fish, and the spittle of a bird it was a magnificent thing. But who has the time to get all that?
-silva.page.dwarvenChain1=Nonetheless, the same techniques can be used with more typical materials to craft a mighty, if not completely unstoppable, chain which can be used to bind other creatures even if they resist. A dwarven chain functions like a lead, but it can be used on creatures more aggressive than your typical pet or livestock.
-silva.page.dwarvenChain2=Trading for Dwarven Chain
+silva.page.dwarvenChain1=Nonetheless, the same techniques can be used with more typical materials to craft a mighty, if not completely unstoppable, chain which can be used to bind other creatures even if they resist. A &1Dwarven Chain&0 functions like a &1Lead&0, but it can be used on creatures more aggressive than your typical pet or livestock.
+silva.page.dwarvenChain2=Trading for &1Dwarven Chains&0
 
 # -- DWARVEN MANA POOL
-silva.entry.dwarvenManaPool=Dwarven Mana Pool
-silva.page.dwarvenManaPool0=The Mana systems of us dwarves are a bit different from the system commonly used by the elves. We primarily use Mana Crystals and deeprock pools, as opposed to the elves' spreaders and livingrock pools. Our mana pools lack the ability to disperse power automatically to nearby devices, but have an increased storage capacity compared to livingrock ones. 
-silva.page.dwarvenManaPool1=They are still fully capable of infusing items with mana and connecting to spreaders or sparks, functional flora are the only sort of thing that our pools do not interact with. For more information about how we manipulate mana, see the entry on mana crystals.
-silva.page.dwarvenManaPool2=Trading a livingrock mana pool for a dwarven mana pool
+silva.entry.dwarvenManaPool=Dwarven Mana Pools
+silva.page.dwarvenManaPool0=We &4Dwarves&0 have ready access to different materials than those common to Midgard and Alfheim, and our methods of manipulating &1Mana&0 are therefore quite different. While races that dwell on the surface of their realm typically use some sort of wooden spreader, in conjunction with pools made of &1Livingrock&0. In &4Nidavellir&0, we tend to rely instead on pools made of &1Deeprock&0 and &1Mana Crystals&0. Our pools lack the ability to disperse power automatically to nearby devices, but have can store &4Mana&0 more densely than those made of &1Livingrock&0.
+silva.page.dwarvenManaPool1=They are still fully capable of infusing items and connecting to &1Mana Spreaders&0 or &1Sparks&0, flowers and mushrooms are the only sort of thing that our pools do not interact with. For more information about how we manipulate &4Mana&0, see the entry on &1Mana Crystals&0.
+silva.page.dwarvenManaPool2=Trading a &1Mana Pool&0 for a &1Dwarven Mana Pool&0
 
 # -- MEAD OF POETRY
 silva.entry.dwarvenMead=Mead of Poetry
-silva.page.dwarvenMead0=Ah, the Mead of Poetry! Truly a wonderous drink! Despite its questionable origins, who could resist such a beverage? Delicious, sweet, and strong enough to make an entire party of dwarves black out. To my knowledge,  I myself have partaken in it a total of thirty-one times in my life, though despite this I can only recall two times I've witnessed someone drunk on it.
-silva.page.dwarvenMead1=One occasion was in a tavern, and the dwarf in question has recently achieved some accomplishment or another-the details escape me-I was rather well supplied at the time. After a single mug he was singing a wonderful song, knocked over three tables, then bit off his companion's finger and used the bloody stump to write a poem on the wall of the tavern. Good times.
+silva.page.dwarvenMead0=Ah, the &1Mead of Poetry&0! Truly a wonderous drink! Despite its questionable origins, who could resist such a beverage? Delicious, sweet, and strong enough to make an entire party of dwarves black out. To my knowledge, I myself have partaken in it a total of thirty-one times in my life, though despite this I can only recall two times I've witnessed someone drunk on it.
+silva.page.dwarvenMead1=One occasion was in a tavern, and the dwarf in question has recently achieved some accomplishment or another-the details escape me, I was rather well supplied at the time. After a single mug he was singing a wonderful song, knocked over three tables, then bit off his companion's finger and used the bloody stump to write a poem on the wall of the tavern. Good times.
 silva.page.dwarvenMead2=The other occasion was seeing it used in combat. The one who drank it was shouting strange facts and swinging his sword every which way, a full half his strikes going completely wild as he jumped around like a madman. Come to think of it, the singing dwarf was jumping as well... The strikes that did hit, though, were perfectly aimed and devastating in strength. He won with ease and immediately passed out.
-silva.page.dwarvenMead3=Trading for Mead of Poetry
+silva.page.dwarvenMead3=Trading for &1Mead of Poetry&0
 
 # -- MANA CRYSTAL
-silva.entry.manaCrystal=Mana Crystal
-silva.page.manaCrystal0=The Mana Crystal is the other half of the standard dwarven power system. The elven power system has nothing that it can be directly compared to, as it has properties in line with spreaders, tablets, and pools.
-silva.page.manaCrystal1=It has an internal storage of mana not quite as large as pools or the elves' tablets, but considerably sized, enough to not be considered a simple buffer like in spreaders. It automatically sends mana bursts downwards, allowing for transport. It can be charged via a mana pool, spreader, or other crystal, and keeps its mana when picked up. It also has the ability, like a livingrock pool, to give mana to nearby systems.
-silva.page.manaCrystal2=Trading for mana crystals
+silva.entry.manaCrystal=Dwarven Mana Manipulation
+silva.page.manaCrystal0=&1Mana Crystals&0 are the other half of the standard dwarven &4Mana&0 system. The elven system has nothing that it can be directly compared to, though it can serve the functions of a spreader, a tablet, or a pool.
+silva.page.manaCrystal1=It has an internal storage of &4Mana&0 not quite as large as &1Mana Pools&0 or &1Mana Tablets&0, but considerably sized, enough to not be considered a simple buffer like found in spreaders. It automatically sends &4Mana Bursts&0 downwards, allowing for transport. It can be charged via &4Mana Bursts&0 or &1Mana Pools&0 and keeps its internal &4Mana&0 storage when picked up. It also has the abilities, like &1Livingrock&0 pools and wooden &1Mana Spreaders&0, to interact with flowers and mushrooms.
+silva.page.manaCrystal2=Trading for &1Mana Crystals&0
 
 # -- STONE HORSE
 silva.entry.stoneHorse=Stone Horse
-silva.page.stoneHorse0=A classic final challenge for an apprentice dwarven stonecarver is to carve a stone horse with such detail that it comes to life. As a result, we have quite the surplus and will trade them readily.
-silva.page.stoneHorse1=Placing down the stone horse will animate it, resulting in a horse that needs no saddle, and while it can be equipped with external armor, will have some natural armor of its own given its composition. Should the horse be sufficiently damaged, it will return to its statue state to be placed down again.
-silva.page.stoneHorse2=Trading for a stone horse
+silva.page.stoneHorse0=A classic final challenge for an apprentice dwarven stonecarver is to carve a horse our of stone with such detail that it comes to life. As a result, we have quite the surplus and will trade them readily in exchange for the materials to carve another.
+silva.page.stoneHorse1=Placing down the &1Stone Horse&0 will animate it, resulting in a horse that needs no saddle, and while it can be equipped with external armor, will have some natural armor of its own given its composition. Should the horse be sufficiently damaged, it will return to its statue state to be placed down again.
+silva.page.stoneHorse2=Trading for a &1Stone Horse&0
 
 # -- LAVACAP
 silva.entry.lavaShroom=Lavacap
-silva.page.lavaShroom0=The Lavacap is us dwarves' primary answer to mana generation. Consuming large amounts of both lava and solid fuel, but generating extreme amounts of mana in the process, these massive mushrooms provide most of our mana. A Lavacap generates more mana if the fuel is more potent, in relation to both fuel spent and time elapsed.
-silva.page.lavaShroom1=Creating and activating a lavacap requires one giant red mushroom, a red shimmering mushroom, a piece of deeprock, some lava, a rune of mana, three runes of fire, a rune of earth,  and two runes of wrath.
-silva.page.lavaShroom2=Begin with a simple red mushroom placed.
-silva.page.lavaShroom3=Grow it into a giant mushroom.
-silva.page.lavaShroom4=Replace part of the stalk with a red shimmering mushroom above a piece of deep rock. The shimmering mushroom must be just below the edge of the cap, this may require removing bits of the bottom from the stalk. The next page shows what this will look like.
+silva.page.lavaShroom0=The &1Lavacap&0 is us &4Dwarves&0' primary answer to &4Mana&0 generation. Consuming large amounts of both &4Lava&0 and solid fuel, but generating extreme amounts of &4Mana&0 in the process, these massive mushrooms provide most of our &4Mana&0. A &1Lavacap&0 generates more &4Mana&0 if the fuel is more potent, in relation to both fuel spent and time elapsed.
+silva.page.lavaShroom1=Creating and activating a &1Lavacap&0 requires one &1giant red mushroom&0, a &1Red Shimmering Mushroom&0, a piece of &1Deeprock&0, some &4Lava&0, and several &1Runes&0.
+silva.page.lavaShroom2=Begin with a simple &1red mushroom&0 placed.
+silva.page.lavaShroom3=Grow it into a &1giant red mushroom&0.
+silva.page.lavaShroom4=Replace part of the stalk with a &1Red Shimmering Mushroom&0 above a piece of &1Deeprock&0. It must be just below the edge of the cap, this may require removing bits of the bottom from the stalk. This placement is depicted on the next page.
 silva.page.lavaShroom5=Looks like this
-silva.page.lavaShroom6=Use a wand to convert the mushroom into a Lavacap
-silva.page.lavaShroom7=Place lava in the hole in the top
-silva.page.lavaShroom8=Throw the runes into the lava pool on the top. These runes will not be returned if you break the structure later, as they are incorporated into the mushroom itself.
-silva.page.lavaShroom9=The Lavacap constantly loses some of its internal heat, even when not in use, though when it is burning fuel it loses heat much faster. To feed it fuel simply burn the items in the enchanted lava on the sides of the cap as you would burn an item in normal lava.
-silva.page.lavaShroom10=As long as it has a good supply of lava, the enchanted lava flowing from the cap will pulse slightly. If it runs out of lava, any items will be burned without generating mana and the lava will dull. The mana generated will automatically output into mana pools or crystals touching the bottom of the lava cap's stalk, where the red shimmering mushroom was during the construction of the mushroom.
+silva.page.lavaShroom6=Use a &1Wand of the Forest&0 to convert the mushroom into a &1Lavacap&0
+silva.page.lavaShroom7=Place &1Lava&0 in the hole in the top
+silva.page.lavaShroom8=Throw the &1Runes&0 into the small pool on the top. These will not be returned if you break the structure later, as they are incorporated into the mushroom itself.
+silva.page.lavaShroom9=The &1Lavacap&0 constantly loses some of its internal heat even when not in use, though when it is burning fuel it loses heat much faster. To feed it fuel simply burn the items in the &4enchanted lava&0 on the sides of the cap just as you would burn an item in normal &1Lava&0.
+silva.page.lavaShroom10=As long as it has a good supply of &1Lava&0, the &4enchanted lava&0 flowing from the cap will pulse slightly. If it cools down, any items will be burned without generating &4Mana&0 and the lava will dull. The &4Mana&0 generated will automatically drain into &1Mana Pools&0 or &1Mana Crystals&0 touching the bottom of the stalk, where the &1Red Shimmering Mushroom&0 was during construction.
 
 # - THE DARK ELVES
 
 # -- ANOTHER MESSAGE FROM NUBLIA
 silva.entry.darkElfIntro=Another Message from Nublia
 silva.page.darkElfIntro0=
-silva.page.darkElfIntro1=I wish to begin this message by apologising for using your mana. Intercepting your connection took a fair bit, and strictly speaking I'm not supposed to be doing this, so I used some of your mana to camouflage my actions. 
+silva.page.darkElfIntro1=I wish to begin this message by apologizing for using your Mana. Intercepting your connection took a fair bit, and strictly speaking I'm not supposed to be doing this, so I used some of your Mana to camouflage my actions.
 silva.page.darkElfIntro2=While I did warn you against opening this portal, I can't say I didn't see it coming. I'm neither Heimdallr nor a Vanir, but I have learned some divination, and, no offense, you aren't exactly the most subtle or unpredictable.
 silva.page.darkElfIntro3=I'm not going to chide you for your actions. While risky, I think that many of my kind have forgotten the importance of risks, especially since the Shattering. I have included my notes on Svartalfheim and its people in the rest of these pages. I recommend you begin with "On the Nature of Dark Elves", and I and wish you the best of luck in your research.
 
 # -- ON THE NATURE OF DARK ELVES
 silva.entry.darkElfDesc=On the Nature of Dark Elves
-silva.page.darkElfDesc0=Dark Elves are the pseudo-civilized inhabitants of Svartalfheim. They are, for the most part, a cowardly and foolish species, with a few problematic exceptions. They divide themselves into a variety of mostly arbitrary hierarchies.
-silva.page.darkElfDesc1=While I shall not go into the detail of their convoluted and mostly nonsensical power games and hierarchies, there are two primary types of dark elves, which I will refer to as fools and menaces. In general, the menaces are higher up on their hierarchies, but the location tells little.
-silva.page.darkElfDesc2=The fools possess almost no foresight or real creativity, only malice and impulse. If it weren't for the menaces, they would be at most a pest, easy enough to deal with. However, while neither fools nor menaces have much patience for cooperation, they do somehow manage some small degree of it.
-silva.page.darkElfDesc3=The most common method of 'cooperation' that occurs among the dark elves is comparable to slavery, but the impulsiveness and lack of foresight by the fools renders even enslaving them unreliable. 
-silva.page.darkElfDesc4=Such relationships are generally short-lived, due to either small-scale rebellion, often punished with death, or should the master also be a fool, the simple misplacement of the slave. Such relationships are usually harmless to the external world.
-silva.page.darkElfDesc5=The second most common relationship is teaching. In an attempt to increase the fools' destructive capacity, a menace may develop a simple 'recipe' for a fool to follow, distilling many hours of engineering and invention into a simple set of steps the fool can apply, usually for sabotage.
-silva.page.darkElfDesc6=It is this relationship that makes the fools an actual threat. While they lack any sort of depth of understanding of what they do, the instructions they are given are well tuned to getting around such limits, permitting them acts of cleverness well beyond their intelligence.
-silva.page.darkElfDesc7=However, due to their lack of understanding, such actions are fairly easy to manipulate - for example, leaving a portal open and unattended will often lure a fool through for an act of sabotage, and their inability to actually understand the mechanisms means that one can harness the admittedly great engineering skills of the menaces.
-silva.page.darkElfDesc8=An illustrative example would be one 'recipe' the fools were taught, tampering with a mana spreader in such a way to reverse it to make its bursts drain mana from the target pool into the one adjacent to the spreader, ruining any mechanism not made with such a behavior in mind.
-silva.page.darkElfDesc9=However, due to fools' lack of understanding, they cannot determine if it is truly part of a vulnerable mechanism-simply placing a spreader near an unattended portal results in them converting it, and the new device can be used, in a somewhat unorthodox manner, to transport mana at a greater rate than even a gaia spreader!
-silva.page.darkElfDesc10=The third relationship is the most dangerous, and fortunately extremely rare: armies. Through some mechanism, a menace may manage to recruit a vast number of fools and/or lesser menaces for an extended period of time, enabling them to form a somwehat coherent army. Such armies carry terrible and destructive weapons invented by the menaces.
-silva.page.darkElfDesc11=No such army has been seen since the Shattering, which, given their knowledge of how to traverse Bifrost portals, is incredibly fortunate. Should they form an army, they would be a devastating force against all the realms.
+silva.page.darkElfDesc0=&4Dark Elves&0 are the pseudo-civilized inhabitants of &4Svartalfheim&0. They are, for the most part, a cowardly and foolish species, with a few problematic exceptions. They divide themselves into a variety of mostly arbitrary hierarchies.
+silva.page.darkElfDesc1=While I shall not go into the detail of their convoluted and mostly nonsensical power games and hierarchies, there are two primary types of dark elves, which I will refer to as &4fools&0 and &4menaces&0. In general, the &4menaces&0 are higher up on their hierarchies, but the location tells little.
+silva.page.darkElfDesc2=The &4fools&0 possess almost no foresight or real creativity, only malice and impulse. If it weren't for the &4menaces&0, they would be at most a pest, easy enough to deal with. However, while neither &4fools&0 nor &4menaces&0 have much patience for cooperation, they do somehow manage some small degree of it.
+silva.page.darkElfDesc3=The most common method of 'cooperation' that occurs among the &4Dark Elves&0 is comparable to slavery, but the impulsiveness and lack of foresight by the &4fools&0 renders even enslaving them unreliable.
+silva.page.darkElfDesc4=Such relationships are generally short-lived, due to either small-scale rebellion, often punished with death, or should the master also be a &4fool&0, the simple misplacement of the slave. Such relationships are usually harmless to the external world.
+silva.page.darkElfDesc5=The second most common relationship is teaching. In an attempt to increase the fools' destructive capacity, a &4menace&0 may develop a simple '&4recipe&0' for a &4fool&0 to follow, distilling many hours of engineering and invention into a simple set of steps the &4fool&0 can apply, usually for &4sabotage&0.
+silva.page.darkElfDesc6=It is this relationship that makes the &4fools&0 an actual threat. While they lack any sort of depth of understanding of what they do, the instructions they are given are well tuned to getting around such limits, permitting them acts of cleverness well beyond their intelligence.
+silva.page.darkElfDesc7=However, due to their lack of understanding, such actions are fairly easy to manipulate - for example, leaving a portal open and unattended will often lure a &4fool&0 through for an act of &4sabotage&0, and their inability to actually understand the mechanisms means that one can harness the admittedly great engineering skills of the &4menaces&0.
+silva.page.darkElfDesc8=An illustrative example of such a '&4recipe&0' is one of the most common, tampering with a &1Mana Spreader&0 so as to reverse it, making its &4Mana Bursts&0 drain &4Mana&0 from the target &1Mana Pool&0 into the one adjacent to the modified spreader, ruining any mechanism not made with such a behavior in mind.
+silva.page.darkElfDesc9=However, due to &4fools&0' lack of understanding, they cannot determine if it is truly part of a vulnerable mechanism-simply placing a spreader near an unattended portal results in them converting it, and the new device can be used, in a somewhat unorthodox manner, to transport mana at a greater rate than even a gaia spreader!
+silva.page.darkElfDesc10=The third relationship is the most dangerous, and fortunately incredibly rare: armies. Through some mechanism, a &4menace&0 may manage to recruit a vast number of &4fools&0 and lesser &4menaces&0 for an extended period of time, enabling them to form a somwehat coherent army. Such armies carry terrible and destructive weapons invented by the greater &4menaces&0.
+silva.page.darkElfDesc11=No such army has been seen since the &4Shattering&0, which, given their knowledge of how to traverse &4Bifrost portals&0, is incredibly fortunate. Should they form an army, they would be a devastating force against all the realms.
 
 # -- CARNILOTUS
 silva.entry.carnilotus=Carnilotus
-silva.page.carnilotus0=Using the aggressive tendencies of the modified spreaders, and mimicking certain carnivorous mundane plants at a larger scale, an eternally hungering flower can be created. The Carnilotus consumes creatures in exchange for Mana, like the Gourmaryllis but a bit...meaner.
-silva.page.carnilotus1=The Carnilotus prefers its food still-moving, and will simply dissolve any items dropped in. If a drop can be cooked, like most meat, it generates Mana more efficiently than a Gourmaryllis would. Items that can't be cooked, it generates mana at the standard rate. It's worth noting that while skeletal creatures don't yield anything edible, the Carnilotus, being a plant, is nourished by bones, and the plant-friendly nutrients within will act as a boost for a few future digestions.
-silva.page.carnilotus2=Creating and activating the Carnilotus requires 9 Mana Spreaders? 36 purple petal blocks, 9 black petal blocks, 9 iron bars, 2 livingwood, some water, a rune of mana, three runes of water, two runes of gluttony, a rune of wrath, and 32 sugar.
+silva.page.carnilotus0=Using the aggressive tendencies of the modified spreaders, which you've taken to referring to as &1Mana Eaters&0, and mimicking certain carnivorous mundane plants at a larger scale, an eternally hungering flower can be created. The &1Carnilotus&0 consumes creatures in exchange for &4Mana&0, like the &1Gourmaryllis&0 but a bit...meaner.
+silva.page.carnilotus1=The &1Carnilotus&0 prefers its food still-moving, and will simply dissolve any items dropped in. If a drop can be cooked, like most &4meat&0, it generates &4Mana&0 more efficiently than a &1Gourmaryllis&0 would. Items that can't be cooked, it generates mana at the standard rate. It's worth noting that while &4skeletal creatures&0 don't yield anything edible, the &1Carnilotus&0, being a plant, is nourished by &1Bones&0, and the plant-friendly nutrients within will act as a boost for a few future digestions.
+silva.page.carnilotus2=Creating and activating the &1Carnilotus&0 requires 9 &1Mana Eaters&0, 36 &1Purple Petal Blocks&0, 9 &1Black Petal Blocks&0, 9 &1Iron Bars&0, 2 &1Livingwood&0, some &1Water&0, several &1Runes&0, and 32 &1Sugar&0.
 silva.page.carnilotus3=Construct the base
-silva.page.carnilotus4=Place the Stem
+silva.page.carnilotus4=Place the stem
 silva.page.carnilotus5=Make the bowl
-silva.page.carnilotus6=Using iron bars, supply material for the lip teeth
+silva.page.carnilotus6=Insert the teeth
 silva.page.carnilotus7=Construct the lifted lid
-silva.page.carnilotus8=Using a wand, activate the flower
+silva.page.carnilotus8=Using a &1Wand of the Forest&0, activate the flower
 silva.page.carnilotus9=Fill the interior with water
-silva.page.carnilotus10=From a safe distance, drop in the runes and sugar.
+silva.page.carnilotus10=From a safe distance, drop in the &1Runes&0 and &1Sugar&0.
 
 # -- RHODODENDER
 silva.entry.rhododender=Rhododender
-silva.page.rhododender0=The Rhododender is simple enough in concept, it simply throws Ender Pearls in a relaying fashion. Each time the pearl is thrown however, the damage you will take when it finally lands increases, so be careful. This flower, unlike the Spectranthemum, is not governed by the axiom of chunkloading, and will temporarily load chunks as necessary. 
-silva.page.rhododender1=How it throws the ender pearl can be controlled by placing dusts around it-each dust in a given cardinal direction increases strength, both in that direction and upwards. Dusts on opposite sides counter each other laterally, but each one still contributes to vertical strength.
+silva.page.rhododender0=The &1Rhododender&0 is simple enough in concept, it simply throws &1Ender Pearls&0 in a relaying fashion. Each time the pearl is thrown, however, the damage taken when it finally lands increases, so be careful. This flower, unlike the &1Spectranthemum&0, is not governed by the &4axiom of chunkloading&0, and will temporarily load chunks as necessary.
+silva.page.rhododender1=How it throws the &1Ender Pearl&0 can be controlled by placing dusts around it-each dust in a given cardinal direction increases strength, both in that direction and upwards. Dusts on opposite sides counter each other laterally, but each one still contributes to vertical strength.
 silva.page.rhododender2=Play ball!
 
 # -- PLACEABLE DUST
 silva.entry.placeableDust=Placeable Dust
-silva.page.placeableDust0=While not necessarily as useful as Redstone, the world contains a variety of similar materials-Glowstone forms a dust when not in blocks, a blaze rod can be ground into a fine powder, and even the magical pixies of Alfheim leave behind a useful dust. Naturally, all of these can be smeared on the ground like Redstone, though you aren't sure how useful they would be.
+silva.page.placeableDust0=While not necessarily as useful as &1Redstone&0, the world contains a variety of similar materials-&1Glowstone&0 forms a dust when not in blocks, a &1Blaze Rod&0 can be ground into a fine powder, and even the magical pixies of &4Alfheim&0 leave behind a useful dust. Naturally, all of these can be smeared on the ground like &1Redstone&0, though you aren't sure how useful each would be.
 
 # -- PORTAL UPGRADES
 silva.entry.portalUpgrades=Portal Upgrades
-silva.page.portalUpgrades0=Your advanced portal, while well and good, has room for improvement. Fortunately, it has a modular design permitting you to upgrade it easily. Any of the sparkling bifrost blocks which make it up can be replaced with an upgrade for various effects.
-silva.page.portalUpgrades1=A simple upgrade will permit you to easily control it via redstone-an active signal opening the portal, and its absence closing it. Of course, opening the portal will still cost a lot of mana, but this control can still be useful for long-term closures.
+silva.page.portalUpgrades0=Your &4Bifrost portal&0, while well and good, has room for improvement. Fortunately, it has a modular design permitting you to upgrade it easily. Any of the &1Sparkling Bifrost Blocks&0 which make it up can be replaced with an upgrade for various effects.
+silva.page.portalUpgrades1=A simple upgrade will permit you to easily control it via &1Redstone&0-an active signal opening the portal, and its absence closing it. Of course, opening the portal will still cost a lot of &4Mana&0, but this control can still be useful for long-term closures.
 silva.page.portalUpgrades2=Redstone Control Portal Upgrade
-silva.page.portalUpgrades3=The energies which leak through the portal are often useful, but in some cases you don't want snow to pile up or things to light on fire. A simple enough upgrade will inhibit most energies passing through the portal while still permitting items to travel.
+silva.page.portalUpgrades3=The &4energies&0 which leak through the portal are often useful, but in some cases you don't want snow to pile up or things to light on fire. A simple enough upgrade will inhibit most energies passing through the portal while still permitting trade.
 silva.page.portalUpgrades4=Inhibitor Portal Upgrade
-silva.page.portalUpgrades5=If you do want the energies from the portal to affect you, sitting and waiting in front of it can be tedious. To make things easier you can create a Realm Stone and charge it up with energies from the portal, and then simply discharge the stone into yourself at a later time. You could even put multiple energies in it.
+silva.page.portalUpgrades5=If you do want the &4exposure energies&0 to affect you, sitting and waiting in front of it can be tedious. To make things easier you can create a &1Realm Stone&0 and charge it up with energies from the portal, and then simply discharge the stone into yourself at a later time. You could even put multiple energies in it.
 silva.page.portalUpgrades6=Realm Stone (Uncharged)
 silva.page.portalUpgrades7=Charging Portal Upgrade
 
 # -- DARK ELF RESOURCES
 silva.entry.darkElfResources=Dark Elf Resources
-silva.page.darkElfResources0=A common form of Dark Elf sabotage is converting simple blocks like stone and wood into a darkened form. These darkened blocks are fairly easy to break normally, but crumble to dust unless a silk touch tool is used. They are, however, enchanted so as to harden dramatically when struck with a tool, making retrieval much more tedious than removal. 
-silva.page.darkElfResources1=By design, the darkened blocks are basically useless, however, attempting to purify them results in blocks of a rather paradoxical nature, which have interesting magical properties due to the conflicting magical energies within them.
+silva.page.darkElfResources0=A common form of &4Dark Elf sabotage&0 is converting simple blocks like stone and wood into a &4darkened form&0. These &1darkened blocks&0 are fairly easy to break normally, but crumble to dust unless a &4silk touch tool&0 is used. They are, however, enchanted so as to harden dramatically when struck with a tool, making retrieval much more tedious than removal.
+silva.page.darkElfResources1=By design, the &1darkened blocks&0 are basically useless, however, attempting to purify them results in blocks of a rather paradoxical nature, which have interesting magical properties due to the conflicting magical energies within them.
 silva.page.darkElfResources2=Darkening Stone
 silva.page.darkElfResources3=Darkening Wood
 
 # -- MOVING ENCHANTMENTS
 silva.entry.movingEnchantments=Moving Enchantments
-silva.page.movingEnchantments0=While you can create armor and tools from paradox blocks, the conflicting energies in paradox blocks render them slightly unpleasant to the touch and less durable and effective than even wood, making them worthless for any direct use. However, the same magical energies do cause them to have interesting properties with enchanting. 
-silva.page.movingEnchantments1=Though not directly enchantable, paradox items can be made to leach enchantments from mundane items, and subsequently yield them to a book. 
-silva.page.movingEnchantments2=To do so requires an enchantment redistribution plate on top of a checkerboard pattern of paradox rock and patterened framed paradox wood. Also, each transfer requires an enchantment allocation catalyst, plenty of mana, and of course the two items being used for the transfer.
-silva.page.movingEnchantments3=Creating the plate
-silva.page.movingEnchantments4=Creating a catalyst
-silva.page.movingEnchantments5=Creating a paradox item
-silva.page.movingEnchantments6=After the plate is set up and ready to receive mana, toss the required items on top of it and it will begin the transfer, consuming the original item and the catalyst.
-silva.page.movingEnchantments7=Transfering Enchantments (paradox wood is under the plate)
-silva.page.movingEnchantments8=After the transfer, the paradox item will require additional power to loosen its newly-gained bonds with the enchantments. This power can be gained by killing creatures while having the item in your inventory, and will gain power in proportion to the XP dropped. Once it is full, simply craft the item with a book.
-silva.page.movingEnchantments9=The entire process is rather expensive, and transferring multiple enchantments in one process will be cheaper in terms of mana, XP, and consumed items.
+silva.page.movingEnchantments0=While you can create armor and tools from &1paradox blocks&0, the conflicting energies within render them slightly unpleasant to the touch and less durable and effective than even wood, making them worthless for any direct use. However, the same magical energies do cause them to have interesting properties with enchanting.
+silva.page.movingEnchantments1=Though not directly enchantable, &1paradox items&0 can be made to leach &4enchantments&0 from mundane items, and subsequently yield them to a &1Book&0.
+silva.page.movingEnchantments2=To do so requires an &1Enchantment Redistribution Plate&0 on top of a checkerboard pattern of &1Paradox Rock&0 and &1Patterened Framed Paradox Wood&0. Also, each transfer requires an &1Enchantment Allocation Catalyst&0, plenty of &4Mana&0, and of course the two items being used for the transfer.
+silva.page.movingEnchantments3=Creating the &1Enchantment Redistribution Plate&0
+silva.page.movingEnchantments4=Creating an &1Enchantment Allocation Catalyst&0
+silva.page.movingEnchantments5=Creating a &1paradox item&0
+silva.page.movingEnchantments6=After the plate is set up and ready to receive &4Mana&0, toss the required items on top of it and it will begin the transfer, consuming the original item and the catalyst.
+silva.page.movingEnchantments7=Transfering &4Enchantments&0 (&1Paradox Wood&0 is under the plate)
+silva.page.movingEnchantments8=After the transfer, the paradox item will require additional power to loosen its newly-gained bonds with the &4enchantments&0. This power can be gained by killing creatures while having the item in your inventory, and will gain power in proportion to the &4XP&0 dropped. Once it is full, simply craft the item with a &1Book&0.
+silva.page.movingEnchantments9=The entire process is rather expensive, and transferring multiple enchantments in one process will be cheaper in terms of &4Mana&0, &4XP&0, and consumed items.
