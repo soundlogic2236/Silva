@@ -427,3 +427,7 @@ silva.page.movingEnchantments6=After the plate is set up and ready to receive &4
 silva.page.movingEnchantments7=Transfering &4Enchantments&0 (&1Paradox Wood&0 is under the plate)
 silva.page.movingEnchantments8=After the transfer, the paradox item will require additional power to loosen its newly-gained bonds with the &4enchantments&0. This power can be gained by killing creatures while having the item in your inventory, and will gain power in proportion to the &4XP&0 dropped. Once it is full, simply craft the item with a &1Book&0.
 silva.page.movingEnchantments9=The entire process is rather expensive, and transferring multiple enchantments in one process will be cheaper in terms of &4Mana&0, &4XP&0, and consumed items.
+
+# -- Mushrooms
+silva.entry.mushrooms=Mushrooms
+silva.page.mushrooms0=The way the &4Dwarves&0 work with &4Mana&0 has differences beyond a different manner of storing and manipulating it. Instead of working with &4Flowers&0, the cave-dwelling &4Dwarves&0 tend to use &4Mushrooms&0. While the large-scale ones like the &1Lavacap&0 are generally not too different from giant &4Flowers&0, the smaller varieties have some rather interesting differences. The most important quality to note is that &4Mushrooms&0 are best used in numbers, with each individual mushroom being rather insignificant, dying and growing as the colony spreads. While they do consume some amount of &4Mana&0, the amount used by each &4Mushroom&0 is rather miniscule, and as long as there's a decent &4Mana&0 supply in the vicinity, it should suffice.
