@@ -39,7 +39,7 @@ import cpw.mods.fml.common.Optional;
 @Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.crafting.IInfusionStabiliser", striprefs = true)
 public class BlockPylon extends BlockContainer implements ILexiconable, IInfusionStabiliser {
 
-	static final int pylonTypes=15;
+	static final int pylonTypes=16;
 	
 	static final HashMap<Dimension, Integer> dimensionalMetadatas = new HashMap<Dimension,Integer>() {
 		{

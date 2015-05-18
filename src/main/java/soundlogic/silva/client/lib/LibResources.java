@@ -23,9 +23,9 @@ public class LibResources {
 	public static final String MODEL_PYLON_HELHEIM = PREFIX_MODEL + "pylonHelheim.png";
 	public static final String MODEL_PYLON_ASGARD = PREFIX_MODEL + "pylonAsgard.png";
 	public static final String MODEL_PYLON_ALFHEIM = PREFIX_MODEL + "pylonAlfheim.png";
-	public static final String MODEL_PYLON_MINEGARD = PREFIX_MODEL + "pylonMinegard.png";
+	public static final String MODEL_PYLON_MIDGARD = PREFIX_MODEL + "pylonMidgard.png";
 	public static final String MODEL_PYLON_JOTUNHEIMR = PREFIX_MODEL + "pylonJotunheimr.png";
-	public static final String MODEL_PYLON_NIOAVELLIR = PREFIX_MODEL + "pylonNioavellir.png";
+	public static final String MODEL_PYLON_SVARTALFHEIM = PREFIX_MODEL + "pylonSvartalfheim.png";
 	public static final String MODEL_PYLON_MUSPELHEIM = PREFIX_MODEL + "pylonMuspelheim.png";
 	public static final String MODEL_PYLON_NIFLHEIM = PREFIX_MODEL + "pylonNiflheim.png";
 	public static final String MODEL_PYLON_NIDAVELLIR = PREFIX_MODEL + "pylonNidavellir.png";

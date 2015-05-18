@@ -16,6 +16,7 @@ public class LibBlockNames {
 		"pylon.Valhalla",
 		"pylon.Helheim",
 		"pylon.Asgard",
+		"pylon.Alfheim",
 		"pylon.Midgard",
 		"pylon.Jotunheimr",
 		"pylon.Svartalfheim",
