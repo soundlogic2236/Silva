@@ -49,6 +49,12 @@ public class BlockDwarfWeed extends BlockBush implements IShearable, ILexiconabl
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister par1IconRegister) {
+		blockIcon = par1IconRegister.registerIcon(LibResources.PREFIX_MOD+getUnlocalizedName().replaceAll("tile\\.", ""));
+	}
+
+	@Override
 	public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world,
 			int x, int y, int z, int fortune) {
 		return (ArrayList<ItemStack>) Arrays.asList(new ItemStack[]{new ItemStack(this)});
