@@ -22,8 +22,10 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class DwarfChainRenderHandler {
 
-	private static final int[] color1 = new int[]{154,154,154};
-	private static final int[] color2 = new int[]{ 86, 86, 86};
+	private static final int[] COLOR1 = new int[]{154,154,154};
+	private static final int[] COLOR2 = new int[]{ 86, 86, 86};
+	private static final double WIDTH = 0.025D;
+	private static final int SEGMENTS = 24;
 	
 	@SubscribeEvent
 	public void renderLiving(RenderLivingEvent.Pre event) {
@@ -32,98 +34,195 @@ public class DwarfChainRenderHandler {
 			props.searchTick(event.entity, true);
 			if(props==null || props.getEntity() == null || !props.getActive())
 				return;
-			float f2=ClientTickHandler.partialTicks; //partial ticks?
-			float f1 = event.entity.prevRotationYaw + (event.entity.rotationYaw - event.entity.prevRotationYaw) * f2;
-			renderChain((EntityLiving) event.entity, props.getEntity(), event.x, event.y, event.z, f1, f2);
+			renderChain((EntityLiving) event.entity, props.getEntity(), event.x, event.y, event.z, ClientTickHandler.partialTicks, WIDTH, SEGMENTS, COLOR1, COLOR2);
 		}
 	}
 
-    protected void renderChain(EntityLiving entity, Entity attachedTo, double x, double y, double z, float partialTicks, float rotation)
+    public void renderChain(EntityLiving entity, Entity attachedTo, double x, double y, double z, float partialTicks, double width, int segments, int[] color1, int[] color2)
     {
         if (attachedTo != null)
         {
-            y -= (1.6D - (double)entity.height) * 0.5D;
-            Tessellator tessellator = Tessellator.instance;
-            double d3 = this.func_110828_a((double)attachedTo.prevRotationYaw, (double)attachedTo.rotationYaw, (double)(rotation * 0.5F)) * 0.01745329238474369D;
-            double d4 = this.func_110828_a((double)attachedTo.prevRotationPitch, (double)attachedTo.rotationPitch, (double)(rotation * 0.5F)) * 0.01745329238474369D;
-            double d5 = Math.cos(d3);
-            double d6 = Math.sin(d3);
-            double d7 = Math.sin(d4);
-
-            if (attachedTo instanceof EntityHanging)
-            {
-                d5 = 0.0D;
-                d6 = 0.0D;
-                d7 = -1.0D;
-            }
-
-            double d8 = Math.cos(d4);
-            double d9 = this.func_110828_a(attachedTo.prevPosX, attachedTo.posX, (double)rotation) - d5 * 0.7D - d6 * 0.5D * d8;
-            double d10 = this.func_110828_a(attachedTo.prevPosY + (double)attachedTo.getEyeHeight() * 0.7D, attachedTo.posY + (double)attachedTo.getEyeHeight() * 0.7D, (double)rotation) - d7 * 0.5D - 0.25D;
-            double d11 = this.func_110828_a(attachedTo.prevPosZ, attachedTo.posZ, (double)rotation) - d6 * 0.7D + d5 * 0.5D * d8;
-            double d12 = this.func_110828_a((double)entity.prevRenderYawOffset, (double)entity.renderYawOffset, (double)rotation) * 0.01745329238474369D + (Math.PI / 2D);
-            d5 = Math.cos(d12) * (double)entity.width * 0.4D;
-            d6 = Math.sin(d12) * (double)entity.width * 0.4D;
-            double d13 = this.func_110828_a(entity.prevPosX, entity.posX, (double)rotation) + d5;
-            double d14 = this.func_110828_a(entity.prevPosY, entity.posY, (double)rotation);
-            double d15 = this.func_110828_a(entity.prevPosZ, entity.posZ, (double)rotation) + d6;
-            x += d5;
-            z += d6;
-            double d16 = (double)((float)(d9 - d13));
-            double d17 = (double)((float)(d10 - d14));
-            double d18 = (double)((float)(d11 - d15));
-            GL11.glDisable(GL11.GL_TEXTURE_2D);
-            GL11.glDisable(GL11.GL_LIGHTING);
-            GL11.glDisable(GL11.GL_CULL_FACE);
-            boolean flag = true;
-            double d19 = 0.025D;
-            tessellator.startDrawing(5);
-            int i;
-            float f2;
-
-            for (i = 0; i <= 24; ++i)
-            {
-                if (i % 2 == 0)
-                {
-                    tessellator.setColorOpaque(color1[0], color1[1], color1[2]);
-                }
-                else
-                {
-                    tessellator.setColorOpaque(color2[0], color2[1], color2[2]);
-                }
-
-                f2 = (float)i / 24.0F;
-                tessellator.addVertex(x + d16 * (double)f2 + 0.0D, y + d17 * (double)(f2 * f2 + f2) * 0.5D + (double)((24.0F - (float)i) / 18.0F + 0.125F), z + d18 * (double)f2);
-                tessellator.addVertex(x + d16 * (double)f2 + 0.025D, y + d17 * (double)(f2 * f2 + f2) * 0.5D + (double)((24.0F - (float)i) / 18.0F + 0.125F) + 0.025D, z + d18 * (double)f2);
-            }
-
-            tessellator.draw();
-            tessellator.startDrawing(5);
-
-            for (i = 0; i <= 24; ++i)
-            {
-                if (i % 2 == 0)
-                {
-                    tessellator.setColorOpaque(color1[0], color1[1], color1[2]);
-                }
-                else
-                {
-                    tessellator.setColorOpaque(color2[0], color2[1], color2[2]);
-                }
-
-                f2 = (float)i / 24.0F;
-                tessellator.addVertex(x + d16 * (double)f2 + 0.0D, y + d17 * (double)(f2 * f2 + f2) * 0.5D + (double)((24.0F - (float)i) / 18.0F + 0.125F) + 0.025D, z + d18 * (double)f2);
-                tessellator.addVertex(x + d16 * (double)f2 + 0.025D, y + d17 * (double)(f2 * f2 + f2) * 0.5D + (double)((24.0F - (float)i) / 18.0F + 0.125F), z + d18 * (double)f2 + 0.025D);
-            }
-
-            tessellator.draw();
-            GL11.glEnable(GL11.GL_LIGHTING);
-            GL11.glEnable(GL11.GL_TEXTURE_2D);
-            GL11.glEnable(GL11.GL_CULL_FACE);
+            double[] end = getChainEnd(attachedTo, partialTicks);
+            renderChain(entity, x, y, z, partialTicks, end[0], end[1], end[2], width, segments, color1, color2);
         }
     }
-    private double func_110828_a(double p_110828_1_, double p_110828_3_, double p_110828_5_)
+
+    public void renderChain(EntityLiving entity, double x, double y, double z, float partialTicks, double endX, double endY, double endZ, double width, int segments, int[] color1, int[] color2)
     {
-        return p_110828_1_ + (p_110828_3_ - p_110828_1_) * p_110828_5_;
+        double[] start = getChainStart(entity, x, y, z, partialTicks);
+        renderChain(entity, x, y, z, partialTicks, start[0], start[1], start[2], endX, endY, endZ, width, segments, color1, color2);
+    }
+    public void renderChain(EntityLiving entity, double x, double y, double z, float partialTicks, double startX, double startY, double startZ, double endX, double endY, double endZ, double width, int segments, int[] color1, int[] color2)
+    {
+        double[] offset = getChainOffset(entity, x, y, z, partialTicks);
+
+        renderChain(
+        		startX+offset[0], 
+        		startY+offset[1], 
+        		startZ+offset[2], 
+        		endX+offset[0], 
+        		endY+offset[1], 
+        		endZ+offset[2],
+        		width,
+        		segments,
+        		color1,
+        		color2);
+    }
+    
+    public void renderChain(double x1, double y1, double z1, double x2, double y2, double z2, double width, int segments, int[] color1, int[] color2) {
+        Tessellator tessellator = Tessellator.instance;
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_LIGHTING);
+        GL11.glDisable(GL11.GL_CULL_FACE);
+        tessellator.startDrawing(5);
+    	
+        double dx = x2-x1;
+        double dy = y2-y1;
+        double dz = z2-z1;
+        
+        int i;
+        float portion;
+
+        for (i = 0; i <= segments; ++i)
+        {
+            if (i % 2 == 0)
+            {
+                tessellator.setColorOpaque(color1[0], color1[1], color1[2]);
+            }
+            else
+            {
+                tessellator.setColorOpaque(color2[0], color2[1], color2[2]);
+            }
+
+            double[] coords;
+
+            coords = getVertexCoords(x1,y1,z1,dx,dy,dz,i,segments);
+
+            tessellator.addVertex(
+            		coords[0],
+            		coords[1],
+            		coords[2]);
+
+            coords = getVertexCoords(x1,y1,z1,dx,dy,dz,i,segments);
+
+            tessellator.addVertex(
+            		coords[0]+width,
+            		coords[1]+width,
+            		coords[2]);
+        }
+
+        tessellator.draw();
+        tessellator.startDrawing(5);
+
+        for (i = 0; i <= segments; ++i)
+        {
+            if (i % 2 == 0)
+            {
+                tessellator.setColorOpaque(color1[0], color1[1], color1[2]);
+            }
+            else
+            {
+                tessellator.setColorOpaque(color2[0], color2[1], color2[2]);
+            }
+
+            double[] coords;
+            
+            coords = getVertexCoords(x1,y1,z1,dx,dy,dz,i,24);
+            
+            tessellator.addVertex(
+            		coords[0],
+            		coords[1]+width,
+            		coords[2]);
+            
+            coords = getVertexCoords(x1,y1,z1,dx,dy,dz,i,24);
+
+            tessellator.addVertex(
+            		coords[0]+width,
+            		coords[1],
+            		coords[2]+width);
+        }
+
+        tessellator.draw();
+        GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_CULL_FACE);
+    }
+
+    protected double[] getVertexCoords(double x, double y, double z, double dx, double dy, double dz, int segment, int segments) {
+    	double nx;
+    	double ny;
+    	double nz;
+    	
+    	float portion = (float)segment/ (float)segments;
+    	
+		nx = x + dx * (double)portion;
+
+		ny = y + dy * (double)(portion * portion + portion) * 0.5D + (double)(((float)segments - (float)segment) / 18.0F + 0.125F);
+
+		nz = z + dz * (double)portion;
+
+    	return new double[]{nx,ny,nz};
+    }
+
+    protected double[] getChainStart(EntityLiving entity, double x, double y, double z, float partialTicks)
+    {
+        double entityX = this.interpolate(entity.prevPosX, entity.posX, (double)partialTicks);
+        double entityY = this.interpolate(entity.prevPosY, entity.posY, (double)partialTicks);
+        double entityZ = this.interpolate(entity.prevPosZ, entity.posZ, (double)partialTicks);
+
+        entityY -= (1.6D - (double)entity.height) * 0.5D;
+        double entityYawOffset = this.interpolate((double)entity.prevRenderYawOffset, (double)entity.renderYawOffset, (double)partialTicks) * 0.01745329238474369D + (Math.PI / 2D);
+        double d5 = Math.cos(entityYawOffset) * (double)entity.width * 0.4D;
+        double d6 = Math.sin(entityYawOffset) * (double)entity.width * 0.4D;
+        entityX += d5;
+        entityZ += d6;
+        return new double[]{
+        		entityX,
+        		entityY,
+        		entityZ};
+    }
+    
+    protected double[] getChainEnd(Entity attachedTo, float partialTicks)
+    {
+        double attachedToYaw = this.interpolate((double)attachedTo.prevRotationYaw, (double)attachedTo.rotationYaw, (double)(partialTicks * 0.5F)) * 0.01745329238474369D;
+        double attachedToPitch = this.interpolate((double)attachedTo.prevRotationPitch, (double)attachedTo.rotationPitch, (double)(partialTicks * 0.5F)) * 0.01745329238474369D;
+        double d5 = Math.cos(attachedToYaw);
+        double d6 = Math.sin(attachedToYaw);
+        double d7 = Math.sin(attachedToPitch);
+
+        if (attachedTo instanceof EntityHanging)
+        {
+            d5 = 0.0D;
+            d6 = 0.0D;
+            d7 = -1.0D;
+        }
+
+        double d8 = Math.cos(attachedToPitch);
+        double attachedToX = this.interpolate(attachedTo.prevPosX, attachedTo.posX, (double)partialTicks) - d5 * 0.7D - d6 * 0.5D * d8;
+        double attachedToY = this.interpolate(attachedTo.prevPosY + (double)attachedTo.getEyeHeight() * 0.7D, attachedTo.posY + (double)attachedTo.getEyeHeight() * 0.7D, (double)partialTicks) - d7 * 0.5D - 0.25D;
+        double attachedToZ = this.interpolate(attachedTo.prevPosZ, attachedTo.posZ, (double)partialTicks) - d6 * 0.7D + d5 * 0.5D * d8;
+        
+        return new double[]{
+        		attachedToX,
+        		attachedToY,
+        		attachedToZ};
+    }
+    
+    protected double[] getChainOffset(EntityLiving entity, double x, double y, double z, float partialTicks) {
+
+    	y -= (1.6D - (double)entity.height) * 0.5D;
+        double entityX = this.interpolate(entity.prevPosX, entity.posX, (double)partialTicks);
+        double entityY = this.interpolate(entity.prevPosY, entity.posY, (double)partialTicks);
+        double entityZ = this.interpolate(entity.prevPosZ, entity.posZ, (double)partialTicks);
+        
+        return new double[]{
+        		x - entityX,
+        		y - entityY,
+        		z - entityZ};
+    }
+    
+    private double interpolate(double d1, double d2, double partialTicks)
+    {
+        return d1 + (d2 - d1) * partialTicks;
     }
 }
