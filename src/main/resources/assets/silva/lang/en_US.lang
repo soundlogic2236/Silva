@@ -22,19 +22,19 @@ death.attack.carnilotus=%1$s was digested
 
 # DIMENSIONS
 silva.dimension.ginnungagap=Ginnungagap
-silva.dimension.vigridr=Vigridr
-silva.dimension.folkvangr=Folkvangr
+silva.dimension.vigridr=Vigrid
+silva.dimension.folkvangr=Folkvang
 silva.dimension.valhalla=Valhalla
 silva.dimension.helheim=Helheim
 silva.dimension.asgard=Asgard
 silva.dimension.alfheim=Alfheim
 silva.dimension.midgard=Midgard
-silva.dimension.jotunheimr=Jotunheimr
+silva.dimension.jotunheimr=Jotunheim
 silva.dimension.svartalfheim=Svartalfheim
 silva.dimension.muspelheim=Muspelheim
 silva.dimension.niflheim=Niflheim
 silva.dimension.nidavellir=Nidavellir
-silva.dimension.vanaheimr=Vanaheimr
+silva.dimension.vanaheimr=Vanaheim
 
 
 # KNOWLEDGE
@@ -146,7 +146,7 @@ silva.page.nubliaMessage3=I have included notes on both portal creation and the 
 
 # -- WORLD TREE INTRO
 silva.entry.worldTreeIntro=Introduction to the World Tree
-silva.page.worldTreeIntro0=The &4World Tree&0 is the great tree which holds our worlds together. From its branches come the nine realms: &4Asgard&0, &4Alfheim&0 (our realm), &4Midgard&0 (your realm), &4Jotunheimr&0, &4Svartalfheim&0, &4Muspelheim&0, &4Niflheim&0, &4Nidavellir&0, and &4Vanaheimr&0.
+silva.page.worldTreeIntro0=The &4World Tree&0 is the great tree which holds our worlds together. From its branches come the nine realms: &4Asgard&0, &4Alfheim&0 (our realm), &4Midgard&0 (your realm), &4Jotunheim&0, &4Svartalfheim&0, &4Muspelheim&0, &4Niflheim&0, &4Nidavellir&0, and &4Vanaheim&0.
 silva.page.worldTreeIntro1=Some realms contain locations of great enough significance to have their own &4dimensional signature&0.
 silva.page.worldTreeIntro2=The &4World Tree&0 is surrounded by the great &4Ginnungagap&0 - a powerful void of great and terrible energies, and the origin of the &4phenomena&0 witnessed during your...incident.
 
@@ -205,10 +205,10 @@ silva.entry.dimHelheim=Helheim
 silva.page.dimHelheim0=&4Helheim&0 is a hall on the edge of &4Niflheim&0. It is ruled over by Hel and is where those who die of sickness are taken. Since the &4Shattering&0 we can sense that the dead are on the other side, but neither they nor Hel reply to any message we send through.
 silva.page.dimHelheim1=Exposure to &4Helheim&0's energies results in weakness to mortals and instant deanimation to necrotic beings.
 
-# -- Jotunheimr
-silva.entry.dimJotunheimr=Jotunheimr
-silva.page.dimJotunheimr0=&4Jotunheimr&0 is one of the nine realms, and is inhabited by the &4Giants&0. Most of the &4Giants&0 died during the &4Shattering&0 as holes opened in &4Jotunheimr&0, though they have recovered somewhat. They are mostly lacking in the way of civilization, and we have found little use for portals to their realm.
-silva.page.dimJotunheimr1=Exposure to &4Jotunheimr&0's energies results in gaining the power of a giant at the cost of the slowness of a giant. We find the trade inconvenient, but you may like it.
+# -- Jotunheim
+silva.entry.dimJotunheimr=Jotunheim
+silva.page.dimJotunheimr0=&4Jotunheim&0 is one of the nine realms, and is inhabited by the &4Giants&0. Most of the &4Giants&0 died during the &4Shattering&0 as holes opened in &4Jotunheim&0, though they have recovered somewhat. They are mostly lacking in the way of civilization, and we have found little use for portals to their realm.
+silva.page.dimJotunheimr1=Exposure to &4Jotunheim&0's energies results in gaining the power of a giant at the cost of the slowness of a giant. We find the trade inconvenient, but you may like it.
 
 # -- Midgard
 silva.entry.dimMidgard=Midgard
@@ -242,19 +242,19 @@ silva.page.dimValhalla0=&4Valhalla&0 is a hall within &4Asgard&0 where Odin take
 silva.page.dimValhalla1=Exposure to &4Valhalla&0's energies results in strength in battle and powerful strikes.
 
 # -- Vanaheimr
-silva.entry.dimVanaheimr=Vanaheimr
-silva.page.dimVanaheimr0=&4Vanaheimr&0 is one of the nine realms, and is home to the &4Vanir&0-powerful beings of wisdom and forsight. Even when the &4Bifrost&0 existed, gaining permission to visit &4Vanaheimr&0 was difficult, and permission to form a lasting link outside of &4Folkvangr&0 unheard of. As a result, I do not know its dimensional signature nor details of its energies.
-silva.page.dimVanaheimr1=What exposure to &4Vanaheimr&0's energies would do is unknown to us due to the secrecy of its signature.
+silva.entry.dimVanaheimr=Vanaheim
+silva.page.dimVanaheimr0=&4Vanaheim&0 is one of the nine realms, and is home to the &4Vanir&0-powerful beings of wisdom and forsight. Even when the &4Bifrost&0 existed, gaining permission to visit &4Vanaheim&0 was difficult, and permission to form a lasting link outside of &4Folkvang&0 unheard of. As a result, I do not know its dimensional signature nor details of its energies.
+silva.page.dimVanaheimr1=What exposure to &4Vanaheim&0's energies would do is unknown to us due to the secrecy of its signature.
 
 # -- Folkvangr
-silva.entry.dimFolkvangr=Folkvangr
-silva.page.dimFolkvangr0=&4Folkvangr&0 is the accessable portion of &4Vanaheimr&0, though how to get from it to &4Vanaheimr&0 is a closely guarded secret. It is ruled over by Freyja of the &4Vanir&0 and holds half of those slain in battle. A portal to it leads to the hall &4Sessrúmnir&0. Before the &4Shattering&0, one could use such a portal to call on the wisdom of Freyja, though she has not been seen since.
-silva.page.dimFolkvangr1=Exposure to &4Folkvangr&0's energies results in calmness in battle, permitting one's strikes to fall on ones foes with the precision that those in &4Sessrúmnir&0 possess.
+silva.entry.dimFolkvangr=Folkvang
+silva.page.dimFolkvangr0=&4Folkvang&0 is the accessable portion of &4Vanaheim&0, though how to get from it to &4Vanaheim&0 is a closely guarded secret. It is ruled over by Freyja of the &4Vanir&0 and holds half of those slain in battle. A portal to it leads to the hall &4Sessrumnir&0. Before the &4Shattering&0, one could use such a portal to call on the wisdom of Freyja, though she has not been seen since.
+silva.page.dimFolkvangr1=Exposure to &4Folkvangr&0's energies results in calmness in battle, permitting one's strikes to fall on ones foes with the precision that those in &4Sessrumnir&0 possess.
 
 # -- Vigridr
-silva.entry.dimVigridr=Vigridr
-silva.page.dimVigridr0=&4Vigridr&0 is the great field where the battle &4Ragnarok&0 is foretold to occur. Even now the ground there is filled with the energy of battle cries and death. No one lives there, but strange things sometimes occur on it, echoes of the future.
-silva.page.dimVigridr1=Exposure to &4Vigridr&0's energies results in strange happenings in battle as the power of the future battle stretches backwards to touch the present. Exposed mice have slain men, men giants, and Asgardians  armies, all without any apparent difficulty. Exposed warriors have also forgotten their skills, dropped their weapons, and surrendered to their enemies.
+silva.entry.dimVigridr=Vigrid
+silva.page.dimVigridr0=&4Vigrid&0 is the great field where the battle &4Ragnarok&0 is foretold to occur. Even now the ground there is filled with the energy of battle cries and death. No one lives there, but strange things sometimes occur on it, echoes of the future.
+silva.page.dimVigridr1=Exposure to &4Vigrid&0's energies results in strange happenings in battle as the power of the future battle stretches backwards to touch the present. Exposed mice have slain men, men giants, and Asgardians  armies, all without any apparent difficulty. Exposed warriors have also forgotten their skills, dropped their weapons, and surrendered to their enemies.
 
 # - DWARVEN TRADE
 # -- DWARF INTRO
@@ -300,7 +300,7 @@ silva.page.dwarfForged8=Paying dwarven smiths to reforge
 
 # -- DWARVEN BARRIER STONE
 silva.entry.dwarvenBarrierStone=Dwarven Barrier Stones
-silva.page.dwarvenBarrierStone0=&1Dwarven Barrier Stones&0 are a clever creation of us Dwarves. By infusing &1Deeprock&0 with a &1Mana Pearl&0 and inscribing it with certain runes, we can create a stone which, upon impact with a surface, expands in two directions, forming a barrier.
+silva.page.dwarvenBarrierStone0=&1Dwarven Barrier Stones&0 are a clever creation of us &4Dwarves&0. By infusing &1Deeprock&0 with a &1Mana Pearl&0 and inscribing it with certain runes, we can create a stone which, upon impact with a surface, expands in two directions, forming a barrier.
 silva.page.dwarvenBarrierStone1=It is useful for rapidly blocking up tunnels when necessary, or quickly creating bridges across pits. In addition, the high density of the stone within puts a nasty bruise on any foe it hits.
 silva.page.dwarvenBarrierStone2=Trading for &1Dwarven Barrier Stones&0
 
