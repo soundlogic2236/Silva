@@ -192,7 +192,6 @@ public class SubTileGlitterelle extends SubTileFunctional {
 					coords = searchTick(world,x,y,z,ticksSearched);
 					ticksSearched++;
 				}
-				nearby.clear();
 				for(int[] offset2 : spawn_search_offsets) {
 					int sx = x+offset2[0]*spawnRange;
 					int sy = y+offset2[1];
@@ -206,10 +205,11 @@ public class SubTileGlitterelle extends SubTileFunctional {
 				}
 				int livingCount = 0;
 				for(SubTileGlitterelle tile : nearby) {
-					if(tile.isAlive())
+					int dx = tile.supertile.xCoord-supertile.xCoord;
+					int dz = tile.supertile.zCoord-supertile.zCoord;
+					if(tile.isAlive() && (dx*dx+dz*dz)<=(7*7*2))
 						livingCount++;
 				}
-				System.out.println(livingCount);
 				if(alive)
 					alive=rule_live[livingCount%rule_live.length];
 				else

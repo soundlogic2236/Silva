@@ -70,7 +70,6 @@ public class SubTileBlazeBloom extends SubTileFunctional {
 			boolean acted = false;
 			if(requiredMana == -1)
 				updateRequiredMana();
-			System.out.println("la"+requiredMana);
 			if(requiredMana != -1 && mana>=requiredMana)
 				acted = doRemoveblocks();
 			if(acted)
