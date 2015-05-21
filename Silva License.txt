@@ -20,8 +20,11 @@ If you alter in depth things (not superficial things like recipes) please record
 Awesomeness Clause
 If you create something which is: 1) Public, 2) Big, 3) Involves Silva, 4) Awesome, you are required to inform me if reasonably convenient. Such things include: Big modpacks involving Silva, Popular Let's Plays involving Silva, and any other similar things. Failure to do so will result in me not being as happy as if you informed me. 
 
-Monetary clause
+Monetary Clause
 Money is not evil. Money is useful. However, money is used in our current economy as a proxy for value, so in principle if you are getting money you ought to be producing some value for our world. You may make money using Silva if and only if you are generating some non-trivial value from it. Simply re-uploading and putting it behind and ad-fly link or such is not permitted. Charging Martians for the precision lasers to rapidly send updates to them is. This clause is automatically invalidated should the economic system change sufficiently that money ceases to be a proxy for value, in which case please attempt to either consult me as to how to translate it to the new system or if you cannot find a good way to do this attempt to translate it either yourself or with whatever the equivalent of an economist is in the new system.
+
+Unfinished Clause
+The following is effective until the 1.0 release of Silva, and will probably be removed afterward: This mod is not yet finished, and not sufficiently stable for use in survival gameplay, to the point of potentially breaking saves. You may not redistribute it unless the recipient intends to use it solely for testing, and has read this license.
 
 If you want to Feature Silva:
 "Featuring" refers to using Silva in an environment where you do not distribute binaries or source. An example would be a YouTube Let's Play.
