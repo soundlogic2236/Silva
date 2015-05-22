@@ -43,7 +43,7 @@ botania.knowledge.dwarven=&8Dwarven&7 Knowledge
 botania.knowledge.darkElf=&fDark Elf&7 Knowledge
 
 # BLOCK NAMES
-tile.silva:manaEater.name=Mana Spreader?
+tile.silva:manaEater.name=Mana Eater
 tile.silva:pylon.portal.name=Portal Pylon
 tile.silva:pylon.untuned.name=Untuned Pylon
 tile.silva:pylon.Ginnungagap.name=Ender Pylon
@@ -375,7 +375,7 @@ silva.page.darkElfDesc11=No such army has been seen since the &4Shattering&0, wh
 
 # -- CARNILOTUS
 silva.entry.carnilotus=Carnilotus
-silva.page.carnilotus0=Using the aggressive tendencies of the modified spreaders, which you've taken to referring to as &1Mana Eaters&0, and mimicking certain carnivorous mundane plants at a larger scale, an eternally hungering flower can be created. The &1Carnilotus&0 consumes creatures in exchange for &4Mana&0, like the &1Gourmaryllis&0 but a bit...meaner.
+silva.page.carnilotus0=Using the aggressive tendencies of the &1Mana Eaters&0, and mimicking certain carnivorous mundane plants at a larger scale, an eternally hungering flower can be created. The &1Carnilotus&0 consumes creatures in exchange for &4Mana&0, like the &1Gourmaryllis&0 but a bit...meaner.
 silva.page.carnilotus1=The &1Carnilotus&0 prefers its food still-moving, and will simply dissolve any items dropped in. If a drop can be cooked, like most &4meat&0, it generates &4Mana&0 more efficiently than a &1Gourmaryllis&0 would. Items that can't be cooked, it generates mana at the standard rate. It's worth noting that while &4skeletal creatures&0 don't yield anything edible, the &1Carnilotus&0, being a plant, is nourished by &1Bones&0, and the plant-friendly nutrients within will act as a boost for a few future digestions.
 silva.page.carnilotus2=Creating and activating the &1Carnilotus&0 requires 9 &1Mana Eaters&0, 36 &1Purple Petal Blocks&0, 9 &1Black Petal Blocks&0, 9 &1Iron Bars&0, 2 &1Livingwood&0, some &1Water&0, several &1Runes&0, and 32 &1Sugar&0.
 silva.page.carnilotus3=Construct the base
