@@ -184,7 +184,6 @@ public class TilePortalCore extends TileMod{
 					addItem(stack);
 				}
 			}
-			
 		}
 	}
 
@@ -803,5 +802,9 @@ public class TilePortalCore extends TileMod{
 			if(!upgrade.permitItemsThroughPortal())
 				return false;
 		return true;
+	}
+	
+	public boolean shouldRenderInPass(int pass) {
+		return pass==1;
 	}
 }

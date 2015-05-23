@@ -47,6 +47,11 @@ public class BlockBifrostStairs extends BlockStairs implements IBifrostBlock, IL
 		return true;
 	}
 
+	@Override
+    public boolean isOpaqueCube() {
+    	return false;
+    }
+    
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int p_149691_1_, int p_149691_2_)
     {

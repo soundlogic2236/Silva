@@ -1,5 +1,7 @@
 package soundlogic.silva.common.block;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.tile.TilePortalCore;
@@ -25,7 +27,7 @@ public class BlockPortalCore extends BlockContainer implements IWandable, ILexic
 	public IIcon portalTex;
 
 	protected BlockPortalCore() {
-		super(Material.wood);
+		super(Material.glass);
 		setBlockName(LibBlockNames.PORTAL_CORE);
 		setHardness(10F);
 		setStepSound(soundTypeWood);
@@ -44,6 +46,11 @@ public class BlockPortalCore extends BlockContainer implements IWandable, ILexic
 		portalTex = par1IconRegister.registerIcon(LibResources.PORTAL_INSIDE);
 	}
 
+	@Override
+    public boolean isOpaqueCube() {
+    	return false;
+    }
+    
 	@Override
 	public IIcon getIcon(int side, int meta) {
 		return iconOff;
@@ -65,4 +72,9 @@ public class BlockPortalCore extends BlockContainer implements IWandable, ILexic
 		return LexiconData.advancedPortals;
 	}
 
+    @SideOnly(Side.CLIENT)
+    public int getRenderBlockPass()
+    {
+        return 1;
+    }
 }

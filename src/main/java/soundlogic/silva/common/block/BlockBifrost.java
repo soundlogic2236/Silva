@@ -38,7 +38,18 @@ public class BlockBifrost extends Block implements IBifrostBlock, ILexiconable{
 		return meta;
 	}
 			
+    @SideOnly(Side.CLIENT)
+    public int getRenderBlockPass()
+    {
+        return 1;
+    }
+
 	@Override
+    public boolean isOpaqueCube() {
+    	return false;
+    }
+    
+    @Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
 		if(world.isRemote)
 			return;

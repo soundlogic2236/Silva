@@ -51,6 +51,11 @@ public class BlockBifrostWall extends BlockWall implements IBifrostBlock,ILexico
 		return true;
 	}
 
+	@Override
+    public boolean isOpaqueCube() {
+    	return false;
+    }
+    
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int p_149691_1_, int p_149691_2_)
     {

@@ -52,6 +52,11 @@ public class BlockBifrostSlab extends BlockModSlab implements IBifrostBlock, ILe
 	}
 	
 	@Override
+    public boolean isOpaqueCube() {
+    	return false;
+    }
+    
+	@Override
 	public boolean isBifrost(World world, int x, int y, int z) {
 		return true;
 	}
