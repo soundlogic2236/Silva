@@ -21,4 +21,5 @@ public class LibItemNames {
 		"enchantOffering",
 	};
 	public static final String ENCHANT_HOLDER = "enchantHolder";
+	public static final String FATE_PEARL = "fatePearl";
 }

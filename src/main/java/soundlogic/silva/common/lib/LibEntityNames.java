@@ -9,5 +9,8 @@ public class LibEntityNames {
 	public static final String DWARVEN_BARRIER = "dwarvenBarrier";
 	public static final String DWARVEN_CHAIN_KNOT = "dwarvenChainKnot";
 	public static final String CUSTOM_ENDER_PEARL = "customEnderPearl";
+	public static final String FENRIR_ECHO = "fenrirEcho";
+	public static final String ENDERMAN_ECHO = "endermanEcho";
+	public static final String NIDHOGG = "nidhogg";
 
 }

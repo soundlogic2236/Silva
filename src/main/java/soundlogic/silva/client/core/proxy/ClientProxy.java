@@ -3,8 +3,10 @@ package soundlogic.silva.client.core.proxy;
 import java.io.IOException;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelWolf;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.RenderEnderman;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.client.shader.ShaderGroup;
 import net.minecraft.client.util.JsonException;
@@ -21,6 +23,7 @@ import soundlogic.silva.client.core.handler.DimensionalExposureRenderHandler;
 import soundlogic.silva.client.core.handler.DwarfChainRenderHandler;
 import soundlogic.silva.client.core.handler.DwarvenTradeHUDRenderHandler;
 import soundlogic.silva.client.lib.LibRenderIDs;
+import soundlogic.silva.client.model.ModelFenrirEcho;
 import soundlogic.silva.client.render.block.RenderBlazeFire;
 import soundlogic.silva.client.render.block.RenderBoomMoss;
 import soundlogic.silva.client.render.block.RenderDwarvenPool;
@@ -31,6 +34,8 @@ import soundlogic.silva.client.render.block.RenderPortalUpgradeCharge;
 import soundlogic.silva.client.render.block.RenderPylon;
 import soundlogic.silva.client.render.entity.RenderDwarvenChainKnot;
 import soundlogic.silva.client.render.entity.RenderEntityStoneHorse;
+import soundlogic.silva.client.render.entity.RenderFenrirEcho;
+import soundlogic.silva.client.render.entity.RenderNidhogg;
 import soundlogic.silva.client.render.multiblock.RenderMultiblock;
 import soundlogic.silva.client.render.multiblock.RenderMultiblockCarnilotus;
 import soundlogic.silva.client.render.tile.RenderTileBoomMoss;
@@ -57,6 +62,9 @@ import soundlogic.silva.common.block.tile.multiblocks.TileMultiblockCore;
 import soundlogic.silva.common.core.proxy.CommonProxy;
 import soundlogic.silva.common.entity.EntityDwarvenBarrier;
 import soundlogic.silva.common.entity.EntityDwarvenChainKnot;
+import soundlogic.silva.common.entity.EntityFenrirEcho;
+import soundlogic.silva.common.entity.EntityNidhoggEcho;
+import soundlogic.silva.common.entity.EntityPhantomEndermanEcho;
 import soundlogic.silva.common.entity.EntityStoneHorse;
 import soundlogic.silva.common.item.ModItems;
 
@@ -114,6 +122,9 @@ public class ClientProxy extends CommonProxy{
     	RenderingRegistry.registerEntityRenderingHandler(EntityStoneHorse.class, new RenderEntityStoneHorse());
     	RenderingRegistry.registerEntityRenderingHandler(EntityDwarvenBarrier.class, new RenderSnowball(ModItems.dwarfBarrier));
     	RenderingRegistry.registerEntityRenderingHandler(EntityDwarvenChainKnot.class, new RenderDwarvenChainKnot());
+    	RenderingRegistry.registerEntityRenderingHandler(EntityFenrirEcho.class, new RenderFenrirEcho(new ModelFenrirEcho(), new ModelFenrirEcho(), 0.5F));
+    	RenderingRegistry.registerEntityRenderingHandler(EntityPhantomEndermanEcho.class, new RenderEnderman());
+    	RenderingRegistry.registerEntityRenderingHandler(EntityNidhoggEcho.class, new RenderNidhogg());
     	
     	RenderMultiblock.registerRenderer(new RenderMultiblockCarnilotus(), "carnilotus");
     }

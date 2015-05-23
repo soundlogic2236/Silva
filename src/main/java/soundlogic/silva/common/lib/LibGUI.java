@@ -9,5 +9,6 @@ public class LibGUI {
 	public static final String DWARF_FORGED_TOOLTIP = "silva.tooltips.dwarfForged";
 	public static final String ENERGY_EXPOSURE_TOOLTIP = "silva.tooltips.exposure";
 	public static final String ENCHANT_XP_TOOLTIP = "silva.tooltips.enchantXP";
+	public static final String FATE_MESSAGE_PREFIX = "silva.fate.";
 
 }

@@ -24,6 +24,7 @@ public class ModItems {
 	public static Item dwarfBarrier;
 	public static Item chargedStone;
 	public static Item enchantHolder;
+	public static Item fatePearl;
 
 	public static void preInit() {
 	
@@ -39,6 +40,7 @@ public class ModItems {
 		dwarfBarrier=new ItemDwarvenBarrier(LibItemNames.DWARF_BARRIER);
 		chargedStone=new ItemChargedStone(LibItemNames.CHARGED_STONE);
 		enchantHolder=new ItemEnchantHolder(LibItemNames.ENCHANT_HOLDER);
+		fatePearl=new ItemFatePearl(LibItemNames.FATE_PEARL);
 	}
 	
 }

@@ -6,9 +6,12 @@ import java.util.List;
 import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.tile.IForestClientTick;
 import soundlogic.silva.common.block.tile.TileManaEater;
+import soundlogic.silva.common.item.ItemFatePearl;
+import soundlogic.silva.common.item.ModItems;
 import vazkii.botania.common.item.ItemTwigWand;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -30,9 +33,15 @@ public class ClientTickHandler {
 	}
 	
 	@SubscribeEvent
-	public void clientTickEnd(ClientTickEvent event) {
+	public void clientTick(ClientTickEvent event) {
 		ticks++;
-		if(event.phase == Phase.END) {
+		if(event.phase == Phase.START) {
+	        if (!Minecraft.getMinecraft().isGamePaused())
+	        {
+	        	((TextureAtlasSprite) ((ItemFatePearl)ModItems.fatePearl).iconOverlays).updateAnimation();
+	        }
+		}
+		else if(event.phase == Phase.END) {
 
 			GuiScreen gui = Minecraft.getMinecraft().currentScreen;
 			if(gui == null || !gui.doesGuiPauseGame()) {

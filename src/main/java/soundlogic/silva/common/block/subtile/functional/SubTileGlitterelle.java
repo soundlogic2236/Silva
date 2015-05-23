@@ -186,7 +186,6 @@ public class SubTileGlitterelle extends SubTileFunctional {
 		forceAlive = world.getBlock(x, y-1, z)==Blocks.glowstone;
 		
 		if(time % tickRate==0) {
-			System.out.println("Ticking Flower!");
 			if(!forceAlive) {
 				while(coords!=null) {
 					coords = searchTick(world,x,y,z,ticksSearched);
@@ -243,7 +242,6 @@ public class SubTileGlitterelle extends SubTileFunctional {
 							Block block = world.getBlock(nx, ny, nz);
 							if(block.isAir(world, nx, ny, nz) || block.isReplaceable(world, nx, ny, nz)) {
 								int livingCount2=0;
-								System.out.println("Searching for flower spawn");
 								for(int[] offset2 : spawn_search_offsets) {
 									int sx = nx+offset2[0]*spawnRange;
 									int sy = ny+offset2[1];
@@ -252,13 +250,11 @@ public class SubTileGlitterelle extends SubTileFunctional {
 									if(tile!=null && tile instanceof ISubTileContainer) {
 										SubTileEntity subtile = ((ISubTileContainer) tile).getSubTile();
 										if(subtile instanceof SubTileGlitterelle) {
-											System.out.println(subtile);
 											if(((SubTileGlitterelle) subtile).isAlive())
 												livingCount2++;
 										}
 									}
 								}
-								System.out.println(livingCount2);
 								if(rule_spawn[livingCount2%rule_spawn.length]) {
 									Block myBlock = world.getBlock(x, y, z);
 									int myMeta = world.getBlockMetadata(x, y, z);

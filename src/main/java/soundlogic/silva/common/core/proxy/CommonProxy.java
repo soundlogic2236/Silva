@@ -27,6 +27,7 @@ import soundlogic.silva.common.core.handler.MultiBlockCreationHandler;
 import soundlogic.silva.common.core.handler.DustHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionalEnergyHandler;
+import soundlogic.silva.common.core.handler.portal.fate.FateHandler;
 import soundlogic.silva.common.core.handler.potion.PotionMeadHandler;
 import soundlogic.silva.common.crafting.ModCraftingRecipes;
 import soundlogic.silva.common.crafting.ModDarkElfActs;
@@ -80,6 +81,7 @@ public class CommonProxy {
 		ModPureDaisyRecipes.preInit();
 		
 		DimensionHandler.init();
+		FateHandler.init();
 
 		LexiconData.preInit();
 		
@@ -102,6 +104,9 @@ public class CommonProxy {
 		MinecraftForge.EVENT_BUS.register(new MultiBlockCreationHandler());
 		MinecraftForge.EVENT_BUS.register(new ChunkHandler());
 		MinecraftForge.EVENT_BUS.register(new EnchantmentMoverHandler());
+		FateHandler fateHandler = new FateHandler();
+		MinecraftForge.EVENT_BUS.register(fateHandler);
+		FMLCommonHandler.instance().bus().register(fateHandler);
 	}
 	
 	public void postInit(FMLPostInitializationEvent event) {

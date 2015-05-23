@@ -15,6 +15,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.core.handler.DustHandler;
+import soundlogic.silva.common.core.helper.WorldHelper;
 import soundlogic.silva.common.entity.EntityEnderPearlRedirected;
 import soundlogic.silva.common.lexicon.LexiconData;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -30,19 +31,6 @@ public class SubTileBlazeBloom extends SubTileFunctional {
 			ForgeDirection.WEST,
 	};
 
-	static final List<String> validBlocks = Arrays.asList(new String[] {
-			"stone",
-			"dirt",
-			"grass",
-			"sand",
-			"gravel",
-			"hardenedClay",
-			"snowLayer",
-			"mycelium",
-			"podzol",
-			"sandstone"
-	});
-	
 	private final int maxHeight = 20;
 	private final int maxLength = 20;
 	
@@ -160,12 +148,7 @@ public class SubTileBlazeBloom extends SubTileFunctional {
 			return false;
 		if(block.getMaterial()==Material.fire)
 			return false;
-		int[] ids = OreDictionary.getOreIDs(new ItemStack(block, 1, meta));
-		for(int id : ids)
-			if(validBlocks.contains(OreDictionary.getOreName(id))) {
-				return true;
-			}
-		return false;
+		return WorldHelper.isBlockTerraformable(supertile.getWorldObj(), x, y, z);
 	}
 
 	@Override
