@@ -34,6 +34,11 @@ public class VigridrFateSound extends VigridrFateGenericRepeating {
 	}
 
 	@Override
+	public boolean canApplyPeaceful(Entity entity) {
+		return true;
+	}
+
+	@Override
 	public void writeToNBT(NBTTagCompound cmp) {
 		super.writeToNBT(cmp);
 		cmp.setString(TAG_SOUND_TO_PLAY, soundToPlay);

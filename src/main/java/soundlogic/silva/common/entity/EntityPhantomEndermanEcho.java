@@ -32,9 +32,12 @@ public class EntityPhantomEndermanEcho extends EntityEnderman implements IEntity
 	boolean attacking;
 	
 	private EntityPlayer player;
-	
+	private boolean isStored;
+
 	public EntityPhantomEndermanEcho(World world) {
 		super(world);
+		if(world!=null)
+			FateHandler.addEcho(this);
 		this.phantom=true;
 		this.flying=true;
 		this.attacking=false;
@@ -51,6 +54,7 @@ public class EntityPhantomEndermanEcho extends EntityEnderman implements IEntity
 		if(this.isScreaming())
 			this.attacking=true;
 		if(this.attacking) {
+			this.setScreaming(true);
 			if(phantom && this.worldObj.checkNoEntityCollision(this.boundingBox))
 				this.phantom=false;
 			if(!this.phantom && World.doesBlockHaveSolidTopSurface(worldObj, (int)posX, (int)this.boundingBox.minY-1, (int)posZ)) {
@@ -68,18 +72,8 @@ public class EntityPhantomEndermanEcho extends EntityEnderman implements IEntity
     	super.onLivingUpdate();
     	this.worldObj.getGameRules().setOrCreateGameRule("mobGriefing", Boolean.toString(originalGrief));
     	FateHandler.doUpdateForEcho(this);
-    	if(this.isDead)
-    		return;
     }
 	
-    private boolean checkForValidTarget() {
-		if(player==null)
-			return false;
-		if(!player.worldObj.equals(worldObj))
-			return false;
-		return true;
-	}
-
 	protected boolean teleportTo(double p_70825_1_, double p_70825_3_, double p_70825_5_)
     {
 		if(attacking)
@@ -101,6 +95,12 @@ public class EntityPhantomEndermanEcho extends EntityEnderman implements IEntity
 			func_146081_a(Blocks.air);
 	}
 
+    public void setScreaming(boolean p_70819_1_)
+    {
+    	attacking = attacking || p_70819_1_;
+        super.setScreaming(attacking || p_70819_1_);
+    }
+	
     /**
      * Gets the active target the Task system uses for tracking
      */
@@ -112,6 +112,13 @@ public class EntityPhantomEndermanEcho extends EntityEnderman implements IEntity
         return player;
     }
 
+    protected Entity findPlayerToAttack()
+    {
+    	if(attacking)
+    		return getAttackTarget();
+    	return super.findPlayerToAttack();
+    }
+    
     /**
      * Called when the entity is attacked.
      */
@@ -145,8 +152,19 @@ public class EntityPhantomEndermanEcho extends EntityEnderman implements IEntity
     		super.fall(p_70069_1_);
     }
 
+    protected boolean teleportRandomly()
+    {
+    	if(this.entityToAttack==null)
+    		return false;
+    	if(this.entityToAttack.getDistanceSqToEntity(this) < 16.0D)
+    		return super.teleportRandomly();
+        return false;
+    }
+    
     public void moveEntityWithHeading(float p_70612_1_, float p_70612_2_)
     {
+    	if(this.player==null)
+    		return;
     	if(!attacking) {
     		if(player!=null) {
     			
@@ -206,6 +224,20 @@ public class EntityPhantomEndermanEcho extends EntityEnderman implements IEntity
 	            this.motionX *= (double)f2;
 	            this.motionY *= (double)f2;
 	            this.motionZ *= (double)f2;
+	            
+	            double targetY = this.player.boundingBox.minY;
+	            
+	            double deltaY = targetY - boundingBox.minY;
+	            
+	            if(Math.abs(deltaY)>.1) {
+	            	if(deltaY > 0) {
+	            		this.moveEntity(0, .1F, 0);
+	            	}
+	            	else {
+	            		this.motionY-= 0.08D;
+	            	}
+	            }
+	            
 	        }
 	
 	        this.prevLimbSwingAmount = this.limbSwingAmount;
@@ -238,6 +270,9 @@ public class EntityPhantomEndermanEcho extends EntityEnderman implements IEntity
     public void writeEntityToNBT(NBTTagCompound cmp)
     {
         super.writeEntityToNBT(cmp);
+        System.out.println("keke");
+        System.out.println(isStored);
+        cmp.setBoolean(TAG_IS_STORED, isStored);
         cmp.setBoolean(TAG_ATTACKING, attacking);
         cmp.setBoolean(TAG_FLYING, flying);
         cmp.setBoolean(TAG_PHANTOM, phantom);
@@ -248,6 +283,9 @@ public class EntityPhantomEndermanEcho extends EntityEnderman implements IEntity
     public void readEntityFromNBT(NBTTagCompound cmp)
     {
         super.readEntityFromNBT(cmp);
+        isStored=cmp.getBoolean(TAG_IS_STORED);
+        System.out.println("dede");
+        System.out.println(isStored);
         attacking=cmp.getBoolean(TAG_ATTACKING);
         flying=cmp.getBoolean(TAG_FLYING);
         phantom=cmp.getBoolean(TAG_PHANTOM);
@@ -272,7 +310,7 @@ public class EntityPhantomEndermanEcho extends EntityEnderman implements IEntity
 
 	@Override
 	public float getMaxRangeFromSource() {
-		return 30;
+		return -1;
 	}
 
 	@Override
@@ -282,7 +320,18 @@ public class EntityPhantomEndermanEcho extends EntityEnderman implements IEntity
 
 	@Override
 	public void setDead() {
+		System.out.println("le");
 		FateHandler.setDead(this);
 		super.setDead();
+	}
+
+	@Override
+	public void setStored() {
+		this.isStored=true;
+	}
+
+	@Override
+	public boolean getStored() {
+		return isStored;
 	}
 }

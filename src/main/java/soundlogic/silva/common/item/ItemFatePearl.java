@@ -13,6 +13,7 @@ import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
 import soundlogic.silva.common.core.handler.portal.DimensionalEnergyHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionalEnergyHandler.DimensionalExposureProperties;
 import soundlogic.silva.common.core.handler.portal.fate.FateHandler;
+import soundlogic.silva.common.core.handler.portal.fate.IVigridrFate;
 import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibGUI;
 import vazkii.botania.api.lexicon.KnowledgeType;
@@ -51,10 +52,12 @@ public class ItemFatePearl extends ItemMod{
 	public IIcon iconOverlays;
 	private int numOverlays = 6;
 	
+	IVigridrFate prevFate = null;
+	int prevFateCount = 0;
+	
 	public ItemFatePearl(String unLocalizedName) {
 		super(unLocalizedName);
 		this.setMaxStackSize(1);
-		
 	}
 	
 	@Override
@@ -64,6 +67,19 @@ public class ItemFatePearl extends ItemMod{
 		if(entityPlayer.isSneaking()) {
 			FateHandler.clearFate(entityPlayer);
 			FateHandler.applyRandomFate(entityPlayer, 20*60*10);
+		}
+		else if(!world.isRemote){
+			System.out.println(prevFate);
+			System.out.println(FateHandler.getFate(entityPlayer));
+			if(prevFate!=null && prevFate.equals(FateHandler.getFate(entityPlayer))) {
+				prevFateCount--;
+				if(prevFateCount<=0)
+					prevFate.tryForceStart(10);
+			}
+			else
+				prevFateCount=5;
+			System.out.println(prevFateCount);
+			prevFate=FateHandler.getFate(entityPlayer);
 		}
 		FateHandler.printDebugData(entityPlayer, entityPlayer);
 		return stack;

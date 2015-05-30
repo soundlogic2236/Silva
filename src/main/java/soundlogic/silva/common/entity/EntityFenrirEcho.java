@@ -44,17 +44,18 @@ import net.minecraft.world.World;
 
 public class EntityFenrirEcho extends EntityMob implements IBossDisplayData, IEntityFateEcho {
 
-	private static final String TAG_TARGET_UUID = "targetUUID";
 	private static final String TAG_KEY = "fateKey";
 	private int key;
 	
 	public static float SCALE_FACTOR = 3F;
-	private UUID targetUUID;
 	
 	private EntityPlayer player;
+	private boolean isStored;
 
-	public EntityFenrirEcho(World p_i1685_1_) {
-		super(p_i1685_1_);
+	public EntityFenrirEcho(World world) {
+		super(world);
+		if(world!=null)
+			FateHandler.addEcho(this);
         this.setSize(0.6F * SCALE_FACTOR, 0.8F * SCALE_FACTOR);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(1, new EntityAISwimming(this));
@@ -69,30 +70,23 @@ public class EntityFenrirEcho extends EntityMob implements IBossDisplayData, IEn
     	FateHandler.doUpdateForEcho(this);
     	if(this.isDead)
     		return;
-		if(targetUUID==null) {
-			EntityPlayer player = worldObj.getClosestPlayerToEntity(this, 40F);
-			if(player!=null) {
-				setPlayerTarget(player);
-			}
-		}
-		if(player==null)
-			player=(EntityPlayer) getAttackTarget();
+		getAttackTarget();
 	}
+
+    public EntityLivingBase getAttackTarget()
+    {
+        if(player==null) {
+        	player = (EntityPlayer) FateHandler.getEntityFromKey(key);
+        }
+        return player;
+    }
+
+    protected Entity findPlayerToAttack()
+    {
+   		return getAttackTarget();
+    }
+    
 	
-    private boolean checkForValidTarget() {
-		if(player==null)
-			return false;
-		if(!player.worldObj.equals(worldObj))
-			return false;
-		if(this.getDistanceSqToEntity(player)>50*50)
-			return false;
-		return true;
-	}
-
-	public void setPlayerTarget(EntityPlayer player) {
-		this.targetUUID=player.getGameProfile().getId();
-	}
-
 	protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
@@ -103,14 +97,6 @@ public class EntityFenrirEcho extends EntityMob implements IBossDisplayData, IEn
 
     }
     
-    /**
-     * Gets the active target the Task system uses for tracking
-     */
-    public EntityLivingBase getAttackTarget()
-    {
-        return targetUUID==null ? null : this.worldObj.func_152378_a(targetUUID);
-    }
-
     /**
      * Returns true if the newer Entity AI code should be run
      */
@@ -130,8 +116,7 @@ public class EntityFenrirEcho extends EntityMob implements IBossDisplayData, IEn
     public void writeEntityToNBT(NBTTagCompound cmp)
     {
         super.writeEntityToNBT(cmp);
-        if(targetUUID!=null)
-        	cmp.setString(TAG_TARGET_UUID, this.targetUUID.toString());
+        cmp.setBoolean(TAG_IS_STORED, isStored);
         cmp.setInteger(TAG_KEY, key);
     }
 
@@ -141,10 +126,7 @@ public class EntityFenrirEcho extends EntityMob implements IBossDisplayData, IEn
     public void readEntityFromNBT(NBTTagCompound cmp)
     {
         super.readEntityFromNBT(cmp);
-        if(cmp.hasKey(TAG_TARGET_UUID))
-        	this.targetUUID=UUID.fromString(cmp.getString(TAG_TARGET_UUID));
-        else
-        	this.targetUUID=null;
+        isStored=cmp.getBoolean(TAG_IS_STORED);
         key=cmp.getInteger(TAG_KEY);
     }
 
@@ -198,8 +180,7 @@ public class EntityFenrirEcho extends EntityMob implements IBossDisplayData, IEn
         {
             Entity entity = source.getEntity();
             if(entity instanceof EntityPlayer) {
-            	UUID other = ((EntityPlayer) entity).getGameProfile().getId();
-            	if(other.equals(targetUUID)) {
+            	if(entity==player) {
             		ItemStack shoe = ((EntityPlayer) entity).getEquipmentInSlot(1);
             		if(shoe==null)
             			return false;
@@ -233,7 +214,7 @@ public class EntityFenrirEcho extends EntityMob implements IBossDisplayData, IEn
      */
     protected void dropFewItems(boolean p_70628_1_, int p_70628_2_)
     {
-        this.dropItem(ModItems.dwarfChain, 1);
+        this.entityDropItem(new ItemStack(ModItems.simpleResource, 1, 4), 0F);
     }
 
 	@Override
@@ -260,5 +241,15 @@ public class EntityFenrirEcho extends EntityMob implements IBossDisplayData, IEn
 	public void setDead() {
 		FateHandler.setDead(this);
 		super.setDead();
+	}
+
+	@Override
+	public void setStored() {
+		this.isStored=true;
+	}
+
+	@Override
+	public boolean getStored() {
+		return isStored;
 	}
 }

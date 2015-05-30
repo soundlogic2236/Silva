@@ -98,7 +98,8 @@ item.silva:pageBundle.darkElf.name=Another Message from Nublia
 item.silva:bifrostShard.name=Bifrost Shard
 item.silva:stoneHorse.name=Stone Horse
 item.silva:dwarfMead.name=Mead of Poetry
-item.silva:dwarfChain.name=Dwarven Chain
+item.silva:dwarfChain.0.name=Dwarven Chain
+item.silva:dwarfChain.1.name=Gleipnir
 item.silva:dwarfBarrier.name=Dwarven Barrier Stone
 item.silva:chargedStone.name=Realm Stone
 

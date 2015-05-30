@@ -58,6 +58,7 @@ public class ItemEnchantHolder extends ItemMod{
 	public ItemEnchantHolder(String unLocalizedName) {
 		super(unLocalizedName);
 		this.setMaxStackSize(1);
+		this.hasSubtypes=true;
 	}
 	
     @Override

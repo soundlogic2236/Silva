@@ -40,6 +40,7 @@ public class ItemChargedStone extends ItemMod{
 	public ItemChargedStone(String unLocalizedName) {
 		super(unLocalizedName);
 		this.setMaxStackSize(1);
+		this.hasSubtypes=true;
 	}
 	
 	@Override

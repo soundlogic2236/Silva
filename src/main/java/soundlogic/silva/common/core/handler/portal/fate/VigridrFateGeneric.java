@@ -74,6 +74,7 @@ public abstract class VigridrFateGeneric implements IVigridrFate {
 				start();
 		}
 	}
+	
 
 	@Override
 	public void init() {
@@ -114,5 +115,13 @@ public abstract class VigridrFateGeneric implements IVigridrFate {
 		IChatComponent message = new ChatComponentTranslation(getUnlocalizedStartMessage(), new Object[0]);
 		message.getChatStyle().setItalic(true);
 		return message;
+	}
+	
+	public boolean tryForceStart(int tries) {
+		int i = 0;
+		while(!this.hasStarted() && i<tries) {
+			this.start();
+		}
+		return this.hasStarted();
 	}
 }

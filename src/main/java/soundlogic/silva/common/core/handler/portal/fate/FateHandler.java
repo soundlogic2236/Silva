@@ -10,8 +10,12 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.UUID;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
+import cpw.mods.fml.relauncher.Side;
+import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.core.handler.portal.DimensionExposureHandlerBase;
 import soundlogic.silva.common.core.handler.portal.DimensionalEnergyHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
@@ -21,6 +25,7 @@ import soundlogic.silva.common.entity.IEntityFateEcho;
 import soundlogic.silva.common.item.ItemFatePearl;
 import soundlogic.silva.common.lib.LibGUI;
 import soundlogic.silva.common.network.MessageEntityData;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
@@ -32,6 +37,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSavedData;
 import net.minecraftforge.common.DimensionManager;
@@ -40,6 +46,8 @@ import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.world.ChunkEvent;
+import net.minecraftforge.event.world.WorldEvent;
 
 public class FateHandler {
 
@@ -51,7 +59,7 @@ public class FateHandler {
 	static HashMap<String, Class<IVigridrFate>> fatesClasses = new HashMap<String, Class<IVigridrFate>>();
 	static HashMap<String, NBTTagCompound> fatesData = new HashMap<String, NBTTagCompound>();
 	static ArrayList<String> fatesNames = new ArrayList<String>();
-	static HashMap<Integer,Entity> activeFateKeys = new HashMap<Integer,Entity>();
+	static HashMap<Integer,EntityLivingBase> activeFateKeys = new HashMap<Integer,EntityLivingBase>();
 	static HashMap<Integer,ArrayList<IEntityFateEcho>> activeEchos = new HashMap<Integer,ArrayList<IEntityFateEcho>>();
 	
 	protected static class StoredEntityData {
@@ -90,7 +98,11 @@ public class FateHandler {
 			x = entity.posX;
 			y = entity.posY;
 			z = entity.posZ;
-			entity.setDead();
+			if(entity instanceof IEntityFateEcho) {
+				((IEntityFateEcho) entity).setStored();
+			}
+			else
+				entity.setDead();
 		}
 		public boolean unStoreEntity(World world) {
 			if(!isRightWorld(world))
@@ -150,7 +162,7 @@ public class FateHandler {
 		
 		IVigridrFate fate=null;
 		String fateName="";
-		Entity entity;
+		EntityLivingBase entity;
 		int fateColor1 = -1;
 		int fateColor2 = -1;
 		int prevStateCode = -1;
@@ -172,6 +184,15 @@ public class FateHandler {
 			if(!cmp.hasKey(TAG_FATE_NAME)) {
 				fateName = "";
 				fate = null;
+				if(entity.worldObj.isRemote) {
+					if(cmp.hasKey(TAG_FATE_COLOR1)) {
+						fateColor1 = cmp.getInteger(TAG_FATE_COLOR1);
+						fateColor2 = cmp.getInteger(TAG_FATE_COLOR2);
+						ItemFatePearl.setRenderColors(fateColor1,fateColor2, false);
+					}
+					else
+						ItemFatePearl.setRenderColors(-1,-1, true);
+				}
 				return;
 			}
 			NBTTagCompound fateData = cmp.getCompoundTag(TAG_FATE_DATA);
@@ -198,7 +219,7 @@ public class FateHandler {
 
 		@Override
 		public void init(Entity entity, World world) {
-			this.entity=entity;
+			this.entity=(EntityLivingBase) entity;
 		}
 		
 		public void setFate(String fateName) {
@@ -256,8 +277,10 @@ public class FateHandler {
 		public void clearFate() {
 			if(fate==null)
 				return;
-			FateHandler.removeKey(fate.getKey(), entity);
-			this.fate.endFate();
+			if(!entity.worldObj.isRemote) {
+				FateHandler.removeKey(fate.getKey(), entity);
+				this.fate.endFate();
+			}
 			this.fate=null;
 			this.fateName="";
 			this.fateColor1=-1;
@@ -298,7 +321,6 @@ public class FateHandler {
 			List<EntityPlayer> players = world.getEntitiesWithinAABB(EntityPlayer.class, box);
 			for(EntityPlayer player : players) {
 				IChatComponent message = this.fate.getStartMessage();
-				System.out.println(message.getFormattedText());
 				player.addChatComponentMessage(message);
 			}
 		}
@@ -338,11 +360,15 @@ public class FateHandler {
 	
 	@SubscribeEvent
 	public void applyGeneralTick(LivingUpdateEvent event) {
-		if(hasFate(event.entity)) {
-			IVigridrFate fate = getFate(event.entity);
-			fate.tickFate();
-			tryPlaceStoredEntities(event.entity);
-			updateFateProgress(event.entity);
+		if(hasFate(event.entityLiving)) {
+			IVigridrFate fate = getFate(event.entityLiving);
+			if(event.entityLiving.worldObj.difficultySetting == EnumDifficulty.PEACEFUL && !fate.canApplyPeaceful(event.entityLiving))
+				clearFate(event.entityLiving);
+			else {
+				fate.tickFate();
+				tryPlaceStoredEntities(event.entityLiving);
+				updateFateProgress(event.entityLiving);
+			}
 		}
 	}
 	
@@ -356,15 +382,16 @@ public class FateHandler {
 		return original;
 	}
 	
-	public static int getFateWeight(String fateName, Entity entity, int exposureLevel) {
+	public static int getFateWeight(String fateName, EntityLivingBase entity, int exposureLevel) {
 		return fatesOriginals.get(fateName).getWeight(entity, exposureLevel);
 	}
 	
-	public static boolean canFateApplyToEntity(String fateName, Entity entity) {
-		return fatesOriginals.get(fateName).canApplyToEntity(entity);
+	public static boolean canFateApplyToEntity(String fateName, EntityLivingBase entity) {
+		IVigridrFate fate = fatesOriginals.get(fateName);
+		return !(entity instanceof IEntityFateEcho) && fate.canApplyToEntity(entity) && (entity.worldObj.difficultySetting != EnumDifficulty.PEACEFUL || fate.canApplyPeaceful(entity));
 	}
 	
-	public static boolean applyFateToEntity(String fateName, Entity entity) {
+	public static boolean applyFateToEntity(String fateName, EntityLivingBase entity) {
 		if(hasFate(entity))
 			return false;
 		if(!canFateApplyToEntity(fateName, entity))
@@ -375,7 +402,7 @@ public class FateHandler {
 		return false;
 	}
 	
-	public static boolean applyRandomFate(Entity entity, int exposureLevel) {
+	public static boolean applyRandomFate(EntityLivingBase entity, int exposureLevel) {
 		if(hasFate(entity))
 			return false;
 		int totalWeight = 0;
@@ -398,31 +425,31 @@ public class FateHandler {
 		return false;
 	}
 	
-	public static boolean hasFate(Entity entity) {
+	public static boolean hasFate(EntityLivingBase entity) {
 		return getFate(entity)!=null;
 	}
 
-	public static void clearFate(Entity entity) {
+	public static void clearFate(EntityLivingBase entity) {
 		getFateData(entity).clearFate();
 	}
 
-	public static IVigridrFate getFate(Entity entity) {
-		return getFateData(entity).getFate();
+	public static IVigridrFate getFate(EntityLivingBase entity) {
+		return entity==null ? null : getFateData(entity).getFate();
 	}
 
-	public static void updateFateProgress(Entity entity) {
+	public static void updateFateProgress(EntityLivingBase entity) {
 		getFateData(entity).updateProgress();
 	}
 
-	public static String getFateKey(Entity entity) {
+	public static String getFateKey(EntityLivingBase entity) {
 		return getFateData(entity).fateName;
 	}
 	
-	public static Entity getEntityFromKey(int key) {
+	public static EntityLivingBase getEntityFromKey(int key) {
 		return activeFateKeys.get(key);
 	}
 	
-	private static FateExtendedEntityProperties getFateData(Entity entity) {
+	private static FateExtendedEntityProperties getFateData(EntityLivingBase entity) {
 		return (FateExtendedEntityProperties) entity.getExtendedProperties(TAG_FATE);
 	}
 	
@@ -457,7 +484,7 @@ public class FateHandler {
 		registerFate(new VigridrFateFireBlade(20,50,4,8,0,5, 20*30, .001F, .1F, 20*5, 5), "fireblade");
 		registerFate(new VigridrFateSpawnNidhogg(5, 3, 8, 20*30, .001F, .1F, 20*5, 5), "nidhogg");
 	}
-	public static void printDebugData(Entity entity, EntityPlayer player) {
+	public static void printDebugData(EntityLivingBase entity, EntityPlayer player) {
 		FateExtendedEntityProperties data = getFateData(entity);
 		if(!player.worldObj.isRemote) {
 				player.addChatComponentMessage(new ChatComponentText("Entity Name:  "+entity.getCommandSenderName()));
@@ -476,7 +503,6 @@ public class FateHandler {
 	
 	public static void addEcho(IEntityFateEcho echo) {
 		int key = echo.getKey();
-		System.out.println(echo);
 		ArrayList<IEntityFateEcho> echos;
 		if(activeEchos.containsKey(key))
 			echos=activeEchos.get(key);
@@ -484,11 +510,12 @@ public class FateHandler {
 			echos=new ArrayList<IEntityFateEcho>();
 			activeEchos.put(key, echos);
 		}
-		echos.add(echo);
+		if(!echos.contains(echo))
+			echos.add(echo);
 	}
 	public static void removeEcho(IEntityFateEcho echo) {
-		System.out.println(echo);
-		activeEchos.get(echo.getKey()).remove(echo);
+		if(activeEchos.containsKey(echo.getKey()))
+			activeEchos.get(echo.getKey()).remove(echo);
 	}
 	public static List<IEntityFateEcho> getEchos(int key) {
 		if(activeEchos.containsKey(key))
@@ -498,26 +525,28 @@ public class FateHandler {
 	public static int countEchos(int key) {
 		return getEchos(key).size();
 	}
-	public static void storeEntity(Entity entity, int key) {
-		System.out.println(Integer.toString(key));
-		System.out.println(activeFateKeys.get(key));
+	public static void storeEntity(EntityLivingBase entity, int key) {
+		System.out.println(entity);
 		IVigridrFate fate = getFate(activeFateKeys.get(key));
 		System.out.println(fate);
+		if(fate==null) {
+			entity.setDead();
+			return;
+		}
 		IVigridrFateSpawning spawning = (IVigridrFateSpawning) fate;
-		System.out.println(spawning);
 		spawning.storeEntityData(new StoredEntityData(entity));;
 	}
-	public static void storeEntity(Entity entity) {
+	public static void storeEntity(EntityLivingBase entity) {
 		storeEntity(entity, ((IEntityFateEcho) entity).getKey());
 	}
 	public static void storeEntity(IEntityFateEcho entity) {
-		storeEntity((Entity) entity, entity.getKey());
+		storeEntity((EntityLivingBase) entity, entity.getKey());
 	}
 	public static boolean checkIfEchoInRange(IEntityFateEcho echo, World world, double x, double y, double z) {
 		float maxDist = echo.getMaxRangeFromSource();
 		if(maxDist == -2)
 			return true;
-		if(!world.equals(echo.getWorldObj()))
+		if(world.provider.dimensionId!=echo.getWorldObj().provider.dimensionId)
 			return false;
 		if(maxDist == -1)
 			return true;
@@ -536,7 +565,7 @@ public class FateHandler {
 
 	public static boolean checkIfEchoInRange(IEntityFateEcho echo) {
 		int key = echo.getKey();
-		Entity source = activeFateKeys.get(key);
+		EntityLivingBase source = activeFateKeys.get(key);
 		if(source==null || source.isDead)
 			return false;
 		return checkIfEchoInRange(echo, source.worldObj, source.posX, source.posY, source.posZ);
@@ -553,36 +582,32 @@ public class FateHandler {
 		if(echo.getWorldObj().isRemote)
 			return;
 		Entity entity = (Entity) echo;
-		int key = echo.getKey();
-		ArrayList<IEntityFateEcho> echos;
-		if(activeEchos.containsKey(key))
-			echos=activeEchos.get(key);
-		else {
-			echos = new ArrayList<IEntityFateEcho>();
-			activeEchos.put(key, echos);
+		if(!echo.getStored()) {
+			addEcho(echo);
+			storeEntityIfNessisary(echo);
 		}
-		echos.add(echo);
-		System.out.println(Integer.toString(key));
-		storeEntityIfNessisary(echo);
+		else
+			entity.setDead();
 	}
 	public static void setDead(IEntityFateEcho echo) {
-		if(activeEchos.containsKey(echo.getKey()))
-			activeEchos.get(echo.getKey()).remove(echo);
+		if(!echo.getWorldObj().isRemote)
+			removeEcho(echo);
 	}
 	
-	protected static void addKey(int key, Entity entity) {
-		System.out.println(Integer.toString(key));
-		System.out.println(entity);
+	protected static void addKey(int key, EntityLivingBase entity) {
 		activeFateKeys.put(key, entity);
 	}
-	protected static void removeKey(int key, Entity entity) {
-		System.out.println(Integer.toString(key));
-//		System.out.println(0/((key!=0 && !entity.worldObj.isRemote) ? 0 : 1));
+	protected static void removeKey(int key, EntityLivingBase entity) {
 		activeFateKeys.remove(key);
-		activeEchos.remove(key);
+		if(activeEchos.containsKey(key)) {
+			List<IEntityFateEcho> ents = new ArrayList<IEntityFateEcho>(activeEchos.get(key));
+			for(IEntityFateEcho ent : ents)
+				((Entity) ent).setDead();
+			activeEchos.remove(key);
+		}
 	}
 	
-	public static void tryPlaceStoredEntities(Entity source) {
+	public static void tryPlaceStoredEntities(EntityLivingBase source) {
 		if(source.worldObj.isRemote)
 			return;
 		IVigridrFate fate = getFate(source);
@@ -594,7 +619,7 @@ public class FateHandler {
 				if(!tryPlaceStoredEntity(source, echo))
 					newEnts.add(echo);
 			}
-			spawning.setStoredEntityData(ents);
+			spawning.setStoredEntityData(newEnts);
 		}
 	}
 	
@@ -605,26 +630,45 @@ public class FateHandler {
 	}
 	
 	@SubscribeEvent
+	public void onChunkUnload(ChunkEvent.Unload event) {
+		for(List list : event.getChunk().entityLists) {
+			for(Object o : list) {
+				Entity ent = (Entity) o;
+				onEntityUnload(ent);
+			}
+		}
+	}
+	
+	protected void onEntityUnload(Entity entity) {
+		if(entity instanceof EntityLivingBase) {
+			EntityLivingBase entLiving = (EntityLivingBase) entity;
+			if(hasFate(entLiving)) {
+				int key = getFate(entLiving).getKey();
+				if(activeEchos.containsKey(key)) {
+					ArrayList<IEntityFateEcho> echos = new ArrayList<IEntityFateEcho>(activeEchos.get(key));
+					for(IEntityFateEcho echo : echos) {
+						storeEntity(echo);
+					}
+				}
+			}
+			if(entity instanceof IEntityFateEcho) {
+				storeEntity(entLiving);
+			}
+		}
+	}
+
+	@SubscribeEvent
 	public void onEntityDeath(LivingDeathEvent event) {
 		if(event.entity.worldObj.isRemote)
 			return;
-		if((!(event.entity instanceof EntityPlayer)) && hasFate(event.entity)) {
-			int key = getFate(event.entity).getKey();
-			removeKey(key, event.entity);
+		if((!(event.entity instanceof EntityPlayer)) && hasFate(event.entityLiving)) {
+			int key = getFate(event.entityLiving).getKey();
+			removeKey(key, event.entityLiving);
 		}
 	}
 	
 	@SubscribeEvent
 	public void onPlayerLogOut(PlayerLoggedOutEvent event) {
-		if(hasFate(event.player)) {
-			int key = getFate(event.player).getKey();
-			if(activeEchos.containsKey(key)) {
-				ArrayList<IEntityFateEcho> echos = activeEchos.get(key);
-				for(IEntityFateEcho echo : echos) {
-					storeEntity(echo);
-				}
-			}
-		}
+		onEntityUnload(event.player);
 	}
-	
 }

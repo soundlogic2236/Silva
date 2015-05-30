@@ -100,11 +100,12 @@ public class EntityDwarvenChainKnot extends EntityHanging{
     		return true;
     	}
     	else if(!worldObj.isRemote && stack==null) {
-    		player.setCurrentItemOrArmor(0, new ItemStack(ModItems.dwarfChain));
             double d0 = DwarvenChainHandler.MAX_LENGTH;
             List<EntityCreature> list = DwarvenChainHandler.findChainedCreatures(this);
             EntityCreature creature = list.get(0);
-            DwarvenChainHandler.attachChainToEntity(creature, player);
+            ItemStack chainStack = DwarvenChainHandler.getChainForEntity(creature).getStack();
+    		player.setCurrentItemOrArmor(0, chainStack);
+            DwarvenChainHandler.attachChainToEntity(creature, player, chainStack);
             chainCount--;
             if(chainCount==0)
             	this.setDead();
@@ -117,8 +118,10 @@ public class EntityDwarvenChainKnot extends EntityHanging{
     
     public void setDead() {
     	super.setDead();
+        List<EntityCreature> list = DwarvenChainHandler.findChainedCreatures(this);
     	for(int i = 0 ; i<chainCount;i++) {
-    		this.entityDropItem(new ItemStack(ModItems.dwarfChain), 0);
+    		ItemStack chainStack = DwarvenChainHandler.getChainForEntity(list.get(0)).getStack();
+    		this.entityDropItem(chainStack, 0);
     	}
     }
 

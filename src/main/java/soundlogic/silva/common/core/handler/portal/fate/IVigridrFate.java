@@ -7,6 +7,7 @@ import net.minecraft.util.IChatComponent;
 public interface IVigridrFate {
 
 	public boolean canApplyToEntity(Entity entity);
+	public boolean canApplyPeaceful(Entity entity);
 	public boolean isFateFinished();
 	public void writeToNBT(NBTTagCompound cmp);
 	public void readFromNBT(NBTTagCompound cmp);
@@ -21,4 +22,5 @@ public interface IVigridrFate {
 	public void setKey(int key);
 	public int getKey();
 	public IChatComponent getStartMessage();
+	public boolean tryForceStart(int tries);
 }

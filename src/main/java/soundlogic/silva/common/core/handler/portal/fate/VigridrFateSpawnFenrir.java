@@ -19,10 +19,4 @@ public class VigridrFateSpawnFenrir extends VigridrFateSpawnEntitySimple {
 	public VigridrFateSpawnFenrir(int trialsPerSpawnAttempt, float minDistance, float maxDistance, int minTicksBeforeStart, float startChance, float doChance, int minTicksBetweenDoing, int weight) {
 		super(new EntityFenrirEcho(null), trialsPerSpawnAttempt, minDistance, maxDistance, 1, minTicksBeforeStart, startChance, doChance, minTicksBetweenDoing, weight);
 	}
-	
-	protected Entity tryCreateEntity(World world) {
-		EntityFenrirEcho entity = (EntityFenrirEcho) super.tryCreateEntity(world);
-		entity.setPlayerTarget((EntityPlayer) this.entity);
-		return entity;
-	}
 }

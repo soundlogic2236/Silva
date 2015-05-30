@@ -47,6 +47,7 @@ public class DwarvenChainHandler {
 		private final static String TAG_LEASH_Z="SilvaLeashZ";
 		private final static String TAG_LEASH_ACTIVE="SilvaLeashActive";
 		private final static String TAG_LEASH_KNOT="SilvaLeashKnot";
+		private final static String TAG_STACK="SilvaLeashStack";
 
 		Entity owner;
 		
@@ -60,6 +61,7 @@ public class DwarvenChainHandler {
 		boolean knot;
 		boolean AI;
 		boolean originalAvoidWater;
+		ItemStack stack;
 		
 		public LeashProperties() {
 			setStartingData();
@@ -73,9 +75,9 @@ public class DwarvenChainHandler {
 			AI = false;
 		}
 		
-		public LeashProperties(Entity entity) {
+		public LeashProperties(Entity entity, ItemStack stack) {
 			this();
-			this.attachToEntity(entity);
+			this.attachToEntity(entity, stack);
 		}
 		
 		@Override
@@ -90,6 +92,9 @@ public class DwarvenChainHandler {
 			cmp.setString(TAG_LEASH_UUID, entity.getPersistentID().toString());
 			cmp.setBoolean(TAG_LEASH_KNOT, entity instanceof EntityDwarvenChainKnot);
 			cmp.setInteger(TAG_LEASH_SHARED_ID, entity.getEntityId());
+			NBTTagCompound item = new NBTTagCompound();
+			stack.writeToNBT(item);
+			cmp.setTag(TAG_STACK, item);
 			compound.setTag(TAG_LEASH_META, cmp);
 		}
 
@@ -106,6 +111,7 @@ public class DwarvenChainHandler {
 			entityUUID=UUID.fromString(cmp.getString(TAG_LEASH_UUID));
 			entitySharedID=cmp.getInteger(TAG_LEASH_SHARED_ID);
 			knot=cmp.getBoolean(TAG_LEASH_KNOT);
+			stack=ItemStack.loadItemStackFromNBT(cmp.getCompoundTag(TAG_STACK));
 			
 			searchSpace = AxisAlignedBB.getBoundingBox(entityX,entityY,entityZ,entityX,entityY,entityZ).expand(10, 10, 10);
 		}
@@ -123,7 +129,7 @@ public class DwarvenChainHandler {
 			}
 			if(client) {
 				if(entity == null && entitySharedID != -1 ) {
-					attachToEntity(ent.worldObj.getEntityByID(entitySharedID));
+					attachToEntity(ent.worldObj.getEntityByID(entitySharedID), stack);
 				}
 				return;
 			}
@@ -141,7 +147,7 @@ public class DwarvenChainHandler {
             	list = ent.worldObj.getEntitiesWithinAABB(EntityDwarvenChainKnot.class, searchSpace);
             for(Entity check : list) {
             	if(check.getPersistentID().equals(entityUUID)) {
-            		attachToEntity(check);
+            		attachToEntity(check, stack);
             		return;
             	}
             }
@@ -175,7 +181,7 @@ public class DwarvenChainHandler {
 			MessageEntityData.updateExtendedEntityData(owner, DwarvenChainHandler.TAG_LEASH);
 		}
 		
-		public void attachToEntity(Entity bindTo) {
+		public void attachToEntity(Entity bindTo, ItemStack stack) {
 			this.entity=bindTo;
 			this.entitySharedID=this.entity.getEntityId();
 			if(entity instanceof EntityDwarvenChainKnot)
@@ -184,23 +190,30 @@ public class DwarvenChainHandler {
 				knot=false;
 			this.searching=false;
 			this.setActive(true);
-			
+			this.stack=stack.copy();
+		}
+		public ItemStack getStack() {
+			return stack;
+		}
+		
+		public boolean stackMatches(ItemStack otherStack) {
+			return otherStack!=null && stack.getItem()==otherStack.getItem() && stack.getItemDamage()==otherStack.getItemDamage();
 		}
 	}
 	
-	public static void attachChainToEntity(EntityCreature toLeash, Entity bindTo) {
+	public static void attachChainToEntity(EntityCreature toLeash, Entity bindTo, ItemStack stack) {
 		LeashProperties props=(LeashProperties) toLeash.getExtendedProperties(TAG_LEASH);
 		if(props==null) {
-			props=new LeashProperties(bindTo);
+			props=new LeashProperties(bindTo, stack);
 			toLeash.registerExtendedProperties(TAG_LEASH, props);
 		}
 		else {
 			props.setStartingData();
-			props.attachToEntity(bindTo);
+			props.attachToEntity(bindTo, stack);
 		}
 	}
 
-    public static void attachChainToBlock(EntityPlayer player, World world, int x,
+    public static void attachChainToBlock(EntityPlayer player, World world, ItemStack stack, int x,
 			int y, int z) {
         EntityDwarvenChainKnot entitychainknot = EntityDwarvenChainKnot.getKnotForBlock(world, x, y, z);
         double d0 = MAX_LENGTH;
@@ -211,7 +224,7 @@ public class DwarvenChainHandler {
 	        	entitychainknot = EntityDwarvenChainKnot.createKnotForBlock(world, x, y, z);
 	        }
 	        entitychainknot.chainCount++;
-	        DwarvenChainHandler.attachChainToEntity(creature, entitychainknot);
+	        DwarvenChainHandler.attachChainToEntity(creature, entitychainknot, stack);
         }
 	}
     
@@ -230,10 +243,12 @@ public class DwarvenChainHandler {
 
 	
 	public static boolean isChainAttached(EntityCreature creature, Entity holder) {
+    	LeashProperties props = DwarvenChainHandler.getChainForEntity(creature);
+    	if(!props.active)
+    		return false;
 		if(holder instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) holder;
-			return player.getHeldItem() !=null &&
-					player.getHeldItem().getItem()==ModItems.dwarfChain &&
+			return props.stackMatches(player.getHeldItem()) &&
 					!player.isDead &&
 					player.worldObj == creature.worldObj;
 		}

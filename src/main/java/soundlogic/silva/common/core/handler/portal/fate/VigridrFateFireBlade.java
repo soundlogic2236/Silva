@@ -62,6 +62,11 @@ public class VigridrFateFireBlade extends VigridrFateGenericRepeating {
 	public boolean canApplyToEntity(Entity entity) {
 		return entity instanceof EntityLivingBase;
 	}
+	
+	@Override
+	public boolean canApplyPeaceful(Entity entity) {
+		return true;
+	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound cmp) {

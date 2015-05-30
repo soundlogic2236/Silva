@@ -19,6 +19,7 @@ public class LibItemNames {
 		"darkenedTwig",
 		"paradoxTwig",
 		"enchantOffering",
+		"gleipnirFragment"
 	};
 	public static final String ENCHANT_HOLDER = "enchantHolder";
 	public static final String FATE_PEARL = "fatePearl";

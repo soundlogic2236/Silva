@@ -10,6 +10,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
@@ -24,19 +25,19 @@ public class VigridrFateSpawnEntitySimple extends VigridrFateGenericRepeating im
 	private final String TAG_ENTITY_NBT = "entityNBT";
 	private final String TAG_TOTAL_SPAWNED = "totalSpawned";
 	private final String TAG_STORED = "entitiesSpawned";
+	private final String TAG_MOB = "entityIsMob";
 	
 	int trialsPerSpawnAttempt;
 	float minDistance;
 	float maxDistance;
 	String toSpawnName;
 	NBTTagCompound toSpawnNBT;
+	boolean isMob;
 	
 	int totalSpawned = 0;
 	
 	List<StoredEntityData> stored = new ArrayList<StoredEntityData>();
 	
-	protected float maxDistanceOnSpawnList = 100F;
-
 	public VigridrFateSpawnEntitySimple() {
 		
 	}
@@ -67,11 +68,17 @@ public class VigridrFateSpawnEntitySimple extends VigridrFateGenericRepeating im
 		this.toSpawnName=(String) EntityList.classToStringMapping.get(toSpawn.getClass());
 		this.toSpawnNBT=new NBTTagCompound();
 		toSpawn.writeToNBT(this.toSpawnNBT);
+		this.isMob=toSpawn instanceof IMob;
 	}
 	
 	@Override
 	public boolean canApplyToEntity(Entity entity) {
 		return entity instanceof EntityPlayer;
+	}
+
+	@Override
+	public boolean canApplyPeaceful(Entity entity) {
+		return !isMob;
 	}
 
 	@Override
@@ -83,6 +90,7 @@ public class VigridrFateSpawnEntitySimple extends VigridrFateGenericRepeating im
 		cmp.setString(TAG_ENTITY_NAME, toSpawnName);
 		cmp.setTag(TAG_ENTITY_NBT, toSpawnNBT);
 		cmp.setInteger(TAG_TOTAL_SPAWNED, totalSpawned);
+		cmp.setBoolean(TAG_MOB, isMob);
 		
 		if(!stored.isEmpty()) {
 			cmp.setInteger(TAG_STORED, stored.size());
@@ -103,6 +111,7 @@ public class VigridrFateSpawnEntitySimple extends VigridrFateGenericRepeating im
 		toSpawnName=cmp.getString(TAG_ENTITY_NAME);
 		toSpawnNBT=cmp.getCompoundTag(TAG_ENTITY_NBT);
 		totalSpawned=cmp.getInteger(TAG_TOTAL_SPAWNED);
+		isMob=cmp.getBoolean(TAG_MOB);
 		
 		stored.clear();
 		if(cmp.hasKey(TAG_STORED)) {
@@ -138,6 +147,7 @@ public class VigridrFateSpawnEntitySimple extends VigridrFateGenericRepeating im
 			y+=r*Math.sin(a1);
 			z+=r*Math.cos(a2);
 			if(a1==0) {
+				entity.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
 				y+=this.entity.boundingBox.minY-entity.boundingBox.minY;
 				entity.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
 			}

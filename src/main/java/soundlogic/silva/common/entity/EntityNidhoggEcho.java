@@ -53,8 +53,13 @@ public class EntityNidhoggEcho extends EntityLiving implements IEntityMultiPart,
     /** Animation time, used to control the speed of the animation cycles (wings flapping, jaw opening, etc.) */
     public float animTime;
     
-    public EntityNidhoggEcho(World p_i1595_1_) {
-		super(p_i1595_1_);
+	private EntityLivingBase source;
+    private boolean isStored;
+    
+    public EntityNidhoggEcho(World world) {
+		super(world);
+		if(world!=null)
+			FateHandler.addEcho(this);
         this.dragonPartArray = new EntityDragonPart[] {this.dragonPartHead = new EntityDragonPart(this, "head", 6.0F, 6.0F), this.dragonPartBody = new EntityDragonPart(this, "body", 8.0F, 8.0F), this.dragonPartTail1 = new EntityDragonPart(this, "tail", 4.0F, 4.0F), this.dragonPartTail2 = new EntityDragonPart(this, "tail", 4.0F, 4.0F), this.dragonPartTail3 = new EntityDragonPart(this, "tail", 4.0F, 4.0F), this.dragonPartWing1 = new EntityDragonPart(this, "wing", 4.0F, 4.0F), this.dragonPartWing2 = new EntityDragonPart(this, "wing", 4.0F, 4.0F)};
         this.setHealth(this.getMaxHealth());
         this.setSize(16.0F, 8.0F);
@@ -111,15 +116,15 @@ public class EntityNidhoggEcho extends EntityLiving implements IEntityMultiPart,
     	FateHandler.doUpdateForEcho(this);
     	if(this.isDead)
     		return;
-        float f;
-        float f1;
+        float flapCur;
+        float flapPrev;
         
         if (this.worldObj.isRemote)
         {
-            f = MathHelper.cos(this.animTime * (float)Math.PI * 2.0F);
-            f1 = MathHelper.cos(this.prevAnimTime * (float)Math.PI * 2.0F);
+            flapCur = MathHelper.cos(this.animTime * (float)Math.PI * 2.0F);
+            flapPrev = MathHelper.cos(this.prevAnimTime * (float)Math.PI * 2.0F);
 
-            if (f1 <= -0.3F && f >= -0.3F)
+            if (flapPrev <= -0.3F && flapCur >= -0.3F)
             {
                 this.worldObj.playSound(this.posX, this.posY, this.posZ, "mob.enderdragon.wings", 5.0F, 0.8F + this.rand.nextFloat() * 0.3F, false);
             }
@@ -130,17 +135,22 @@ public class EntityNidhoggEcho extends EntityLiving implements IEntityMultiPart,
 
         if (this.getHealth() <= 0.0F)
         {
-            f = (this.rand.nextFloat() - 0.5F) * 8.0F;
-            f1 = (this.rand.nextFloat() - 0.5F) * 4.0F;
+            float explosionX;
+            float explosionY;
+            
+            explosionX = (this.rand.nextFloat() - 0.5F) * 8.0F;
+            explosionY = (this.rand.nextFloat() - 0.5F) * 4.0F;
             f2 = (this.rand.nextFloat() - 0.5F) * 8.0F;
-            this.worldObj.spawnParticle("largeexplode", this.posX + (double)f, this.posY + 2.0D + (double)f1, this.posZ + (double)f2, 0.0D, 0.0D, 0.0D);
+            this.worldObj.spawnParticle("largeexplode", this.posX + (double)explosionX, this.posY + 2.0D + (double)explosionY, this.posZ + (double)f2, 0.0D, 0.0D, 0.0D);
         }
         else
         {
-            f = 0.2F / (MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ) * 10.0F + 1.0F);
-            f *= (float)Math.pow(2.0D, this.motionY);
+            float animationTimeChange;
+            
+            animationTimeChange = 0.2F / (MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ) * 10.0F + 1.0F);
+            animationTimeChange *= (float)Math.pow(2.0D, this.motionY);
 
-            this.animTime += f;
+            this.animTime += animationTimeChange;
 
             this.rotationYaw = MathHelper.wrapAngleTo180_float(this.rotationYaw);
 
@@ -160,42 +170,41 @@ public class EntityNidhoggEcho extends EntityLiving implements IEntityMultiPart,
 
             this.ringBuffer[this.ringBufferIndex][0] = (double)this.rotationYaw;
             this.ringBuffer[this.ringBufferIndex][1] = this.posY;
-            double d0;
-            double d1;
-            double d2;
-            double d10;
-            float f12;
+            double interpolatedY2;
+            double interpolatedZ2;
+            double deltaYaw;
+            double interpolatedX2;
 
             if (this.worldObj.isRemote)
             {
                 if (this.newPosRotationIncrements > 0)
                 {
-                    d10 = this.posX + (this.newPosX - this.posX) / (double)this.newPosRotationIncrements;
-                    d0 = this.posY + (this.newPosY - this.posY) / (double)this.newPosRotationIncrements;
-                    d1 = this.posZ + (this.newPosZ - this.posZ) / (double)this.newPosRotationIncrements;
-                    d2 = MathHelper.wrapAngleTo180_double(this.newRotationYaw - (double)this.rotationYaw);
-                    this.rotationYaw = (float)((double)this.rotationYaw + d2 / (double)this.newPosRotationIncrements);
+                    interpolatedX2 = this.posX + (this.newPosX - this.posX) / (double)this.newPosRotationIncrements;
+                    interpolatedY2 = this.posY + (this.newPosY - this.posY) / (double)this.newPosRotationIncrements;
+                    interpolatedZ2 = this.posZ + (this.newPosZ - this.posZ) / (double)this.newPosRotationIncrements;
+                    deltaYaw = MathHelper.wrapAngleTo180_double(this.newRotationYaw - (double)this.rotationYaw);
+                    this.rotationYaw = (float)((double)this.rotationYaw + deltaYaw / (double)this.newPosRotationIncrements);
                     this.rotationPitch = (float)((double)this.rotationPitch + (this.newRotationPitch - (double)this.rotationPitch) / (double)this.newPosRotationIncrements);
                     --this.newPosRotationIncrements;
-                    this.setPosition(d10, d0, d1);
+                    this.setPosition(interpolatedX2, interpolatedY2, interpolatedZ2);
                     this.setRotation(this.rotationYaw, this.rotationPitch);
                 }
             }
             else
             {
-                d10 = this.targetX - this.posX;
-                d0 = this.targetY - this.posY;
-                d1 = this.targetZ - this.posZ;
-                d2 = d10 * d10 + d0 * d0 + d1 * d1;
+                double targetOffsetX = this.targetX - this.posX;
+                double targetOffsetY = this.targetY - this.posY;
+                double targetOffsetZ = this.targetZ - this.posZ;
+                double targetDistanceSquare = targetOffsetX * targetOffsetX + targetOffsetY * targetOffsetY + targetOffsetZ * targetOffsetZ;
 
                 if (this.target != null)
                 {
                     this.targetX = this.target.posX;
                     this.targetZ = this.target.posZ;
-                    double d3 = this.targetX - this.posX;
-                    double d5 = this.targetZ - this.posZ;
-                    double d7 = Math.sqrt(d3 * d3 + d5 * d5);
-                    double d8 = 0.4000000059604645D + d7 / 80.0D - 1.0D;
+                    double newTargetOffsetX = this.targetX - this.posX;
+                    double newTargetOffsetZ = this.targetZ - this.posZ;
+                    double newTargetDistanceXZ = Math.sqrt(newTargetOffsetX * newTargetOffsetX + newTargetOffsetZ * newTargetOffsetZ);
+                    double d8 = 0.4000000059604645D + newTargetDistanceXZ / 80.0D - 1.0D;
 
                     if (d8 > 10.0D)
                     {
@@ -210,37 +219,37 @@ public class EntityNidhoggEcho extends EntityLiving implements IEntityMultiPart,
                     this.targetZ += this.rand.nextGaussian() * 2.0D;
                 }
 
-                if (this.forceNewTarget || d2 < 100.0D || d2 > 22500.0D || this.isCollidedHorizontally || this.isCollidedVertically)
+                if (this.forceNewTarget || (targetDistanceSquare < 100.0D && target==null) || targetDistanceSquare > 22500.0D || ((this.isCollidedHorizontally || this.isCollidedVertically) && target==null))
                 {
                     this.setNewTarget();
                 }
 
-                d0 /= (double)MathHelper.sqrt_double(d10 * d10 + d1 * d1);
-                f12 = 0.6F;
+                double motionYTarget = (targetOffsetY / ((double)MathHelper.sqrt_double(targetOffsetX * targetOffsetX + targetOffsetZ * targetOffsetZ)));
+                double maxMotionYTarget = .6;
 
-                if (d0 < (double)(-f12))
+                if (motionYTarget < (-maxMotionYTarget))
                 {
-                    d0 = (double)(-f12);
+                    motionYTarget = (-maxMotionYTarget);
                 }
 
-                if (d0 > (double)f12)
+                if (motionYTarget > maxMotionYTarget)
                 {
-                    d0 = (double)f12;
+                    motionYTarget = maxMotionYTarget;
                 }
 
-                this.motionY += d0 * 0.10000000149011612D;
+                this.motionY += motionYTarget * 0.10000000149011612D;
                 this.rotationYaw = MathHelper.wrapAngleTo180_float(this.rotationYaw);
-                double d4 = 180.0D - Math.atan2(d10, d1) * 180.0D / Math.PI;
-                double d6 = MathHelper.wrapAngleTo180_double(d4 - (double)this.rotationYaw);
+                double targetYaw = 180.0D - Math.atan2(targetOffsetX, targetOffsetZ) * 180.0D / Math.PI;
+                double yawOffset = MathHelper.wrapAngleTo180_double(targetYaw - (double)this.rotationYaw);
 
-                if (d6 > 50.0D)
+                if (yawOffset > 50.0D)
                 {
-                    d6 = 50.0D;
+                    yawOffset = 50.0D;
                 }
 
-                if (d6 < -50.0D)
+                if (yawOffset < -50.0D)
                 {
-                    d6 = -50.0D;
+                    yawOffset = -50.0D;
                 }
 
                 Vec3 vec3 = Vec3.createVectorHelper(this.targetX - this.posX, this.targetY - this.posY, this.targetZ - this.posZ).normalize();
@@ -261,7 +270,7 @@ public class EntityNidhoggEcho extends EntityLiving implements IEntityMultiPart,
                     d9 = 40.0D;
                 }
 
-                this.randomYawVelocity = (float)((double)this.randomYawVelocity + d6 * (0.699999988079071D / d9 / (double)f6));
+                this.randomYawVelocity = (float)((double)this.randomYawVelocity + yawOffset * (0.699999988079071D / d9 / (double)f6));
                 this.rotationYaw += this.randomYawVelocity * 0.1F;
                 float f7 = (float)(2.0D / (d9 + 1.0D));
                 float f8 = 0.06F;
@@ -288,9 +297,9 @@ public class EntityNidhoggEcho extends EntityLiving implements IEntityMultiPart,
             this.dragonPartWing1.width = 4.0F;
             this.dragonPartWing2.height = 3.0F;
             this.dragonPartWing2.width = 4.0F;
-            f1 = (float)(this.getMovementOffsets(5, 1.0F)[1] - this.getMovementOffsets(10, 1.0F)[1]) * 10.0F / 180.0F * (float)Math.PI;
-            f2 = MathHelper.cos(f1);
-            float f10 = -MathHelper.sin(f1);
+            float flapPrev2 = (float)(this.getMovementOffsets(5, 1.0F)[1] - this.getMovementOffsets(10, 1.0F)[1]) * 10.0F / 180.0F * (float)Math.PI;
+            f2 = MathHelper.cos(flapPrev2);
+            float f10 = -MathHelper.sin(flapPrev2);
             float f3 = this.rotationYaw * (float)Math.PI / 180.0F;
             float f11 = MathHelper.sin(f3);
             float f4 = MathHelper.cos(f3);
@@ -308,7 +317,7 @@ public class EntityNidhoggEcho extends EntityLiving implements IEntityMultiPart,
 
             double[] adouble1 = this.getMovementOffsets(5, 1.0F);
             double[] adouble = this.getMovementOffsets(0, 1.0F);
-            f12 = MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F - this.randomYawVelocity * 0.01F);
+            float f12 = MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F - this.randomYawVelocity * 0.01F);
             float f13 = MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F - this.randomYawVelocity * 0.01F);
             this.dragonPartHead.onUpdate();
             this.dragonPartHead.setLocationAndAngles(this.posX + (double)(f12 * 5.5F * f2), this.posY + (adouble[1] - adouble1[1]) * 1.0D + (double)(f10 * 5.5F), this.posZ - (double)(f13 * 5.5F * f2), 0.0F, 0.0F);
@@ -368,6 +377,8 @@ public class EntityNidhoggEcho extends EntityLiving implements IEntityMultiPart,
     {
         this.forceNewTarget = false;
 
+        updateSource();
+        
         if (this.rand.nextInt(2) == 0)
         {
         	AxisAlignedBB aabb = this.boundingBox.expand(30, 30, 30);
@@ -386,9 +397,9 @@ public class EntityNidhoggEcho extends EntityLiving implements IEntityMultiPart,
 
             do
             {
-                this.targetX = 0.0D;
+                this.targetX = source.posX;
                 this.targetY = (double)(70.0F + this.rand.nextFloat() * 50.0F);
-                this.targetZ = 0.0D;
+                this.targetZ = source.posZ;
                 this.targetX += (double)(this.rand.nextFloat() * 120.0F - 60.0F);
                 this.targetZ += (double)(this.rand.nextFloat() * 120.0F - 60.0F);
                 double d0 = this.posX - this.targetX;
@@ -399,6 +410,13 @@ public class EntityNidhoggEcho extends EntityLiving implements IEntityMultiPart,
             while (!flag);
 
             this.target = null;
+        }
+    }
+
+    public void updateSource()
+    {
+        if(source==null) {
+        	source = FateHandler.getEntityFromKey(key);
         }
     }
 
@@ -461,6 +479,7 @@ public class EntityNidhoggEcho extends EntityLiving implements IEntityMultiPart,
     public void writeEntityToNBT(NBTTagCompound cmp)
     {
         super.writeEntityToNBT(cmp);
+        cmp.setBoolean(TAG_IS_STORED, isStored);
         cmp.setInteger(TAG_KEY, key);
     }
 
@@ -470,6 +489,7 @@ public class EntityNidhoggEcho extends EntityLiving implements IEntityMultiPart,
     public void readEntityFromNBT(NBTTagCompound cmp)
     {
         super.readEntityFromNBT(cmp);
+        isStored=cmp.getBoolean(TAG_IS_STORED);
         key=cmp.getInteger(TAG_KEY);
     }
     
@@ -534,5 +554,15 @@ public class EntityNidhoggEcho extends EntityLiving implements IEntityMultiPart,
 	public void setDead() {
 		FateHandler.setDead(this);
 		super.setDead();
+	}
+
+	@Override
+	public void setStored() {
+		this.isStored=true;
+	}
+
+	@Override
+	public boolean getStored() {
+		return isStored;
 	}
 }
