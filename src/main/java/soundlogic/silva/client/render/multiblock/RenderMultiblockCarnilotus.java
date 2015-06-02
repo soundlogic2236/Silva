@@ -33,7 +33,7 @@ public class RenderMultiblockCarnilotus extends RenderMultiblock{
 		CarnilotusTileData data = (CarnilotusTileData) tile.getTileData();
 		Tessellator tessellator = Tessellator.instance;
 		renderTeeth(tile,d0,d1,d2,ClientTickHandler.ticksInGame + ticks);
-		if(data.activated && multiblock.checkForEmpty(tile)) {
+		if(data.activated) {
 			for(int i = 0; i < 3 ; i++) {
 				for( int j = 0 ; j < 3 ; j++) {
 					int[] coords = multiblock.getTransformedCoords(tile, 2, i+1, j+1);
@@ -77,16 +77,17 @@ public class RenderMultiblockCarnilotus extends RenderMultiblock{
 				if(i != 1 || j != 1) {
 					int[] coords = multiblock.getTransformedCoords(tile, 4, i, j);
 					float angle = 0;
+					int end = 0;
 					switch(i*5+j) {
-					case 1:angle=90-baseAngle;break;
+					case 1:angle=90-baseAngle;end=-1;break;
 					case 2:angle=90-baseAngle;break;
-					case 3:angle=90-baseAngle;break;
-					case 5:angle=180-baseAngle;break;
+					case 3:angle=90-baseAngle;end=1;break;
+					case 5:angle=180-baseAngle;end=-1;break;
 					case 10:angle=180-baseAngle;break;
-					case 15:angle=180-baseAngle;break;
-					case 21:angle=270-baseAngle;break;
+					case 15:angle=180-baseAngle;end=1;break;
+					case 21:angle=270-baseAngle;end=-1;break;
 					case 22:angle=270-baseAngle;break;
-					case 23:angle=270-baseAngle;break;
+					case 23:angle=270-baseAngle;end=1;break;
 					default: continue;
 					}
 					angle = (angle+360) % 360;
@@ -95,14 +96,28 @@ public class RenderMultiblockCarnilotus extends RenderMultiblock{
 					float z = coords[2]+.5F;
 					int dx = angle == 90 ? 1 : angle == 270 ? -1 : 0;
 					int dz = angle == 0 ? -1 : angle == 180 ? 1 : 0;
+
+					if(tile.rotation==0)
+						end = end * (+dx + +dz);
+					if(tile.rotation==1)
+						end = end * (-dx + +dz);
+					if(tile.rotation==2)
+						end = end * (-dx + -dz);
+					if(tile.rotation==3)
+						end = end * (+dx + -dz);
+					
+					end = end == 0 ? -1 : end == 1 ? 0 : 3;
 					
 					x+=dx*.85F;
 					y-=.2F;
 					z+=dz*.85F;
 					
-					float pitch = angle + 90 + 180 * dz * dz;
 					for(int k = 0 ; k < 4 ; k++) { 
-						float roll = (float) (Math.sin(fraction*Math.PI*2+desync(coords[0],coords[1],coords[2],k))*10);
+						if(k==end)
+							continue;
+						double desync_val = desync(coords[0],coords[1],coords[2],k);
+						float pitch = angle + 90 + 180 * dz * dz + (float)Math.sin(desync_val*desync_val)*5F;
+						float roll = (float) (Math.sin(fraction*Math.PI*2+desync_val)*10);
 						float rx = (float) (x + dz*.25 - dz * .25 * (-.5+k));
 						float ry = y;
 						float rz = (float) (z + dx*.25 - dx * .25 * (-.5+k));

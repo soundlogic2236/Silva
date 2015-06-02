@@ -9,6 +9,8 @@ import soundlogic.silva.common.block.BlockMultiblockCore;
 import soundlogic.silva.common.block.BlockMultiblockProxy;
 import soundlogic.silva.common.block.BlockMultiblockProxyLava;
 import soundlogic.silva.common.block.BlockMultiblockProxyNoRender;
+import soundlogic.silva.common.block.BlockMultiblockProxyNoRenderWater;
+import soundlogic.silva.common.block.BlockMultiblockProxyWater;
 import soundlogic.silva.common.block.ModBlocks;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import net.minecraft.block.Block;
@@ -17,6 +19,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -26,7 +29,6 @@ import net.minecraft.world.World;
 public abstract class MultiblockDataBase {
 
 	protected BlockData[][][] creationRequirementsTemplate;
-	protected boolean[][][] proxyLocations;
 	protected BlockData[][][] persistanceAndCreationBlocks;
 	protected int[] templateOrigin;
 	
@@ -34,8 +36,6 @@ public abstract class MultiblockDataBase {
 	
 	public static HashMap<Block, List<MultiblockDataBase>> multiBlocks = new HashMap<Block, List<MultiblockDataBase>>();
 	public static HashMap<String, MultiblockDataBase> multiBlocksByName = new HashMap<String, MultiblockDataBase> ();
-	
-	int targetProxyCount = -1;
 	
 	public MultiblockDataBase(BlockData rootBlock) {
 		super();
@@ -70,15 +70,15 @@ public abstract class MultiblockDataBase {
 		return false;
 	}
 		
-	protected boolean matchesTemplateForPersistance(World world, int x, int y, int z, boolean mirrorX, boolean mirrorZ, int rotation) {
-		for(int i = 0;i<proxyLocations.length;i++) {
+	protected boolean matchesTemplateForPersistance(TileMultiblockCore core, World world, int x, int y, int z, boolean mirrorX, boolean mirrorZ, int rotation) {
+		for(int i = 0;i<persistanceAndCreationBlocks.length;i++) {
 			BlockData[][] templateSlice1=persistanceAndCreationBlocks[i];
 			for(int j = 0; j<templateSlice1.length;j++) {
 				BlockData[] templateSlice2=templateSlice1[j];
 				for(int k = 0;k<templateSlice2.length;k++) {
 					BlockData data = templateSlice2[k];
 					int[] coords = getTransformedCoords(x,y,z,i,j,k,mirrorX,mirrorZ,rotation);
-					if(!data.isValid(world, coords[0], coords[1], coords[2])) {
+					if(!data.isValid(core, world, coords[0], coords[1], coords[2])) {
 						return false;
 					}
 				}
@@ -88,7 +88,7 @@ public abstract class MultiblockDataBase {
 	}
 
 	protected boolean matchesTemplateForCreation(World world, int x, int y, int z, boolean mirrorX, boolean mirrorZ, int rotation) {
-		if(!requiredBlock.isValid(world, x, y, z))
+		if(!requiredBlock.isValid(null, world, x, y, z))
 			return false;
 		for(int i = 0;i<creationRequirementsTemplate.length;i++) {
 			BlockData[][] templateSlice1=creationRequirementsTemplate[i];
@@ -97,7 +97,7 @@ public abstract class MultiblockDataBase {
 				for(int k = 0;k<templateSlice2.length;k++) {
 					BlockData data = templateSlice2[k];
 					int[] transCoords = getTransformedCoords(x,y,z,i,j,k,mirrorX,mirrorZ,rotation);
-					if(!data.isValid(world, transCoords[0], transCoords[1], transCoords[2]))
+					if(!data.isValid(null, world, transCoords[0], transCoords[1], transCoords[2]))
 						return false;
 				}
 			}
@@ -130,50 +130,36 @@ public abstract class MultiblockDataBase {
 				for(int k = 0;k<templateSlice2.length;k++) {
 					BlockData data = templateSlice2[k];
 					int[] coords = getTransformedCoords(core,i,j,k);
-					curBlock = world.getBlock(coords[0], coords[1], coords[2]);
-					curMeta = world.getBlockMetadata(coords[0], coords[1], coords[2]);
-					curHardness = curBlock.getBlockHardness(world, coords[0], coords[1], coords[2]);
-					tempTile = world.getTileEntity(coords[0],coords[1],coords[2]);
-					curCompound = null;
-					if(tempTile!=null) {
-						curCompound = new NBTTagCompound();
-						tempTile.writeToNBT(curCompound);
-					}
 					if(coords[0] != x || coords[1] != y || coords[2] != z) {
-						data.setBlock(world, coords[0], coords[1], coords[2]);
-						TileEntity tile = world.getTileEntity(coords[0], coords[1], coords[2]);
-						if(tile!=null && tile instanceof TileMultiblockProxy) {
-							TileMultiblockProxy proxy = (TileMultiblockProxy)world.getTileEntity(coords[0], coords[1], coords[2]);
-							if(proxy!=null) {
-								proxy.setOriginalBlock(curBlock, curMeta, curCompound, curHardness);
-								proxy.relativeX=x-coords[0];
-								proxy.relativeY=y-coords[1];
-								proxy.relativeZ=z-coords[2];
-								proxy.getCore();
-								proxy.markDirty();
-							}
-						}
+						setBlock(data, core, world, coords[0], coords[1], coords[2]);
 					}
 				}
 			}
 		}
 		init(core);
-		markDirty(core);
-		onLoad(core);
 	}
 	
-	private void markDirty(TileMultiblockCore core) {
-		World world = core.getWorldObj();
-		for(int i = 0;i<proxyLocations.length;i++) {
-			boolean[][] templateSlice1=proxyLocations[i];
-			for(int j = 0; j<templateSlice1.length;j++) {
-				boolean[] templateSlice2=templateSlice1[j];
-				for(int k = 0;k<templateSlice2.length;k++) {
-					if(templateSlice2[k]) {
-						int[] coords = getTransformedCoords(core,i,j,k);
-						world.markBlockForUpdate(coords[0], coords[1], coords[2]);
-					}
-				}
+	public void setBlock(BlockData data, TileMultiblockCore core, World world, int x, int y, int z) {
+		Block curBlock = world.getBlock(x, y, z);
+		int curMeta = world.getBlockMetadata(x, y, z);
+		float curHardness = curBlock.getBlockHardness(world, x, y, z);
+		TileEntity tempTile = world.getTileEntity(x,y,z);
+		NBTTagCompound curCompound = null;
+		if(tempTile!=null) {
+			curCompound = new NBTTagCompound();
+			tempTile.writeToNBT(curCompound);
+		}
+		data.setBlock(core, world, x, y, z);
+		TileEntity tile = world.getTileEntity(x, y, z);
+		if(tile!=null && tile instanceof TileMultiblockProxy) {
+			TileMultiblockProxy proxy = (TileMultiblockProxy)world.getTileEntity(x, y, z);
+			if(proxy!=null) {
+				proxy.setOriginalBlock(curBlock, curMeta, curCompound, curHardness);
+				proxy.relativeX=core.xCoord-x;
+				proxy.relativeY=core.yCoord-y;
+				proxy.relativeZ=core.zCoord-z;
+				proxy.getCore();
+				proxy.markDirty();
 			}
 		}
 	}
@@ -250,55 +236,102 @@ public abstract class MultiblockDataBase {
 		Block block;
 		int metadata;
 		public static BlockData WILDCARD = new BlockData() {
-			public boolean isValid(World world, int x, int y, int z) {
+			@Override
+			public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
 				return true;
 			}
-			public void setBlock(World world, int x, int y, int z) {
+			@Override
+			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				//NO OP
 			}
 		};
 		public static BlockData AIR = new BlockData() {
-			public boolean isValid(World world, int x, int y, int z) {
+			@Override
+			public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
 				return world.isAirBlock(x, y, z);
 			}
-			public void setBlock(World world, int x, int y, int z) {
+			@Override
+			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				world.setBlockToAir(x, y, z);
 			}
 		};
 		
+		public static BlockData WATER = new BlockData() {
+			@Override
+			public boolean isValid(TileMultiblockCore multiblock, World world, int x, int y, int z) {
+				Block block = world.getBlock(x, y, z);
+				return 	block==Blocks.water ||
+						block==Blocks.flowing_water;
+			}
+			@Override
+			public void setBlock(TileMultiblockCore multiblock, World world, int x, int y, int z) {
+				world.setBlock(x, y, z, Blocks.water, 0, 0);
+			}
+		};
+		
 		public static BlockData MULTIBLOCK = new BlockData() {
-			public boolean isValid(World world, int x, int y, int z) {
+			@Override
+			public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
 				return world.getBlock(x, y, z) instanceof BlockMultiblockProxy;
 			}
-			public void setBlock(World world, int x, int y, int z) {
+			@Override
+			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				world.setBlock(x, y, z, ModBlocks.multiblockProxy,0,0);
 			}
 		};
 
 		public static BlockData MULTIBLOCK_CORE = new BlockData() {
-			public boolean isValid(World world, int x, int y, int z) {
+			@Override
+			public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
 				return world.getBlock(x, y, z) instanceof BlockMultiblockCore;
 			}
-			public void setBlock(World world, int x, int y, int z) {
+			@Override
+			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				world.setBlock(x, y, z, ModBlocks.multiblockCore,0,0);
 			}
 		};
 		
 		public static BlockData MULTIBLOCK_LAVA = new BlockData() {
-			public boolean isValid(World world, int x, int y, int z) {
+			@Override
+			public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
 				return world.getBlock(x, y, z) instanceof BlockMultiblockProxyLava;
 			}
-			public void setBlock(World world, int x, int y, int z) {
+			@Override
+			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				world.setBlock(x, y, z, ModBlocks.multiblockProxyLava,0,0);
 			}
 		};
 
+		public static BlockData MULTIBLOCK_WATER = new BlockData() {
+			@Override
+			public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
+				return world.getBlock(x, y, z) instanceof BlockMultiblockProxyWater;
+			}
+			@Override
+			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
+				world.setBlock(x, y, z, ModBlocks.multiblockProxyWater,0,0);
+			}
+		};
+
 		public static BlockData MULTIBLOCK_NO_RENDER = new BlockData() {
-			public boolean isValid(World world, int x, int y, int z) {
+			@Override
+			public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
 				return world.getBlock(x, y, z) instanceof BlockMultiblockProxyNoRender;
 			}
-			public void setBlock(World world, int x, int y, int z) {
+			@Override
+			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				world.setBlock(x, y, z, ModBlocks.multiblockProxyNoRender,0,0);
+			}
+		};
+		
+		public static BlockData MULTIBLOCK_NO_RENDER_WATER = new BlockData() {
+			@Override
+			public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
+				return world.getBlock(x, y, z) instanceof BlockMultiblockProxyNoRenderWater;
+			}
+			@Override
+			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
+				world.setBlock(x, y, z, ModBlocks.multiblockProxyNoRenderWater,0,0);
 			}
 		};
 		
@@ -311,48 +344,12 @@ public abstract class MultiblockDataBase {
 			this.metadata=meta;
 		}
 		
-		public boolean isValid(World world, int x, int y, int z) {
+		public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
 			return world.getBlock(x, y, z)==block && world.getBlockMetadata(x, y, z)==metadata;
 		}
 
-		public void setBlock(World world, int x, int y, int z) {
+		public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 			world.setBlock(x, y, z, block, metadata, 0);
-		}
-	}
-	
-	protected void checkProxyList(TileMultiblockCore core) {
-		if(targetProxyCount==-1) {
-			targetProxyCount=0;
-			for(int i = 0;i<proxyLocations.length;i++) {
-				boolean[][] templateSlice1=proxyLocations[i];
-				for(int j = 0; j<templateSlice1.length;j++) {
-					boolean[] templateSlice2=templateSlice1[j];
-					for(int k = 0;k<templateSlice2.length;k++) {
-						if(templateSlice2[k]) {
-							targetProxyCount++;
-						}
-					}
-				}
-			}
-		}
-		if(core.proxies.size()!=targetProxyCount) {
-			if(targetProxyCount==-1) {
-				targetProxyCount=0;
-				for(int i = 0;i<proxyLocations.length;i++) {
-					boolean[][] templateSlice1=proxyLocations[i];
-					for(int j = 0; j<templateSlice1.length;j++) {
-						boolean[] templateSlice2=templateSlice1[j];
-						for(int k = 0;k<templateSlice2.length;k++) {
-							if(templateSlice2[k]) {
-								int[] coords = getTransformedCoords(core,i,j,k);
-								TileEntity tile = core.getWorldObj().getTileEntity(coords[0], coords[1], coords[2]);
-								if(tile instanceof TileMultiblockProxy)
-									((TileMultiblockProxy) tile).getCore();
-							}
-						}
-					}
-				}
-			}
 		}
 	}
 	
@@ -363,8 +360,8 @@ public abstract class MultiblockDataBase {
 	public abstract void onTick(TileMultiblockCore core);
 	public abstract void onCollision(TileMultiblockBase tile, TileMultiblockCore core, Entity ent);
 	public abstract void init(TileMultiblockCore core);
-	public abstract void onLoad(TileMultiblockCore core);
 	public abstract void setVisualData(TileMultiblockCore core, TileMultiblockBase tile, int x, int y, int z);
+	public abstract void setPhysicalData(TileMultiblockCore core, TileMultiblockBase tile, int x, int y, int z);
 	public abstract void renderHUD(TileMultiblockBase tile, TileMultiblockCore core, Minecraft mc, ScaledResolution res);
 	public abstract void onWanded(TileMultiblockBase tile, TileMultiblockCore core, EntityPlayer player, ItemStack stack);
 	public abstract String getUnlocalizedName();

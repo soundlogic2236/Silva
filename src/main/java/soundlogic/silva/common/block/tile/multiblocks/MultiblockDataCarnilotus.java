@@ -18,6 +18,7 @@ import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.mana.IManaPool;
 import vazkii.botania.client.core.handler.HUDHandler;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderHelper;
@@ -52,6 +53,8 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 
 public class MultiblockDataCarnilotus extends MultiblockDataBase {
 	
+	protected boolean[][][] proxyLocationsWithAcid;
+
 	private ArrayList<EntityItem> trackedItems = new ArrayList<EntityItem>();
 	private int maxMana = 20000;
 	
@@ -71,7 +74,8 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 		BlockData blackPetal = new BlockData(vazkii.botania.common.block.ModBlocks.petalBlock,15);
 		BlockData ironBar = new BlockData(Blocks.iron_bars,0);
 		BlockData manaEater = new BlockData() {
-			public boolean isValid(World world, int x, int y, int z) {
+			@Override
+			public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
 				if(!(world.getBlock(x, y, z) instanceof BlockManaEater))
 					return false;
 				TileEntity tile = world.getTileEntity(x, y, z);
@@ -80,8 +84,25 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 				TileManaEater eater = (TileManaEater) tile;
 				return Math.abs(eater.rotationY % 360 - 90 ) < 20;
 			}
-			public void setBlock(World world, int x, int y, int z) {
+			@Override
+			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				world.setBlock(x, y, z, ModBlocks.manaEater,0,0);
+			}
+		};
+		BlockData airOrWaterOrAcid = new BlockData() {
+			@Override
+			public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
+				if(core==null)
+					return BlockData.AIR.isValid(core, world, x, y, z);
+				CarnilotusTileData data = (CarnilotusTileData) core.tileData;
+				if(data.activated)
+					return BlockData.MULTIBLOCK_NO_RENDER_WATER.isValid(core, world, x, y, z);
+				return BlockData.WATER.isValid(core, world, x, y, z) ||
+						BlockData.AIR.isValid(core, world, x, y, z);
+			}
+			@Override
+			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
+				BlockData.WILDCARD.setBlock(core, world, x, y, z);
 			}
 		};
 
@@ -130,49 +151,6 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 			};
 
 		templateOrigin = new int[] {2,0,5};
-		proxyLocations = new boolean[][][] {
-				{{false, false, false, false, false,false},
-				 {false, true, true, true, false, false},
-				 {false, true, true, true, false, true},
-				 {false, true, true, true, false, false},
-				 {false, false, false, false, false, false}},
-					
-				{{false, true, true, true, false, false},
-				 {true, false, false, false, true, false},
-				 {true, false, false, false, true, true},
-				 {true, false, false, false, true, false},
-				 {false, true, true, true, false, false}},
-					
-				{{false, true, true, true, false, false},
-				 {true, false, false, false, true, false},
-				 {true, false, false, false, true, false},
-				 {true, false, false, false, true, false},
-				 {false, true, true, true, false, false}},
-					
-				{{false, true, true, true, false, false},
-				 {true, false, false, false, true, false},
-				 {true, false, false, false, true, false},
-				 {true, false, false, false, true, false},
-				 {false, true, true, true, false, false}},
-					
-				{{false, true, true, true, false, false},
-				 {true, false, false, false, true, false},
-				 {true, false, false, false, true, false},
-				 {true, false, false, false, true, false},
-				 {false, true, true, true, false, false}},
-						
-				{{false, false, false, false, true, false},
-				 {false, false, false, false, true, false},
-				 {false, false, false, false, true, false},
-				 {false, false, false, false, true, false},
-				 {false, false, false, false, true, false}},
-				 
-				{{false, false, false, false, true, false},
-				 {false, false, false, false, true, false},
-				 {false, false, false, false, true, false},
-				 {false, false, false, false, true, false},
-				 {false, false, false, false, true, false}},
-		};
 		persistanceAndCreationBlocks = new BlockData[][][] {
 				{{BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD,BlockData.WILDCARD},
 				 {BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK, BlockData.WILDCARD, BlockData.WILDCARD},
@@ -181,15 +159,15 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 				 {BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD,BlockData.WILDCARD}},
 					
 				{{BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK, BlockData.WILDCARD,BlockData.WILDCARD},
-				 {BlockData.MULTIBLOCK, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.WILDCARD},
-				 {BlockData.MULTIBLOCK, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK},
-				 {BlockData.MULTIBLOCK, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.WILDCARD},
+				 {BlockData.MULTIBLOCK, airOrWaterOrAcid, airOrWaterOrAcid, airOrWaterOrAcid, BlockData.MULTIBLOCK, BlockData.WILDCARD},
+				 {BlockData.MULTIBLOCK, airOrWaterOrAcid, airOrWaterOrAcid, airOrWaterOrAcid, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK},
+				 {BlockData.MULTIBLOCK, airOrWaterOrAcid, airOrWaterOrAcid, airOrWaterOrAcid, BlockData.MULTIBLOCK, BlockData.WILDCARD},
 				 {BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK, BlockData.WILDCARD,BlockData.WILDCARD}},
 					
 				{{BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK, BlockData.WILDCARD,BlockData.WILDCARD},
-				 {BlockData.MULTIBLOCK, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.WILDCARD},
-				 {BlockData.MULTIBLOCK, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.WILDCARD},
-				 {BlockData.MULTIBLOCK, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.WILDCARD},
+				 {BlockData.MULTIBLOCK, airOrWaterOrAcid, airOrWaterOrAcid, airOrWaterOrAcid, BlockData.MULTIBLOCK, BlockData.WILDCARD},
+				 {BlockData.MULTIBLOCK, airOrWaterOrAcid, airOrWaterOrAcid, airOrWaterOrAcid, BlockData.MULTIBLOCK, BlockData.WILDCARD},
+				 {BlockData.MULTIBLOCK, airOrWaterOrAcid, airOrWaterOrAcid, airOrWaterOrAcid, BlockData.MULTIBLOCK, BlockData.WILDCARD},
 				 {BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK, BlockData.WILDCARD,BlockData.WILDCARD}},
 					
 				{{BlockData.WILDCARD, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK, BlockData.MULTIBLOCK, BlockData.WILDCARD,BlockData.WILDCARD},
@@ -288,7 +266,7 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 				core.getWorldObj().markBlockForUpdate(core.xCoord, core.yCoord, core.zCoord);
 			}
 		}
-		else if (data.activated && checkForEmpty(core)) {
+		else if (data.activated) {
 			List<EntityLivingBase> ents = core.getWorldObj().getEntitiesWithinAABB(EntityLivingBase.class, aabb);
 			AxisAlignedBB bite = this.getBiteBounds(core);
 			for(EntityLivingBase ent : ents) {
@@ -393,22 +371,11 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 				for( int k = 0 ; k < 2 ; k++) {
 					int[] coords = getTransformedCoords(core, k+1, i+1, j+1);
 					core.getWorldObj().setBlockToAir(coords[0], coords[1],coords[2]);
+					setBlock(BlockData.MULTIBLOCK_NO_RENDER_WATER, core, core.getWorldObj(), coords[0], coords[1], coords[2]);
 				}
 			}
 		}
-	}
-
-	public boolean checkForEmpty(TileMultiblockCore core) {
-		for(int i = 0; i < 3 ; i++) {
-			for( int j = 0 ; j < 3 ; j++) {
-				for( int k = 0 ; k < 2 ; k++) {
-					int[] coords = getTransformedCoords(core, k+1, i+1, j+1);
-					if(!core.getWorldObj().isAirBlock(coords[0], coords[1],coords[2]))
-						return false;
-				}
-			}
-		}
-		return true;
+		core.markForRefresh();
 	}
 
 	private AxisAlignedBB getWaterBounds(TileMultiblockCore core) {
@@ -445,7 +412,10 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 	public void setVisualData(TileMultiblockCore core, TileMultiblockBase tile, int x, int y, int z) {
 		int[] coords = this.convertRelativeCoords(core, tile);
 		IIcon outside = null;
-		if(tile.getOriginalBlock()==vazkii.botania.common.block.ModBlocks.livingwood) {
+		if(tile.getBlockType().getMaterial().equals(Material.water)) {
+			tile.iconsForSides=new IIcon[]{iconAcid,iconAcid,iconAcid,iconAcid,iconAcid,iconAcid};
+		}
+		else if(tile.getOriginalBlock()==vazkii.botania.common.block.ModBlocks.livingwood) {
 			tile.iconsForSides=new IIcon[]{iconStem,iconStem,iconStem,iconStem,iconStem,iconStem};
 		}
 		else if(tile.getOriginalBlock()==vazkii.botania.common.block.ModBlocks.petalBlock) {
@@ -518,45 +488,50 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 	}
 
     @Override
-	public void onLoad(TileMultiblockCore core) {
-		for(TileMultiblockProxy proxy : core.proxies) {
-			if(proxy.getOriginalBlock() == Blocks.iron_bars) {
-				proxy.solid=false;
-				proxy.maxBBY=.5F;
-			}
-			if(proxy.getOriginalBlock()==vazkii.botania.common.block.ModBlocks.petalBlock || proxy.getOriginalBlock() == Blocks.iron_bars) {
-				int[] coords = this.convertRelativeCoords(core, proxy);
-				int innerFace = -1;
-				if(coords[2] == 0)
-					switch(core.rotation) {
-					case 0: innerFace = 3;break;
-					case 1: innerFace = 5;break;
-					case 2: innerFace = 2;break;
-					case 3: innerFace = 4;break;
-					}
-				else if(coords[2] == 4)
-					innerFace = -1;
-				else if(coords[1] == 0)
-					switch(core.rotation) {
-					case 0: innerFace = 5;break;
-					case 1: innerFace = 2;break;
-					case 2: innerFace = 4;break;
-					case 3: innerFace = 3;break;
-					}
-				else if(coords[1] == 4)
-					switch(core.rotation) {
-					case 0: innerFace = 4;break;
-					case 1: innerFace = 3;break;
-					case 2: innerFace = 5;break;
-					case 3: innerFace = 2;break;
-					}
-				if(innerFace!=-1) {
-					ForgeDirection dir = ForgeDirection.values()[innerFace];
-					proxy.minBBX=dir.offsetX>0 ? .5F : 0F;
-					proxy.minBBZ=dir.offsetZ>0 ? .5F : 0F;
-					proxy.maxBBX=dir.offsetX<0 ? .5F : 1F;
-					proxy.maxBBZ=dir.offsetZ<0 ? .5F : 1F;
+	public void setPhysicalData(TileMultiblockCore core, TileMultiblockBase tile, int x, int y, int z) {
+		if(tile.getBlockType().getMaterial().equals(Material.water)) {
+			tile.solid=false;
+			tile.lightValue=15;
+			int[] coords = this.convertRelativeCoords(core, tile);
+			if(coords[0]==2)
+				tile.maxBBY=15F/16F;
+		}
+		if(tile.getOriginalBlock() == Blocks.iron_bars) {
+			tile.solid=false;
+			tile.maxBBY=.5F;
+		}
+		if(tile.getOriginalBlock()==vazkii.botania.common.block.ModBlocks.petalBlock || tile.getOriginalBlock() == Blocks.iron_bars) {
+			int[] coords = this.convertRelativeCoords(core, tile);
+			int innerFace = -1;
+			if(coords[2] == 0)
+				switch(core.rotation) {
+				case 0: innerFace = 3;break;
+				case 1: innerFace = 5;break;
+				case 2: innerFace = 2;break;
+				case 3: innerFace = 4;break;
 				}
+			else if(coords[2] == 4)
+				innerFace = -1;
+			else if(coords[1] == 0)
+				switch(core.rotation) {
+				case 0: innerFace = 5;break;
+				case 1: innerFace = 2;break;
+				case 2: innerFace = 4;break;
+				case 3: innerFace = 3;break;
+				}
+			else if(coords[1] == 4)
+				switch(core.rotation) {
+				case 0: innerFace = 4;break;
+				case 1: innerFace = 3;break;
+				case 2: innerFace = 5;break;
+				case 3: innerFace = 2;break;
+				}
+			if(innerFace!=-1) {
+				ForgeDirection dir = ForgeDirection.values()[innerFace];
+				tile.minBBX=dir.offsetX>0 ? .5F : 0F;
+				tile.minBBZ=dir.offsetZ>0 ? .5F : 0F;
+				tile.maxBBX=dir.offsetX<0 ? .5F : 1F;
+				tile.maxBBZ=dir.offsetZ<0 ? .5F : 1F;
 			}
 		}
 	}
@@ -620,8 +595,6 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 		for(int i = 0 ; i < 7 ; i++)
 			iconTransition[i] = par1IconRegister.registerIcon(LibResources.CARNILOTUS_TRANSITION+i);
 	}
-
-
 
 	public boolean shouldTryTransform(int trial, boolean mirrorX, boolean mirrorZ, int rot) { return !mirrorX && !mirrorZ; }
 

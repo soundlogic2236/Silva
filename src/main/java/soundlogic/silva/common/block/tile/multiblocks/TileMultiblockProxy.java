@@ -37,8 +37,10 @@ public class TileMultiblockProxy extends TileMultiblockBase{
 			TileEntity tile = worldObj.getTileEntity(xCoord+relativeX,yCoord+relativeY,zCoord+relativeZ);
 			if(tile instanceof TileMultiblockCore)
 				core=(TileMultiblockCore) tile;
-			if(core!=null)
+			if(core!=null) {
+				this.needsRefresh=true;
 				core.proxies.add(this);
+			}
 		}
 		return core;
 	}

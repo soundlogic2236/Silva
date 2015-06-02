@@ -47,6 +47,8 @@ public abstract class BlockMultiblockBase extends BlockContainer implements IWan
 		if(world.isRemote)
 			return;
 		TileMultiblockBase tile = (TileMultiblockBase) world.getTileEntity(x, y, z);
+		if(tile.getCore()==null || tile.getCore().getData()==null)
+			return;
 		tile.getCore().getData().onCollision(tile, tile.getCore(), ent);
 	}
 	

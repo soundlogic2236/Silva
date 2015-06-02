@@ -106,43 +106,6 @@ public class MultiblockDataLavashroom extends MultiblockDataBase {
 					 {BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD}},
 			};
 		templateOrigin = new int[] {2,1,2};
-		proxyLocations = new boolean[][][] {
-				{{false, false, false, false, false},
-					 {false, false, false, false, false},
-					 {false, false, false, false, false},
-					 {false, false, false, false, false},
-					 {false, false, false, false, false}},
-					
-					{{false, false, false, false, false},
-					 {false, false, false, false, false},
-					 {false, false, true, false, false},
-					 {false, false, false, false, false},
-					 {false, false, false, false, false}},
-						
-					{{false, true, true, true, false},
-					 {true, false, false, false, true},
-					 {true, false, true, false, true},
-					 {true, false, false, false, true},
-					 {false, true, true, true, false}},
-
-					{{false, true, true, true, false},
-					 {true, false, false, false, true},
-					 {true, false, true, false, true},
-					 {true, false, false, false, true},
-					 {false, true, true, true, false}},
-
-					{{false, true, true, true, false},
-					 {true, false, false, false, true},
-					 {true, false, true, false, true},
-					 {true, false, false, false, true},
-					 {false, true, true, true, false}},
-
-					{{false, false, false, false, false},
-					 {false, true, true, true, false},
-					 {false, true, false, true, false},
-					 {false, true, true, true, false},
-					 {false, false, false, false, false}},
-		};
 		persistanceAndCreationBlocks = new BlockData[][][] {
 				{{BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD},
 				 {BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD},
@@ -348,16 +311,10 @@ public class MultiblockDataLavashroom extends MultiblockDataBase {
 	}
 
     @Override
-	public void onLoad(TileMultiblockCore core) {
+	public void setPhysicalData(TileMultiblockCore core, TileMultiblockBase tile, int x, int y, int z) {
 		LavashroomTileData data = (LavashroomTileData) core.tileData;
-		for(TileMultiblockProxy proxy : core.proxies) {
-			int[] pos = proxy.getRelativePos();
-			int x = pos[0];
-			int y = pos[1];
-			int z = pos[2];
-			if(y<=2 && (x!=0 || z!=0)) {
-				proxy.solid=false;
-			}
+		if(y<=2 && (x!=0 || z!=0)) {
+			tile.solid=false;
 		}
 	}
 

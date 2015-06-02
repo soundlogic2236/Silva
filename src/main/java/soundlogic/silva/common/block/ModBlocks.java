@@ -62,7 +62,9 @@ public class ModBlocks {
 	public static Block multiblockProxy;
 	public static Block multiblockCore;
 	public static Block multiblockProxyLava;
+	public static Block multiblockProxyWater;
 	public static Block multiblockProxyNoRender;
+	public static Block multiblockProxyNoRenderWater;
 
 	public static Block consumingWeed;
 	public static Block dwarfWeed;
@@ -169,8 +171,14 @@ public class ModBlocks {
 		multiblockProxyLava=new BlockMultiblockProxyLava().setBlockName(LibBlockNames.MULTIBLOCK_PROXY_LAVA);
 		GameRegistry.registerBlock(multiblockProxyLava, ItemBlockMod.class, LibBlockNames.MULTIBLOCK_PROXY_LAVA);
 		
+		multiblockProxyWater=new BlockMultiblockProxyWater().setBlockName(LibBlockNames.MULTIBLOCK_PROXY_WATER);
+		GameRegistry.registerBlock(multiblockProxyWater, ItemBlockMod.class, LibBlockNames.MULTIBLOCK_PROXY_WATER);
+		
 		multiblockProxyNoRender=new BlockMultiblockProxyNoRender(Material.glass).setBlockName(LibBlockNames.MULTIBLOCK_PROXY_NO_RENDER);
 		GameRegistry.registerBlock(multiblockProxyNoRender, ItemBlockMod.class, LibBlockNames.MULTIBLOCK_PROXY_NO_RENDER);
+		
+		multiblockProxyNoRenderWater=new BlockMultiblockProxyNoRenderWater().setBlockName(LibBlockNames.MULTIBLOCK_PROXY_NO_RENDER_WATER);
+		GameRegistry.registerBlock(multiblockProxyNoRenderWater, ItemBlockMod.class, LibBlockNames.MULTIBLOCK_PROXY_NO_RENDER_WATER);
 		
 		darkenedStone=new BlockContraryMultiple(Material.rock,5).setEntry(LexiconData.darkElfResources).setBlockName(LibBlockNames.DARKENED_STONE);
 		GameRegistry.registerBlock(darkenedStone, ItemBlockModMultiple.class, LibBlockNames.DARKENED_STONE);

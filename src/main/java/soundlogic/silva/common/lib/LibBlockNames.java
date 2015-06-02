@@ -72,8 +72,12 @@ public class LibBlockNames {
 
 	public static final String MULTIBLOCK_PROXY_LAVA = "multiblockProxyLava";
 
+	public static final String MULTIBLOCK_PROXY_WATER = "multiblockProxyWater";
+
 	public static final String MULTIBLOCK_PROXY_NO_RENDER = "multiblockProxyNoRender";
 
+	public static final String MULTIBLOCK_PROXY_NO_RENDER_WATER = "multiblockProxyNoRenderWater";
+	
 	public static final String DARKENED_STONE = "darkenedStone";
 
 	public static final String SUBTILE_RHODODENDER = "subtileRhododender";
@@ -93,5 +97,7 @@ public class LibBlockNames {
 	public static final String COLORED_DUST = "coloredDust";
 
 	public static final String SUBTILE_GLITTERELLE = "subtileGlitterelle";
+
+
 
 }

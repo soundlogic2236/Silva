@@ -37,18 +37,20 @@ public abstract class TileMultiblockBase extends TileMod{
 	public float maxBBY = 1;
 	public float maxBBZ = 1;
 	
-	private boolean visualNeedsRefresh = true;
+	protected boolean needsRefresh = true;
 	public int lightValue = -1;
 	public float hardness = -2;
 	
 	@Override
 	public void updateEntity() {
-		if(worldObj.isRemote && visualNeedsRefresh) {
+		if(needsRefresh) {
 			int[] coords = getRelativePos();
 			if(getCore()!=null && getCore().data!=null) {
-				getCore().data.setVisualData(getCore(), this, coords[0], coords[1], coords[2]);
+				if(worldObj.isRemote)
+					getCore().data.setVisualData(getCore(), this, coords[0], coords[1], coords[2]);
+				getCore().data.setPhysicalData(getCore(), this, coords[0], coords[1], coords[2]);
 				worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-				visualNeedsRefresh = false;
+				needsRefresh = false;
 			}
 		}
 		else if(!isValid())
@@ -96,7 +98,7 @@ public abstract class TileMultiblockBase extends TileMod{
 		this.maxBBY=cmp.getFloat(TAG_BB+"maxY");
 		this.maxBBZ=cmp.getFloat(TAG_BB+"maxZ");
 		if(cmp.hasKey(TAG_NEEDS_REFRESH))
-			this.visualNeedsRefresh = cmp.getBoolean(TAG_NEEDS_REFRESH);
+			this.needsRefresh = cmp.getBoolean(TAG_NEEDS_REFRESH);
 		if(cmp.hasKey(TAG_ORIGINAL_NBT))
 			originalNBT=cmp.getCompoundTag(TAG_ORIGINAL_NBT);
 	}
@@ -117,7 +119,7 @@ public abstract class TileMultiblockBase extends TileMod{
 		return this.originalNBT;
 	}
 	public void markForRefresh() {
-		this.visualNeedsRefresh=true;
+		this.needsRefresh=true;
 		if(!worldObj.isRemote) {
 			NBTTagCompound nbttagcompound = new NBTTagCompound();
 			writeCustomNBT(nbttagcompound);

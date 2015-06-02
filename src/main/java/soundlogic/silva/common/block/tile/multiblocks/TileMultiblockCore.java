@@ -17,6 +17,7 @@ public class TileMultiblockCore extends TileMultiblockBase{
 
 	MultiblockDataBase data;
 	IMultiblockTileData tileData;
+
 	public List<TileMultiblockProxy> proxies = new ArrayList<TileMultiblockProxy>();
 	
 	public boolean mirrorX = false;
@@ -51,8 +52,6 @@ public class TileMultiblockCore extends TileMultiblockBase{
 		if(tileData==null)
 			tileData=data.createTileData();
 		tileData.readCustomNBT(cmp);
-		data.checkProxyList(this);
-		data.onLoad(this);
 	}
 	
 	public void setData(MultiblockDataBase data) {
@@ -76,7 +75,7 @@ public class TileMultiblockCore extends TileMultiblockBase{
 	@Override
 	public boolean isValid() {
 		if(data!=null)
-			return data.matchesTemplateForPersistance(worldObj, xCoord, yCoord, zCoord, mirrorX, mirrorZ, rotation);
+			return data.matchesTemplateForPersistance(this, worldObj, xCoord, yCoord, zCoord, mirrorX, mirrorZ, rotation);
 		return false;
 	}
 
