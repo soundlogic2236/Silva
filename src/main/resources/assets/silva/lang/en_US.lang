@@ -39,7 +39,7 @@ silva.dimension.vanaheimr=Vanaheim
 
 # KNOWLEDGE
 botania.knowledge.worldTree=&5World Tree&7 Knowledge
-botania.knowledge.dwarven=&4Dwarven&7 Knowledge
+botania.knowledge.dwarven=&8Dwarven&7 Knowledge
 botania.knowledge.darkElf=&fDark Elf&7 Knowledge
 
 # BLOCK NAMES
@@ -112,9 +112,12 @@ item.silva:chargedStone.name=Realm Stone
 
 # LEXICON CATEGORIES
 silva.category.worldTree=The World Tree
+silva.category.dwarven=Dwarven Trade
+silva.category.darkElf=The Dark Elves
 
 
 # LEXICON ENTRIES
+
 
 # - MISC
 # -- BUNDLES OF PAPER
@@ -152,7 +155,7 @@ silva.page.worldTreeIntro2=The &4World Tree&0 is surrounded by the great &4Ginnu
 silva.entry.advancedPortals=Advanced Portals
 silva.page.advancedPortals0=Since Thor shattered the original bridge, we have had an increasing dependence on smaller, weaker portals akin to the one you initially created. While they do not, at least by methods known to us, permit the travel of living beings, they have facilitated a partial reconstruction of the &4trade network&0 between realms. While the portal you created out of wood and metal is impressive for such an
 silva.page.advancedPortals1=ad-hoc creation, portals constructed from &4Bifrost&0 are far more refined, adaptable, and efficient. Said portal can be tuned to connect to any of the nine realms, and any locations within with their own signature. The portal not only permits trade, but also lets some of each realm's underlying magical essence leak through, manifesting as specific effects in the portal's vicinity.
-silva.page.advancedPortals2=The full requirements for the portal are as follows: 8 &1Bifrost Blocks&0, 4 &1Bifrost Stairs&0, 3 &1Sparkling Bifrost Blocks&0, a &1Portal Core&0 (read on), and 2 &1Portal Pylons&0 (read on), as well as a &4dimensional signature&0 (read on)
+silva.page.advancedPortals2=The full requirements for the portal are as follows CHANGE ME: 8 &1Bifrost Blocks&0, 4 &1Bifrost Stairs&0, 3 &1Sparkling Bifrost Blocks&0, a &1Portal Core&0 (read on), and 2 &1Portal Pylons&0 (read on), as well as a &4dimensional signature&0 (read on)
 silva.page.advancedPortals3=A &4dimensional signature&0 tunes the portal to its target location, usually a realm, but occasionally a location within. A signature is drawn in front of the portal, normally with &1pixie dust&0 in &4Alfheim&0, though any dust with some magical nature should suffice. Each signature has a specific shape, all of them fitting within a 5 by 3 space. I have included the signatures known to us in these papers.
 silva.page.advancedPortals4=Creating the &1Portal Core&0
 silva.page.advancedPortals5=Creating &1Portal Pylons&0
@@ -305,7 +308,7 @@ silva.page.dwarvenBarrierStone2=Trading for &1Dwarven Barrier Stones&0
 # -- DWARVEN CHAIN
 silva.entry.dwarvenChain=Dwarven Chain
 silva.page.dwarvenChain0=The great chain Gleipnir was crafted by our kind to bind the mighty wolf Fenrir, and is the only object known to be able to. Crafted from the sound of a cat's footfall, the beard of a woman, the roots of a mountain, the sinews of a bear, the breath of a fish, and the spittle of a bird it was a magnificent thing. But who has the time to get all that?
-silva.page.dwarvenChain1=Nonetheless, the same techniques can be used with more typical materials to craft a mighty, if not completely unstoppable, chain which can be used to bind other creatures even if they resist. A &1Dwarven Chain&0 functions like a &1Lead&0, but it can be used on creatures more aggressive than your typical pet or livestock.
+silva.page.dwarvenChain1=Nonetheless, the same techniques can be used with more typical materials to craft a mighty, if not completely unstoppable, chain which can be used to bind other creatures even if they resist. A &1Dwarven Chain&0 functions much like a rope &1Lead&0, but it can be used on creatures more aggressive than your typical pet or livestock.
 silva.page.dwarvenChain2=Trading for &1Dwarven Chains&0
 
 # -- DWARVEN MANA POOL
@@ -367,9 +370,9 @@ silva.page.darkElfDesc5=The second most common relationship is teaching. In an a
 silva.page.darkElfDesc6=It is this relationship that makes the &4fools&0 an actual threat. While they lack any sort of depth of understanding of what they do, the instructions they are given are well tuned to getting around such limits, permitting them acts of cleverness well beyond their intelligence.
 silva.page.darkElfDesc7=However, due to their lack of understanding, such actions are fairly easy to manipulate - for example, leaving a portal open and unattended will often lure a &4fool&0 through for an act of &4sabotage&0, and their inability to actually understand the mechanisms means that one can harness the admittedly great engineering skills of the &4menaces&0.
 silva.page.darkElfDesc8=An illustrative example of such a '&4recipe&0' is one of the most common, tampering with a &1Mana Spreader&0 so as to reverse it, making its &4Mana Bursts&0 drain &4Mana&0 from the target &1Mana Pool&0 into the one adjacent to the modified spreader, ruining any mechanism not made with such a behavior in mind.
-silva.page.darkElfDesc9=However, due to &4fools&0' lack of understanding, they cannot determine if it is truly part of a vulnerable mechanism-simply placing a spreader near an unattended portal results in them converting it, and the new device can be used, in a somewhat unorthodox manner, to transport mana at a greater rate than even a gaia spreader!
+silva.page.darkElfDesc9=However, due to &4fools&0' lack of understanding, they cannot determine if it is truly part of a vulnerable mechanism-simply placing a spreader near an unattended portal results in them converting it, and these new &1Mana Eaters&1 can be used, in a somewhat unorthodox manner, to transport mana at a greater rate than even a &1Gaia Spreader&0, and in some cases using fewer spreaders than typical methods would require.
 silva.page.darkElfDesc10=The third relationship is the most dangerous, and fortunately incredibly rare: armies. Through some mechanism, a &4menace&0 may manage to recruit a vast number of &4fools&0 and lesser &4menaces&0 for an extended period of time, enabling them to form a somwehat coherent army. Such armies carry terrible and destructive weapons invented by the greater &4menaces&0.
-silva.page.darkElfDesc11=No such army has been seen since the &4Shattering&0, which, given their knowledge of how to traverse &4Bifrost portals&0, is incredibly fortunate. Should they form an army, they would be a devastating force against all the realms.
+silva.page.darkElfDesc11=No such army has been seen since the &4Shattering&0, which, given their knowledge on traversal of &4Bifrost portals&0, is incredibly fortunate. Should they form an army, they would be a devastating force against all the realms.
 
 # -- CARNILOTUS
 silva.entry.carnilotus=Carnilotus
@@ -426,6 +429,16 @@ silva.page.movingEnchantments7=Transfering &4Enchantments&0 (&1Paradox Wood&0 is
 silva.page.movingEnchantments8=After the transfer, the paradox item will require additional power to loosen its newly-gained bonds with the &4enchantments&0. This power can be gained by killing creatures while having the item in your inventory, and will gain power in proportion to the &4XP&0 dropped. Once it is full, simply craft the item with a &1Book&0.
 silva.page.movingEnchantments9=The entire process is rather expensive, and transferring multiple enchantments in one process will be cheaper in terms of &4Mana&0, &4XP&0, and consumed items.
 
-# -- Mushrooms
+# -- MUSHROOMS
 silva.entry.mushrooms=Mushrooms
 silva.page.mushrooms0=The way the &4Dwarves&0 work with &4Mana&0 has differences beyond a different manner of storing and manipulating it. Instead of working with &4Flowers&0, the cave-dwelling &4Dwarves&0 tend to use &4Mushrooms&0. While the large-scale ones like the &1Lavacap&0 are generally not too different from giant &4Flowers&0, the smaller varieties have some rather interesting differences. The most important quality to note is that &4Mushrooms&0 are best used in numbers, with each individual mushroom being rather insignificant, dying and growing as the colony spreads. While they do consume some amount of &4Mana&0, the amount used by each &4Mushroom&0 is rather miniscule, and as long as there's a decent &4Mana&0 supply in the vicinity, it should suffice.
+
+# -- BLAZEBLOOM
+silva.entry.blazebloom=Blazebloom
+silva.page.blazebloom0=Digging out large rooms underground is quite a chore. The &1Blazebloom&0 will take care of this task in exchange for some &1Blaze Powder&0 and a large, but reasonable, amount of &4Mana&0. Simply lay out the shape of the desired room with &1Blaze Powder&0, place the flower directly above the perimeter at just below the level of the desired ceiling, and activate it, and the &1Blazebloom will clear out the room with a giant explosion, obliterating any natural blocks within the defined shape.
+
+# -- INFUSED PYLONS
+silva.entry.infusedPylons=Infused Pylons
+silva.page.infusedPylons0=There are a few varieties of energy-filled &4Pylons&0 that can be obtained with just &4Mana&0 and minerals, and some more with access to the &4Elves&0' resources. However, the crystal structure has the potential for many more uses. Placing an &1Untuned Pylon&0 near an active &4Bifrost portal&0 will result in some of the realm's leaking energy being absorbed by the crystal, resulting in a pylon infused with the energies of that realm.
+silva.page.infusedPylons1=Crafting an &1Untuned Pylon&0
+silva.page.infusedPylons2=Infusing a pylon
