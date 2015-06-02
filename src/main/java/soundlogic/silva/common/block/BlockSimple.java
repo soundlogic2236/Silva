@@ -27,6 +27,14 @@ public class BlockSimple extends Block implements ILexiconable {
 		return this;
 	}
 
+    /**
+     * Determines the damage on the item the block drops. Used in cloth and wood.
+     */
+    public int damageDropped(int meta)
+    {
+        return meta;
+    }
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister) {

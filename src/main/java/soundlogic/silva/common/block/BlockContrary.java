@@ -17,21 +17,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
-public class BlockContrary extends Block implements ILexiconable {
+public class BlockContrary extends BlockSimple implements ILexiconable {
 
 	LexiconEntry entry;
 	
 	protected BlockContrary(Material material) {
 		super(material);
         this.setHardness(-1);
-		setCreativeTab(Silva.creativeTab);
 	}
 	
-	public BlockContrary setEntry(LexiconEntry entry) {
-		this.entry=entry;
-		return this;
-	}
-
     @Override
     public boolean canSilkHarvest() {
     	return true;

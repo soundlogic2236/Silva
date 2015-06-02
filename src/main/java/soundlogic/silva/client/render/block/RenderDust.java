@@ -250,7 +250,6 @@ public class RenderDust implements ISimpleBlockRenderingHandler {
 	private void doRenderOverride(IBlockAccess world, int x, int y, int z, RenderBlocks renderer) {
 		if(!blockNeedsRenderOverride(world,x,y,z))
 			return;
-		System.out.println("renderOverride!");
 		renderer.renderBlockByRenderType(world.getBlock(x, y, z), x, y, z);
 	}
 
