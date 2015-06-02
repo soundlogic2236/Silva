@@ -39,7 +39,7 @@ silva.dimension.vanaheimr=Vanaheim
 
 # KNOWLEDGE
 botania.knowledge.worldTree=&5World Tree&7 Knowledge
-botania.knowledge.dwarven=&8Dwarven&7 Knowledge
+botania.knowledge.dwarven=&4Dwarven&7 Knowledge
 botania.knowledge.darkElf=&fDark Elf&7 Knowledge
 
 # BLOCK NAMES
@@ -112,12 +112,9 @@ item.silva:chargedStone.name=Realm Stone
 
 # LEXICON CATEGORIES
 silva.category.worldTree=The World Tree
-silva.category.dwarven=Dwarven Trade
-silva.category.darkElf=The Dark Elves
 
 
 # LEXICON ENTRIES
-
 
 # - MISC
 # -- BUNDLES OF PAPER

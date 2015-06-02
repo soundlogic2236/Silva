@@ -105,7 +105,7 @@ public class LexiconData {
 	public static void preInit() {
 		
 		worldTreeKnowledge=BotaniaAPI.registerKnowledgeType(LibLexicon.KNOWLEDGE_TREE, EnumChatFormatting.DARK_PURPLE, false);
-		dwarvenKnowledge=BotaniaAPI.registerKnowledgeType(LibLexicon.KNOWLEDGE_DWARVEN, EnumChatFormatting.DARK_GRAY, false);
+		dwarvenKnowledge=BotaniaAPI.registerKnowledgeType(LibLexicon.KNOWLEDGE_DWARVEN, EnumChatFormatting.DARK_RED, false);
 		darkElfKnowledge=BotaniaAPI.registerKnowledgeType(LibLexicon.KNOWLEDGE_DARK_ELF, EnumChatFormatting.WHITE, false);
 		
 		categoryWorldTree=new LexiconCategory(LibLexicon.CATEGORY_TREE).setIcon(new ResourceLocation(LibResources.WORLD_TREE_ICON + ".png"));
