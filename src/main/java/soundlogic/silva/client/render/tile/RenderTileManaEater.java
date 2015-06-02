@@ -22,7 +22,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderTileManaEater extends TileEntitySpecialRenderer{
 
-	private static final ResourceLocation texture = new ResourceLocation(LibResources.MODEL_MANA_EATER);
+	private static final ResourceLocation[] textures = new ResourceLocation[]{new ResourceLocation(LibResources.MODEL_MANA_EATER)};
 	private static final ResourceLocation texture_teeth = new ResourceLocation(LibResources.MODEL_MANA_EATER_TEETH);
 	
 	private static final ModelSpreader model = new ModelSpreader();
@@ -41,7 +41,7 @@ public class RenderTileManaEater extends TileEntitySpecialRenderer{
 		GL11.glRotatef(eater.rotationY, 1F, 0F, 0F);
 		GL11.glTranslatef(0F, 1F, 0F);
 
-		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
+		Minecraft.getMinecraft().renderEngine.bindTexture(textures[eater.getMeta()]);
 		GL11.glScalef(1F, -1F, -1F);
 
 		double time = ClientTickHandler.ticksInGame + ticks;

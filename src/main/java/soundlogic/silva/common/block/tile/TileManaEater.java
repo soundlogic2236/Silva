@@ -42,9 +42,12 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileManaEater extends TileMod implements IWandBindable, IManaReceiver, IManaSpreader, IForestClientTick {
 
-	private static final int MAX_MANA = 1000;
-	private static final int ULTRA_MAX_MANA = 6400;
-
+	private static final int[] MAX_MANA = new int[]{3000};
+	private static final int[] MANA_TRANSFER = new int[]{1280};
+	private static final int[] BURST_COLOR = new int[]{0xFFAA33};
+	private static final int[] TICKS_BEFORE_MANA_LOSS = new int[]{150};
+	private static final float[] MOTION_MODIFIER = new float[]{2.1F};
+	
 	private static final String TAG_MANA = "mana";
 	private static final String TAG_KNOWN_MANA = "knownMana";
 	private static final String TAG_REQUEST_UPDATE = "requestUpdate";
@@ -54,6 +57,8 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 	private static final String TAG_FORCE_CLIENT_BINDING_X = "forceClientBindingX";
 	private static final String TAG_FORCE_CLIENT_BINDING_Y = "forceClientBindingY";
 	private static final String TAG_FORCE_CLIENT_BINDING_Z = "forceClientBindingZ";
+
+	public static int staticMeta = -1;
 	
 	int mana;
 	int knownMana = -1;
@@ -268,20 +273,20 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 
 	public EntityManaBurst getBurst(boolean fake) {
 		EntityManaBurst burst = new EntityEaterManaBurst(this,fake);
-		burst.setColor(0xFFAA33);
+		burst.setColor(BURST_COLOR[getMeta()]);
 		burst.setMana(2);
 		burst.setStartingMana(2);
-		burst.setMinManaLoss(150);
+		burst.setMinManaLoss(TICKS_BEFORE_MANA_LOSS[getMeta()]);
 		burst.setManaLossPerTick(1F);
 		burst.setGravity(0F);
-		float motionModifier = 2.1F;
+		float motionModifier = MOTION_MODIFIER[getMeta()];
 		burst.setMotion(burst.motionX * motionModifier, burst.motionY * motionModifier, burst.motionZ * motionModifier);
 		
 		return burst;
 	}
 
 	public int getMaxManaTransfer() {
-		return 1280;
+		return MANA_TRANSFER[getMeta()];
 	}
 
 	public static MovingObjectPosition raytraceFromEntity(World world, Entity player, boolean par3, double range) {
@@ -350,9 +355,15 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 		TileEntity tile = (TileEntity) receiver;
 		return new ChunkCoordinates(tile.xCoord, tile.yCoord, tile.zCoord);
 	}
+	
+	public int getMeta() {
+		if(worldObj==null)
+			return this.staticMeta;
+		return this.blockMetadata;
+	}
 
 	public int getMaxMana() {
-		return MAX_MANA;
+		return MAX_MANA[getMeta()];
 	}
 
 	@Override

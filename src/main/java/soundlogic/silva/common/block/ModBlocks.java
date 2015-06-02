@@ -98,7 +98,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(dimensionalPylon, ItemBlockPylon.class, LibBlockNames.PYLON);
 		
 		manaEater=new BlockManaEater();
-		GameRegistry.registerBlock(manaEater, ItemBlockMod.class, LibBlockNames.MANA_EATER);
+		GameRegistry.registerBlock(manaEater, ItemBlockModMultiple.class, LibBlockNames.MANA_EATER);
 		
 		boomMoss=new BlockBoomMoss();
 		GameRegistry.registerBlock(boomMoss, ItemBlockBoomMoss.class, LibBlockNames.BOOM_MOSS);

@@ -1,5 +1,6 @@
 package soundlogic.silva.common.block;
 
+import java.util.List;
 import java.util.Random;
 
 import soundlogic.silva.client.lib.LibRenderIDs;
@@ -18,6 +19,7 @@ import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -43,6 +45,12 @@ public class BlockManaEater extends BlockContainer implements IWandable, IWandHU
 	}
 
 	@Override
+	public void getSubBlocks(Item par1, CreativeTabs par2, List par3) {
+		for(int i = 0; i < 1; i++)
+			par3.add(new ItemStack(par1, 1, i));
+	}
+	
+	@Override
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
 		int orientation = BlockPistonBase.determineOrientation(par1World, par2, par3, par4, par5EntityLivingBase);
 		TileManaEater eater = (TileManaEater) par1World.getTileEntity(par2, par3, par4);
@@ -67,6 +75,11 @@ public class BlockManaEater extends BlockContainer implements IWandable, IWandHU
 			eater.rotationX = 180F;
 			break;
 		}
+	}
+
+	@Override
+	public int damageDropped(int par1) {
+		return par1;
 	}
 
 	@Override
