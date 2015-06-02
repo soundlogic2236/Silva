@@ -41,6 +41,10 @@ public abstract class BlockDust extends Block implements IDustBlock {
         this.magic=magic;
 	}
 	
+	public boolean canConnectRedstone(IBlockAccess world, int x, int y, int z, int side) {
+		return true;
+	}
+	
 	protected BlockDust(boolean magic) {
 		this(null,magic);
 	}
@@ -99,7 +103,7 @@ public abstract class BlockDust extends Block implements IDustBlock {
     public abstract int colorMultiplier(IBlockAccess p_149720_1_, int p_149720_2_, int p_149720_3_, int p_149720_4_);
 
 	@Override
-	public ItemStack getDustStack(World world, int x, int y, int z) {
+	public ItemStack getDustStack(IBlockAccess world, int x, int y, int z) {
 		return getDustStack();
 	}
 

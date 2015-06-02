@@ -15,6 +15,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -56,7 +57,7 @@ public class DustHandler {
 		overrideDustBlocks.put(block.getDustStack(), (Block) block);
 	}
 	
-	public static ItemStack getStackFromBlock(World world, int x, int y, int z) {
+	public static ItemStack getStackFromBlock(IBlockAccess world, int x, int y, int z) {
 		Block block = world.getBlock(x, y, z);
 		if(block == Blocks.redstone_wire)
 			return new ItemStack(Items.redstone);
@@ -65,7 +66,7 @@ public class DustHandler {
 		return null;
 	}
 	
-	public static boolean isDust(World world, int x, int y, int z) {
+	public static boolean isDust(IBlockAccess world, int x, int y, int z) {
 		return getStackFromBlock(world, x, y, z)!=null;
 	}
 	

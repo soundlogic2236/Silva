@@ -5,14 +5,18 @@ import java.awt.Color;
 import soundlogic.silva.client.lib.LibRenderIDs;
 import soundlogic.silva.common.block.BlockPixieDust;
 import soundlogic.silva.common.block.ModBlocks;
+import soundlogic.silva.common.core.handler.DustHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRedstoneWire;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RenderDust implements ISimpleBlockRenderingHandler {
@@ -172,7 +176,7 @@ public class RenderDust implements ISimpleBlockRenderingHandler {
         {
             float f8 = 0.021875F;
 
-            if (world.getBlock(x - 1, y, z).isBlockNormalCube() && world.getBlock(x - 1, y + 1, z) == block)
+            if (world.getBlock(x - 1, y, z).isBlockNormalCube() && isDust(world,x - 1, y + 1, z))
             {
                 tessellator.setColorOpaque_F(red, green, blue);
                 tessellator.addVertexWithUV((double)x + 0.015625D, (double)((float)(y + 1) + 0.021875F), (double)(z + 1), (double)iicon1.getMaxU(), (double)iicon1.getMinV());
@@ -186,7 +190,7 @@ public class RenderDust implements ISimpleBlockRenderingHandler {
                 tessellator.addVertexWithUV((double)x + 0.015625D, (double)((float)(y + 1) + 0.021875F), (double)(z + 0), (double)iicon3.getMaxU(), (double)iicon3.getMaxV());
             }
 
-            if (world.getBlock(x + 1, y, z).isBlockNormalCube() && world.getBlock(x + 1, y + 1, z) == block)
+            if (world.getBlock(x + 1, y, z).isBlockNormalCube() && isDust(world,x + 1, y + 1, z))
             {
                 tessellator.setColorOpaque_F(red, green, blue);
                 tessellator.addVertexWithUV((double)(x + 1) - 0.015625D, (double)(y + 0), (double)(z + 1), (double)iicon1.getMinU(), (double)iicon1.getMaxV());
@@ -200,7 +204,7 @@ public class RenderDust implements ISimpleBlockRenderingHandler {
                 tessellator.addVertexWithUV((double)(x + 1) - 0.015625D, (double)(y + 0), (double)(z + 0), (double)iicon3.getMinU(), (double)iicon3.getMinV());
             }
 
-            if (world.getBlock(x, y, z - 1).isBlockNormalCube() && world.getBlock(x, y + 1, z - 1) == block)
+            if (world.getBlock(x, y, z - 1).isBlockNormalCube() && isDust(world,x, y + 1, z - 1))
             {
                 tessellator.setColorOpaque_F(red, green, blue);
                 tessellator.addVertexWithUV((double)(x + 1), (double)(y + 0), (double)z + 0.015625D, (double)iicon1.getMinU(), (double)iicon1.getMaxV());
@@ -214,7 +218,7 @@ public class RenderDust implements ISimpleBlockRenderingHandler {
                 tessellator.addVertexWithUV((double)(x + 0), (double)(y + 0), (double)z + 0.015625D, (double)iicon3.getMinU(), (double)iicon3.getMinV());
             }
 
-            if (world.getBlock(x, y, z + 1).isBlockNormalCube() && world.getBlock(x, y + 1, z + 1) == block)
+            if (world.getBlock(x, y, z + 1).isBlockNormalCube() && isDust(world,x, y + 1, z + 1))
             {
                 tessellator.setColorOpaque_F(red, green, blue);
                 tessellator.addVertexWithUV((double)(x + 1), (double)((float)(y + 1) + 0.021875F), (double)(z + 1) - 0.015625D, (double)iicon1.getMaxU(), (double)iicon1.getMinV());
@@ -228,22 +232,124 @@ public class RenderDust implements ISimpleBlockRenderingHandler {
                 tessellator.addVertexWithUV((double)(x + 0), (double)((float)(y + 1) + 0.021875F), (double)(z + 1) - 0.015625D, (double)iicon3.getMaxU(), (double)iicon3.getMaxV());
             }
         }
-
+        
+        doRenderOverrides(world, x, y, z, renderer);
+        
         return true;
 	}
 
-	private boolean shouldConnect(Block block, IBlockAccess world, int x, int y, int z, int side) {
-		return world.getBlock(x, y, z) == block;
+	protected void doRenderOverrides(IBlockAccess world, int x, int y, int z, RenderBlocks renderer) {
+		wrapper.original=renderer.blockAccess;
+		renderer.blockAccess=wrapper;
+		for(int[] offset : RedstoneRenderBlockAccessWrapper.offsets) {
+			doRenderOverride(world, x+offset[0], y+offset[1], z+offset[2], renderer);
+		}
+		renderer.blockAccess=wrapper.original;
+	}
+
+	private void doRenderOverride(IBlockAccess world, int x, int y, int z, RenderBlocks renderer) {
+		if(!blockNeedsRenderOverride(world,x,y,z))
+			return;
+		System.out.println("renderOverride!");
+		renderer.renderBlockByRenderType(world.getBlock(x, y, z), x, y, z);
+	}
+
+	protected boolean shouldConnect(Block block, IBlockAccess world, int x, int y, int z, int side) {
+		return isDust(world, x, y, z);
+	}
+	
+	private boolean isDust(IBlockAccess world, int x, int y, int z) {
+		return DustHandler.isDust(world, x, y, z);
 	}
 
 	@Override
 	public boolean shouldRender3DInInventory(int modelId) {
 		return false;
 	}
+	
+	public static boolean blockNeedsRenderOverride(IBlockAccess world, int x, int y, int z) {
+		return blockNeedsRenderOverride(world.getBlock(x, y, z));
+	}
+
+	public static boolean blockNeedsRenderOverride(Block block) {
+		return block==Blocks.redstone_wire;
+	}
 
 	@Override
 	public int getRenderId() {
 		return LibRenderIDs.idDust;
+	}
+	
+	private static final RedstoneRenderBlockAccessWrapper wrapper = new RedstoneRenderBlockAccessWrapper();
+	
+	static private class RedstoneRenderBlockAccessWrapper implements IBlockAccess {
+		static final int[][] offsets = new int[][] {
+			{-1,-1, 0},
+			{ 1,-1, 0},
+			{ 0,-1,-1},
+			{ 0,-1, 1}
+		};
+
+		IBlockAccess original;
+		
+		@Override
+		public Block getBlock(int x, int y, int z) {
+			if(DustHandler.isDust(original, x, y, z))
+				return Blocks.redstone_wire;
+			return original.getBlock(x, y, z);
+		}
+
+		@Override
+		public TileEntity getTileEntity(int p_147438_1_, int p_147438_2_,
+				int p_147438_3_) {
+			return original.getTileEntity(p_147438_1_, p_147438_2_, p_147438_3_);
+		}
+
+		@Override
+		public int getLightBrightnessForSkyBlocks(int p_72802_1_,
+				int p_72802_2_, int p_72802_3_, int p_72802_4_) {
+			return original.getLightBrightnessForSkyBlocks(p_72802_1_, p_72802_2_, p_72802_3_, p_72802_4_);
+		}
+
+		@Override
+		public int getBlockMetadata(int p_72805_1_, int p_72805_2_,
+				int p_72805_3_) {
+			return original.getBlockMetadata(p_72805_1_, p_72805_2_, p_72805_3_);
+		}
+
+		@Override
+		public int isBlockProvidingPowerTo(int p_72879_1_, int p_72879_2_,
+				int p_72879_3_, int p_72879_4_) {
+			return original.isBlockProvidingPowerTo(p_72879_1_, p_72879_2_, p_72879_3_, p_72879_4_);
+		}
+
+		@Override
+		public boolean isAirBlock(int p_147437_1_, int p_147437_2_,
+				int p_147437_3_) {
+			return original.isAirBlock(p_147437_1_, p_147437_2_, p_147437_3_);
+		}
+
+		@Override
+		public BiomeGenBase getBiomeGenForCoords(int p_72807_1_, int p_72807_2_) {
+			return original.getBiomeGenForCoords(p_72807_1_, p_72807_2_);
+		}
+
+		@Override
+		public int getHeight() {
+			return original.getHeight();
+		}
+
+		@Override
+		public boolean extendedLevelsInChunkCache() {
+			return original.extendedLevelsInChunkCache();
+		}
+
+		@Override
+		public boolean isSideSolid(int x, int y, int z, ForgeDirection side,
+				boolean _default) {
+			return original.isSideSolid(x, y, z, side, _default);
+		}
+		
 	}
 
 }
