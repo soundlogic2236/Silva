@@ -19,10 +19,12 @@ import soundlogic.silva.common.core.handler.BlockDropsHandler;
 import soundlogic.silva.common.core.handler.BookHandler;
 import soundlogic.silva.common.core.handler.ChunkHandler;
 import soundlogic.silva.common.core.handler.ConfigHandler;
+import soundlogic.silva.common.core.handler.DarkElfAugmentHandler;
 import soundlogic.silva.common.core.handler.DwarfForgedHandler;
 import soundlogic.silva.common.core.handler.DwarvenChainHandler;
 import soundlogic.silva.common.core.handler.EnchantmentMoverHandler;
 import soundlogic.silva.common.core.handler.EnderPearlPortalHandler;
+import soundlogic.silva.common.core.handler.EyeHandler;
 import soundlogic.silva.common.core.handler.MultiBlockCreationHandler;
 import soundlogic.silva.common.core.handler.DustHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
@@ -31,6 +33,8 @@ import soundlogic.silva.common.core.handler.portal.fate.FateHandler;
 import soundlogic.silva.common.core.handler.potion.PotionMeadHandler;
 import soundlogic.silva.common.crafting.ModCraftingRecipes;
 import soundlogic.silva.common.crafting.ModDarkElfActs;
+import soundlogic.silva.common.crafting.ModDarkElfAugments;
+import soundlogic.silva.common.crafting.ModDarkElfLoot;
 import soundlogic.silva.common.crafting.ModFurnaceRecipes;
 import soundlogic.silva.common.crafting.ModOreDict;
 import soundlogic.silva.common.crafting.ModPetalRecipes;
@@ -78,6 +82,8 @@ public class CommonProxy {
 		ModFurnaceRecipes.preInit();
 		ModPetalRecipes.preInit();
 		ModDarkElfActs.preInit();
+		ModDarkElfLoot.preInit();
+		ModDarkElfAugments.preInit();
 		ModPureDaisyRecipes.preInit();
 		
 		DimensionHandler.init();
@@ -107,6 +113,8 @@ public class CommonProxy {
 		FateHandler fateHandler = new FateHandler();
 		MinecraftForge.EVENT_BUS.register(fateHandler);
 		FMLCommonHandler.instance().bus().register(fateHandler);
+		MinecraftForge.EVENT_BUS.register(new EyeHandler());
+		MinecraftForge.EVENT_BUS.register(new DarkElfAugmentHandler());
 	}
 	
 	public void postInit(FMLPostInitializationEvent event) {

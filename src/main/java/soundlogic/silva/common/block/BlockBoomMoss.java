@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -100,7 +101,7 @@ public class BlockBoomMoss extends BlockContainer implements ILexiconable, IMana
 	@Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
 		ItemStack stack=player.getHeldItem();
-		if(stack!=null && stack.getItem()==vazkii.botania.common.item.ModItems.manaGun)
+		if(stack!=null && stack.getItem()==GameRegistry.findItem("Botania", "manaGun"))
 			return false;
 		TileBoomMoss tile=(TileBoomMoss) world.getTileEntity(x, y, z);
 		tile.detonate(player.posX,player.posY,player.posZ);

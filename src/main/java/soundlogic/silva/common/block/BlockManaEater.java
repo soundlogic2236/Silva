@@ -3,6 +3,7 @@ package soundlogic.silva.common.block;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import soundlogic.silva.client.lib.LibRenderIDs;
 import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.tile.TileManaEater;
@@ -109,7 +110,7 @@ public class BlockManaEater extends BlockContainer implements IWandable, IWandHU
 		boolean wool = heldItem != null && heldItem.getItem() == Item.getItemFromBlock(Blocks.wool);
 
 		if(heldItem != null)
-			if(heldItem.getItem() == vazkii.botania.common.item.ModItems.twigWand)
+			if(heldItem.getItem() == GameRegistry.findItem("Botania", "twigWand"))
 				return false;
 
 		if(isHeldItemLens) {

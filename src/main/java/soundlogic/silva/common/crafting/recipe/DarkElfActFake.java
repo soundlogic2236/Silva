@@ -35,4 +35,10 @@ public class DarkElfActFake implements IDarkElfAct{
 		return Arrays.asList(output);
 	}
 
+	@Override
+	public float chanceOfTriggeringTrap(World world, int x, int y, int z,
+			TilePortalCore core) {
+		return 0;
+	}
+
 }

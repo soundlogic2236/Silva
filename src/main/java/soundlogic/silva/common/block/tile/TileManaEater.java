@@ -58,7 +58,7 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 	private static final String TAG_FORCE_CLIENT_BINDING_Y = "forceClientBindingY";
 	private static final String TAG_FORCE_CLIENT_BINDING_Z = "forceClientBindingZ";
 
-	public static int staticMeta = -1;
+	public static int staticMeta = 0;
 	
 	int mana;
 	int knownMana = -1;
@@ -273,6 +273,7 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 
 	public EntityManaBurst getBurst(boolean fake) {
 		EntityManaBurst burst = new EntityEaterManaBurst(this,fake);
+		System.out.println(getMeta());
 		burst.setColor(BURST_COLOR[getMeta()]);
 		burst.setMana(2);
 		burst.setStartingMana(2);
@@ -359,7 +360,7 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 	public int getMeta() {
 		if(worldObj==null)
 			return this.staticMeta;
-		return this.blockMetadata;
+		return Math.max(this.blockMetadata,0);
 	}
 
 	public int getMaxMana() {

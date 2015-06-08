@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataBase.BlockData;
@@ -53,8 +54,8 @@ public class MultiblockDataLavashroom extends MultiblockDataBase {
 	IIcon iconMushroom_inside_edge_dull;
 	
 	public MultiblockDataLavashroom() {
-		super(new BlockData(vazkii.botania.common.block.ModBlocks.mushroom,14));
-		BlockData core = new BlockData(vazkii.botania.common.block.ModBlocks.mushroom,14);
+		super(new BlockData(GameRegistry.findBlock("Botania", "mushroom"),14));
+		BlockData core = new BlockData(GameRegistry.findBlock("Botania", "mushroom"),14);
 		BlockData mushroom0 = new BlockData(Blocks.red_mushroom_block,0);
 		BlockData mushroom1 = new BlockData(Blocks.red_mushroom_block,1);
 		BlockData mushroom2 = new BlockData(Blocks.red_mushroom_block,2);
@@ -185,7 +186,7 @@ public class MultiblockDataLavashroom extends MultiblockDataBase {
 			List<EntityItem> items = core.getWorldObj().getEntitiesWithinAABB(EntityItem.class, aabb);
 			for(EntityItem ent : items) {
 				ItemStack stack = ent.getEntityItem();
-				if(stack.getItem() != vazkii.botania.common.item.ModItems.rune)
+				if(stack.getItem() != GameRegistry.findItem("Botania", "rune"))
 					continue;
 				int count = stack.stackSize;
 				int meta = stack.getItemDamage();

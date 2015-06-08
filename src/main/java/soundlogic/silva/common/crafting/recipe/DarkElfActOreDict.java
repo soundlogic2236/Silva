@@ -15,19 +15,21 @@ public class DarkElfActOreDict implements IDarkElfAct{
 	String input;
 	Block outputBlock;
 	int outputMetadata;
+	float trapChance;
 	
-	public DarkElfActOreDict(Block outputBlock, int outputMetadata, String input) {
+	public DarkElfActOreDict(Block outputBlock, int outputMetadata, String input, float trapChance) {
 		this.outputBlock=outputBlock;
 		this.outputMetadata=outputMetadata;
 		this.input=input;
+		this.trapChance=trapChance;
 	}
 	
-	public DarkElfActOreDict(ItemStack output, String input) {
-		this((ItemBlock)output.getItem(), output, input);
+	public DarkElfActOreDict(ItemStack output, String input, float trapChance) {
+		this((ItemBlock)output.getItem(), output, input, trapChance);
 	}
 	
-	private DarkElfActOreDict(ItemBlock outputItem, ItemStack output, String input) {
-		this(outputItem.field_150939_a, outputItem.getMetadata(output.getItemDamage()), input);
+	private DarkElfActOreDict(ItemBlock outputItem, ItemStack output, String input, float trapChance) {
+		this(outputItem.field_150939_a, outputItem.getMetadata(output.getItemDamage()), input, trapChance);
 	}
 	
 	@Override
@@ -66,6 +68,12 @@ public class DarkElfActOreDict implements IDarkElfAct{
 	@Override
 	public List<ItemStack> getDisplayOutputs() {
 		return Arrays.asList(new ItemStack(outputBlock, 1, outputMetadata));
+	}
+
+	@Override
+	public float chanceOfTriggeringTrap(World world, int x, int y, int z,
+			TilePortalCore core) {
+		return trapChance;
 	}
 
 }

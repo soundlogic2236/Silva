@@ -14,7 +14,7 @@ import net.minecraft.util.IIcon;
 
 public class ItemSimpleResource extends ItemMod {
 
-	final int types = 5;
+	final int types = LibItemNames.SIMPLE_RESOURCE_NAMES.length;
 	IIcon[] icons;
 	
 	public ItemSimpleResource() {

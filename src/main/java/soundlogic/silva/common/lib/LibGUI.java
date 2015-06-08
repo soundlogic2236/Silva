@@ -10,5 +10,9 @@ public class LibGUI {
 	public static final String ENERGY_EXPOSURE_TOOLTIP = "silva.tooltips.exposure";
 	public static final String ENCHANT_XP_TOOLTIP = "silva.tooltips.enchantXP";
 	public static final String FATE_MESSAGE_PREFIX = "silva.fate.";
+	public static final String DARK_ELF_PREFIX = "silva.augment.";
+	public static final String AUGMENT_ERROR = "silva.tooltips.augment.error";
+	public static final String DARK_ELF_CRAFT = "silva.tooltips.augment.craft";
+	public static final String DARK_ELF_CRAFT_PREFIX = "silva.tooltips.augment.craft.";
 
 }

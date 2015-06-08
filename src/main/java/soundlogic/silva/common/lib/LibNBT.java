@@ -4,7 +4,7 @@ public class LibNBT {
 
 	public static final String PAPERS_KNOWLEDGE_TYPE = "silva.papers.knowledgeType";
 	public static final String PAPERS_ENTRY = "silva.papers.entry";
-
+	public static final String AUGMENT_KEY = "silva.darkelf.key";
 	
 	
 }

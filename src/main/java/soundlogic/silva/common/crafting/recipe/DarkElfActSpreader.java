@@ -3,6 +3,7 @@ package soundlogic.silva.common.crafting.recipe;
 import java.util.Arrays;
 import java.util.List;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -20,7 +21,7 @@ public class DarkElfActSpreader implements IDarkElfAct{
 	int outputMetadata;
 	
 	public DarkElfActSpreader(int meta) {
-		inputBlock = vazkii.botania.common.block.ModBlocks.spreader;
+		inputBlock = GameRegistry.findBlock("Botania", "spreader");
 		inputMetadata = meta;
 		outputBlock = ModBlocks.manaEater;
 		outputMetadata = 0;
@@ -52,6 +53,13 @@ public class DarkElfActSpreader implements IDarkElfAct{
 	@Override
 	public List<ItemStack> getDisplayOutputs() {
 		return Arrays.asList(new ItemStack(outputBlock, 1, outputMetadata));
+	}
+
+
+	@Override
+	public float chanceOfTriggeringTrap(World world, int x, int y, int z,
+			TilePortalCore core) {
+		return .1F;
 	}
 
 }

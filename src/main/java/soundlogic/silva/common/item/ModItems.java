@@ -25,6 +25,7 @@ public class ModItems {
 	public static Item chargedStone;
 	public static Item enchantHolder;
 	public static Item fatePearl;
+	public static Item augments;
 
 	public static void preInit() {
 	
@@ -41,6 +42,7 @@ public class ModItems {
 		chargedStone=new ItemChargedStone(LibItemNames.CHARGED_STONE);
 		enchantHolder=new ItemEnchantHolder(LibItemNames.ENCHANT_HOLDER);
 		fatePearl=new ItemFatePearl(LibItemNames.FATE_PEARL);
+		augments=new ItemDarkElfAugment(LibItemNames.DARK_ELF_AUGMENT);
 	}
 	
 }

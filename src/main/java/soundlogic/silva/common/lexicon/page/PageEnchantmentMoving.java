@@ -94,7 +94,7 @@ public class PageEnchantmentMoving extends PageRecipe{
 		ItemStack block2 = new ItemStack(ModBlocks.paradoxStone,1,0);
 		ItemStack block3 = new ItemStack(ModBlocks.enchantPlate,1,0);
 		
-		ItemStack offering = new ItemStack(ModItems.simpleResource, 1, 3);
+		ItemStack offering = new ItemStack(ModItems.simpleResource, 1, 4);
 		
 		ItemStack output=outputs.get(recipeAt);
 		ItemStack enchanted=enchanteds.get(recipeAt);

@@ -7,6 +7,7 @@ import soundlogic.silva.common.block.subtile.functional.SubTileBlazeBloom;
 import soundlogic.silva.common.block.subtile.functional.SubTileGlitterelle;
 import soundlogic.silva.common.block.subtile.functional.SubTileRhododender;
 import soundlogic.silva.common.block.tile.TileBoomMoss;
+import soundlogic.silva.common.block.tile.TileDarkElfTrap;
 import soundlogic.silva.common.block.tile.TileDwarvenPool;
 import soundlogic.silva.common.block.tile.TileDwarvenSign;
 import soundlogic.silva.common.block.tile.TileEnchantPlate;
@@ -91,6 +92,7 @@ public class ModBlocks {
 	public static Block enchantPlate;
 	public static Block blazeFire;
 	public static Block coloredDust;
+	public static Block darkElfTrap;
 	
 	public static void preInit() {
 		
@@ -201,6 +203,9 @@ public class ModBlocks {
 		coloredDust=new BlockColoredDust().setBlockName(LibBlockNames.COLORED_DUST);
 		GameRegistry.registerBlock(coloredDust, ItemBlockColoredDust.class, LibBlockNames.COLORED_DUST);
 		
+		darkElfTrap=new BlockDarkElfTrap().setBlockName(LibBlockNames.DARK_ELF_TRAP);
+		GameRegistry.registerBlock(darkElfTrap, ItemBlockMod.class, LibBlockNames.DARK_ELF_TRAP);
+		
 		initTileEntities();
 	}
 
@@ -221,6 +226,7 @@ public class ModBlocks {
 		registerTile(TileMultiblockProxy.class, LibBlockNames.MULTIBLOCK_PROXY_LAVA);
 		registerTile(TileMultiblockProxy.class, LibBlockNames.MULTIBLOCK_PROXY_NO_RENDER);
 		registerTile(TileEnchantPlate.class, LibBlockNames.ENCHANT_PLATE);
+		registerTile(TileDarkElfTrap.class, LibBlockNames.DARK_ELF_TRAP);
 		
 		registerSubTile(SubTileRhododender.class, LibBlockNames.SUBTILE_RHODODENDER);
 		registerSubTile(SubTileBlazeBloom.class, LibBlockNames.SUBTILE_BLAZEBLOOM);

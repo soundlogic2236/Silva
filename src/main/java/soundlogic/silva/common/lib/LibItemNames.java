@@ -16,11 +16,15 @@ public class LibItemNames {
 	
 	public static final String[] SIMPLE_RESOURCE_NAMES = new String[] {
 		"bifrostShard",
+		"translationPapers",
 		"darkenedTwig",
 		"paradoxTwig",
 		"enchantOffering",
-		"gleipnirFragment"
+		"gleipnirFragment0",
+		"gleipnirFragment1",
+		"gleipnirFragment2",
 	};
 	public static final String ENCHANT_HOLDER = "enchantHolder";
 	public static final String FATE_PEARL = "fatePearl";
+	public static final String DARK_ELF_AUGMENT = "darkElfAugment";
 }

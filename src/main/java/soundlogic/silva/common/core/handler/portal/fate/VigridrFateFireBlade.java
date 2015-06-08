@@ -48,8 +48,8 @@ public class VigridrFateFireBlade extends VigridrFateGenericRepeating {
 		
 	}
 	
-	public VigridrFateFireBlade(float minLength, float maxLength, float minWidth, float maxWidth, float minDistance, float maxDistance, int minTicksBeforeStart, float startChance, float doChance, int minTicksBetweenDoing, int weight) {
-		super(1, minTicksBeforeStart, startChance, doChance, minTicksBetweenDoing, weight);
+	public VigridrFateFireBlade(float minLength, float maxLength, float minWidth, float maxWidth, float minDistance, float maxDistance, int timesToDo, int minTicksBeforeStart, float startChance, float doChance, int minTicksBetweenDoing, int weight) {
+		super(timesToDo, minTicksBeforeStart, startChance, doChance, minTicksBetweenDoing, weight);
 		this.minLength=minLength;
 		this.maxLength=maxLength;
 		this.minWidth=minWidth;

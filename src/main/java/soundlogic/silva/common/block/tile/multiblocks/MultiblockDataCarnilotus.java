@@ -6,6 +6,7 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.block.BlockManaEater;
 import soundlogic.silva.common.block.BlockMultiblockProxyLava;
@@ -67,11 +68,11 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 	IIcon[] iconTransition = new IIcon[7];
 	
 	public MultiblockDataCarnilotus() {
-		super(new BlockData(vazkii.botania.common.block.ModBlocks.livingwood,0));
-		BlockData core = new BlockData(vazkii.botania.common.block.ModBlocks.livingwood,0);
-		BlockData livingwood = new BlockData(vazkii.botania.common.block.ModBlocks.livingwood,0);
-		BlockData purplePetal = new BlockData(vazkii.botania.common.block.ModBlocks.petalBlock,10);
-		BlockData blackPetal = new BlockData(vazkii.botania.common.block.ModBlocks.petalBlock,15);
+		super(new BlockData(GameRegistry.findBlock("Botania", "livingwood"),0));
+		BlockData core = new BlockData(GameRegistry.findBlock("Botania", "livingwood"),0);
+		BlockData livingwood = new BlockData(GameRegistry.findBlock("Botania", "livingwood"),0);
+		BlockData purplePetal = new BlockData(GameRegistry.findBlock("Botania", "petalBlock"),10);
+		BlockData blackPetal = new BlockData(GameRegistry.findBlock("Botania", "petalBlock"),15);
 		BlockData ironBar = new BlockData(Blocks.iron_bars,0);
 		BlockData manaEater = new BlockData() {
 			@Override
@@ -236,7 +237,7 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 				int count = stack.stackSize;
 				int meta = stack.getItemDamage();
 				int toRemove = 0;
-				if(stack.getItem() == vazkii.botania.common.item.ModItems.rune) {
+				if(stack.getItem() == GameRegistry.findItem("Botania", "rune")) {
 					if(meta == 0) {
 						toRemove = Math.min(count, data.waterRunesNeeded);
 						data.waterRunesNeeded-=toRemove;
@@ -415,10 +416,10 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 		if(tile.getBlockType().getMaterial().equals(Material.water)) {
 			tile.iconsForSides=new IIcon[]{iconAcid,iconAcid,iconAcid,iconAcid,iconAcid,iconAcid};
 		}
-		else if(tile.getOriginalBlock()==vazkii.botania.common.block.ModBlocks.livingwood) {
+		else if(tile.getOriginalBlock()==GameRegistry.findBlock("Botania", "livingwood")) {
 			tile.iconsForSides=new IIcon[]{iconStem,iconStem,iconStem,iconStem,iconStem,iconStem};
 		}
-		else if(tile.getOriginalBlock()==vazkii.botania.common.block.ModBlocks.petalBlock) {
+		else if(tile.getOriginalBlock()==GameRegistry.findBlock("Botania", "petalBLock")) {
 			int innerFace = -1;
 			if(coords[2] == 0)
 				switch(core.rotation) {
@@ -500,7 +501,7 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 			tile.solid=false;
 			tile.maxBBY=.5F;
 		}
-		if(tile.getOriginalBlock()==vazkii.botania.common.block.ModBlocks.petalBlock || tile.getOriginalBlock() == Blocks.iron_bars) {
+		if(tile.getOriginalBlock()==GameRegistry.findBlock("Botania", "petalBlock") || tile.getOriginalBlock() == Blocks.iron_bars) {
 			int[] coords = this.convertRelativeCoords(core, tile);
 			int innerFace = -1;
 			if(coords[2] == 0)

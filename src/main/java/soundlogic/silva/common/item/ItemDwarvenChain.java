@@ -5,11 +5,13 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.core.handler.DwarvenChainHandler;
 import soundlogic.silva.common.core.handler.DwarvenChainHandler.LeashProperties;
 import soundlogic.silva.common.entity.EntityDwarvenChainKnot;
 import soundlogic.silva.common.lib.LibItemNames;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLeashKnot;
@@ -22,34 +24,23 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-public class ItemDwarvenChain extends ItemMod{
-
+public class ItemDwarvenChain extends ItemModMultiple{
+	
 	public ItemDwarvenChain(String unLocalizedName) {
 		super(unLocalizedName);
 		this.setMaxStackSize(1);
 		this.hasSubtypes=true;
 	}
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
-		for(int i = 0; i < 2; i++)
-			par3List.add(new ItemStack(par1, 1, i));
-	}
-	
     @SideOnly(Side.CLIENT)
     public boolean hasEffect(ItemStack p_77636_1_)
     {
         return true;
     }
-	
-    @Override
-    public String getUnlocalizedName(ItemStack stack) {
-    	return super.getUnlocalizedName()+"."+stack.getItemDamage();
-    }
-    
+
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float xs, float ys, float zs)
     {
         if (EntityDwarvenChainKnot.isValidKnotLocation(world,x,y,z))
@@ -92,4 +83,9 @@ public class ItemDwarvenChain extends ItemMod{
     	}
     	return false;
     }
+
+	@Override
+	public int getCount() {
+		return 2;
+	}
 }

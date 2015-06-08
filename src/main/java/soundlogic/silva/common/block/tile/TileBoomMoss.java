@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.item.EntityItem;
@@ -278,7 +279,7 @@ public class TileBoomMoss extends TileMod implements IManaReceiver{
 	private boolean lensCanIgnite(ItemStack lens) {
 		if(lens==null)
 			return false;
-		if(lens.getItem()!=vazkii.botania.common.item.ModItems.lens)
+		if(lens.getItem()!=GameRegistry.findItem("Botania", "lens"))
 			return false;
 		int meta = lens.getItemDamage();
 		return meta == 7 || meta == 11 || meta == 15;

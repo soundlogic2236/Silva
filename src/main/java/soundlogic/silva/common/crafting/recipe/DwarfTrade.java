@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Random;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -53,8 +54,8 @@ public abstract class DwarfTrade implements IPortalRecipe {
 		values.put(new ItemStack(Items.emerald), 5);
 		values.put(new ItemStack(Items.gold_ingot), 3);
 		values.put(new ItemStack(Items.quartz), 1);
-		values.put(new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,4), 10);
-		values.put(new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,5), 20);
+		values.put(new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,4), 10);
+		values.put(new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,5), 20);
 	}
 	
 	public List<Object> getExtraCosts(int cost) {

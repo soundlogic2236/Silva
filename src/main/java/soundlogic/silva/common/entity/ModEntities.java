@@ -19,6 +19,7 @@ public class ModEntities {
 		register(EntityFenrirEcho.class, LibEntityNames.FENRIR_ECHO, id++, 80, 3, true);
 		register(EntityPhantomEndermanEcho.class, LibEntityNames.ENDERMAN_ECHO, id++, 80, 3, true);
 		register(EntityNidhoggEcho.class, LibEntityNames.NIDHOGG, id++, 160, 3, true);
+		register(EntitySpook.class, LibEntityNames.SPOOK, id++, 160, 3, true);
 	}
 
 	private static void register(Class<? extends Entity> entityClass, String entityName, int id, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {

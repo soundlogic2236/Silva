@@ -3,6 +3,7 @@ package soundlogic.silva.common.core.handler;
 import soundlogic.silva.common.item.ModItems;
 import vazkii.botania.api.mana.ManaItemHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,10 +22,10 @@ public class BifrostCreationHandler {
 		if(event.world.isRemote)
 			return;
 		ItemStack stack = event.entityPlayer.getCurrentEquippedItem();
-		if(stack!=null && stack.getItem() == vazkii.botania.common.item.ModItems.rainbowRod && event.action == Action.RIGHT_CLICK_BLOCK) {
+		if(stack!=null && stack.getItem() == GameRegistry.findItem("Botania", "rainbowRod") && event.action == Action.RIGHT_CLICK_BLOCK) {
 			Block block=event.world.getBlock(event.x, event.y, event.z);
 			int metadata=event.world.getBlockMetadata(event.x, event.y, event.z);
-			if(block == vazkii.botania.common.block.ModBlocks.storage && metadata == 4) {
+			if(block == GameRegistry.findBlock("Botania", "storage") && metadata == 4) {
 				if(stack.getItemDamage() == 0 && ManaItemHandler.requestManaExact(stack, event.entityPlayer, MANA_COST, false)) {
 					ManaItemHandler.requestManaExact(stack, event.entityPlayer, MANA_COST, true);
 					stack.setItemDamage(stack.getMaxDamage());

@@ -27,6 +27,7 @@ import soundlogic.silva.common.block.BlockPortalCore;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
+import soundlogic.silva.common.crafting.recipe.DarkElfActFake;
 import soundlogic.silva.common.crafting.recipe.DarkElfActSimple;
 import soundlogic.silva.common.crafting.recipe.IDarkElfAct;
 import soundlogic.silva.common.crafting.recipe.IPortalRecipe;
@@ -63,7 +64,7 @@ public class PageAdvancedDarkElfAct extends PageRecipe{
 		this(unlocalizedName,(List<IDarkElfAct>)null,background);
 		this.recipes=new ArrayList<IDarkElfAct>();
 		for(int i = 0 ; i< outputs.size() ; i++) {
-			recipes.add(new DarkElfActSimple(outputs.get(i), inputs.get(i)));
+			recipes.add(new DarkElfActFake(outputs.get(i), inputs.get(i)));
 		}
 	}
 

@@ -3,6 +3,7 @@ package soundlogic.silva.common.crafting;
 import java.util.ArrayList;
 import java.util.List;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import soundlogic.silva.common.block.ModBlocks;
@@ -33,23 +34,23 @@ public class ModDarkElfActs {
 		spreaderConversions.add(new DarkElfActSpreader(3));
 		DarkElfActs.addActs(spreaderConversions);
 		
-		stoneConversion = new DarkElfActOreDict(ModBlocks.darkenedStone,0,"stone");
+		stoneConversion = new DarkElfActOreDict(ModBlocks.darkenedStone,0,"stone", .02F);
 		DarkElfActs.addAct(stoneConversion);
 
-		woodConversion = new DarkElfActOreDict(ModBlocks.darkenedWood,0,"logWood");
+		woodConversion = new DarkElfActOreDict(ModBlocks.darkenedWood,0,"logWood", .02F);
 		DarkElfActs.addAct(woodConversion);
 		
 		fakeDustConversions = new ArrayList<IDarkElfAct>();
 		fakeDustConversions.add(new DarkElfActFake(new ItemStack(ModBlocks.darkenedDust), new ItemStack(Items.redstone)));
 		fakeDustConversions.add(new DarkElfActFake(new ItemStack(ModBlocks.darkenedDust), new ItemStack(Items.glowstone_dust)));
 		fakeDustConversions.add(new DarkElfActFake(new ItemStack(ModBlocks.darkenedDust), new ItemStack(Items.blaze_powder)));
-		fakeDustConversions.add(new DarkElfActFake(new ItemStack(ModBlocks.darkenedDust), new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,8)));
+		fakeDustConversions.add(new DarkElfActFake(new ItemStack(ModBlocks.darkenedDust), new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,8)));
 		
 		DarkElfActs.addAct(new DarkElfActFurnace());
 		DarkElfActs.addAct(new DarkElfActNoteBlock());
 		DarkElfActs.addAct(new DarkElfActRedstoneControl());
 		DarkElfActs.addAct(new DarkElfActTNT());
-		DarkElfActs.addAct(new DarkElfActDarkenedDust());
+//		DarkElfActs.addAct(new DarkElfActDarkenedDust());
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -57,14 +58,14 @@ public class ModPortalTradeRecipes {
 		PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfSignRecipe);
 		
 		for(int i=0;i<16;i++) {
-			dwarfMushroomRecipes[i]=new DwarfTradeSimple(new ItemStack(vazkii.botania.common.block.ModBlocks.mushroom,1,i),0,1,5,new ItemStack(vazkii.botania.common.block.ModBlocks.flower,1,i));
+			dwarfMushroomRecipes[i]=new DwarfTradeSimple(new ItemStack(GameRegistry.findBlock("Botania", "mushroom"),1,i),0,1,5,new ItemStack(GameRegistry.findBlock("Botania", "flower"),1,i));
 			PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfMushroomRecipes[i]);
 		}
 		
 		dwarfWeedRecipe=new DwarfTradeSimple(new ItemStack(ModBlocks.dwarfWeed),0,1,5,new ItemStack(Blocks.tallgrass));
 		PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfWeedRecipe);
 		
-		dwarfDwarfRockRecipe=new DwarfTradeSimple(new ItemStack(ModBlocks.dwarfRock),0,1,5,new ItemStack(vazkii.botania.common.block.ModBlocks.livingrock));
+		dwarfDwarfRockRecipe=new DwarfTradeSimple(new ItemStack(ModBlocks.dwarfRock),0,1,5,new ItemStack(GameRegistry.findBlock("Botania", "livingrock")));
 		PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfDwarfRockRecipe);
 		
 		dwarfPumpkinToMeadTrade=new DwarfTradeSimple(new ItemStack(ModItems.dwarfMead),4,1,15,new ItemStack(Blocks.pumpkin));
@@ -76,16 +77,16 @@ public class ModPortalTradeRecipes {
 		dwarfChainTrade=new DwarfTradeSimple(new ItemStack(ModItems.dwarfChain),5,2,15,new ItemStack(Items.golden_apple));
 		PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfChainTrade);
 		
-		dwarfBarrierTrade=new DwarfTradeSimple(new ItemStack(ModItems.dwarfBarrier),4,1,12,new ItemStack(ModBlocks.dwarfRock),new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,1));
+		dwarfBarrierTrade=new DwarfTradeSimple(new ItemStack(ModItems.dwarfBarrier),4,1,12,new ItemStack(ModBlocks.dwarfRock),new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,1));
 		PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfBarrierTrade);
 		
-		dwarfStoneHorseTrade=new DwarfTradeSimple(new ItemStack(ModItems.stoneHorse),7,5,16,new ItemStack(ModBlocks.dwarfRock), new ItemStack(Items.saddle),new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,5));
+		dwarfStoneHorseTrade=new DwarfTradeSimple(new ItemStack(ModItems.stoneHorse),7,5,16,new ItemStack(ModBlocks.dwarfRock), new ItemStack(Items.saddle),new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,5));
 		PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfStoneHorseTrade);
 		
-		dwarfManaCrystalTrade=new DwarfTradeSimple(new ItemStack(ModBlocks.manaCrystal),12,4,22,new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,2),new ItemStack(vazkii.botania.common.item.ModItems.manaBottle));
+		dwarfManaCrystalTrade=new DwarfTradeSimple(new ItemStack(ModBlocks.manaCrystal),12,4,22,new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,2),new ItemStack(GameRegistry.findItem("Botania", "manaBottle")));
 		PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfManaCrystalTrade);
 		
-		dwarfMasterBoomMossTrade=new DwarfTradeSimple(new ItemStack(ModBlocks.boomMoss,1,1),11,3,20,new ItemStack(ModBlocks.boomMoss),new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,5),new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,5));
+		dwarfMasterBoomMossTrade=new DwarfTradeSimple(new ItemStack(ModBlocks.boomMoss,1,1),11,3,20,new ItemStack(ModBlocks.boomMoss),new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,5),new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,5));
 		PortalRecipes.addRecipe(Dimension.NIDAVELLIR, dwarfMasterBoomMossTrade);
 
 		dwarfForgeIronRecipes=getForgeRecipes(1,3,2,10,new ItemStack(Items.iron_ingot),
@@ -115,33 +116,33 @@ public class ModPortalTradeRecipes {
 				new ItemStack(Items.golden_shovel),
 				new ItemStack(Items.golden_axe),
 				new ItemStack(Items.golden_sword));
-		dwarfForgeManasteelRecipes=getForgeRecipes(3,3,4,12,new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,0),
-				new ItemStack(vazkii.botania.common.item.ModItems.manasteelHelm),
-				new ItemStack(vazkii.botania.common.item.ModItems.manasteelChest),
-				new ItemStack(vazkii.botania.common.item.ModItems.manasteelLegs),
-				new ItemStack(vazkii.botania.common.item.ModItems.manasteelBoots),
-				new ItemStack(vazkii.botania.common.item.ModItems.manasteelPick),
-				new ItemStack(vazkii.botania.common.item.ModItems.manasteelShovel),
-				new ItemStack(vazkii.botania.common.item.ModItems.manasteelAxe),
-				new ItemStack(vazkii.botania.common.item.ModItems.manasteelSword));
-		dwarfForgeTerrasteelRecipes=getForgeRecipes(5,3,4,12,new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,4),
-				new ItemStack(vazkii.botania.common.item.ModItems.terrasteelHelm),
-				new ItemStack(vazkii.botania.common.item.ModItems.terrasteelChest),
-				new ItemStack(vazkii.botania.common.item.ModItems.terrasteelLegs),
-				new ItemStack(vazkii.botania.common.item.ModItems.terrasteelBoots),
+		dwarfForgeManasteelRecipes=getForgeRecipes(3,3,4,12,new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,0),
+				new ItemStack(GameRegistry.findItem("Botania", "manasteelHelm")),
+				new ItemStack(GameRegistry.findItem("Botania", "manasteelChest")),
+				new ItemStack(GameRegistry.findItem("Botania", "manasteelLegs")),
+				new ItemStack(GameRegistry.findItem("Botania", "manasteelBoots")),
+				new ItemStack(GameRegistry.findItem("Botania", "manasteelPick")),
+				new ItemStack(GameRegistry.findItem("Botania", "manasteelShovel")),
+				new ItemStack(GameRegistry.findItem("Botania", "manasteelAxe")),
+				new ItemStack(GameRegistry.findItem("Botania", "manasteelSword")));
+		dwarfForgeTerrasteelRecipes=getForgeRecipes(5,3,4,12,new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,4),
+				new ItemStack(GameRegistry.findItem("Botania", "terrasteelHelm")),
+				new ItemStack(GameRegistry.findItem("Botania", "terrasteelChest")),
+				new ItemStack(GameRegistry.findItem("Botania", "terrasteelLegs")),
+				new ItemStack(GameRegistry.findItem("Botania", "terrasteelBoots")),
 				null,
 				null,
 				null,
-				new ItemStack(vazkii.botania.common.item.ModItems.terraSword));
-		dwarfForgeElementiumRecipes=getForgeRecipes(4,3,4,12,new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,7),
-				new ItemStack(vazkii.botania.common.item.ModItems.elementiumHelm),
-				new ItemStack(vazkii.botania.common.item.ModItems.elementiumChest),
-				new ItemStack(vazkii.botania.common.item.ModItems.elementiumLegs),
-				new ItemStack(vazkii.botania.common.item.ModItems.elementiumBoots),
-				new ItemStack(vazkii.botania.common.item.ModItems.elementiumPick),
-				new ItemStack(vazkii.botania.common.item.ModItems.elementiumShovel),
-				new ItemStack(vazkii.botania.common.item.ModItems.elementiumAxe),
-				new ItemStack(vazkii.botania.common.item.ModItems.elementiumSword));
+				new ItemStack(GameRegistry.findItem("Botania", "terraSword")));
+		dwarfForgeElementiumRecipes=getForgeRecipes(4,3,4,12,new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,7),
+				new ItemStack(GameRegistry.findItem("Botania", "elementiumHelm")),
+				new ItemStack(GameRegistry.findItem("Botania", "elementiumChest")),
+				new ItemStack(GameRegistry.findItem("Botania", "elementiumLegs")),
+				new ItemStack(GameRegistry.findItem("Botania", "elementiumBoots")),
+				new ItemStack(GameRegistry.findItem("Botania", "elementiumPick")),
+				new ItemStack(GameRegistry.findItem("Botania", "elementiumShovel")),
+				new ItemStack(GameRegistry.findItem("Botania", "elementiumAxe")),
+				new ItemStack(GameRegistry.findItem("Botania", "elementiumSword")));
 
 		dwarfReforgeRecipes[0]=new DwarfTradeReforging(EquipmentHelper.EquipmentType.HELMET,18,12,40);
 		dwarfReforgeRecipes[1]=new DwarfTradeReforging(EquipmentHelper.EquipmentType.CHESTPLATE,18,15,40);

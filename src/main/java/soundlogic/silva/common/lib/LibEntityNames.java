@@ -12,5 +12,6 @@ public class LibEntityNames {
 	public static final String FENRIR_ECHO = "fenrirEcho";
 	public static final String ENDERMAN_ECHO = "endermanEcho";
 	public static final String NIDHOGG = "nidhogg";
+	public static final String SPOOK = "spook";
 
 }

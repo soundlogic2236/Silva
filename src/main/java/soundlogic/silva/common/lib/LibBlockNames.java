@@ -98,6 +98,8 @@ public class LibBlockNames {
 
 	public static final String SUBTILE_GLITTERELLE = "subtileGlitterelle";
 
+	public static final String DARK_ELF_TRAP = "darkElfTrap";
+
 
 
 }

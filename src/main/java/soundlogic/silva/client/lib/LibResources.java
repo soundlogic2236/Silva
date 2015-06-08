@@ -73,6 +73,8 @@ public class LibResources {
 
 	public static final String MODEL_DWARVEN_POOL = PREFIX_MODEL + "dwarvenPool.png";
 
+	public static final String MODEL_DARK_ELF_TRAP = PREFIX_MODEL + "darkElfTrap.png";
+
 	public static final String PORTAL_UPGRADE_REDSTONE_ON = PREFIX_MOD + "portalUpgradeRedstoneOn";
 	public static final String PORTAL_UPGRADE_REDSTONE_OFF = PREFIX_MOD + "portalUpgradeRedstoneOff";
 

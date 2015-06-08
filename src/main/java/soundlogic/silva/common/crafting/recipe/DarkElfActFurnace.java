@@ -42,4 +42,11 @@ public class DarkElfActFurnace implements IDarkElfAct{
 		return null;
 	}
 
+
+	@Override
+	public float chanceOfTriggeringTrap(World world, int x, int y, int z,
+			TilePortalCore core) {
+		return .05F;
+	}
+
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -121,7 +122,7 @@ public class LexiconData {
 		dimensionalTravelFailure=new SLexiconEntry(LibLexicon.DIMENSIONAL_TRAVEL_FAILURE, BotaniaAPI.categoryAlfhomancy);
 		dimensionalTravelFailure.setKnowledgeType(worldTreeKnowledge).setLexiconPages(new PageText("0"));
 
-		IRecipe LexiconFusion=new ShapelessRecipes(new ItemStack(ModItems.fakeLexicon), Arrays.asList(new ItemStack[]{new ItemStack(vazkii.botania.common.item.ModItems.lexicon),new ItemStack(ModItems.fakePageBundle)}));
+		IRecipe LexiconFusion=new ShapelessRecipes(new ItemStack(ModItems.fakeLexicon), Arrays.asList(new ItemStack[]{new ItemStack(GameRegistry.findItem("Botania", "lexicon")),new ItemStack(ModItems.fakePageBundle)}));
 		IRecipe PageDuplication=new ShapelessRecipes(new ItemStack(ModItems.fakePageBundle,2), Arrays.asList(new ItemStack[]{new ItemStack(ModItems.fakePageBundle),new ItemStack(Items.paper)}));
 		paperBundles=new SLexiconEntry(LibLexicon.PAPER_BUNDLES, BotaniaAPI.categoryMisc);
 		paperBundles.setPriority().setLexiconPages(new PageText("0"),new PageCraftingRecipe("1",LexiconFusion),new PageCraftingRecipe("2",PageDuplication));

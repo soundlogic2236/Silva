@@ -1,5 +1,7 @@
 package soundlogic.silva.common.core.handler.portal;
 
+import java.util.ArrayList;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
@@ -8,11 +10,13 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import soundlogic.silva.common.block.ModBlocks;
+import soundlogic.silva.common.block.tile.TileDarkElfTrap;
 import soundlogic.silva.common.block.tile.TilePortalCore;
 import soundlogic.silva.common.core.handler.DustHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
 import soundlogic.silva.common.crafting.DarkElfActs;
 import soundlogic.silva.common.crafting.recipe.IDarkElfAct;
+import vazkii.botania.common.core.helper.Vector3;
 
 public class DimensionalBlockHandlerSvartalfheim implements IDimensionalBlockHandler{
 
@@ -48,10 +52,51 @@ public class DimensionalBlockHandlerSvartalfheim implements IDimensionalBlockHan
 	public boolean tryApplyToBlock(TilePortalCore core, World world, int[] coords) {
 		for(IDarkElfAct act : DarkElfActs.acts) {
 			if(act.tryApplyToBlock(world, coords[0], coords[1], coords[2], core)) {
+				triggerTraps(core, world, coords, act);
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	public void triggerTraps(TilePortalCore core, World world, int[] destination, IDarkElfAct act) {
+		float chance = act.chanceOfTriggeringTrap(world, destination[0], destination[1], destination[2], core);
+		if(chance<=0)
+			return;
+		ArrayList<TileDarkElfTrap> validTraps = new ArrayList<TileDarkElfTrap>();
+		Vector3 start = new Vector3(core.xCoord+.5, core.yCoord+.5, core.zCoord+.5);
+		Vector3 end = new Vector3(destination[0]+.5, destination[1]+.5,destination[2]+.5);
+		for(TileDarkElfTrap trap : TileDarkElfTrap.activeTraps) {
+			if(!trap.getWorldObj().equals(world))
+				continue;
+			if(!trap.isCharged())
+				continue;
+			Vector3 point = new Vector3(trap.xCoord + .5, trap.yCoord + .5, trap.zCoord + .5);
+			double distSquared = findDistanceSquared(point, start, end);
+			if(distSquared<=9)
+				validTraps.add(trap);
+		}
+		if(validTraps.isEmpty())
+			return;
+		double prob = (1D-Math.pow(1D-chance, Math.sqrt(validTraps.size())));
+		if(world.rand.nextDouble()<=prob) {
+			TileDarkElfTrap trap = validTraps.get(world.rand.nextInt(validTraps.size()));
+			trap.trigger(core, act);
+		}
+	}
+	
+	public double findDistanceSquared(Vector3 point, Vector3 start, Vector3 end) {
+		Vector3 v = end.copy().subtract(start);
+		Vector3 w = point.copy().subtract(start);
+		double c1 = w.copy().dotProduct(v);
+		if( c1 <= 0 )
+			return point.copy().subtract(start).magSquared();
+		double c2 = v.dotProduct(v);
+		if( c2 <= c1 )
+			return point.copy().subtract(end).magSquared();
+		double b = c1/c2;
+		Vector3 Pb = start.copy().add(v.copy().multiply(b));
+		return point.copy().subtract(Pb).magSquared();
 	}
 
 	@Override

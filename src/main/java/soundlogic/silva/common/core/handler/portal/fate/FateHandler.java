@@ -61,6 +61,7 @@ public class FateHandler {
 	static ArrayList<String> fatesNames = new ArrayList<String>();
 	static HashMap<Integer,EntityLivingBase> activeFateKeys = new HashMap<Integer,EntityLivingBase>();
 	static HashMap<Integer,ArrayList<IEntityFateEcho>> activeEchos = new HashMap<Integer,ArrayList<IEntityFateEcho>>();
+	static ArrayList<IVigridrFate> allActiveFates = new ArrayList<IVigridrFate>();
 	
 	protected static class StoredEntityData {
 
@@ -481,8 +482,8 @@ public class FateHandler {
 //		registerFate(new VigridrFateSound("botania:spreaderFire", 0.05F, 0.85F, 5, 3, 20*30, .001F, .1F, 20*5, 5), "randomSpreaderFire");
 		registerFate(new VigridrFateSpawnFenrir(5, 3, 8, 20*30, .001F, .1F, 20*5, 5), "fenrir");
 		registerFate(new VigridrFateSpawnPhantomEndermen(8, 20*30, .001F, .1F, 20*5, 5), "endermen");
-		registerFate(new VigridrFateFireBlade(20,50,4,8,0,5, 20*30, .001F, .1F, 20*5, 5), "fireblade");
-		registerFate(new VigridrFateSpawnNidhogg(5, 3, 8, 20*30, .001F, .1F, 20*5, 5), "nidhogg");
+		registerFate(new VigridrFateFireBlade(20,50,4,8,0,5, 1, 20*30, .001F, .1F, 20*5, 5), "fireblade");
+//		registerFate(new VigridrFateSpawnNidhogg(5, 3, 8, 20*30, .001F, .1F, 20*5, 5), "nidhogg");
 	}
 	public static void printDebugData(EntityLivingBase entity, EntityPlayer player) {
 		FateExtendedEntityProperties data = getFateData(entity);
@@ -536,6 +537,11 @@ public class FateHandler {
 		IVigridrFateSpawning spawning = (IVigridrFateSpawning) fate;
 		spawning.storeEntityData(new StoredEntityData(entity));;
 	}
+	
+	public static List<IVigridrFate> getAllActiveFates() {
+		return new ArrayList(allActiveFates);
+	}
+	
 	public static void storeEntity(EntityLivingBase entity) {
 		storeEntity(entity, ((IEntityFateEcho) entity).getKey());
 	}
@@ -596,9 +602,11 @@ public class FateHandler {
 	
 	protected static void addKey(int key, EntityLivingBase entity) {
 		activeFateKeys.put(key, entity);
+		allActiveFates.add(getFate(entity));
 	}
 	protected static void removeKey(int key, EntityLivingBase entity) {
 		activeFateKeys.remove(key);
+		allActiveFates.remove(getFate(entity));
 		if(activeEchos.containsKey(key)) {
 			List<IEntityFateEcho> ents = new ArrayList<IEntityFateEcho>(activeEchos.get(key));
 			for(IEntityFateEcho ent : ents)

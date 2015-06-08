@@ -1,5 +1,7 @@
 package soundlogic.silva.common.core.helper;
 
+import baubles.api.BaubleType;
+import baubles.api.IBauble;
 import soundlogic.silva.common.core.helper.EquipmentHelper.EquipmentType;
 import soundlogic.silva.common.item.ModItems;
 import net.minecraft.item.ItemBow;
@@ -18,6 +20,7 @@ public class EquipmentHelper {
 		ANY_WEAPON,
 		ANY_MELEE_WEAPON,
 		ANY_RANGED_WEAPON,
+		ANY_BAUBLE,
 		HELMET,
 		CHESTPLATE,
 		LEGGINGS,
@@ -29,6 +32,9 @@ public class EquipmentHelper {
 		BOW,
 		HOE,
 		SHEARS,
+		AMULET,
+		RING,
+		BELT,
 	};
 	
 	public static boolean isEquipmentType(ItemStack stack, EquipmentType type) {
@@ -63,6 +69,10 @@ public class EquipmentHelper {
 			return	isEquipmentType(stack, EquipmentType.SWORD);
 		case ANY_RANGED_WEAPON:
 			return	isEquipmentType(stack, EquipmentType.BOW);
+		case ANY_BAUBLE:
+			return	isEquipmentType(stack, EquipmentType.AMULET) ||
+					isEquipmentType(stack, EquipmentType.BELT) ||
+					isEquipmentType(stack, EquipmentType.RING);
 		case HELMET:
 			return stack.getItem().isValidArmor(stack, 0, null);
 		case CHESTPLATE:
@@ -91,6 +101,12 @@ public class EquipmentHelper {
 			return stack.getItem() instanceof ItemShears;
 		case BOW:
 			return stack.getItem() instanceof ItemBow;
+		case AMULET:
+			return stack.getItem() instanceof IBauble && ((IBauble)stack.getItem()).getBaubleType(stack)==BaubleType.AMULET;
+		case BELT:
+			return stack.getItem() instanceof IBauble && ((IBauble)stack.getItem()).getBaubleType(stack)==BaubleType.BELT;
+		case RING:
+			return stack.getItem() instanceof IBauble && ((IBauble)stack.getItem()).getBaubleType(stack)==BaubleType.RING;
 		}
 		return false;
 	}

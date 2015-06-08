@@ -26,6 +26,7 @@ import soundlogic.silva.client.lib.LibRenderIDs;
 import soundlogic.silva.client.model.ModelFenrirEcho;
 import soundlogic.silva.client.render.block.RenderBlazeFire;
 import soundlogic.silva.client.render.block.RenderBoomMoss;
+import soundlogic.silva.client.render.block.RenderDarkElfTrap;
 import soundlogic.silva.client.render.block.RenderDwarvenPool;
 import soundlogic.silva.client.render.block.RenderManaCrystal;
 import soundlogic.silva.client.render.block.RenderManaEater;
@@ -39,6 +40,7 @@ import soundlogic.silva.client.render.entity.RenderNidhogg;
 import soundlogic.silva.client.render.multiblock.RenderMultiblock;
 import soundlogic.silva.client.render.multiblock.RenderMultiblockCarnilotus;
 import soundlogic.silva.client.render.tile.RenderTileBoomMoss;
+import soundlogic.silva.client.render.tile.RenderTileDarkElfTrap;
 import soundlogic.silva.client.render.tile.RenderTileDwarvenPool;
 import soundlogic.silva.client.render.tile.RenderTileDwarvenSign;
 import soundlogic.silva.client.render.tile.RenderTileEnchantPlate;
@@ -50,6 +52,7 @@ import soundlogic.silva.client.render.tile.RenderTilePortalUpgradeCharge;
 import soundlogic.silva.client.render.tile.RenderTilePylon;
 import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.tile.TileBoomMoss;
+import soundlogic.silva.common.block.tile.TileDarkElfTrap;
 import soundlogic.silva.common.block.tile.TileDwarvenPool;
 import soundlogic.silva.common.block.tile.TileDwarvenSign;
 import soundlogic.silva.common.block.tile.TileEnchantPlate;
@@ -98,6 +101,7 @@ public class ClientProxy extends CommonProxy{
     	LibRenderIDs.idDwarvenPool = RenderingRegistry.getNextAvailableRenderId();
     	LibRenderIDs.idPortalUpgradeCharge = RenderingRegistry.getNextAvailableRenderId();
     	LibRenderIDs.idBlazeFire = RenderingRegistry.getNextAvailableRenderId();
+    	LibRenderIDs.idDarkElfTrap = RenderingRegistry.getNextAvailableRenderId();
     	
     	RenderingRegistry.registerBlockHandler(new RenderPylon());
     	RenderingRegistry.registerBlockHandler(new RenderManaEater());
@@ -107,6 +111,7 @@ public class ClientProxy extends CommonProxy{
     	RenderingRegistry.registerBlockHandler(new RenderDwarvenPool());
     	RenderingRegistry.registerBlockHandler(new RenderPortalUpgradeCharge());
     	RenderingRegistry.registerBlockHandler(new RenderBlazeFire());
+    	RenderingRegistry.registerBlockHandler(new RenderDarkElfTrap());
     	
     	ClientRegistry.bindTileEntitySpecialRenderer(TilePylon.class, new RenderTilePylon());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileManaEater.class, new RenderTileManaEater());
@@ -118,6 +123,7 @@ public class ClientProxy extends CommonProxy{
     	ClientRegistry.bindTileEntitySpecialRenderer(TilePortalUpgradeCharge.class, new RenderTilePortalUpgradeCharge());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileMultiblockCore.class, new RenderTileMultiblockCore());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEnchantPlate.class, new RenderTileEnchantPlate());
+    	ClientRegistry.bindTileEntitySpecialRenderer(TileDarkElfTrap.class, new RenderTileDarkElfTrap());
     	
     	RenderingRegistry.registerEntityRenderingHandler(EntityStoneHorse.class, new RenderEntityStoneHorse());
     	RenderingRegistry.registerEntityRenderingHandler(EntityDwarvenBarrier.class, new RenderSnowball(ModItems.dwarfBarrier));

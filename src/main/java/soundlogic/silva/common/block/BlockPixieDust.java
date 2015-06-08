@@ -3,6 +3,7 @@ package soundlogic.silva.common.block;
 import java.util.ArrayList;
 import java.util.Random;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import scala.actors.threadpool.Arrays;
@@ -31,7 +32,7 @@ import net.minecraft.world.World;
 public class BlockPixieDust extends BlockDust implements ILexiconable{
 
 	protected BlockPixieDust() {
-        super(new ItemStack(vazkii.botania.common.item.ModItems.manaResource,1,8),true);
+        super(new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,8),true);
 		setBlockName(LibBlockNames.PIXIE_DUST);
 	}
 	

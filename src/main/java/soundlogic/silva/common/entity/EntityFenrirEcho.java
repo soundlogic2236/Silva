@@ -214,7 +214,7 @@ public class EntityFenrirEcho extends EntityMob implements IBossDisplayData, IEn
      */
     protected void dropFewItems(boolean p_70628_1_, int p_70628_2_)
     {
-        this.entityDropItem(new ItemStack(ModItems.simpleResource, 1, 4), 0F);
+        this.entityDropItem(new ItemStack(ModItems.simpleResource, 1, 5+worldObj.rand.nextInt(3)), 0F);
     }
 
 	@Override

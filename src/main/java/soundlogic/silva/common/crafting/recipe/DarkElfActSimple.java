@@ -15,20 +15,22 @@ public class DarkElfActSimple implements IDarkElfAct{
 	int inputMetadata;
 	Block outputBlock;
 	int outputMetadata;
+	float trapChance;
 	
-	public DarkElfActSimple(Block outputBlock, int outputMetadata, Block inputBlock, int inputMetadata) {
+	public DarkElfActSimple(Block outputBlock, int outputMetadata, Block inputBlock, int inputMetadata, float trapChance) {
 		this.outputBlock=outputBlock;
 		this.outputMetadata=outputMetadata;
 		this.inputBlock=inputBlock;
 		this.inputMetadata=inputMetadata;
+		this.trapChance=trapChance;
 	}
 	
-	public DarkElfActSimple(ItemStack output, ItemStack input) {
-		this((ItemBlock)output.getItem(), output, (ItemBlock)input.getItem(), input);
+	public DarkElfActSimple(ItemStack output, ItemStack input, float trapChance) {
+		this((ItemBlock)output.getItem(), output, (ItemBlock)input.getItem(), input, trapChance);
 	}
 	
-	private DarkElfActSimple(ItemBlock outputItem, ItemStack output, ItemBlock inputItem, ItemStack input) {
-		this(outputItem.field_150939_a, outputItem.getMetadata(output.getItemDamage()), inputItem.field_150939_a, inputItem.getMetadata(input.getItemDamage()));
+	private DarkElfActSimple(ItemBlock outputItem, ItemStack output, ItemBlock inputItem, ItemStack input, float trapChance) {
+		this(outputItem.field_150939_a, outputItem.getMetadata(output.getItemDamage()), inputItem.field_150939_a, inputItem.getMetadata(input.getItemDamage()), trapChance);
 	}
 	
 	@Override
@@ -50,6 +52,12 @@ public class DarkElfActSimple implements IDarkElfAct{
 	@Override
 	public List<ItemStack> getDisplayOutputs() {
 		return Arrays.asList(new ItemStack(outputBlock, 1, outputMetadata));
+	}
+
+	@Override
+	public float chanceOfTriggeringTrap(World world, int x, int y, int z,
+			TilePortalCore core) {
+		return trapChance;
 	}
 
 }

@@ -217,7 +217,7 @@ public class TileEnchantPlate extends TileMod implements ISparkAttachable {
 	}
 	
 	boolean isOffering(ItemStack stack) {
-		return stack.getItem()==ModItems.simpleResource && stack.getItemDamage() == 3;
+		return stack.getItem()==ModItems.simpleResource && stack.getItemDamage() == 4;
 	}
 	
 	boolean doesTargetMatch(ItemStack enchanted, ItemStack target) {
