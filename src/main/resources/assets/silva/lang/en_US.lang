@@ -441,4 +441,8 @@ silva.page.blazebloom0=Digging out large rooms underground is quite a chore. The
 silva.entry.infusedPylons=Infused Pylons
 silva.page.infusedPylons0=There are a few varieties of energy-filled &4Pylons&0 that can be obtained with just &4Mana&0 and minerals, and some more with access to the &4Elves&0' resources. However, the crystal structure has the potential for many more uses. Placing an &1Untuned Pylon&0 near an active &4Bifrost portal&0 will result in some of the realm's leaking energy being absorbed by the crystal, resulting in a pylon infused with the energies of that realm.
 silva.page.infusedPylons1=Crafting an &1Untuned Pylon&0
-silva.page.infusedPylons2=Infusing a pylon
+silva.page.infusedPylons2=Infusing an &1Untuned Pylon&0
+
+# -- MANA POTATO
+silva.entry.manaPotato=Mana Potato
+silva.page.manaPotato0=Sometimes, you find yourself needing &4Mana&0 somewhere, but no need for infrastructure to keep it supplied, and setting up &1Mana Pools&0 that will barely end up being used gets tedious. The single-use and extremely cheap &1Mana Potato&0 solves this problem. When created, a &1Mana Potato&0 is pre-filled with &4Mana&0, and can then be immediately placed to temporarily supply &4Mana&0 to anything nearby. However, &1Mana Potatoes&0 cannot be refilled by any means, be it &4Mana Bursts&0, &1Sparks&0, or &1Mana Tablets&0. When empty, all that's left behind is a hollowed-out potato, not even useful as food.
