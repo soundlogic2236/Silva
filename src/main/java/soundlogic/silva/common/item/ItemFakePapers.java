@@ -6,7 +6,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import soundlogic.silva.common.lib.LibGUI;
@@ -34,4 +36,11 @@ public class ItemFakePapers extends ItemMod{
 		//NO OP
 	}
 
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(Item p_150895_1_, CreativeTabs p_150895_2_, List p_150895_3_)
+    {
+        //NO OP
+    }
+    
 }
