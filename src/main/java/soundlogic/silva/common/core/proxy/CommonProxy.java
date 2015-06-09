@@ -25,6 +25,7 @@ import soundlogic.silva.common.core.handler.DwarvenChainHandler;
 import soundlogic.silva.common.core.handler.EnchantmentMoverHandler;
 import soundlogic.silva.common.core.handler.EnderPearlPortalHandler;
 import soundlogic.silva.common.core.handler.EyeHandler;
+import soundlogic.silva.common.core.handler.GaiaHandler;
 import soundlogic.silva.common.core.handler.MultiBlockCreationHandler;
 import soundlogic.silva.common.core.handler.DustHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
@@ -115,6 +116,7 @@ public class CommonProxy {
 		FMLCommonHandler.instance().bus().register(fateHandler);
 		MinecraftForge.EVENT_BUS.register(new EyeHandler());
 		MinecraftForge.EVENT_BUS.register(new DarkElfAugmentHandler());
+		MinecraftForge.EVENT_BUS.register(new GaiaHandler());
 	}
 	
 	public void postInit(FMLPostInitializationEvent event) {
