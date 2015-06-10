@@ -24,7 +24,9 @@ public class DimensionHandler {
 				0x782b79,
 				null,
 				new DimensionExposureHandlerBase(),
-				false), 
+				false,
+				true,
+				true), 
 		VIGRIDR (
 				"vigridr", 
 				State.DEFAULT, 
@@ -33,6 +35,8 @@ public class DimensionHandler {
 				0x792b2b,
 				null,
 				new DimensionExposureHandlerVigridr(),
+				true,
+				true,
 				true), 
 		FOLKVANGR (
 				"folkvangr", 
@@ -42,6 +46,8 @@ public class DimensionHandler {
 				0xf6d5a0,
 				null,
 				new DimensionExposureHandlerBase(),
+				true,
+				true,
 				true), 
 		VALHALLA ("valhalla", 
 				State.DEFAULT, 
@@ -50,6 +56,8 @@ public class DimensionHandler {
 				0xe88787,
 				null,
 				new DimensionExposureHandlerBase(),
+				true,
+				true,
 				true), 
 		HELHEIM (
 				"helheim", 
@@ -59,6 +67,8 @@ public class DimensionHandler {
 				0x1d2457,
 				null,
 				new DimensionExposureHandlerHelheim(),
+				true,
+				true,
 				true), 
 		ASGARD (
 				"asgard", 
@@ -68,6 +78,8 @@ public class DimensionHandler {
 				0xd8e825,
 				null,
 				new DimensionExposureHandlerBase(),
+				true,
+				true,
 				true), 
 		ALFHEIM (
 				"alfheim", 
@@ -77,6 +89,8 @@ public class DimensionHandler {
 				0x00c000,
 				null,
 				new DimensionExposureHandlerBase(),
+				true,
+				true,
 				true), 
 		MIDGARD (
 				"midgard", 
@@ -86,6 +100,8 @@ public class DimensionHandler {
 				0x00c172,
 				null,
 				new DimensionExposureHandlerBase(),
+				false,
+				true,
 				false), 
 		JOTUNHEIMR (
 				"jotunheimr", 
@@ -95,6 +111,8 @@ public class DimensionHandler {
 				0x94aba5,
 				null,
 				new DimensionExposureHandlerBase(),
+				true,
+				true,
 				true), 
 		SVARTALFHEIM (
 				"svartalfheim", 
@@ -104,6 +122,8 @@ public class DimensionHandler {
 				0x381325,
 				new DimensionalBlockHandlerSvartalfheim(),
 				new DimensionExposureHandlerSvartalfheim(),
+				true,
+				true,
 				true), 
 		MUSPELHEIM (
 				"muspelheim", 
@@ -113,7 +133,9 @@ public class DimensionHandler {
 				0xe03d1d,
 				new DimensionalBlockHandlerMuspelheim(),
 				new DimensionExposureHandlerMuspelheim(),
-				false), 
+				true,
+				true,
+				true), 
 		NIFLHEIM (
 				"niflheim", 
 				State.DEFAULT, 
@@ -122,6 +144,8 @@ public class DimensionHandler {
 				0x1dc2e0,
 				new DimensionalBlockHandlerNiflheim(),
 				new DimensionExposureHandlerBase(),
+				true,
+				true,
 				true), 
 		NIDAVELLIR (
 				"nidavellir", 
@@ -131,6 +155,8 @@ public class DimensionHandler {
 				0xd2d5e7,
 				null,
 				new DimensionExposureHandlerBase(),
+				true,
+				true,
 				true),
 		VANAHEIMR (
 				"vanaheimr", 
@@ -140,6 +166,8 @@ public class DimensionHandler {
 				0xcf52bf,
 				null,
 				new DimensionExposureHandlerVanaheimr(),
+				true,
+				true,
 				true);
 		
 		private final String unlocalizedName;
@@ -149,7 +177,9 @@ public class DimensionHandler {
 		private final IDimensionalBlockHandler blockHandler;
 		private final IDimensionalExposureHandler exposureHandler;
 		private final BaseDimension baseDimension;
-		private final boolean canTunePylon;
+		private final boolean canTunePylonWithPortal;
+		private final boolean canTunePylonWithGaia;
+		private final boolean canTunePylonWithExistance;
 		
 		public enum State {
 			DEFAULT,
@@ -177,7 +207,7 @@ public class DimensionHandler {
 			}
 		}
 		
-		Dimension(String unlocalizedName,State state, BaseDimension baseDimension, int portalColor, int sparkColor, IDimensionalBlockHandler blockHandler, IDimensionalExposureHandler exposureHandler, boolean canTunePylon) {
+		Dimension(String unlocalizedName,State state, BaseDimension baseDimension, int portalColor, int sparkColor, IDimensionalBlockHandler blockHandler, IDimensionalExposureHandler exposureHandler, boolean canTunePylonWithPortal, boolean canTunePylonWithGaia, boolean canTunePylonWithExistance) {
 			this.unlocalizedName=unlocalizedName;
 			this.state=state;
 			this.portalColor=new Color(portalColor);
@@ -185,7 +215,9 @@ public class DimensionHandler {
 			this.blockHandler=blockHandler;
 			this.exposureHandler=exposureHandler;
 			this.baseDimension=baseDimension;
-			this.canTunePylon=canTunePylon;
+			this.canTunePylonWithPortal=canTunePylonWithPortal;
+			this.canTunePylonWithGaia=canTunePylonWithGaia;
+			this.canTunePylonWithExistance=canTunePylonWithExistance;
 		}
 		public String getUnlocalizedName() {
 			return LibMisc.MOD_ID.toLowerCase() + ".dimension." + unlocalizedName;
@@ -215,10 +247,13 @@ public class DimensionHandler {
 				this.exposureHandler.init(this);
 		}
 		public boolean canTunePylonWithPortal() {
-			return this.canTunePylon;
+			return this.canTunePylonWithPortal;
 		}
 		public boolean canTunePylonWithGaia() {
-			return true;
+			return this.canTunePylonWithGaia;
+		}
+		public boolean canTunePylonWithExistance() {
+			return this.canTunePylonWithExistance;
 		}
 	}
 	

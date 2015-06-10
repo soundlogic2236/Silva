@@ -54,10 +54,10 @@ public class ModCraftingRecipes {
 		recipePortalPylon = BotaniaAPI.getLatestAddedRecipe();
 		
 		addOreDictRecipe(new ItemStack(ModBlocks.dimensionalPylon,1,1),
-				" I ",
+				" M ",
 				"GPG",
-				" I ",
-				'I',"gaiaIngot",
+				" M ",
+				'M',"manaPearl",
 				'G',new ItemStack(Blocks.gold_block),
 				'P',new ItemStack(GameRegistry.findBlock("Botania", "pylon")));
 		recipeUntunedPylon = BotaniaAPI.getLatestAddedRecipe();

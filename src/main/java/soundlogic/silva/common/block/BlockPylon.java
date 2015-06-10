@@ -2,6 +2,7 @@ package soundlogic.silva.common.block;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.Map.Entry;
 
 import soundlogic.silva.client.lib.LibRenderIDs;
@@ -13,6 +14,7 @@ import soundlogic.silva.common.core.handler.portal.DimensionExposureHandlerMuspe
 import soundlogic.silva.common.core.handler.portal.DimensionExposureHandlerSvartalfheim;
 import soundlogic.silva.common.core.handler.portal.DimensionExposureHandlerVanaheimr;
 import soundlogic.silva.common.core.handler.portal.DimensionExposureHandlerVigridr;
+import soundlogic.silva.common.core.handler.portal.DimensionHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionalBlockHandlerMuspelheim;
 import soundlogic.silva.common.core.handler.portal.DimensionalBlockHandlerNiflheim;
 import soundlogic.silva.common.core.handler.portal.DimensionalBlockHandlerSvartalfheim;
@@ -70,8 +72,18 @@ public class BlockPylon extends BlockContainer implements ILexiconable, IInfusio
 
 		float f = 1F / 16F * 2F;
 		setBlockBounds(f, 0F, f, 1F - f, 1F / 16F * 21F, 1F - f);
+		this.setTickRandomly(true);
 	}
 
+	@Override
+    public void updateTick(World world, int x, int y, int z, Random random) {
+		if(isUntunedPylon(world,x,y,z)) {
+			Dimension dim = DimensionHandler.getDimensionFromWorld(world);
+			if(dim!=null && dim.canTunePylonWithExistance())
+				setToDimensionalPylon(world,x,y,z,dim);
+		}
+    }
+	
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3) {
 		for(int i = 0; i < pylonTypes; i++)
