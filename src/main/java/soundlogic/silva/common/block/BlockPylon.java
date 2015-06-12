@@ -26,6 +26,7 @@ import soundlogic.silva.common.lib.LibBlockNames;
 import thaumcraft.api.crafting.IInfusionStabiliser;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -148,7 +149,7 @@ public class BlockPylon extends BlockContainer implements ILexiconable, IInfusio
 	
 	public static Dimension getPylonDimension(ItemStack stack) {
 		if(stack.getItem() instanceof ItemBlock)
-			if(((ItemBlock)stack.getItem()).field_150939_a==ModBlocks.dimensionalPylon) {
+			if(Block.getBlockFromItem(stack.getItem())==ModBlocks.dimensionalPylon) {
 				int meta = stack.getItemDamage();
 				for(Entry<Dimension,Integer> entry : dimensionalMetadatas.entrySet()) {
 					if(entry.getValue()==meta)

@@ -39,6 +39,7 @@ import soundlogic.silva.client.render.entity.RenderFenrirEcho;
 import soundlogic.silva.client.render.entity.RenderNidhogg;
 import soundlogic.silva.client.render.multiblock.RenderMultiblock;
 import soundlogic.silva.client.render.multiblock.RenderMultiblockCarnilotus;
+import soundlogic.silva.client.render.multiblock.RenderMultiblockMysticalGrinder;
 import soundlogic.silva.client.render.tile.RenderTileBoomMoss;
 import soundlogic.silva.client.render.tile.RenderTileDarkElfTrap;
 import soundlogic.silva.client.render.tile.RenderTileDwarvenPool;
@@ -133,6 +134,7 @@ public class ClientProxy extends CommonProxy{
     	RenderingRegistry.registerEntityRenderingHandler(EntityNidhoggEcho.class, new RenderNidhogg());
     	
     	RenderMultiblock.registerRenderer(new RenderMultiblockCarnilotus(), "carnilotus");
+    	RenderMultiblock.registerRenderer(new RenderMultiblockMysticalGrinder(), "mysticalGrinder");
     }
         
     @Override

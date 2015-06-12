@@ -20,11 +20,13 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
 
 public abstract class MultiblockDataBase {
 
@@ -337,6 +339,29 @@ public abstract class MultiblockDataBase {
 		
 		protected BlockData()
 		{
+		}
+		
+		public static class BlockDataOreDict extends BlockData {
+			String oreDict;
+			public BlockDataOreDict(String oreDict) {
+				this.oreDict=oreDict;
+			}
+			public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
+				Block block = world.getBlock(x, y, z);
+				if(block.equals(Blocks.air))
+					return false;
+				ItemStack stack = new ItemStack(block, 1, block.getDamageValue(world, x, y, z));
+				List<ItemStack> ores = OreDictionary.getOres(oreDict);
+				for(ItemStack stack2 : ores) {
+					if(stack2.isItemEqual(stack))
+						return true;
+				}
+				return false;
+			}
+
+			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
+				//NO OP
+			}
 		}
 		
 		public BlockData(Block block, int meta) {
