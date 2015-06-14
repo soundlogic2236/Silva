@@ -103,6 +103,9 @@ public class LexiconData {
 	public static LexiconEntry blazeBloom;
 	public static LexiconEntry glitterelle;
 	public static LexiconEntry mysticalGrinder;
+	public static LexiconEntry slingshot;
+	public static LexiconEntry enderCatcher;
+	public static LexiconEntry PIXIE_FARM;
 
 	public static void preInit() {
 		

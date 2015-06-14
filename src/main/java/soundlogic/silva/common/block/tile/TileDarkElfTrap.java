@@ -334,14 +334,12 @@ public class TileDarkElfTrap extends TileMod implements IInventory, IManaReceive
 
 	@Override
 	public void openInventory() {
-		// TODO Auto-generated method stub
-		
+		// NO OP
 	}
 
 	@Override
 	public void closeInventory() {
-		// TODO Auto-generated method stub
-		
+		// NO OP
 	}
 	
 	public ItemStack getStackForSlot(int slot) {

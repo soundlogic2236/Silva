@@ -18,6 +18,7 @@ import soundlogic.silva.common.block.tile.TilePortalUpgradeCharge;
 import soundlogic.silva.common.block.tile.TilePortalUpgradeInhibit;
 import soundlogic.silva.common.block.tile.TilePortalUpgradeRedstone;
 import soundlogic.silva.common.block.tile.TilePylon;
+import soundlogic.silva.common.block.tile.TileSlingshot;
 import soundlogic.silva.common.block.tile.multiblocks.TileMultiblockCore;
 import soundlogic.silva.common.block.tile.multiblocks.TileMultiblockProxy;
 import soundlogic.silva.common.core.handler.DustHandler;
@@ -93,6 +94,7 @@ public class ModBlocks {
 	public static Block blazeFire;
 	public static Block coloredDust;
 	public static Block darkElfTrap;
+	public static Block slingshot;
 	
 	public static void preInit() {
 		
@@ -206,6 +208,9 @@ public class ModBlocks {
 		darkElfTrap=new BlockDarkElfTrap().setBlockName(LibBlockNames.DARK_ELF_TRAP);
 		GameRegistry.registerBlock(darkElfTrap, ItemBlockMod.class, LibBlockNames.DARK_ELF_TRAP);
 		
+		slingshot = new BlockSlingshot().setBlockName(LibBlockNames.SLINGSHOT);
+		GameRegistry.registerBlock(slingshot, ItemBlockMod.class, LibBlockNames.SLINGSHOT);
+		
 		initTileEntities();
 	}
 
@@ -227,6 +232,7 @@ public class ModBlocks {
 		registerTile(TileMultiblockProxy.class, LibBlockNames.MULTIBLOCK_PROXY_NO_RENDER);
 		registerTile(TileEnchantPlate.class, LibBlockNames.ENCHANT_PLATE);
 		registerTile(TileDarkElfTrap.class, LibBlockNames.DARK_ELF_TRAP);
+		registerTile(TileSlingshot.class, LibBlockNames.SLINGSHOT);
 		
 		registerSubTile(SubTileRhododender.class, LibBlockNames.SUBTILE_RHODODENDER);
 		registerSubTile(SubTileBlazeBloom.class, LibBlockNames.SUBTILE_BLAZEBLOOM);

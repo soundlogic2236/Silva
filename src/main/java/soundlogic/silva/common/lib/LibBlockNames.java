@@ -100,6 +100,8 @@ public class LibBlockNames {
 
 	public static final String DARK_ELF_TRAP = "darkElfTrap";
 
+	public static final String SLINGSHOT = "slingshot";
+
 
 
 }

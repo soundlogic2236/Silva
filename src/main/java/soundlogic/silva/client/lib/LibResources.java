@@ -135,4 +135,6 @@ public class LibResources {
 
 	public static final String CHAIN_KNOT = PREFIX_ENTITY + "chain_knot.png";
 
+	public static final String MODEL_SLINGSHOT = PREFIX_MODEL + "slingshot.png";
+
 }

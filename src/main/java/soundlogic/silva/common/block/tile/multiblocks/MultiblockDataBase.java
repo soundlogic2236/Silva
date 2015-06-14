@@ -13,6 +13,7 @@ import soundlogic.silva.common.block.BlockMultiblockProxyNoRenderWater;
 import soundlogic.silva.common.block.BlockMultiblockProxyWater;
 import soundlogic.silva.common.block.ModBlocks;
 import vazkii.botania.api.lexicon.LexiconEntry;
+import vazkii.botania.api.mana.IManaPool;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -99,6 +100,8 @@ public abstract class MultiblockDataBase {
 				for(int k = 0;k<templateSlice2.length;k++) {
 					BlockData data = templateSlice2[k];
 					int[] transCoords = getTransformedCoords(x,y,z,i,j,k,mirrorX,mirrorZ,rotation);
+					System.out.println(data.block);
+					System.out.println(world.getBlock(transCoords[0], transCoords[1], transCoords[2]));
 					if(!data.isValid(null, world, transCoords[0], transCoords[1], transCoords[2]))
 						return false;
 				}
@@ -255,6 +258,19 @@ public abstract class MultiblockDataBase {
 			@Override
 			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				world.setBlockToAir(x, y, z);
+			}
+		};
+		public static BlockData POOL = new BlockData() {
+			@Override
+			public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
+				TileEntity tile = world.getTileEntity(x, y, z);
+				if(tile==null)
+					return false;
+				return tile instanceof IManaPool;
+			}
+			@Override
+			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
+				//NO OP
 			}
 		};
 		

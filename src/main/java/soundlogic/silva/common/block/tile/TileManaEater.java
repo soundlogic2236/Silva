@@ -344,6 +344,7 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 
 	@Override
 	public void markDirty() {
+		super.markDirty();
 		checkForReceiver();
 		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}

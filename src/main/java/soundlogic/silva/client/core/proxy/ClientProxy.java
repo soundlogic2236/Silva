@@ -33,6 +33,7 @@ import soundlogic.silva.client.render.block.RenderManaEater;
 import soundlogic.silva.client.render.block.RenderDust;
 import soundlogic.silva.client.render.block.RenderPortalUpgradeCharge;
 import soundlogic.silva.client.render.block.RenderPylon;
+import soundlogic.silva.client.render.block.RenderSlingshot;
 import soundlogic.silva.client.render.entity.RenderDwarvenChainKnot;
 import soundlogic.silva.client.render.entity.RenderEntityStoneHorse;
 import soundlogic.silva.client.render.entity.RenderFenrirEcho;
@@ -40,6 +41,7 @@ import soundlogic.silva.client.render.entity.RenderNidhogg;
 import soundlogic.silva.client.render.multiblock.RenderMultiblock;
 import soundlogic.silva.client.render.multiblock.RenderMultiblockCarnilotus;
 import soundlogic.silva.client.render.multiblock.RenderMultiblockMysticalGrinder;
+import soundlogic.silva.client.render.multiblock.RenderMultiblockPixieFarm;
 import soundlogic.silva.client.render.tile.RenderTileBoomMoss;
 import soundlogic.silva.client.render.tile.RenderTileDarkElfTrap;
 import soundlogic.silva.client.render.tile.RenderTileDwarvenPool;
@@ -51,6 +53,7 @@ import soundlogic.silva.client.render.tile.RenderTileMultiblockCore;
 import soundlogic.silva.client.render.tile.RenderTilePortalCore;
 import soundlogic.silva.client.render.tile.RenderTilePortalUpgradeCharge;
 import soundlogic.silva.client.render.tile.RenderTilePylon;
+import soundlogic.silva.client.render.tile.RenderTileSlingshot;
 import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.tile.TileBoomMoss;
 import soundlogic.silva.common.block.tile.TileDarkElfTrap;
@@ -62,6 +65,7 @@ import soundlogic.silva.common.block.tile.TileManaEater;
 import soundlogic.silva.common.block.tile.TilePortalCore;
 import soundlogic.silva.common.block.tile.TilePortalUpgradeCharge;
 import soundlogic.silva.common.block.tile.TilePylon;
+import soundlogic.silva.common.block.tile.TileSlingshot;
 import soundlogic.silva.common.block.tile.multiblocks.TileMultiblockCore;
 import soundlogic.silva.common.core.proxy.CommonProxy;
 import soundlogic.silva.common.entity.EntityDwarvenBarrier;
@@ -103,6 +107,7 @@ public class ClientProxy extends CommonProxy{
     	LibRenderIDs.idPortalUpgradeCharge = RenderingRegistry.getNextAvailableRenderId();
     	LibRenderIDs.idBlazeFire = RenderingRegistry.getNextAvailableRenderId();
     	LibRenderIDs.idDarkElfTrap = RenderingRegistry.getNextAvailableRenderId();
+    	LibRenderIDs.idSlingshot = RenderingRegistry.getNextAvailableRenderId();
     	
     	RenderingRegistry.registerBlockHandler(new RenderPylon());
     	RenderingRegistry.registerBlockHandler(new RenderManaEater());
@@ -113,6 +118,7 @@ public class ClientProxy extends CommonProxy{
     	RenderingRegistry.registerBlockHandler(new RenderPortalUpgradeCharge());
     	RenderingRegistry.registerBlockHandler(new RenderBlazeFire());
     	RenderingRegistry.registerBlockHandler(new RenderDarkElfTrap());
+    	RenderingRegistry.registerBlockHandler(new RenderSlingshot());
     	
     	ClientRegistry.bindTileEntitySpecialRenderer(TilePylon.class, new RenderTilePylon());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileManaEater.class, new RenderTileManaEater());
@@ -125,6 +131,7 @@ public class ClientProxy extends CommonProxy{
     	ClientRegistry.bindTileEntitySpecialRenderer(TileMultiblockCore.class, new RenderTileMultiblockCore());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEnchantPlate.class, new RenderTileEnchantPlate());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileDarkElfTrap.class, new RenderTileDarkElfTrap());
+    	ClientRegistry.bindTileEntitySpecialRenderer(TileSlingshot.class, new RenderTileSlingshot());
     	
     	RenderingRegistry.registerEntityRenderingHandler(EntityStoneHorse.class, new RenderEntityStoneHorse());
     	RenderingRegistry.registerEntityRenderingHandler(EntityDwarvenBarrier.class, new RenderSnowball(ModItems.dwarfBarrier));
@@ -135,6 +142,7 @@ public class ClientProxy extends CommonProxy{
     	
     	RenderMultiblock.registerRenderer(new RenderMultiblockCarnilotus(), "carnilotus");
     	RenderMultiblock.registerRenderer(new RenderMultiblockMysticalGrinder(), "mysticalGrinder");
+    	RenderMultiblock.registerRenderer(new RenderMultiblockPixieFarm(), "pixieFarm");
     }
         
     @Override

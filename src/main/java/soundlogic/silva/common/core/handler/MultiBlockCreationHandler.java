@@ -6,6 +6,8 @@ import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataBase;
 import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataCarnilotus;
 import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataLavashroom;
 import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataMysticalGrinder;
+import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataPixieFarm;
+import soundlogic.silva.common.block.tile.multiblocks.MutliblockDataEnderCatcher;
 import soundlogic.silva.common.item.ModItems;
 import vazkii.botania.api.mana.ManaItemHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -25,6 +27,8 @@ public class MultiBlockCreationHandler {
 		new MultiblockDataLavashroom();
 		new MultiblockDataCarnilotus();
 		new MultiblockDataMysticalGrinder();
+		new MutliblockDataEnderCatcher();
+		new MultiblockDataPixieFarm();
 	}
 	
 	@SubscribeEvent
