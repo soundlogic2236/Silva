@@ -419,7 +419,7 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 		else if(tile.getOriginalBlock()==GameRegistry.findBlock("Botania", "livingwood")) {
 			tile.iconsForSides=new IIcon[]{iconStem,iconStem,iconStem,iconStem,iconStem,iconStem};
 		}
-		else if(tile.getOriginalBlock()==GameRegistry.findBlock("Botania", "petalBLock")) {
+		else if(tile.getOriginalBlock()==GameRegistry.findBlock("Botania", "petalBlock")) {
 			int innerFace = -1;
 			if(coords[2] == 0)
 				switch(core.rotation) {

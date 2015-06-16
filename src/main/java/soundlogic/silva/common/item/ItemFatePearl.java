@@ -69,8 +69,6 @@ public class ItemFatePearl extends ItemMod{
 			FateHandler.applyRandomFate(entityPlayer, 20*60*10);
 		}
 		else if(!world.isRemote){
-			System.out.println(prevFate);
-			System.out.println(FateHandler.getFate(entityPlayer));
 			if(prevFate!=null && prevFate.equals(FateHandler.getFate(entityPlayer))) {
 				prevFateCount--;
 				if(prevFateCount<=0)
@@ -78,7 +76,6 @@ public class ItemFatePearl extends ItemMod{
 			}
 			else
 				prevFateCount=5;
-			System.out.println(prevFateCount);
 			prevFate=FateHandler.getFate(entityPlayer);
 		}
 		FateHandler.printDebugData(entityPlayer, entityPlayer);

@@ -54,7 +54,6 @@ public class GreedyClaw implements ITickingDarkElfAugment {
 				prevValues.put(uuid, prevValue-1);
 		}
 		if(shouldAttack) {
-			System.out.println("attacking");
 			Vector3 vec_player = new Vector3(
 					player.posX,
 					player.posY+player.eyeHeight,

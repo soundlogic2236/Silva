@@ -273,7 +273,6 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 
 	public EntityManaBurst getBurst(boolean fake) {
 		EntityManaBurst burst = new EntityEaterManaBurst(this,fake);
-		System.out.println(getMeta());
 		burst.setColor(BURST_COLOR[getMeta()]);
 		burst.setMana(2);
 		burst.setStartingMana(2);

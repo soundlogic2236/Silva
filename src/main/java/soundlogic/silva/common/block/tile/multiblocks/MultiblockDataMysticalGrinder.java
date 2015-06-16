@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.block.BlockPylon;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataBase.BlockData;
@@ -17,6 +18,7 @@ import vazkii.botania.common.core.helper.Vector3;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,6 +28,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.profiler.Profiler;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.MinecraftException;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
@@ -119,6 +122,8 @@ public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 
 	public static HashMap<ItemStack, HashMap<List<ItemStack>,Integer>> extraGrindResults = new HashMap<ItemStack, HashMap<List<ItemStack>,Integer>>();
 	public static HashMap<ItemStack, Float> extraGrindResultsHardness = new HashMap<ItemStack, Float>();
+
+	private IIcon iconBase;
 	
 	public MultiblockDataMysticalGrinder() {
 		super(new BlockData(Blocks.sticky_piston, 0));
@@ -269,7 +274,6 @@ public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 			if(ticks>50) {
 				if(cache.maxTestResult<50)
 					testStack(cache, stack, 100-cache.maxTestResult, true);
-				System.out.println(cache.shouldProcess());
 				if(!cache.shouldProcess())
 					return;
 				ItemStack tryAdd = stack.copy();
@@ -321,7 +325,6 @@ public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 		if(!cache.shouldRunTests())
 			return;
 		if(!cache.isTested) {
-			System.out.println("First test!");
 			for(ItemStack stack2 : extraGrindResults.keySet()) {
 				if(stack.isItemEqual(stack2)) {
 					cache.override=true;
@@ -555,7 +558,7 @@ public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 	@Override
 	public void setVisualData(TileMultiblockCore core, TileMultiblockBase tile,
 			int x, int y, int z) {
-		// NO OP
+		tile.iconsForSides=new IIcon[] {iconBase, iconBase, iconBase, iconBase, iconBase, iconBase};
 	}
 
 	@Override
@@ -579,6 +582,11 @@ public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 	@Override
 	public String getUnlocalizedName() {
 		return LibMultiblockNames.MYSTICAL_GRINDER;
+	}
+	
+	@Override
+	public void registerBlockIcons(IIconRegister par1IconRegister) {
+		iconBase = par1IconRegister.registerIcon(LibResources.GRINDER_BASE);
 	}
 
 	@Override

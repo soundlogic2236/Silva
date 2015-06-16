@@ -41,20 +41,25 @@ public abstract class TileMultiblockBase extends TileMod{
 	public int lightValue = -1;
 	public float hardness = -2;
 	
+	boolean firstPacket = false;
+	
 	@Override
 	public void updateEntity() {
-		if(needsRefresh) {
-			int[] coords = getRelativePos();
-			if(getCore()!=null && getCore().data!=null) {
-				if(worldObj.isRemote)
-					getCore().data.setVisualData(getCore(), this, coords[0], coords[1], coords[2]);
-				getCore().data.setPhysicalData(getCore(), this, coords[0], coords[1], coords[2]);
-				worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-				needsRefresh = false;
-			}
-		}
+		if(needsRefresh)
+			doRefresh();
 		else if(!isValid())
 			breakMultiblock();
+	}
+	
+	protected void doRefresh() {
+		int[] coords = getRelativePos();
+		if(getCore()!=null && getCore().data!=null) {
+			if(worldObj.isRemote)
+				getCore().data.setVisualData(getCore(), this, coords[0], coords[1], coords[2]);
+			getCore().data.setPhysicalData(getCore(), this, coords[0], coords[1], coords[2]);
+			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+			needsRefresh = false;
+		}
 	}
 	
 	public void breakMultiblock() {
@@ -101,6 +106,7 @@ public abstract class TileMultiblockBase extends TileMod{
 			this.needsRefresh = cmp.getBoolean(TAG_NEEDS_REFRESH);
 		if(cmp.hasKey(TAG_ORIGINAL_NBT))
 			originalNBT=cmp.getCompoundTag(TAG_ORIGINAL_NBT);
+		firstPacket=true;
 	}
 	
 	public void setOriginalBlock(Block block, int meta, NBTTagCompound cmp, float hardness) {
@@ -127,6 +133,13 @@ public abstract class TileMultiblockBase extends TileMod{
 			FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendPacketToAllPlayers(new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, -999, nbttagcompound));
 		}
 	}
+
+	public IIcon getIconForSide(int side) {
+		if(needsRefresh)
+			doRefresh();
+		return iconsForSides[side];
+	}
+
 	
 	public abstract boolean isValid();
 	

@@ -233,7 +233,6 @@ public class SubTileGlitterelle extends SubTileFunctional {
 							}
 						}
 					}
-					System.out.println(foundFlower);
 					if(!foundFlower) {
 						for(int i = -yRange ; i<=yRange ; i++) {
 							int nx=x+offset[0]*spawnRange;

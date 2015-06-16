@@ -100,8 +100,6 @@ public abstract class MultiblockDataBase {
 				for(int k = 0;k<templateSlice2.length;k++) {
 					BlockData data = templateSlice2[k];
 					int[] transCoords = getTransformedCoords(x,y,z,i,j,k,mirrorX,mirrorZ,rotation);
-					System.out.println(data.block);
-					System.out.println(world.getBlock(transCoords[0], transCoords[1], transCoords[2]));
 					if(!data.isValid(null, world, transCoords[0], transCoords[1], transCoords[2]))
 						return false;
 				}

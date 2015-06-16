@@ -2,6 +2,7 @@ package soundlogic.silva.common.block.tile.multiblocks;
 
 import java.util.List;
 
+import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.block.BlockManaEater;
 import soundlogic.silva.common.block.BlockPylon;
 import soundlogic.silva.common.block.ModBlocks;
@@ -14,6 +15,7 @@ import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.common.core.helper.InventoryHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityEnderPearl;
@@ -27,6 +29,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityHopper;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -35,10 +38,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class MutliblockDataEnderCatcher extends MultiblockDataBase {
 
+	private IIcon iconBase;
+
 	public MutliblockDataEnderCatcher() {
 		super(new BlockData(GameRegistry.findBlock("Botania", "endStoneBrick"),1));
-		System.out.println("keke");
-		System.out.println(GameRegistry.findBlock("Botania", "endStoneBrick0Stairs"));
 		BlockData core = new BlockData(GameRegistry.findBlock("Botania", "endStoneBrick"),1);
 		BlockData obsidian = new BlockData(Blocks.obsidian, 0);
 		BlockData quartz = new BlockData(Blocks.quartz_block, 2);
@@ -174,9 +177,6 @@ public class MutliblockDataEnderCatcher extends MultiblockDataBase {
 			if(InventoryHelper.testInventoryInsertion(hopperInventory, new ItemStack(Items.ender_pearl), ForgeDirection.DOWN)!=1)
 				return;
 			EntityLivingBase thrower = pearl.getThrower();
-			
-			System.out.println(thrower);
-			
             if (thrower != null && thrower instanceof EntityPlayerMP)
             {
                 EntityPlayerMP entityplayermp = (EntityPlayerMP)thrower;
@@ -219,8 +219,7 @@ public class MutliblockDataEnderCatcher extends MultiblockDataBase {
 	@Override
 	public void setVisualData(TileMultiblockCore core, TileMultiblockBase tile,
 			int x, int y, int z) {
-		// TODO Auto-generated method stub
-		
+		tile.iconsForSides=new IIcon[] {iconBase, iconBase, iconBase, iconBase, iconBase, iconBase};
 	}
 
 	@Override
@@ -246,6 +245,11 @@ public class MutliblockDataEnderCatcher extends MultiblockDataBase {
 		return LibMultiblockNames.ENDER_CATCHER;
 	}
 
+	@Override
+	public void registerBlockIcons(IIconRegister par1IconRegister) {
+		iconBase = par1IconRegister.registerIcon(LibResources.ENDER_CATCHER_BASE);
+	}
+	
 	@Override
 	public boolean shouldTryTransform(int trial, boolean mirrorX,
 			boolean mirrorZ, int rot) {

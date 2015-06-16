@@ -137,4 +137,10 @@ public class LibResources {
 
 	public static final String MODEL_SLINGSHOT = PREFIX_MODEL + "slingshot.png";
 
+	public static final String PIXIE_FARM_PILLAR = PREFIX_MOD + "pixieFarmPillar";
+
+	public static final String ENDER_CATCHER_BASE = PREFIX_MOD + "enderCatcher";
+
+	public static final String GRINDER_BASE = PREFIX_MOD + "mysticalGrinder";
+
 }

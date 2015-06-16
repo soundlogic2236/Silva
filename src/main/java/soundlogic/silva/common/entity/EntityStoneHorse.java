@@ -21,7 +21,6 @@ public class EntityStoneHorse extends EntityHorse{
 	public EntityStoneHorse(World p_i1685_1_) {
 		super(p_i1685_1_);
 		this.isImmuneToFire=true;
-		System.out.println(this instanceof EntityHorse);
 	}
 	
 	@Override

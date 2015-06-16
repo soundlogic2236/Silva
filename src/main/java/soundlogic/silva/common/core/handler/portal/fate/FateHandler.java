@@ -527,9 +527,7 @@ public class FateHandler {
 		return getEchos(key).size();
 	}
 	public static void storeEntity(EntityLivingBase entity, int key) {
-		System.out.println(entity);
 		IVigridrFate fate = getFate(activeFateKeys.get(key));
-		System.out.println(fate);
 		if(fate==null) {
 			entity.setDead();
 			return;

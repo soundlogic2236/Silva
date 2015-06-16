@@ -209,7 +209,6 @@ public class TileSlingshot extends TileMod implements IWandBindable, IForestClie
 			tries++;
 		}
 		if(Math.abs(weakDistance-targetDistance)>.01D) {
-			System.out.println("Could not find minimum force");
 			setToNoSolution();
 			return;
 		}
@@ -232,9 +231,6 @@ public class TileSlingshot extends TileMod implements IWandBindable, IForestClie
 		double deltaHeight = deltaPosition.y;
 		double det = Math.pow(totalVelocity, 4) - gravity * ( gravity * targetDistance * targetDistance + 2 * deltaHeight * totalVelocity * totalVelocity);
 //		det=0;
-		System.out.println("det"+det);
-		System.out.println((totalVelocity*totalVelocity+Math.sqrt(det))/(gravity*targetDistance));
-		System.out.println((totalVelocity*totalVelocity-Math.sqrt(det))/(gravity*targetDistance));
 		fireAngle=0;
 		for(int i = 0 ; i < 360 ; i ++) {
 			setProjectileTrajectory(rotation, i, launchMultiplier);
@@ -248,11 +244,6 @@ public class TileSlingshot extends TileMod implements IWandBindable, IForestClie
 //		double angle2 = Math.atan2((totalVelocity*totalVelocity-Math.sqrt(det)),(gravity*targetDistance))/Math.PI*180D;
 //		fireAngle = (float) (Math.max(angle1, angle2));
 		solution=true;
-		System.out.println("launchMultiplier"+launchMultiplier);
-//		System.out.println("1angle"+angle1);
-//		System.out.println("2angle"+angle2);
-		System.out.println("fireAngle"+fireAngle);
-		System.out.println("rotation"+rotation);
 	}
 
 	private double getShortDistance(double deltaHeight, Vector3 velocity, double gravity) {
@@ -439,7 +430,6 @@ public class TileSlingshot extends TileMod implements IWandBindable, IForestClie
 			return false;
 		}
 		IProjectile projectile = getProjectileEntity(stack);
-		System.out.println(projectile);
 		if(projectile instanceof EntityThrowable) {
 			canLaunch.put(item, true);
 			return true;

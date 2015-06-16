@@ -86,7 +86,7 @@ public abstract class BlockMultiblockBase extends BlockContainer implements IWan
 		TileMultiblockBase tile = (TileMultiblockBase) baseTile;
 
 		Block block = tile.getOriginalBlock();
-        IIcon override = tile.iconsForSides[world.rand.nextInt(6)];
+        IIcon override = tile.getIconForSide(world.rand.nextInt(6));
 
         if(override==null && block.addDestroyEffects(world, x,y,z,tile.getOriginalMeta(), effectRenderer))
 			return true;
@@ -127,7 +127,7 @@ public abstract class BlockMultiblockBase extends BlockContainer implements IWan
 		Block block = tile.getOriginalBlock();
 
 		int side = target.sideHit;
-        IIcon override = tile.iconsForSides[side];
+        IIcon override = tile.getIconForSide(side);
 
         if(override == null && block.addHitEffects(world, target, effectRenderer))
 			return true;
@@ -190,7 +190,7 @@ public abstract class BlockMultiblockBase extends BlockContainer implements IWan
 	@Override
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
 		TileMultiblockBase tile = (TileMultiblockBase) world.getTileEntity(x, y, z);
-		IIcon icon = tile.iconsForSides[side];
+		IIcon icon = tile.getIconForSide(side);
 		if(icon==null && tile.getOriginalBlock()!=null)
 			return tile.getOriginalBlock().getIcon(side, tile.getOriginalMeta());
 		return icon;

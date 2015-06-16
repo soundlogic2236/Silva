@@ -270,8 +270,6 @@ public class EntityPhantomEndermanEcho extends EntityEnderman implements IEntity
     public void writeEntityToNBT(NBTTagCompound cmp)
     {
         super.writeEntityToNBT(cmp);
-        System.out.println("keke");
-        System.out.println(isStored);
         cmp.setBoolean(TAG_IS_STORED, isStored);
         cmp.setBoolean(TAG_ATTACKING, attacking);
         cmp.setBoolean(TAG_FLYING, flying);
@@ -284,8 +282,6 @@ public class EntityPhantomEndermanEcho extends EntityEnderman implements IEntity
     {
         super.readEntityFromNBT(cmp);
         isStored=cmp.getBoolean(TAG_IS_STORED);
-        System.out.println("dede");
-        System.out.println(isStored);
         attacking=cmp.getBoolean(TAG_ATTACKING);
         flying=cmp.getBoolean(TAG_FLYING);
         phantom=cmp.getBoolean(TAG_PHANTOM);
@@ -320,7 +316,6 @@ public class EntityPhantomEndermanEcho extends EntityEnderman implements IEntity
 
 	@Override
 	public void setDead() {
-		System.out.println("le");
 		FateHandler.setDead(this);
 		super.setDead();
 	}
