@@ -17,7 +17,7 @@ import soundlogic.silva.common.core.helper.EquipmentHelper;
 import soundlogic.silva.common.item.ItemProxy;
 import soundlogic.silva.common.item.ModItems;
 
-public class DwarfTradeReforging extends DwarfTrade{
+public class DwarfTradeReforging extends DwarfTradeSigned{
 
 	private final String TAG_EXTRA_COST_SIZE = "extraCostSize";
 	private final String TAG_EXTRA_COST = "extraCost";
@@ -91,7 +91,7 @@ public class DwarfTradeReforging extends DwarfTrade{
 		
 		
 		if(inputsMissing.isEmpty() && target!=null)
-			return new DwarvenTradeTransaction(result,stacksToRemove,this.getRepBoost(),this.getMaxRep());
+			return getTransaction(result,stacksToRemove);
 		
 		return null;
 	}

@@ -9,14 +9,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
 import soundlogic.silva.common.block.tile.TilePortalCore;
 
-public class DwarfTradeSimple extends DwarfTradeUnsigned {
+public class DwarfTradeSignedSimple extends DwarfTradeSigned{
 
 	List<ItemStack> outputs;
 	List<Object> inputs;
+	int requiredRep;
 	int repBoost;
 	int maxRep;
 	
-	public DwarfTradeSimple(List<ItemStack> outputs, int repBoost, int maxRep , Object... inputs) {
+	public DwarfTradeSignedSimple(List<ItemStack> outputs, int requiredRep, int repBoost, int maxRep , Object... inputs) {
 		this.outputs = outputs;
 
 		List<Object> inputsToSet = new ArrayList();
@@ -27,12 +28,13 @@ public class DwarfTradeSimple extends DwarfTradeUnsigned {
 		}
 
 		this.inputs = inputsToSet;
+		this.requiredRep=requiredRep;
 		this.repBoost=repBoost;
 		this.maxRep=maxRep;
 	}
 
-	public DwarfTradeSimple(ItemStack output, int repBoost, int maxRep, Object... inputs) {
-		this(Arrays.asList(new ItemStack[]{output}),repBoost,maxRep,inputs);
+	public DwarfTradeSignedSimple(ItemStack output, int requiredRep, int repBoost, int maxRep, Object... inputs) {
+		this(Arrays.asList(new ItemStack[]{output}),requiredRep,repBoost,maxRep,inputs);
 	}
 	
 	@Override
@@ -107,6 +109,17 @@ public class DwarfTradeSimple extends DwarfTradeUnsigned {
 	@Override
 	public List<Object> getInputs() {
 		return inputs;
+	}
+
+	@Override
+	public boolean isReputationSufficent(int reputation) {
+		return reputation>=this.requiredRep;
+	}
+
+	@Override
+	public boolean doesStackMatchSlotForDisplay(ItemStack stack, int slot) {
+		Object target = getInputs().get(slot);
+		return stackMatches(stack, target);
 	}
 
 }

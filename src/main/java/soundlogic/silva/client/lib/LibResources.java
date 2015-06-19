@@ -39,8 +39,8 @@ public class LibResources {
 	public static final String BLOCK_BIFROST = PREFIX_MOD + "bifrostBlock";
 	public static final String BLOCK_BIFROST_SPARKLING = PREFIX_MOD + "bifrostBlockSparkling";
 
-	public static final String PORTAL_OFF = PREFIX_MOD + "portalOff";
-	public static final String PORTAL_ON = PREFIX_MOD + "portalOn";
+	public static final String PORTAL_OFF = PREFIX_MOD + "portalCubeOff";
+	public static final String PORTAL_ON = PREFIX_MOD + "portalCubeOn";
 	public static final String PORTAL_INSIDE = PREFIX_MOD + "portalInside";
 
 	public static final String DARKENED_DUST = PREFIX_MOD + "darkenedDust";
@@ -65,9 +65,6 @@ public class LibResources {
 		PREFIX_ENTRIES + "portal5.png",
 		PREFIX_ENTRIES + "portal6.png",
 	};
-
-	public static final String MODEL_DWARVEN_SIGN_OFF = PREFIX_MODEL + "dwarvenSignOff.png";
-	public static final String MODEL_DWARVEN_SIGN_ON = PREFIX_MODEL + "dwarvenSignOn.png";
 
 	public static final String MODEL_STONE_HORSE = PREFIX_ENTITY + "horse_stone.png";
 

@@ -4,7 +4,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
 import soundlogic.silva.common.crafting.ModPortalTradeRecipes;
-import soundlogic.silva.common.crafting.recipe.DwarfTrade;
+import soundlogic.silva.common.crafting.recipe.DwarfTradeSigned;
 
 public class TileDwarvenSign extends TileMod{
 	
@@ -46,12 +46,12 @@ public class TileDwarvenSign extends TileMod{
 			if(core.getDimension()!=Dimension.NIDAVELLIR)
 				core=null;
 		if(core==null)
-			activated=false;
+			setActivated(false);
 	}
 
 	public void activate() {
 		if(activated) {
-			activated=false;
+			setActivated(false);
 		}
 		else {
 			if(core==null)
@@ -59,12 +59,17 @@ public class TileDwarvenSign extends TileMod{
 			TileDwarvenSign[] signs=core.getDwarvenSigns();
 			for(TileDwarvenSign sign : signs)
 				if(sign!=null) {
-					sign.activated=false;
-					sign.getWorldObj().markBlockForUpdate(sign.xCoord, sign.yCoord, sign.zCoord);
+					sign.setActivated(false);
 				}
-			this.activated=true;
+			this.setActivated(true);
 		}
-		worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+	}
+
+	private void setActivated(boolean b) {
+		this.activated=b;
+		int dir = this.getBlockMetadata() & 3;
+		int newMeta = dir + ( activated ? 4 : 0 );
+		worldObj.setBlockMetadataWithNotify(this.xCoord, this.yCoord, this.zCoord, newMeta, 3);
 	}
 
 	@Override
@@ -95,17 +100,17 @@ public class TileDwarvenSign extends TileMod{
 		return activated;
 	}
 
-	public boolean matchesRecipe(DwarfTrade dwarfTrade) {
+	public boolean matchesRecipe(DwarfTradeSigned dwarfTrade) {
 		return dwarfTrade==getRecipe();
 	}
 	
-	public DwarfTrade getRecipe() {
+	public DwarfTradeSigned getRecipe() {
 		if(recipeSlot==-1 || core == null)
 			return null;
 		return core.dwarfData.getTrade(recipeSlot);
 	}
 	
-	public void setRecipe(DwarfTrade dwarfTrade) {
+	public void setRecipe(DwarfTradeSigned dwarfTrade) {
 		core.dwarfData.setTrade(recipeSlot, dwarfTrade);
 	}
 }

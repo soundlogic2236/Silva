@@ -1,5 +1,11 @@
 package soundlogic.silva.common.block;
 
+import static net.minecraftforge.common.util.ForgeDirection.DOWN;
+import static net.minecraftforge.common.util.ForgeDirection.EAST;
+import static net.minecraftforge.common.util.ForgeDirection.NORTH;
+import static net.minecraftforge.common.util.ForgeDirection.SOUTH;
+import static net.minecraftforge.common.util.ForgeDirection.UP;
+import static net.minecraftforge.common.util.ForgeDirection.WEST;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import soundlogic.silva.client.lib.LibResources;
@@ -18,13 +24,18 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockDwarvenSign extends BlockContainer implements ILexiconable{
 
+	IIcon iconOn, iconOff;
+	public static IIcon arrowOn, arrowOff;
+	
 	protected BlockDwarvenSign() {
-		super(Material.iron);
+		super(Material.rock);
 		setCreativeTab(Silva.creativeTab);
 		setBlockName(LibBlockNames.DWARVEN_SIGN);
 	}
@@ -35,6 +46,13 @@ public class BlockDwarvenSign extends BlockContainer implements ILexiconable{
 			return true;
 		((TileDwarvenSign)world.getTileEntity(x, y, z)).activate();
 		return true;
+	}
+	
+	@Override
+	public IIcon getIcon(int side, int meta) {
+		if(meta<4)
+			return iconOff;
+		return iconOn;
 	}
 
 	@Override
@@ -47,37 +65,38 @@ public class BlockDwarvenSign extends BlockContainer implements ILexiconable{
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister) {
 		blockIcon = par1IconRegister.registerIcon(LibResources.PREFIX_MOD+getUnlocalizedName().replaceAll("tile\\.", ""));
+		iconOn = par1IconRegister.registerIcon(LibResources.PREFIX_MOD+getUnlocalizedName().replaceAll("tile\\.", "")+"On");
+		iconOff = par1IconRegister.registerIcon(LibResources.PREFIX_MOD+getUnlocalizedName().replaceAll("tile\\.", "")+"Off");
+		arrowOn = par1IconRegister.registerIcon(LibResources.PREFIX_MOD+getUnlocalizedName().replaceAll("tile\\.", "")+"IconOn");
+		arrowOff = par1IconRegister.registerIcon(LibResources.PREFIX_MOD+getUnlocalizedName().replaceAll("tile\\.", "")+"IconOff");
 	}
 
     @Override
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        int l = p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_);
-        float f = 0.28125F;
-        float f1 = 0.78125F;
-        float f2 = 0.0F;
-        float f3 = 1.0F;
-        float f4 = 0.125F;
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+        int l = p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_) & 3;
+        if (l == 0)
+        {
+            this.setBlockBounds(1F/16F, 	1F/16F, 	15F/16F, 
+            					15F/16F, 	15F/16F,	1F);
+        }
+
+        if (l == 1)
+        {
+            this.setBlockBounds(1F/16F, 	1F/16F, 	0F, 
+            					15F/16F, 	15F/16F, 	1F/16F);
+        }
 
         if (l == 2)
         {
-            this.setBlockBounds(f2, f, 1.0F - f4, f3, f1, 1.0F);
+            this.setBlockBounds(15F/16F, 	1F/16F, 	1F/16F, 
+            					1F, 		15F/16F, 	15F/16F);
         }
 
         if (l == 3)
         {
-            this.setBlockBounds(f2, f, 0.0F, f3, f1, f4);
-        }
-
-        if (l == 4)
-        {
-            this.setBlockBounds(1.0F - f4, f, f2, 1.0F, f1, f3);
-        }
-
-        if (l == 5)
-        {
-            this.setBlockBounds(0.0F, f, f2, f4, f1, f3);
+            this.setBlockBounds(0F, 		1F/16F, 	1F/16F, 
+            					1F/16F, 	15F/16F, 	15F/16F);
         }
     }
 
@@ -86,12 +105,6 @@ public class BlockDwarvenSign extends BlockContainer implements ILexiconable{
     {
         this.setBlockBoundsBasedOnState(p_149633_1_, p_149633_2_, p_149633_3_, p_149633_4_);
         return super.getSelectedBoundingBoxFromPool(p_149633_1_, p_149633_2_, p_149633_3_, p_149633_4_);
-    }
-
-    @Override
-    public int getRenderType()
-    {
-        return -1;
     }
 
     @Override
@@ -106,42 +119,31 @@ public class BlockDwarvenSign extends BlockContainer implements ILexiconable{
         return false;
     }
 
-    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block block)
     {
-        boolean flag = false;
-
-        int l = p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_);
-        flag = true;
-
-        if (l == 2 && p_149695_1_.getBlock(p_149695_2_, p_149695_3_, p_149695_4_ + 1).getMaterial().isSolid())
+        int l = world.getBlockMetadata(x, y, z) & 3;
+        if (!canPlaceBlockOnSide(world, x, y, z, l+2))
         {
-            flag = false;
+            this.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+            world.setBlockToAir(x, y, z);
         }
 
-        if (l == 3 && p_149695_1_.getBlock(p_149695_2_, p_149695_3_, p_149695_4_ - 1).getMaterial().isSolid())
-        {
-            flag = false;
-        }
-
-        if (l == 4 && p_149695_1_.getBlock(p_149695_2_ + 1, p_149695_3_, p_149695_4_).getMaterial().isSolid())
-        {
-            flag = false;
-        }
-
-        if (l == 5 && p_149695_1_.getBlock(p_149695_2_ - 1, p_149695_3_, p_149695_4_).getMaterial().isSolid())
-        {
-            flag = false;
-        }
-
-        if (flag)
-        {
-            this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_), 0);
-            p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
-        }
-
-        super.onNeighborBlockChange(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_5_);
+        super.onNeighborBlockChange(world, x, y, z, block);
     }
-     @Override
+    
+    public boolean canPlaceBlockOnSide(World world, int x, int y, int z, int side)
+    {
+        ForgeDirection dir = ForgeDirection.getOrientation(side);
+        return (dir == DOWN  && world.isSideSolid(x, y + 1, z, DOWN )) ||
+               (dir == UP    && world.isSideSolid(x, y - 1, z, UP   )) ||
+               (dir == NORTH && world.isSideSolid(x, y, z + 1, NORTH)) ||
+               (dir == SOUTH && world.isSideSolid(x, y, z - 1, SOUTH)) ||
+               (dir == WEST  && world.isSideSolid(x + 1, y, z, WEST )) ||
+               (dir == EAST  && world.isSideSolid(x - 1, y, z, EAST ));
+    }
+    
+
+    @Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
 		return new TileDwarvenSign();
 	}

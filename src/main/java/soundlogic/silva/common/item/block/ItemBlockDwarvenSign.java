@@ -18,7 +18,7 @@ public class ItemBlockDwarvenSign extends ItemBlockMod {
 	@Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float xs, float xy, float xz)
     {
-        if (side == 0)
+        if (side == 0 || side == 1)
         {
             return false;
         }
@@ -28,11 +28,6 @@ public class ItemBlockDwarvenSign extends ItemBlockMod {
         }
         else
         {
-            if (side == 1)
-            {
-                ++y;
-            }
-
             if (side == 2)
             {
                 --z;
@@ -63,14 +58,9 @@ public class ItemBlockDwarvenSign extends ItemBlockMod {
             }
             else
             {
-                if (side == 1)
-                {
-                    return false;
-                }
-                else
-                {
-                    world.setBlock(x, y, z, ModBlocks.dwarvenSign, side, 3);
-                }
+            	if(!ModBlocks.dwarvenSign.canPlaceBlockOnSide(world, x, y, z, side))
+            		return false;
+                world.setBlock(x, y, z, ModBlocks.dwarvenSign, side-2, 3);
 
                 --stack.stackSize;
 

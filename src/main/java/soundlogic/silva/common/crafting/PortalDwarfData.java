@@ -7,7 +7,7 @@ import java.util.Random;
 
 import soundlogic.silva.common.block.tile.TileDwarvenSign;
 import soundlogic.silva.common.block.tile.TilePortalCore;
-import soundlogic.silva.common.crafting.recipe.DwarfTrade;
+import soundlogic.silva.common.crafting.recipe.DwarfTradeSigned;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class PortalDwarfData {
@@ -19,7 +19,7 @@ public class PortalDwarfData {
 	private static final String TAG_DWARF_TRADES_DATA = "dwarfTradeData";
 
 	int reputation;
-	DwarfTrade[] dwarfTrades=new DwarfTrade[9];
+	DwarfTradeSigned[] dwarfTrades=new DwarfTradeSigned[9];
 	NBTTagCompound[] dwarfTradesData=new NBTTagCompound[9];
 	Random random=new Random();
 	
@@ -34,7 +34,7 @@ public class PortalDwarfData {
 			if(dwarfTrades[i]==null)
 				mine.setString(TAG_DWARF_TRADES+i, "NONE");
 			else
-				mine.setString(TAG_DWARF_TRADES+i, ModPortalTradeRecipes.dwarfTradesToStrings.get(dwarfTrades[i]));
+				mine.setString(TAG_DWARF_TRADES+i, ModPortalTradeRecipes.dwarfTradeSignsToStrings.get(dwarfTrades[i]));
 			if(dwarfTradesData[i]!=null)
 				mine.setTag(TAG_DWARF_TRADES_DATA+i, dwarfTradesData[i]);
 		}
@@ -49,7 +49,7 @@ public class PortalDwarfData {
 			if(tradeKey.equals("NONE"))
 				dwarfTrades[i]=null;
 			else
-				dwarfTrades[i]=ModPortalTradeRecipes.dwarfStringsToTrades.get(tradeKey);
+				dwarfTrades[i]=ModPortalTradeRecipes.dwarfStringsToTradeSigns.get(tradeKey);
 			if(mine.hasKey(TAG_DWARF_TRADES_DATA+i))
 				dwarfTradesData[i]=mine.getCompoundTag(TAG_DWARF_TRADES_DATA+i);
 		}
@@ -64,13 +64,13 @@ public class PortalDwarfData {
 		reputation=newRep;
 	}
 	
-	public DwarfTrade getTrade(int slot) {
+	public DwarfTradeSigned getTrade(int slot) {
 		if(dwarfTrades[slot]!=null)
 			dwarfTrades[slot].readNBTData(dwarfTradesData[slot]);
 		return dwarfTrades[slot];
 	}
 	
-	public void setTrade(int slot, DwarfTrade trade) {
+	public void setTrade(int slot, DwarfTradeSigned trade) {
 		dwarfTrades[slot]=trade;
 	}
 
@@ -80,17 +80,19 @@ public class PortalDwarfData {
 			if(i != locked && ticks % 60 == 0)
 				if(random.nextFloat()<.01F) {
 					dwarfTrades[i]=getRandomTrade();
-					dwarfTrades[i].prepRecipe(reputation);
-					NBTTagCompound cmp=new NBTTagCompound();
-					dwarfTrades[i].writeNBTData(cmp);
-					if(cmp.hasNoTags())
-						dwarfTradesData[i]=null;
-					else
-						dwarfTradesData[i]=cmp;
-					TileDwarvenSign sign = signs[i];
-					if(sign!=null) {
-						sign.getWorldObj().markBlockForUpdate(sign.xCoord, sign.yCoord, sign.zCoord);
-						update=true;
+					if(dwarfTrades[i]!=null) {
+						dwarfTrades[i].prepRecipe(reputation);
+						NBTTagCompound cmp=new NBTTagCompound();
+						dwarfTrades[i].writeNBTData(cmp);
+						if(cmp.hasNoTags())
+							dwarfTradesData[i]=null;
+						else
+							dwarfTradesData[i]=cmp;
+						TileDwarvenSign sign = signs[i];
+						if(sign!=null) {
+							sign.getWorldObj().markBlockForUpdate(sign.xCoord, sign.yCoord, sign.zCoord);
+							update=true;
+						}
 					}
 				}
 		}
@@ -98,8 +100,10 @@ public class PortalDwarfData {
 			core.getWorldObj().markBlockForUpdate(core.xCoord, core.yCoord, core.zCoord);
 	}
 
-	private DwarfTrade getRandomTrade() {
-		return ModPortalTradeRecipes.getRandomWeighedTrade(reputation, dwarfTrades);
+	private DwarfTradeSigned getRandomTrade() {
+		float chanceForNull = 1-((float)reputation) / (4F+1.1F * ((float)reputation));
+		if(random.nextFloat()>chanceForNull)
+			return ModPortalTradeRecipes.getRandomWeighedTrade(reputation, dwarfTrades);
+		return null;
 	}
-
 }

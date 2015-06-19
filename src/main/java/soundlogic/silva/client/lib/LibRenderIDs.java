@@ -12,4 +12,5 @@ public class LibRenderIDs {
 	public static int idBlazeFire = -1;
 	public static int idDarkElfTrap = -1;
 	public static int idSlingshot = -1;
+	public static int idPortalCore = -1;
 }

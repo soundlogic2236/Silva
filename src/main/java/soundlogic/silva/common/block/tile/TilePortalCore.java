@@ -72,6 +72,9 @@ public class TilePortalCore extends TileMod{
 	private int darkElfCooldown=0;
 	private ArrayList<ItemStack> inventory = new ArrayList<ItemStack>();
 	
+	public int portalOpeningTimer = 0;
+	public int portalClosingTimer = 0;
+	
 	public PortalDwarfData dwarfData=new PortalDwarfData();
 	
 	private List<IPortalUpgrade> upgrades = new ArrayList<IPortalUpgrade>();
@@ -118,6 +121,10 @@ public class TilePortalCore extends TileMod{
 	@Override
 	public void updateEntity() {
 		ticks++;
+		if(portalOpeningTimer>0)
+			portalOpeningTimer--;
+		if(portalClosingTimer>0)
+			portalClosingTimer--;
 		updateUpgrades();
 		tickUpgrades();
 		if(darkElfCooldown>0)
@@ -560,6 +567,7 @@ public class TilePortalCore extends TileMod{
 		this.inventory.clear();
 		this.ticksOpen=0;
 		this.ticksSinceLastItem=0;
+		this.portalOpeningTimer=60;
 		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
 	
@@ -567,6 +575,7 @@ public class TilePortalCore extends TileMod{
 		if(dimension==null)
 			return;
 		dimension=null;
+		this.portalClosingTimer=60-this.portalOpeningTimer;
 		this.inventory.clear();
 	}
 	
@@ -805,6 +814,6 @@ public class TilePortalCore extends TileMod{
 	}
 	
 	public boolean shouldRenderInPass(int pass) {
-		return pass==1;
+		return pass==0 || pass==1;
 	}
 }

@@ -2,6 +2,7 @@ package soundlogic.silva.common.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import soundlogic.silva.client.lib.LibRenderIDs;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.tile.TilePortalCore;
@@ -47,18 +48,20 @@ public class BlockPortalCore extends BlockContainer implements IWandable, ILexic
 	}
 
 	@Override
+    public int getRenderType()
+    {
+        return LibRenderIDs.idPortalCore;
+    }
+
+
+	@Override
     public boolean isOpaqueCube() {
     	return false;
     }
     
 	@Override
 	public IIcon getIcon(int side, int meta) {
-		return iconOff;
-	}
-
-	@Override
-	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
-		return ((TilePortalCore) world.getTileEntity(x, y, z)).getDimension()==null ? iconOff : iconOn;
+		return ModBlocks.bifrostBlockSparkling.getIcon(0, 0);
 	}
 	
 	@Override
