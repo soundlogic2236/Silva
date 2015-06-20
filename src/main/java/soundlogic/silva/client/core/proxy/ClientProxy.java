@@ -31,6 +31,7 @@ import soundlogic.silva.client.render.block.RenderDwarvenPool;
 import soundlogic.silva.client.render.block.RenderManaCrystal;
 import soundlogic.silva.client.render.block.RenderManaEater;
 import soundlogic.silva.client.render.block.RenderDust;
+import soundlogic.silva.client.render.block.RenderMultiblockCore;
 import soundlogic.silva.client.render.block.RenderPortalCore;
 import soundlogic.silva.client.render.block.RenderPortalUpgradeCharge;
 import soundlogic.silva.client.render.block.RenderPylon;
@@ -110,6 +111,7 @@ public class ClientProxy extends CommonProxy{
     	LibRenderIDs.idDarkElfTrap = RenderingRegistry.getNextAvailableRenderId();
     	LibRenderIDs.idSlingshot = RenderingRegistry.getNextAvailableRenderId();
     	LibRenderIDs.idPortalCore = RenderingRegistry.getNextAvailableRenderId();
+    	LibRenderIDs.idMultiblockCore = RenderingRegistry.getNextAvailableRenderId();
     	
     	RenderingRegistry.registerBlockHandler(new RenderPylon());
     	RenderingRegistry.registerBlockHandler(new RenderManaEater());
@@ -122,6 +124,7 @@ public class ClientProxy extends CommonProxy{
     	RenderingRegistry.registerBlockHandler(new RenderDarkElfTrap());
     	RenderingRegistry.registerBlockHandler(new RenderSlingshot());
     	RenderingRegistry.registerBlockHandler(new RenderPortalCore());
+    	RenderingRegistry.registerBlockHandler(new RenderMultiblockCore());
     	
     	ClientRegistry.bindTileEntitySpecialRenderer(TilePylon.class, new RenderTilePylon());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileManaEater.class, new RenderTileManaEater());

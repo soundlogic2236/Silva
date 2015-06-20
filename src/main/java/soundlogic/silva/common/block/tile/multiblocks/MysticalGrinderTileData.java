@@ -8,7 +8,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class MysticalGrinderTileData implements IMultiblockTileData {
+public class MysticalGrinderTileData extends ManaTileData {
 
 	private static final String TAG_STACKS = "stacks";
 	private static final String TAG_FRACTIONS = "fractions";
@@ -16,6 +16,7 @@ public class MysticalGrinderTileData implements IMultiblockTileData {
 	private static final String TAG_HARDNESS = "hardness";
 	private static final String TAG_REFERENCE = "reference";
 	private static final String TAG_PARTS = "parts";
+	private static final String TAG_ACTIVE = "active";
 	
 	private static final int maxStacksStored = 30;
 	private static final int weeds = 14;
@@ -36,6 +37,7 @@ public class MysticalGrinderTileData implements IMultiblockTileData {
 	
 	public boolean dirty = false;
 	public boolean visualDirty = false;
+	public boolean active = false;
 	
 	public MysticalGrinderTileData() {
 		for(int i = 0; i < weeds; i++) {
@@ -45,6 +47,7 @@ public class MysticalGrinderTileData implements IMultiblockTileData {
 	
 	@Override
 	public void writeCustomNBT(NBTTagCompound cmp) {
+		super.writeCustomNBT(cmp);
 		for(int i = 0 ; i < maxStacksStored ; i++) {
 			if(stacks[i]!=null) {
 				NBTTagCompound item = new NBTTagCompound();
@@ -59,10 +62,12 @@ public class MysticalGrinderTileData implements IMultiblockTileData {
 			cmp.setInteger(TAG_REFERENCE+i, weedReference[i]);
 			cmp.setInteger(TAG_PARTS+i, weedParts[i]);
 		}
+		cmp.setBoolean(TAG_ACTIVE, active);
 	}
 
 	@Override
 	public void readCustomNBT(NBTTagCompound cmp) {
+		super.readCustomNBT(cmp);
 		for(int i = 0 ; i < maxStacksStored ; i++) {
 			if(cmp.hasKey(TAG_STACKS+i))
 				stacks[i]=ItemStack.loadItemStackFromNBT(cmp.getCompoundTag(TAG_STACKS+i));
@@ -79,6 +84,7 @@ public class MysticalGrinderTileData implements IMultiblockTileData {
 				weedReference[i]=-1;
 			weedParts[i]=cmp.getInteger(TAG_PARTS+i);
 		}
+		active=cmp.getBoolean(TAG_ACTIVE);
 	}
 
 	public boolean addStack(ItemStack tryAdd, float hardness) {
@@ -120,6 +126,24 @@ public class MysticalGrinderTileData implements IMultiblockTileData {
 		tickWeeds();
 		finishStacks();
 		spreadStacks();
+	}
+	
+	public int getActiveStackCount() {
+		int count = 0;
+		for(int i = 0 ; i < maxStacksStored ; i++) {
+			if(stacks[i]!=null)
+				count++;
+		}
+		return count;
+	}
+	
+	public int getActiveWeedCount() {
+		int count = 0;
+		for(int i = 0 ; i < weeds ; i++) {
+			if(weedReference[i]!=-1)
+				count++;
+		}
+		return count;
 	}
 	
 	private void finishStacks() {

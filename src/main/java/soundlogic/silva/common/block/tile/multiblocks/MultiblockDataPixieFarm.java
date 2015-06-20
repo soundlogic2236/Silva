@@ -22,6 +22,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import soundlogic.silva.client.lib.LibResources;
@@ -45,6 +46,7 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 	private static final int COOKIE_LEVEL_PER_COOKIE = 1000;
 	private static final int MANA_FOR_DUST = 2000;
 	static Block shinyFlower;
+	static Block storage;
 	static Item manaCookie;
 	static ItemStack pixieDust;
 	private IIcon iconPillar;
@@ -54,6 +56,7 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 		shinyFlower = GameRegistry.findBlock("Botania", "shinyFlower");
 		manaCookie = GameRegistry.findItem("Botania", "manaCookie");
 		pixieDust = new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,8);
+		storage = GameRegistry.findBlock("Botania", "storage");
 		BlockData core = new BlockData(GameRegistry.findBlock("Botania", "quartzTypeElf"),2);
 		BlockData quartz = new BlockData(GameRegistry.findBlock("Botania", "quartzTypeElf"),2);
 		BlockData storage = new BlockData(GameRegistry.findBlock("Botania", "storage"),2);
@@ -74,13 +77,13 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 		creationRequirementsTemplate = new BlockData[][][] {
 				{{BlockData.WILDCARD, grass, grass, grass, grass, grass, grass, grass, grass, grass, BlockData.WILDCARD},
 				 {grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass},
-				 {grass, grass, grass, grass, grass, storage, grass, grass, grass, grass, grass},
+				 {grass, grass, grass, grass, grass, BlockData.WILDCARD, grass, grass, grass, grass, grass},
 				 {grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass},
+				 {grass, grass, grass, grass, BlockData.WILDCARD, grass, BlockData.WILDCARD, grass, grass, grass, grass},
+				 {grass, grass, BlockData.WILDCARD, grass, grass, BlockData.WILDCARD, grass, grass, BlockData.WILDCARD, grass, grass},
+				 {grass, grass, grass, grass, BlockData.WILDCARD, grass, BlockData.WILDCARD, grass, grass, grass, grass},
 				 {grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass},
-				 {grass, grass, storage, grass, grass, BlockData.WILDCARD, grass, grass, storage, grass, grass},
-				 {grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass},
-				 {grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass},
-				 {grass, grass, grass, grass, grass, storage, grass, grass, grass, grass, grass},
+				 {grass, grass, grass, grass, grass, BlockData.WILDCARD, grass, grass, grass, grass, grass},
 				 {grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass},
 				 {BlockData.WILDCARD, grass, grass, grass, grass, grass, grass, grass, grass, grass, BlockData.WILDCARD}},
 
@@ -149,13 +152,13 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 		persistanceAndCreationBlocks = new BlockData[][][] {
 				{{BlockData.WILDCARD, grass, grass, grass, grass, grass, grass, grass, grass, grass, BlockData.WILDCARD},
 					 {grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass},
-					 {grass, grass, grass, grass, grass, storage, grass, grass, grass, grass, grass},
+					 {grass, grass, grass, grass, grass, BlockData.WILDCARD, grass, grass, grass, grass, grass},
 					 {grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass},
+					 {grass, grass, grass, grass, BlockData.WILDCARD, grass, BlockData.WILDCARD, grass, grass, grass, grass},
+					 {grass, grass, BlockData.WILDCARD, grass, grass, BlockData.WILDCARD, grass, grass, BlockData.WILDCARD, grass, grass},
+					 {grass, grass, grass, grass, BlockData.WILDCARD, grass, BlockData.WILDCARD, grass, grass, grass, grass},
 					 {grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass},
-					 {grass, grass, storage, grass, grass, BlockData.WILDCARD, grass, grass, storage, grass, grass},
-					 {grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass},
-					 {grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass},
-					 {grass, grass, grass, grass, grass, storage, grass, grass, grass, grass, grass},
+					 {grass, grass, grass, grass, grass, BlockData.WILDCARD, grass, grass, grass, grass, grass},
 					 {grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass},
 					 {BlockData.WILDCARD, grass, grass, grass, grass, grass, grass, grass, grass, grass, BlockData.WILDCARD}},
 
@@ -273,11 +276,14 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 
 	private void processCookies(World world, TileMultiblockCore core, PixieFarmTileData data) {
 		data.cookieLevel = MathHelper.floor_double(.9D * data.cookieLevel);
-		List<EntityItem> items = world.getEntitiesWithinAABB(EntityItem.class, getCookieBoundingBox(core, 0));
-		for(EntityItem item : items) {
-			ItemStack stack = item.getEntityItem();
-			if(stack.getItem()==manaCookie) {
-				if(cookieInSpot(item, core)) {
+		for(int i = 0 ; i < 4; i++) {
+			int[] coords = getCoordsForSlot(core, i);
+			if(world.getBlock(coords[0], coords[1], coords[2]) != storage || world.getBlockMetadata(coords[0], coords[1], coords[2])!=2)
+				continue;
+			List<EntityItem> items = world.getEntitiesWithinAABB(EntityItem.class, getCookieBoundingBox(core, i));
+			for(EntityItem item : items) {
+				ItemStack stack = item.getEntityItem();
+				if(stack.getItem()==manaCookie) {
 					data.cookieLevel+=stack.stackSize*COOKIE_LEVEL_PER_COOKIE;
 					item.setDead();
 				}
@@ -285,26 +291,19 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 		}
 	}
 
-	private boolean cookieInSpot(EntityItem item, TileMultiblockCore core) {
-		if(item.boundingBox.intersectsWith(getCookieBoundingBox(core,1)))
-			return true;
-		if(item.boundingBox.intersectsWith(getCookieBoundingBox(core,2)))
-			return true;
-		if(item.boundingBox.intersectsWith(getCookieBoundingBox(core,3)))
-			return true;
-		if(item.boundingBox.intersectsWith(getCookieBoundingBox(core,4)))
-			return true;
-		return false;
-	}
 
-	private AxisAlignedBB getCookieBoundingBox(TileMultiblockCore core, int i) {
+	private AxisAlignedBB getCookieBoundingBox(TileMultiblockCore core, int slot) {
 		double height = .1;
-		switch(i) {
-		case 0: return AxisAlignedBB.getBoundingBox(core.xCoord-3, core.yCoord, core.zCoord-3, core.xCoord+4, core.yCoord+height, core.zCoord+4);
-		case 1: return AxisAlignedBB.getBoundingBox(core.xCoord-3, core.yCoord, core.zCoord, core.xCoord-2, core.yCoord+height, core.zCoord+1);
-		case 2: return AxisAlignedBB.getBoundingBox(core.xCoord+3, core.yCoord, core.zCoord, core.xCoord+4, core.yCoord+height, core.zCoord+1);
-		case 3: return AxisAlignedBB.getBoundingBox(core.xCoord, core.yCoord, core.zCoord-3, core.xCoord+1, core.yCoord+height, core.zCoord-2);
-		case 4: return AxisAlignedBB.getBoundingBox(core.xCoord, core.yCoord, core.zCoord+3, core.xCoord+1, core.yCoord+height, core.zCoord+4);
+		int[] coords = getCoordsForSlot(core, slot);
+		return AxisAlignedBB.getBoundingBox(coords[0], coords[1]+1, coords[2], coords[0]+1, coords[1]+1+height, coords[2]+1);
+	}
+	
+	public int[] getCoordsForSlot(TileMultiblockCore core, int slot) {
+		switch(slot) {
+		case 0: return new int[]{core.xCoord-3, core.yCoord-1, core.zCoord};
+		case 1: return new int[]{core.xCoord+3, core.yCoord-1, core.zCoord};
+		case 2: return new int[]{core.xCoord, core.yCoord-1, core.zCoord-3};
+		case 3: return new int[]{core.xCoord, core.yCoord-1, core.zCoord+3};
 		}
 		return null;
 	}
@@ -464,7 +463,7 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 
 	public static class Pixie {
 		final static double default_speed = 0.08F;
-		final static AxisAlignedBB default_boundingBox = AxisAlignedBB.getBoundingBox(-0.2, -0.2, -0.2, 0.2, 0.2, 0.2);
+		final static AxisAlignedBB default_boundingBox = AxisAlignedBB.getBoundingBox(-0.3, -0.3, -0.3, 0.3, 0.3, 0.3);
 		final static double bounds_acceleration = 0.04F;
 		final static double random_acceleration = 0.08F;
 		public double posX, posY, posZ;
@@ -475,6 +474,7 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 		public int ticks=0;
 		boolean isDead = false;
 		public int type = 0;
+		private static List collidingBoundingBoxes = new ArrayList();
 
 		public Pixie() {
 		}
@@ -541,18 +541,19 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 		}
 		
 		private boolean positionBlocked(World world, double x, double y, double z) {
-			if(world.isAirBlock((int)x, (int)y, (int)z))
+			if(world.isAirBlock(MathHelper.floor_double(x), MathHelper.floor_double(y), MathHelper.floor_double(z)))
 				return false;
-			else if(world.getBlock((int)x, (int)y, (int)z).isNormalCube())
+			else if(world.getBlock(MathHelper.floor_double(x), MathHelper.floor_double(y), MathHelper.floor_double(z)).isNormalCube())
 				return true;
 			else
-				return world.func_147461_a(getBoundingBox(x,y,z)).isEmpty();
+				return !checkCollisions(world,getBoundingBox(x,y,z));
 		}
 
 		private void randomMotion(World world) {
 			this.motionX+=world.rand.nextGaussian()*random_acceleration;
 			this.motionY+=world.rand.nextGaussian()*random_acceleration;
 			this.motionZ+=world.rand.nextGaussian()*random_acceleration;
+
 			normVelocity();
 		}
 
@@ -650,5 +651,46 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 		public double getSpeed() {
 			return default_speed;
 		}
+		
+		private static boolean checkCollisions(World world, AxisAlignedBB aabb) {
+			collidingBoundingBoxes.clear();
+	        int i = MathHelper.floor_double(aabb.minX);
+	        int j = MathHelper.floor_double(aabb.maxX + 1.0D);
+	        int k = MathHelper.floor_double(aabb.minY);
+	        int l = MathHelper.floor_double(aabb.maxY + 1.0D);
+	        int i1 = MathHelper.floor_double(aabb.minZ);
+	        int j1 = MathHelper.floor_double(aabb.maxZ + 1.0D);
+
+	        for (int k1 = i; k1 < j; ++k1)
+	        {
+	            for (int l1 = i1; l1 < j1; ++l1)
+	            {
+	                if (world.blockExists(k1, 64, l1))
+	                {
+	                    for (int i2 = k - 1; i2 < l; ++i2)
+	                    {
+	                        Block block;
+
+	                        if (k1 >= -30000000 && k1 < 30000000 && l1 >= -30000000 && l1 < 30000000)
+	                        {
+	                            block = world.getBlock(k1, i2, l1);
+	                        }
+	                        else
+	                        {
+	                            block = Blocks.bedrock;
+	                        }
+	                        
+	                        System.out.println(block);
+
+	                        block.addCollisionBoxesToList(world, k1, i2, l1, aabb, collidingBoundingBoxes , (Entity)null);
+	                        if(!collidingBoundingBoxes.isEmpty())
+	                        	return false;
+	                    }
+	                }
+	            }
+	        }
+	        return true;
+	    }
+
 	}
 }

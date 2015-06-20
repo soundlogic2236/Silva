@@ -12,6 +12,9 @@ import soundlogic.silva.common.block.tile.multiblocks.PixieFarmTileData;
 import soundlogic.silva.common.block.tile.multiblocks.TileMultiblockCore;
 import vazkii.botania.api.internal.ShaderCallback;
 import vazkii.botania.client.lib.LibResources;
+import vazkii.botania.client.render.entity.RenderPixie;
+import vazkii.botania.common.Botania;
+import vazkii.botania.common.entity.EntityPixie;
 
 public class RenderMultiblockPixieFarm extends RenderMultiblock {
 
@@ -51,7 +54,7 @@ public class RenderMultiblockPixieFarm extends RenderMultiblock {
 				pixie.prevPosX + (pixie.posX-pixie.prevPosX)*pticks, 
 				pixie.prevPosY + (pixie.posY-pixie.prevPosY)*pticks, 
 				pixie.prevPosZ + (pixie.posZ-pixie.prevPosZ)*pticks);
-		GL11.glRotatef(pixie.prevRotation + (pixie.rotation-pixie.prevRotation)*pticks, 0, 1, 0);
+		GL11.glRotatef(pixie.prevRotation + (pixie.rotation-pixie.prevRotation)*pticks+180, 0, 1, 0);
 		model.render(pixie, pticks, 0.0625F);
 		GL11.glPopMatrix();
 		RenderGlobal.drawOutlinedBoundingBox(pixie.getBoundingBox(pixie.posX, pixie.posY, pixie.posZ), 16777215);

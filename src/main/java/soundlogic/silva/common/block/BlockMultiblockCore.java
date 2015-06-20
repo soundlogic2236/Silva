@@ -4,6 +4,7 @@ import java.util.Map.Entry;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import soundlogic.silva.client.lib.LibRenderIDs;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataBase;
@@ -34,4 +35,10 @@ public class BlockMultiblockCore extends BlockMultiblockProxy{
 			entry.getValue().registerBlockIcons(par1IconRegister);
 		}
 	}
+
+	@Override
+	public int getRenderType() {
+		return LibRenderIDs.idMultiblockCore;
+	}
+
 }

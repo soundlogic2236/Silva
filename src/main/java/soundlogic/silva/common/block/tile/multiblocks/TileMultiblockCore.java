@@ -6,7 +6,10 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 import soundlogic.silva.common.block.tile.TileMod;
+import soundlogic.silva.common.core.handler.MultiBlockCreationHandler;
+import soundlogic.silva.common.core.handler.MultiBlockCreationHandler.RenderData;
 
 public class TileMultiblockCore extends TileMultiblockBase{
 
@@ -24,11 +27,15 @@ public class TileMultiblockCore extends TileMultiblockBase{
 	public boolean mirrorZ = false;
 	public int rotation = 0;
 	
+	private boolean lastTickNullBlock = false;
+	
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-		if(worldObj.isRemote)
+		if(worldObj.isRemote) {
+			updateTemperaryRenderData();
 			return;
+		}
 		data.onTick(this);
 	}
 	
@@ -89,6 +96,29 @@ public class TileMultiblockCore extends TileMultiblockBase{
 		return new int[]{0,0,0};
 	}
 	
+	@Override
+	public IIcon getIconForSide(int side) {
+		if(this.getOriginalBlock()==null) {
+			lastTickNullBlock=true;
+			RenderData renderData = MultiBlockCreationHandler.renderData;
+			if(renderData.normalCube && renderData.lastX==this.xCoord && renderData.lastY==this.yCoord && renderData.lastZ==this.zCoord) {
+				return renderData.lastIcons[side];
+			}
+		}
+		return super.getIconForSide(side);
+	}
+	
+	private void updateTemperaryRenderData() {
+		if(this.getOriginalBlock()==null) {
+			lastTickNullBlock=true;
+		}
+		else if(lastTickNullBlock) {
+			lastTickNullBlock=false;
+			MultiBlockCreationHandler.clearRenderData();
+		}
+	}
+
+
 	public void markForVisualUpdate() {
 		this.markForRefresh();
 		
@@ -96,4 +126,4 @@ public class TileMultiblockCore extends TileMultiblockBase{
 			tile.markForRefresh();
 		}
 	}
-}
+	}

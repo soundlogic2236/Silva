@@ -8,12 +8,14 @@ import java.util.List;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.block.BlockPylon;
 import soundlogic.silva.common.block.ModBlocks;
+import soundlogic.silva.common.block.tile.TileManaCrystal;
 import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataBase.BlockData;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
 import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibMultiblockNames;
 import soundlogic.silva.core.FakeWorld;
 import vazkii.botania.api.lexicon.LexiconEntry;
+import vazkii.botania.api.mana.IManaPool;
 import vazkii.botania.common.core.helper.Vector3;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -27,6 +29,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.profiler.Profiler;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.MinecraftException;
@@ -38,10 +41,13 @@ import net.minecraft.world.chunk.storage.IChunkLoader;
 import net.minecraft.world.storage.IPlayerFileData;
 import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.WorldInfo;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 
 	private static final String TAG_GRINDER_TICKS = "_mysticalGrinderTicks";
+
+	private static final int MAX_MANA = getManaCostPerTick(14,14);
 	
 	private static HashMap<ItemStack, DropCacheResult> dropCache = new HashMap<ItemStack, DropCacheResult>();
 	private static class DropCacheResult {
@@ -124,6 +130,8 @@ public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 	public static HashMap<ItemStack, Float> extraGrindResultsHardness = new HashMap<ItemStack, Float>();
 
 	private IIcon iconBase;
+
+	private IIcon iconBaseInert;
 	
 	public MultiblockDataMysticalGrinder() {
 		super(new BlockData(Blocks.sticky_piston, 0));
@@ -221,6 +229,10 @@ public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 		};
 	}
 
+	private static int getManaCostPerTick(int activeStacks, int activeWeeds) {
+		return activeStacks*1+activeWeeds*2;
+	}
+
 	@Override
 	public String getName() {
 		return "mysticalGrinder";
@@ -234,30 +246,41 @@ public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 	@Override
 	public void onTick(TileMultiblockCore core) {
 		MysticalGrinderTileData data = (MysticalGrinderTileData) core.getTileData();
-		List<EntityItem> items = core.getWorldObj().getEntitiesWithinAABB(EntityItem.class, getSearchBoundingBox(core));
-		AxisAlignedBB direct = getDirectBoundingBox(core);
-		for(EntityItem item : items) {
-			boolean colliding = item.boundingBox.intersectsWith(direct);
-			processEntity(core, item, data, colliding);
-		}
-		data.tick();
-		for(int i = 0 ; i < data.toDropStacksCount ; i ++) {
-			ItemStack stack = data.toDropStacks[i];
-			List<ItemStack> stacks = getDrops(stack, 6);
-			if(stacks.isEmpty()) {
-				int j = 0;
-				while(j<10 && stacks.isEmpty()) {
-					stacks=getDrops(stack,6);
-					j++;
+		takeMana(core, data);
+		int manaCost = getManaCostPerTick(data.getActiveStackCount(), data.getActiveWeedCount());
+		boolean prevActive = data.active;
+		if(data.currentMana>=manaCost) {
+			data.active=true;
+			data.currentMana-=manaCost;
+			List<EntityItem> items = core.getWorldObj().getEntitiesWithinAABB(EntityItem.class, getSearchBoundingBox(core));
+			AxisAlignedBB direct = getDirectBoundingBox(core);
+			for(EntityItem item : items) {
+				boolean colliding = item.boundingBox.intersectsWith(direct);
+				processEntity(core, item, data, colliding);
+			}
+			data.tick();
+			for(int i = 0 ; i < data.toDropStacksCount ; i ++) {
+				ItemStack stack = data.toDropStacks[i];
+				List<ItemStack> stacks = getDrops(stack, 6);
+				if(stacks.isEmpty()) {
+					int j = 0;
+					while(j<10 && stacks.isEmpty()) {
+						stacks=getDrops(stack,6);
+						j++;
+					}
 				}
+				for(ItemStack drop : stacks) {
+					EntityItem item = new EntityItem(core.getWorldObj(), core.xCoord + 0.5, core.yCoord - 1.5, core.zCoord + 0.5, drop);
+					item.getEntityData().setInteger(TAG_GRINDER_TICKS, -1);
+					core.getWorldObj().spawnEntityInWorld(item);
+				}
+				data.clearDrops();
 			}
-			for(ItemStack drop : stacks) {
-				EntityItem item = new EntityItem(core.getWorldObj(), core.xCoord + 0.5, core.yCoord - 1.5, core.zCoord + 0.5, drop);
-				item.getEntityData().setInteger(TAG_GRINDER_TICKS, -1);
-				core.getWorldObj().spawnEntityInWorld(item);
-			}
-			data.clearDrops();
 		}
+		else
+			data.active=false;
+		if(data.active!=prevActive)
+			core.markForVisualUpdate();
 		if(data.dirty)
 			core.markDirty();
 		if(data.visualDirty)
@@ -266,11 +289,30 @@ public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 		data.visualDirty=false;
 	}
 	
+	private void takeMana(TileMultiblockCore core, MysticalGrinderTileData data) {
+		int missingMana = MAX_MANA - data.currentMana;
+		takeMana(core, data, missingMana/2, ForgeDirection.NORTH);
+		takeMana(core, data, missingMana/2, ForgeDirection.SOUTH);
+		takeMana(core, data, missingMana/2, ForgeDirection.EAST);
+		takeMana(core, data, missingMana/2, ForgeDirection.WEST);
+	}
+	
+	private void takeMana(TileMultiblockCore core, MysticalGrinderTileData data, int amount, ForgeDirection direction) {
+		TileEntity tile = core.getWorldObj().getTileEntity(core.xCoord+direction.offsetX, core.yCoord+direction.offsetY, core.zCoord+direction.offsetZ);
+		if(tile instanceof TileManaCrystal) {
+			IManaPool crystal = (TileManaCrystal) tile;
+			int manaToTake=Math.min(crystal.getCurrentMana(),amount);
+			crystal.recieveMana(-manaToTake);
+			data.currentMana+=manaToTake;
+		}
+	}
+
 	private void processEntity(TileMultiblockCore core, EntityItem entity, MysticalGrinderTileData data, boolean colliding) {
 		ItemStack stack = entity.getEntityItem();
 		DropCacheResult cache = getCacheForStack(stack);
 		if(colliding) {
 			int ticks = entity.getEntityData().getInteger(TAG_GRINDER_TICKS);
+			System.out.println(ticks);
 			if(ticks>50) {
 				if(cache.maxTestResult<50)
 					testStack(cache, stack, 100-cache.maxTestResult, true);
@@ -296,13 +338,20 @@ public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 					}
 					catch(Exception e) {}
 				}
-				if(data.addStack(tryAdd, hardness)) {
-					ItemStack originalStack = entity.getEntityItem().copy();
-					originalStack.stackSize--;
-					if(originalStack.stackSize>0)
-						entity.setEntityItemStack(originalStack);
+				boolean adding=true;
+				while(adding) {
+					if(data.addStack(tryAdd, hardness)) {
+						ItemStack originalStack = entity.getEntityItem().copy();
+						originalStack.stackSize--;
+						if(originalStack.stackSize>0)
+							entity.setEntityItemStack(originalStack);
+						else {
+							entity.setDead();
+							adding=false;
+						}
+					}
 					else
-						entity.setDead();
+						adding=false;
 				}
 			}
 		}
@@ -533,7 +582,7 @@ public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 	public int[] getOffsetForWeed(TileMultiblockCore core, int weed) {
 		int i = (weed%7)-3;
 		int j = 0;
-		int k = weed>7 ? -1 : 1;
+		int k = weed>=7 ? -1 : 1;
 
 		if(isXAxis(core)) {
 			return new int[]{i,j,k};
@@ -558,7 +607,11 @@ public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 	@Override
 	public void setVisualData(TileMultiblockCore core, TileMultiblockBase tile,
 			int x, int y, int z) {
-		tile.iconsForSides=new IIcon[] {iconBase, iconBase, iconBase, iconBase, iconBase, iconBase};
+		MysticalGrinderTileData data = (MysticalGrinderTileData) core.getTileData();
+		if(data.active)
+			tile.iconsForSides=new IIcon[] {iconBase, iconBase, iconBase, iconBase, iconBase, iconBase};
+		else
+			tile.iconsForSides=new IIcon[] {iconBaseInert, iconBaseInert, iconBaseInert, iconBaseInert, iconBaseInert, iconBaseInert};
 	}
 
 	@Override
@@ -587,6 +640,7 @@ public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 	@Override
 	public void registerBlockIcons(IIconRegister par1IconRegister) {
 		iconBase = par1IconRegister.registerIcon(LibResources.GRINDER_BASE);
+		iconBaseInert = par1IconRegister.registerIcon(LibResources.GRINDER_BASE+"Inert");
 	}
 
 	@Override

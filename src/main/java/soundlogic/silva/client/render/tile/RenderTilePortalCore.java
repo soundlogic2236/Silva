@@ -185,6 +185,7 @@ public class RenderTilePortalCore extends TileEntitySpecialRenderer {
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glEnable(GL11.GL_CULL_FACE);
 		Tessellator tessellator = Tessellator.instance;
+		tessellator.setColorOpaque_F(1, 1, 1);
         tessellator.startDrawingQuads();
         tessellator.setNormal(0.0F, -1.0F, 0.0F);
         renderBlock.renderFaceYNeg(Blocks.stone, 0.0D, 0.0D, 0.0D, null);
