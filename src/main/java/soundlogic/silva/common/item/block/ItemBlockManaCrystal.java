@@ -4,10 +4,13 @@ import soundlogic.silva.common.block.tile.TileManaCrystal;
 import vazkii.botania.api.mana.IManaItem;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 public class ItemBlockManaCrystal extends ItemBlockMod implements IManaItem{
 
+	public static final String TAG_MANA = "silvaManaCrystalMana";
+	
 	public ItemBlockManaCrystal(Block block) {
 		super(block);
 		this.setNoRepair();
@@ -15,6 +18,31 @@ public class ItemBlockManaCrystal extends ItemBlockMod implements IManaItem{
 		this.setHasSubtypes(true);
 		this.setMaxStackSize(1);
 	}
+	@Override
+	public void setDamage(ItemStack stack, int damage) {
+		NBTTagCompound cmp;
+		if(stack.hasTagCompound())
+			cmp=stack.getTagCompound();
+		else {
+			cmp=new NBTTagCompound();
+			stack.setTagCompound(cmp);
+		}
+		cmp.setInteger(TAG_MANA, damage);
+	}
+	
+	@Override
+	public int getDamage(ItemStack stack) {
+		if(stack.hasTagCompound()) {
+			return stack.getTagCompound().getInteger(TAG_MANA);
+		}
+		return 0;
+	}
+
+	@Override
+    public boolean showDurabilityBar(ItemStack stack)
+    {
+        return true;
+    }
 	
 	@Override
 	public double getDurabilityForDisplay(ItemStack stack) {

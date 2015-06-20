@@ -169,9 +169,9 @@ public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 
 				{{BlockData.WILDCARD, weed, BlockData.WILDCARD, weed, BlockData.WILDCARD},
 				 {BlockData.WILDCARD, weed, BlockData.WILDCARD, weed, BlockData.WILDCARD},
-				 {BlockData.WILDCARD, weed, BlockData.WILDCARD, weed, BlockData.WILDCARD},
+				 {BlockData.WILDCARD, weed, crystal, weed, BlockData.WILDCARD},
 				 {BlockData.WILDCARD, weed, core, weed, BlockData.WILDCARD},
-				 {BlockData.WILDCARD, weed, BlockData.WILDCARD, weed, BlockData.WILDCARD},
+				 {BlockData.WILDCARD, weed, crystal, weed, BlockData.WILDCARD},
 				 {BlockData.WILDCARD, weed, BlockData.WILDCARD, weed, BlockData.WILDCARD},
 				 {BlockData.WILDCARD, weed, BlockData.WILDCARD, weed, BlockData.WILDCARD}},
 
@@ -213,9 +213,9 @@ public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 
 				{{BlockData.WILDCARD, weed, BlockData.WILDCARD, weed, BlockData.WILDCARD},
 				 {BlockData.WILDCARD, weed, BlockData.WILDCARD, weed, BlockData.WILDCARD},
-				 {BlockData.WILDCARD, weed, BlockData.WILDCARD, weed, BlockData.WILDCARD},
+				 {BlockData.WILDCARD, weed, crystal, weed, BlockData.WILDCARD},
 				 {BlockData.WILDCARD, weed, BlockData.MULTIBLOCK_CORE, weed, BlockData.WILDCARD},
-				 {BlockData.WILDCARD, weed, BlockData.WILDCARD, weed, BlockData.WILDCARD},
+				 {BlockData.WILDCARD, weed, crystal, weed, BlockData.WILDCARD},
 				 {BlockData.WILDCARD, weed, BlockData.WILDCARD, weed, BlockData.WILDCARD},
 				 {BlockData.WILDCARD, weed, BlockData.WILDCARD, weed, BlockData.WILDCARD}},
 

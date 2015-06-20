@@ -46,7 +46,9 @@ public class BlockManaCrystal extends BlockContainer implements IWandHUD, IWanda
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3) {
 		par3.add(new ItemStack(par1, 1, 0));
-		par3.add(new ItemStack(par1, 1, TileManaCrystal.MAX_MANA));
+		ItemStack full = new ItemStack(par1, 1, 0);
+		full.setItemDamage(TileManaCrystal.MAX_MANA);
+		par3.add(full);
 	}
 
 	@Override
@@ -55,7 +57,9 @@ public class BlockManaCrystal extends BlockContainer implements IWandHUD, IWanda
 		TileEntity tile=world.getTileEntity(x, y, z);
 		if(tile!=null) {
 			TileManaCrystal crystal=(TileManaCrystal)tile;
-			list.add(new ItemStack(ModBlocks.manaCrystal,1,crystal.getCurrentMana()));
+			ItemStack drop = new ItemStack(ModBlocks.manaCrystal,1,0);
+			drop.setItemDamage(crystal.getCurrentMana());
+			list.add(drop);
 		}
 		return list;
 	}
