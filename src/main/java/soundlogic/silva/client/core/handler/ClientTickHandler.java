@@ -25,6 +25,7 @@ public class ClientTickHandler {
 	public static float ticksInGame = 0;
 	public static int ticks = 0;
 	public static float partialTicks = 0;
+	public static boolean forestWandRendering = false;
 
 	@SubscribeEvent
 	public void renderTickStart(RenderTickEvent event) {
@@ -42,7 +43,7 @@ public class ClientTickHandler {
 	        }
 		}
 		else if(event.phase == Phase.END) {
-
+			forestWandRendering=false;
 			GuiScreen gui = Minecraft.getMinecraft().currentScreen;
 			if(gui == null || !gui.doesGuiPauseGame()) {
 				ticksInGame++;
@@ -51,6 +52,7 @@ public class ClientTickHandler {
 				if(player != null) {
 					ItemStack stack = player.getCurrentEquippedItem();
 					if(stack != null && stack.getItem() instanceof ItemTwigWand) {
+						forestWandRendering=true;
 						List<IForestClientTick> renderers = new ArrayList<IForestClientTick>(Silva.proxy.ForestWandRenderers);
 						for(IForestClientTick renderer : renderers) {
 							((IForestClientTick) renderer).onClientDisplayTick();
