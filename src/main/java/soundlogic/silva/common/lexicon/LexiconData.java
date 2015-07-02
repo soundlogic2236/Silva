@@ -14,6 +14,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.block.ModBlocks;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
 import soundlogic.silva.common.crafting.ModCraftingRecipes;
@@ -105,7 +106,9 @@ public class LexiconData {
 	public static LexiconEntry mysticalGrinder;
 	public static LexiconEntry slingshot;
 	public static LexiconEntry enderCatcher;
-	public static LexiconEntry PIXIE_FARM;
+	public static LexiconEntry pixie_farm;
+	public static LexiconEntry manaPotato;
+	public static LexiconEntry pixie_farm_upgrades;
 
 	public static void preInit() {
 		
@@ -126,7 +129,7 @@ public class LexiconData {
 		dimensionalTravelFailure=new SLexiconEntry(LibLexicon.DIMENSIONAL_TRAVEL_FAILURE, BotaniaAPI.categoryAlfhomancy);
 		dimensionalTravelFailure.setKnowledgeType(worldTreeKnowledge).setLexiconPages(new PageText("0"));
 
-		IRecipe LexiconFusion=new ShapelessRecipes(new ItemStack(ModItems.fakeLexicon), Arrays.asList(new ItemStack[]{new ItemStack(GameRegistry.findItem("Botania", "lexicon")),new ItemStack(ModItems.fakePageBundle)}));
+		IRecipe LexiconFusion=new ShapelessRecipes(new ItemStack(ModItems.fakeLexicon), Arrays.asList(new ItemStack[]{new ItemStack(BotaniaAccessHandler.findItem("lexicon")),new ItemStack(ModItems.fakePageBundle)}));
 		IRecipe PageDuplication=new ShapelessRecipes(new ItemStack(ModItems.fakePageBundle,2), Arrays.asList(new ItemStack[]{new ItemStack(ModItems.fakePageBundle),new ItemStack(Items.paper)}));
 		paperBundles=new SLexiconEntry(LibLexicon.PAPER_BUNDLES, BotaniaAPI.categoryMisc);
 		paperBundles.setPriority().setLexiconPages(new PageText("0"),new PageCraftingRecipe("1",LexiconFusion),new PageCraftingRecipe("2",PageDuplication));

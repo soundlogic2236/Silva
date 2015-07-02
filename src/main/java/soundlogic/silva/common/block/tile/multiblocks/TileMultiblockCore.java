@@ -29,14 +29,34 @@ public class TileMultiblockCore extends TileMultiblockBase{
 	
 	private boolean lastTickNullBlock = false;
 	
+	private String multiblockName = "";
+	
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
 		if(worldObj.isRemote) {
 			updateTemperaryRenderData();
+			if(data!=null)
+				data.onClientTick(this);
 			return;
 		}
 		data.onTick(this);
+	}
+
+	@Override
+	public void invalidate() {
+		super.invalidate();
+		if(worldObj.isRemote)
+			return;
+		data.onInvalidate(this);
+	}
+
+	@Override
+	public void onChunkUnload() {
+		super.onChunkUnload();
+		if(worldObj.isRemote)
+			return;
+		data.onInvalidate(this);
 	}
 	
 	@Override
@@ -58,11 +78,16 @@ public class TileMultiblockCore extends TileMultiblockBase{
 		this.rotation=cmp.getInteger(TAG_MULTIBLOCK_ROTATION);
 		if(tileData==null)
 			tileData=data.createTileData();
+		if(this.multiblockName!=data.getName()) {
+			tileData=data.createTileData();
+			this.multiblockName=data.getName();
+		}
 		tileData.readCustomNBT(cmp);
 	}
 	
 	public void setData(MultiblockDataBase data) {
 		this.data=data;
+		this.multiblockName=data.getName();
 		this.tileData=data.createTileData();
 	}
 	
@@ -118,6 +143,11 @@ public class TileMultiblockCore extends TileMultiblockBase{
 		}
 	}
 
+	@Override
+	public void breakMultiblock() {
+		super.breakMultiblock();
+		data.onBreak(this);
+	}
 
 	public void markForVisualUpdate() {
 		this.markForRefresh();
@@ -126,4 +156,4 @@ public class TileMultiblockCore extends TileMultiblockBase{
 			tile.markForRefresh();
 		}
 	}
-	}
+}

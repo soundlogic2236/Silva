@@ -17,6 +17,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import soundlogic.silva.common.block.IDustBlock;
 import soundlogic.silva.common.block.IPortalFocus;
 import soundlogic.silva.common.block.ModBlocks;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension.BaseDimension;
@@ -241,9 +242,9 @@ public class TilePortalCore extends TileMod{
 		float green=(float) Math.random() * 0.25F + (float)sparkColor.getGreen()/255F;
 		float blue=(float) Math.random() * 0.25F + (float)sparkColor.getBlue()/255F;
 		
-		Botania.proxy.wispFX(worldObj, dx, yCoord + 0.25, dz, red,green,blue, 0.25F + (float) Math.random() * 0.1F, -0.075F - (float) Math.random() * 0.015F);
+		BotaniaAccessHandler.wispFX(worldObj, dx, yCoord + 0.25, dz, red,green,blue, 0.25F + (float) Math.random() * 0.1F, -0.075F - (float) Math.random() * 0.015F);
 		if(worldObj.rand.nextInt(3) == 0)
-			Botania.proxy.wispFX(worldObj, dx, yCoord + 0.25, dz, red,green,blue, 0.25F + (float) Math.random() * 0.1F, (float) movementVector.x, (float) movementVector.y, (float) movementVector.z);
+			BotaniaAccessHandler.wispFX(worldObj, dx, yCoord + 0.25, dz, red,green,blue, 0.25F + (float) Math.random() * 0.1F, (float) movementVector.x, (float) movementVector.y, (float) movementVector.z);
 	}
 
 	private void drainUpkeepMana() {
@@ -613,9 +614,9 @@ public class TilePortalCore extends TileMod{
 		}
 		if(doDrain) {
 			if(pool1!=null)
-				pool1.recieveMana(-costPerPool);
+				pool1.recieveMana(-Math.min(costPerPool, pool1.getCurrentMana()));
 			if(pool2!=null)
-				pool2.recieveMana(-costPerPool);
+				pool2.recieveMana(-Math.min(costPerPool, pool2.getCurrentMana()));
 		}
 		return result;
 	}

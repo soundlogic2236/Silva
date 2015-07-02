@@ -7,6 +7,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import soundlogic.silva.common.block.ModBlocks;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import soundlogic.silva.common.crafting.recipe.DarkElfActDarkenedDust;
 import soundlogic.silva.common.crafting.recipe.DarkElfActFake;
 import soundlogic.silva.common.crafting.recipe.DarkElfActFurnace;
@@ -44,7 +45,7 @@ public class ModDarkElfActs {
 		fakeDustConversions.add(new DarkElfActFake(new ItemStack(ModBlocks.darkenedDust), new ItemStack(Items.redstone)));
 		fakeDustConversions.add(new DarkElfActFake(new ItemStack(ModBlocks.darkenedDust), new ItemStack(Items.glowstone_dust)));
 		fakeDustConversions.add(new DarkElfActFake(new ItemStack(ModBlocks.darkenedDust), new ItemStack(Items.blaze_powder)));
-		fakeDustConversions.add(new DarkElfActFake(new ItemStack(ModBlocks.darkenedDust), new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,8)));
+		fakeDustConversions.add(new DarkElfActFake(new ItemStack(ModBlocks.darkenedDust), new ItemStack(BotaniaAccessHandler.findItem("manaResource"),1,8)));
 		
 		DarkElfActs.addAct(new DarkElfActFurnace());
 		DarkElfActs.addAct(new DarkElfActNoteBlock());

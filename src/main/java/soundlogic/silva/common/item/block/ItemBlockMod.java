@@ -2,8 +2,10 @@ package soundlogic.silva.common.item.block;
 
 import soundlogic.silva.client.lib.LibResources;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class ItemBlockMod extends ItemBlock{
 

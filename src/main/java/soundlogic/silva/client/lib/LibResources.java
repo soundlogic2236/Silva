@@ -140,4 +140,14 @@ public class LibResources {
 
 	public static final String GRINDER_BASE = PREFIX_MOD + "mysticalGrinder";
 
+	public static final String MODEL_MANA_POTATO = PREFIX_MODEL + "manaPotato.png";
+
+	public static final String MODEL_MANA_POTATO_OVERLAY = PREFIX_MODEL + "manaPotatoOverlay.png";
+
+	public static final String MODEL_PIXIE_POWER = PREFIX_MODEL + "pixiePowerOverlay.png";
+
+	public static final String ICON_BLACK = PREFIX_MOD + "black";
+
+	public static final String DARKENED_THEATER_FLOOR = PREFIX_MOD + "darkenedTheaterFloor";
+
 }

@@ -13,5 +13,7 @@ public class LibEntityNames {
 	public static final String ENDERMAN_ECHO = "endermanEcho";
 	public static final String NIDHOGG = "nidhogg";
 	public static final String SPOOK = "spook";
+	public static final String ENTITY_ITEM_PIXIE_FLOWER = "entityItemPixieFlower";
+	public static final String PIXIE_PROXY = "pixieProxy";
 
 }

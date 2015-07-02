@@ -8,6 +8,7 @@ import soundlogic.silva.common.block.BlockPylon;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.block.tile.TileManaEater;
 import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataBase.BlockData;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
 import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibMultiblockNames;
@@ -41,13 +42,13 @@ public class MutliblockDataEnderCatcher extends MultiblockDataBase {
 	private IIcon iconBase;
 
 	public MutliblockDataEnderCatcher() {
-		super(new BlockData(GameRegistry.findBlock("Botania", "endStoneBrick"),1));
-		BlockData core = new BlockData(GameRegistry.findBlock("Botania", "endStoneBrick"),1);
+		super(new BlockData(BotaniaAccessHandler.findBlock("endStoneBrick"),1));
+		BlockData core = new BlockData(BotaniaAccessHandler.findBlock("endStoneBrick"),1);
 		BlockData obsidian = new BlockData(Blocks.obsidian, 0);
 		BlockData quartz = new BlockData(Blocks.quartz_block, 2);
 		BlockData pylon = new BlockData(ModBlocks.dimensionalPylon, BlockPylon.getMetadataForDimension(Dimension.GINNUNGAGAP));
 		BlockData hopper = new BlockData(Blocks.hopper, 0);
-		BlockData stairs0 = new BlockData(GameRegistry.findBlock("Botania", "endStoneBrick0Stairs"),0) {
+		BlockData stairs0 = new BlockData(BotaniaAccessHandler.findBlock("endStoneBrick0Stairs"),0) {
 			
 			@Override
 			public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
@@ -59,8 +60,8 @@ public class MutliblockDataEnderCatcher extends MultiblockDataBase {
 				//NO OP
 			}
 		};
-		BlockData stairs1 = new BlockData(GameRegistry.findBlock("Botania", "endStoneBrick0Stairs"),0);
-		BlockData stairs2 = new BlockData(GameRegistry.findBlock("Botania", "endStoneBrick0Stairs"),2) {
+		BlockData stairs1 = new BlockData(BotaniaAccessHandler.findBlock("endStoneBrick0Stairs"),0);
+		BlockData stairs2 = new BlockData(BotaniaAccessHandler.findBlock("endStoneBrick0Stairs"),2) {
 			
 			@Override
 			public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
@@ -72,9 +73,9 @@ public class MutliblockDataEnderCatcher extends MultiblockDataBase {
 				//NO OP
 			}
 		};
-		BlockData stairs3 = new BlockData(GameRegistry.findBlock("Botania", "endStoneBrick0Stairs"),2);
-		BlockData stairs4 = new BlockData(GameRegistry.findBlock("Botania", "endStoneBrick0Stairs"),3);
-		BlockData stairs5 = new BlockData(GameRegistry.findBlock("Botania", "endStoneBrick0Stairs"),5) {
+		BlockData stairs3 = new BlockData(BotaniaAccessHandler.findBlock("endStoneBrick0Stairs"),2);
+		BlockData stairs4 = new BlockData(BotaniaAccessHandler.findBlock("endStoneBrick0Stairs"),3);
+		BlockData stairs5 = new BlockData(BotaniaAccessHandler.findBlock("endStoneBrick0Stairs"),5) {
 			
 			@Override
 			public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
@@ -86,8 +87,8 @@ public class MutliblockDataEnderCatcher extends MultiblockDataBase {
 				//NO OP
 			}
 		};
-		BlockData stairs6 = new BlockData(GameRegistry.findBlock("Botania", "endStoneBrick0Stairs"),1);
-		BlockData stairs7 = new BlockData(GameRegistry.findBlock("Botania", "endStoneBrick0Stairs"),7) {
+		BlockData stairs6 = new BlockData(BotaniaAccessHandler.findBlock("endStoneBrick0Stairs"),1);
+		BlockData stairs7 = new BlockData(BotaniaAccessHandler.findBlock("endStoneBrick0Stairs"),7) {
 			
 			@Override
 			public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
@@ -261,4 +262,18 @@ public class MutliblockDataEnderCatcher extends MultiblockDataBase {
 		return LexiconData.enderCatcher;
 	}
 
+	@Override
+	public void onClientTick(TileMultiblockCore core) {
+		// NO OP
+	}
+
+	@Override
+	public void onInvalidate(TileMultiblockCore core) {
+		// NO OP
+	}
+
+	@Override
+	public void onBreak(TileMultiblockCore core) {
+		// NO OP
+	}
 }

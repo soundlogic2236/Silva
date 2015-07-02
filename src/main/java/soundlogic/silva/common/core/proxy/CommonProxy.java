@@ -14,6 +14,7 @@ import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.block.tile.IForestClientTick;
 import soundlogic.silva.common.block.tile.TilePortalCore;
+import soundlogic.silva.common.block.tile.multiblocks.darkenedtheater.DarkenedTheaterPlays;
 import soundlogic.silva.common.core.handler.BifrostCreationHandler;
 import soundlogic.silva.common.core.handler.BlockDropsHandler;
 import soundlogic.silva.common.core.handler.BookHandler;
@@ -89,6 +90,7 @@ public class CommonProxy {
 		
 		DimensionHandler.init();
 		FateHandler.init();
+		DarkenedTheaterPlays.init();
 
 		LexiconData.preInit();
 		

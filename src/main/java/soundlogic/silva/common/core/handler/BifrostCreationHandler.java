@@ -22,10 +22,10 @@ public class BifrostCreationHandler {
 		if(event.world.isRemote)
 			return;
 		ItemStack stack = event.entityPlayer.getCurrentEquippedItem();
-		if(stack!=null && stack.getItem() == GameRegistry.findItem("Botania", "rainbowRod") && event.action == Action.RIGHT_CLICK_BLOCK) {
+		if(stack!=null && stack.getItem() == BotaniaAccessHandler.findItem("rainbowRod") && event.action == Action.RIGHT_CLICK_BLOCK) {
 			Block block=event.world.getBlock(event.x, event.y, event.z);
 			int metadata=event.world.getBlockMetadata(event.x, event.y, event.z);
-			if(block == GameRegistry.findBlock("Botania", "storage") && metadata == 4) {
+			if(block == BotaniaAccessHandler.findBlock("storage") && metadata == 4) {
 				if(stack.getItemDamage() == 0 && ManaItemHandler.requestManaExact(stack, event.entityPlayer, MANA_COST, false)) {
 					ManaItemHandler.requestManaExact(stack, event.entityPlayer, MANA_COST, true);
 					stack.setItemDamage(stack.getMaxDamage());

@@ -312,7 +312,6 @@ public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 		DropCacheResult cache = getCacheForStack(stack);
 		if(colliding) {
 			int ticks = entity.getEntityData().getInteger(TAG_GRINDER_TICKS);
-			System.out.println(ticks);
 			if(ticks>50) {
 				if(cache.maxTestResult<50)
 					testStack(cache, stack, 100-cache.maxTestResult, true);
@@ -654,4 +653,25 @@ public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 		return LexiconData.mysticalGrinder;
 	}
 
+	@Override
+	public void onClientTick(TileMultiblockCore core) {
+		// NO OP
+	}
+
+	@Override
+	public void onInvalidate(TileMultiblockCore core) {
+		// NO OP
+	}
+
+	@Override
+	public void onBreak(TileMultiblockCore core) {
+		MysticalGrinderTileData data = (MysticalGrinderTileData) core.getTileData();
+		for(ItemStack drop : data.stacks) {
+			if(drop==null)
+				continue;
+			EntityItem item = new EntityItem(core.getWorldObj(), core.xCoord + 0.5, core.yCoord - 1.5, core.zCoord + 0.5, drop);
+			item.getEntityData().setInteger(TAG_GRINDER_TICKS, -1);
+			core.getWorldObj().spawnEntityInWorld(item);
+		}
+	}
 }

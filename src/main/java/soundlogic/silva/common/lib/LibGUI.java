@@ -14,5 +14,6 @@ public class LibGUI {
 	public static final String AUGMENT_ERROR = "silva.tooltips.augment.error";
 	public static final String DARK_ELF_CRAFT = "silva.tooltips.augment.craft";
 	public static final String DARK_ELF_CRAFT_PREFIX = "silva.tooltips.augment.craft.";
+	public static final String STOP_DARKENED_THEATER = "silva.misc.darkenedTheater.stop";
 
 }

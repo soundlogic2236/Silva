@@ -9,6 +9,7 @@ import java.util.List;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import soundlogic.silva.common.Silva;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import soundlogic.silva.common.lib.LibReflectionNames;
 import vazkii.botania.api.wand.IWandBindable;
 import vazkii.botania.common.Botania;
@@ -290,7 +291,7 @@ public class TileSlingshot extends TileMod implements IWandBindable, IForestClie
 		float g = 1F;
 		float b = 1F;
 		for(Vector3 point : trajectory) {
-			Botania.proxy.sparkleFX(worldObj, point.x, point.y, point.z, r, g, b, 0.8F, 1, true);
+			BotaniaAccessHandler.sparkleFX(worldObj, point.x, point.y, point.z, r, g, b, 0.8F, 1, true);
 		}
 	}
 

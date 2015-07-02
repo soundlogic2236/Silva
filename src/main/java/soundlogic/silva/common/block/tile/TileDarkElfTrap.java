@@ -15,6 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.AxisAlignedBB;
 import soundlogic.silva.common.block.ModBlocks;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import soundlogic.silva.common.core.handler.EnchantmentMoverHandler;
 import soundlogic.silva.common.crafting.DarkElfLoot;
 import soundlogic.silva.common.crafting.recipe.IDarkElfAct;
@@ -87,7 +88,7 @@ public class TileDarkElfTrap extends TileMod implements IInventory, IManaReceive
 				if(particleTicks%20==0) {
 					int source = (particleTicks/20)%4;
 					Vector3 spike = getSpikePosition(source);
-					Botania.proxy.lightningFX(worldObj, spike, item, 1, 0xFFFFFF, 0xFFFFFF);
+					BotaniaAccessHandler.lightningFX(worldObj, spike, item, 1, 0xFFFFFF, 0xFFFFFF);
 				}
 			}
 			else {
@@ -116,7 +117,7 @@ public class TileDarkElfTrap extends TileMod implements IInventory, IManaReceive
 								start.x+(Math.random()-.5)*(manaFraction+.1),
 								start.y+(Math.random()-.5)*(manaFraction+.1),
 								start.z+(Math.random()-.5)*(manaFraction+.1));
-						Botania.proxy.lightningFX(worldObj, start, end, transparent ? 2 : 1, 0xFFFFFF, 0xFFFFFF);
+						BotaniaAccessHandler.lightningFX(worldObj, start, end, transparent ? 2 : 1, 0xFFFFFF, 0xFFFFFF);
 					}
 				}
 			}

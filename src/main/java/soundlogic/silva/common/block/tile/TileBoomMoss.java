@@ -25,6 +25,7 @@ import net.minecraftforge.event.world.BlockEvent;
 import soundlogic.silva.common.block.BlockBoomMoss;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.core.handler.BlockDropsHandler;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import vazkii.botania.api.internal.IManaBurst;
 import vazkii.botania.api.mana.ILens;
 import vazkii.botania.api.mana.IManaReceiver;
@@ -279,7 +280,7 @@ public class TileBoomMoss extends TileMod implements IManaReceiver{
 	private boolean lensCanIgnite(ItemStack lens) {
 		if(lens==null)
 			return false;
-		if(lens.getItem()!=GameRegistry.findItem("Botania", "lens"))
+		if(lens.getItem()!=BotaniaAccessHandler.findItem("lens"))
 			return false;
 		int meta = lens.getItemDamage();
 		return meta == 7 || meta == 11 || meta == 15;

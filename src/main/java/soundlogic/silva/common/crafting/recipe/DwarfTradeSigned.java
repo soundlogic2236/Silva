@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import soundlogic.silva.common.block.tile.TileDwarvenSign;
 import soundlogic.silva.common.block.tile.TilePortalCore;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 
 public abstract class DwarfTradeSigned extends DwarfTrade {
 
@@ -55,8 +56,8 @@ public abstract class DwarfTradeSigned extends DwarfTrade {
 		values.put(new ItemStack(Items.emerald), 5);
 		values.put(new ItemStack(Items.gold_ingot), 3);
 		values.put(new ItemStack(Items.quartz), 1);
-		values.put(new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,4), 10);
-		values.put(new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,5), 20);
+		values.put(new ItemStack(BotaniaAccessHandler.findItem("manaResource"),1,4), 10);
+		values.put(new ItemStack(BotaniaAccessHandler.findItem("manaResource"),1,5), 20);
 	}
 	
 	public List<Object> getExtraCosts(int cost) {

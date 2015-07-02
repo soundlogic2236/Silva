@@ -14,4 +14,5 @@ public class LibRenderIDs {
 	public static int idSlingshot = -1;
 	public static int idPortalCore = -1;
 	public static int idMultiblockCore = -1;
+	public static int idManaPotato = -1;
 }

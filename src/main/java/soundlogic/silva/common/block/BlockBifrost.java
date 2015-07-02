@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.Silva;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import soundlogic.silva.common.item.ModItems;
 import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibBlockNames;
@@ -60,7 +61,7 @@ public class BlockBifrost extends Block implements IBifrostBlock, ILexiconable{
 			int sideZ=z+dir.offsetZ;
 			Block sideBlock=world.getBlock(x+dir.offsetX, y+dir.offsetY, z+dir.offsetZ);
 			int sideMeta=world.getBlockMetadata(x+dir.offsetX, y+dir.offsetY, z+dir.offsetZ);
-			if(sideBlock == GameRegistry.findBlock("Botania", "storage") && sideMeta == 4) {
+			if(sideBlock == BotaniaAccessHandler.findBlock("storage") && sideMeta == 4) {
 				makeBifrostShards(sideX,sideY,sideZ,world);
 			}
 		}
@@ -83,7 +84,7 @@ public class BlockBifrost extends Block implements IBifrostBlock, ILexiconable{
 			}
 		}
 		boolean emptyHand = player.getCurrentEquippedItem() == null;
-		boolean terraPick = emptyHand ? false : player.getCurrentEquippedItem().getItem() == GameRegistry.findItem("Botania", "terraPick");
+		boolean terraPick = emptyHand ? false : player.getCurrentEquippedItem().getItem() == BotaniaAccessHandler.findItem("terraPick");
 		boolean thor = ItemThorRing.getThorRing(player) != null;
 		boolean thorPick = terraPick && thor;
 

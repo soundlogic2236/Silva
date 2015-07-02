@@ -31,11 +31,13 @@ import soundlogic.silva.client.render.block.RenderDwarvenPool;
 import soundlogic.silva.client.render.block.RenderManaCrystal;
 import soundlogic.silva.client.render.block.RenderManaEater;
 import soundlogic.silva.client.render.block.RenderDust;
+import soundlogic.silva.client.render.block.RenderManaPotato;
 import soundlogic.silva.client.render.block.RenderMultiblockCore;
 import soundlogic.silva.client.render.block.RenderPortalCore;
 import soundlogic.silva.client.render.block.RenderPortalUpgradeCharge;
 import soundlogic.silva.client.render.block.RenderPylon;
 import soundlogic.silva.client.render.block.RenderSlingshot;
+import soundlogic.silva.client.render.entity.NullEntityRenderer;
 import soundlogic.silva.client.render.entity.RenderDwarvenChainKnot;
 import soundlogic.silva.client.render.entity.RenderEntityStoneHorse;
 import soundlogic.silva.client.render.entity.RenderFenrirEcho;
@@ -43,6 +45,7 @@ import soundlogic.silva.client.render.entity.RenderNidhogg;
 import soundlogic.silva.client.render.multiblock.RenderMultiblock;
 import soundlogic.silva.client.render.multiblock.RenderMultiblockCarnilotus;
 import soundlogic.silva.client.render.multiblock.RenderMultiblockMysticalGrinder;
+import soundlogic.silva.client.render.multiblock.RenderMultiblockPixeRoomDarkenedTheater;
 import soundlogic.silva.client.render.multiblock.RenderMultiblockPixieFarm;
 import soundlogic.silva.client.render.tile.RenderTileBoomMoss;
 import soundlogic.silva.client.render.tile.RenderTileDarkElfTrap;
@@ -51,6 +54,7 @@ import soundlogic.silva.client.render.tile.RenderTileDwarvenSign;
 import soundlogic.silva.client.render.tile.RenderTileEnchantPlate;
 import soundlogic.silva.client.render.tile.RenderTileManaCrystal;
 import soundlogic.silva.client.render.tile.RenderTileManaEater;
+import soundlogic.silva.client.render.tile.RenderTileManaPotato;
 import soundlogic.silva.client.render.tile.RenderTileMultiblockCore;
 import soundlogic.silva.client.render.tile.RenderTilePortalCore;
 import soundlogic.silva.client.render.tile.RenderTilePortalUpgradeCharge;
@@ -64,6 +68,7 @@ import soundlogic.silva.common.block.tile.TileDwarvenSign;
 import soundlogic.silva.common.block.tile.TileEnchantPlate;
 import soundlogic.silva.common.block.tile.TileManaCrystal;
 import soundlogic.silva.common.block.tile.TileManaEater;
+import soundlogic.silva.common.block.tile.TileManaPotato;
 import soundlogic.silva.common.block.tile.TilePortalCore;
 import soundlogic.silva.common.block.tile.TilePortalUpgradeCharge;
 import soundlogic.silva.common.block.tile.TilePylon;
@@ -75,6 +80,7 @@ import soundlogic.silva.common.entity.EntityDwarvenChainKnot;
 import soundlogic.silva.common.entity.EntityFenrirEcho;
 import soundlogic.silva.common.entity.EntityNidhoggEcho;
 import soundlogic.silva.common.entity.EntityPhantomEndermanEcho;
+import soundlogic.silva.common.entity.EntityPixieProxy;
 import soundlogic.silva.common.entity.EntityStoneHorse;
 import soundlogic.silva.common.item.ModItems;
 
@@ -112,6 +118,7 @@ public class ClientProxy extends CommonProxy{
     	LibRenderIDs.idSlingshot = RenderingRegistry.getNextAvailableRenderId();
     	LibRenderIDs.idPortalCore = RenderingRegistry.getNextAvailableRenderId();
     	LibRenderIDs.idMultiblockCore = RenderingRegistry.getNextAvailableRenderId();
+    	LibRenderIDs.idManaPotato = RenderingRegistry.getNextAvailableRenderId();
     	
     	RenderingRegistry.registerBlockHandler(new RenderPylon());
     	RenderingRegistry.registerBlockHandler(new RenderManaEater());
@@ -125,6 +132,7 @@ public class ClientProxy extends CommonProxy{
     	RenderingRegistry.registerBlockHandler(new RenderSlingshot());
     	RenderingRegistry.registerBlockHandler(new RenderPortalCore());
     	RenderingRegistry.registerBlockHandler(new RenderMultiblockCore());
+    	RenderingRegistry.registerBlockHandler(new RenderManaPotato());
     	
     	ClientRegistry.bindTileEntitySpecialRenderer(TilePylon.class, new RenderTilePylon());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileManaEater.class, new RenderTileManaEater());
@@ -138,6 +146,7 @@ public class ClientProxy extends CommonProxy{
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEnchantPlate.class, new RenderTileEnchantPlate());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileDarkElfTrap.class, new RenderTileDarkElfTrap());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileSlingshot.class, new RenderTileSlingshot());
+    	ClientRegistry.bindTileEntitySpecialRenderer(TileManaPotato.class, new RenderTileManaPotato());
     	
     	RenderingRegistry.registerEntityRenderingHandler(EntityStoneHorse.class, new RenderEntityStoneHorse());
     	RenderingRegistry.registerEntityRenderingHandler(EntityDwarvenBarrier.class, new RenderSnowball(ModItems.dwarfBarrier));
@@ -145,10 +154,12 @@ public class ClientProxy extends CommonProxy{
     	RenderingRegistry.registerEntityRenderingHandler(EntityFenrirEcho.class, new RenderFenrirEcho(new ModelFenrirEcho(), new ModelFenrirEcho(), 0.5F));
     	RenderingRegistry.registerEntityRenderingHandler(EntityPhantomEndermanEcho.class, new RenderEnderman());
     	RenderingRegistry.registerEntityRenderingHandler(EntityNidhoggEcho.class, new RenderNidhogg());
+    	RenderingRegistry.registerEntityRenderingHandler(EntityPixieProxy.class, new NullEntityRenderer());
     	
     	RenderMultiblock.registerRenderer(new RenderMultiblockCarnilotus(), "carnilotus");
     	RenderMultiblock.registerRenderer(new RenderMultiblockMysticalGrinder(), "mysticalGrinder");
     	RenderMultiblock.registerRenderer(new RenderMultiblockPixieFarm(), "pixieFarm");
+    	RenderMultiblock.registerRenderer(new RenderMultiblockPixeRoomDarkenedTheater(), "pixieRoomDarkenedTheater");
     }
         
     @Override

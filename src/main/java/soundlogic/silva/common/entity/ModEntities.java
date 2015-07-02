@@ -20,6 +20,8 @@ public class ModEntities {
 		register(EntityPhantomEndermanEcho.class, LibEntityNames.ENDERMAN_ECHO, id++, 80, 3, true);
 		register(EntityNidhoggEcho.class, LibEntityNames.NIDHOGG, id++, 160, 3, true);
 		register(EntitySpook.class, LibEntityNames.SPOOK, id++, 160, 3, true);
+		register(EntityItemPixieFlower.class, LibEntityNames.ENTITY_ITEM_PIXIE_FLOWER, id++, 64, 20, true);
+		register(EntityPixieProxy.class, LibEntityNames.PIXIE_PROXY, id++, 16, 3, false);
 	}
 
 	private static void register(Class<? extends Entity> entityClass, String entityName, int id, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {

@@ -9,6 +9,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import scala.actors.threadpool.Arrays;
 import soundlogic.silva.client.lib.LibRenderIDs;
 import soundlogic.silva.common.Silva;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import soundlogic.silva.common.lib.LibBlockNames;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -32,7 +33,7 @@ import net.minecraft.world.World;
 public class BlockPixieDust extends BlockDust implements ILexiconable{
 
 	protected BlockPixieDust() {
-        super(new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,8),true);
+        super(new ItemStack(BotaniaAccessHandler.findItem("manaResource"),1,8),true);
 		setBlockName(LibBlockNames.PIXIE_DUST);
 	}
 	
@@ -45,7 +46,7 @@ public class BlockPixieDust extends BlockDust implements ILexiconable{
 	        double d1 = (double)((float)y + 0.0625F);
 	        double d2 = (double)z + 0.5D + ((double)random.nextFloat() - 0.5D) * 0.2D;
 	
-	        Botania.proxy.sparkleFX(world, d0, d1, d2, 1F, 0.25F, 0.9F, 0.1F + random.nextFloat() * 0.25F, 12);
+	        BotaniaAccessHandler.sparkleFX(world, d0, d1, d2, 1F, 0.25F, 0.9F, 0.1F + random.nextFloat() * 0.25F, 12);
         }
     }
     

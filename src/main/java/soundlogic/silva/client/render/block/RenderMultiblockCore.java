@@ -26,10 +26,8 @@ public class RenderMultiblockCore implements ISimpleBlockRenderingHandler {
 	@Override
 	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
 		RenderData data = MultiBlockCreationHandler.renderData;
-		System.out.println(data.normalCube);
 		if(data.normalCube || data.lastX!=x || data.lastY!=y || data.lastZ!=z)
 			return renderer.renderStandardBlock(block, x, y, z);
-		System.out.println("ye");
 		MultiBlockCreationHandler.renderData.renderFaces(renderer);
 		return true;
 	}

@@ -6,6 +6,8 @@ import cpw.mods.fml.common.registry.ExistingSubstitutionException;
 import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.GameRegistry.Type;
+import soundlogic.silva.common.block.BlockModDoor;
+import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.lib.LibItemNames;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -26,6 +28,7 @@ public class ModItems {
 	public static Item enchantHolder;
 	public static Item fatePearl;
 	public static Item augments;
+	public static Item pixieDoor;
 
 	public static void preInit() {
 	
@@ -43,6 +46,7 @@ public class ModItems {
 		enchantHolder=new ItemEnchantHolder(LibItemNames.ENCHANT_HOLDER);
 		fatePearl=new ItemFatePearl(LibItemNames.FATE_PEARL);
 		augments=new ItemDarkElfAugment(LibItemNames.DARK_ELF_AUGMENT);
+		pixieDoor=new ItemModDoor(LibItemNames.PIXIE_DOOR, (BlockModDoor) ModBlocks.pixieDoor);
 	}
 	
 }

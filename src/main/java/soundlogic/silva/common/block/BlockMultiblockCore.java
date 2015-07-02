@@ -40,5 +40,4 @@ public class BlockMultiblockCore extends BlockMultiblockProxy{
 	public int getRenderType() {
 		return LibRenderIDs.idMultiblockCore;
 	}
-
 }

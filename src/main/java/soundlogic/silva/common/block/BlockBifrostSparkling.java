@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.Silva;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import soundlogic.silva.common.item.ModItems;
 import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibBlockNames;
@@ -69,7 +70,7 @@ public class BlockBifrostSparkling extends BlockBifrost implements IPortalFocus 
 	        double r = Math.abs(Math.sin(a1)*Math.cos(a2))*(r0+Math.random()*r0);
 	        double g = Math.abs(Math.sin(a1)*Math.sin(a2))*(r0+Math.random()*r0);
 	        double b = Math.abs(Math.cos(a1))*(.1F+Math.random()*.1F);
-	        Botania.proxy.sparkleFX(world, nx, ny, nz, (float)r, (float)g, (float)b, 0.8F + random.nextFloat() * 0.65F, 12);
+	        BotaniaAccessHandler.sparkleFX(world, nx, ny, nz, (float)r, (float)g, (float)b, 0.8F + random.nextFloat() * 0.65F, 12);
         }
     }
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import soundlogic.silva.common.Silva;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -24,8 +25,8 @@ public class ItemPriceProxy extends ItemMod{
 		stacks.add(new ItemStack(Items.emerald));
 		stacks.add(new ItemStack(Items.gold_ingot));
 		stacks.add(new ItemStack(Items.quartz));
-		stacks.add(new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,4));
-		stacks.add(new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,5));
+		stacks.add(new ItemStack(BotaniaAccessHandler.findItem("manaResource"),1,4));
+		stacks.add(new ItemStack(BotaniaAccessHandler.findItem("manaResource"),1,5));
 	}
 	
 	public ItemStack getCurrentPriceStack() {

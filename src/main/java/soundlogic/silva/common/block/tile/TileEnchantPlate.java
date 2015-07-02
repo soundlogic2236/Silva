@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import soundlogic.silva.common.block.ModBlocks;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import soundlogic.silva.common.core.handler.EnchantmentMoverHandler;
 import soundlogic.silva.common.item.ItemEnchantHolder;
 import soundlogic.silva.common.item.ModItems;
@@ -160,7 +161,7 @@ public class TileEnchantPlate extends TileMod implements ISparkAttachable {
 				)).getRGB();
 
 				if(particleTicks%2==0)
-					Botania.proxy.wispFX(worldObj, x, y, z, colorsfx1[0], colorsfx1[1], colorsfx1[2], 0.85F, (float)g * 0.05F, 0.25F);
+					BotaniaAccessHandler.wispFX(worldObj, x, y, z, colorsfx1[0], colorsfx1[1], colorsfx1[2], 0.85F, (float)g * 0.05F, 0.25F);
 
 				Vector3 start = new Vector3(x,y,z);
 				Vector3 end = new Vector3(
@@ -169,7 +170,7 @@ public class TileEnchantPlate extends TileMod implements ISparkAttachable {
 						z+(worldObj.rand.nextDouble()-.5D)/2D
 						);
 				if(particleTicks%4==0)
-					Botania.proxy.lightningFX(worldObj, start, end, 1, colorsfx2, colorsfx2);
+					BotaniaAccessHandler.lightningFX(worldObj, start, end, 1, colorsfx2, colorsfx2);
 			}
 		}
 	}

@@ -52,6 +52,15 @@ public abstract class BlockMultiblockBase extends BlockContainer implements IWan
 		tile.getCore().getData().onCollision(tile, tile.getCore(), ent);
 	}
 	
+	@Override
+	public void onEntityWalking(World world, int x, int y, int z, Entity ent) {
+		if(world.isRemote)
+			return;
+		TileMultiblockBase tile = (TileMultiblockBase) world.getTileEntity(x, y, z);
+		if(tile.getCore()==null || tile.getCore().getData()==null)
+			return;
+		tile.getCore().getData().onWalking(tile, tile.getCore(), ent);
+	}
 	
 	
 	public float getBlockHardness(World world, int x, int y, int z) {
@@ -206,7 +215,7 @@ public abstract class BlockMultiblockBase extends BlockContainer implements IWan
 	@Override
 	public void renderHUD(Minecraft mc, ScaledResolution res, World world, int x, int y, int z) {
 		TileMultiblockBase tile = (TileMultiblockBase) world.getTileEntity(x, y, z);
-		if(tile.getCore().getData()!=null)
+		if(tile.getCore()!=null && tile.getCore().getData()!=null)
 			tile.getCore().getData().renderHUD(tile, tile.getCore(), mc, res);
 	}
 

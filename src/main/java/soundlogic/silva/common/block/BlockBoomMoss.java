@@ -29,6 +29,7 @@ import soundlogic.silva.client.lib.LibRenderIDs;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.tile.TileBoomMoss;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibBlockNames;
 import vazkii.botania.api.internal.IManaBurst;
@@ -101,7 +102,7 @@ public class BlockBoomMoss extends BlockContainer implements ILexiconable, IMana
 	@Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
 		ItemStack stack=player.getHeldItem();
-		if(stack!=null && stack.getItem()==GameRegistry.findItem("Botania", "manaGun"))
+		if(stack!=null && stack.getItem()==BotaniaAccessHandler.findItem("manaGun"))
 			return false;
 		TileBoomMoss tile=(TileBoomMoss) world.getTileEntity(x, y, z);
 		tile.detonate(player.posX,player.posY,player.posZ);

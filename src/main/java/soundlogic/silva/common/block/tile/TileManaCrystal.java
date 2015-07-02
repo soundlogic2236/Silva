@@ -7,6 +7,7 @@ import org.lwjgl.opengl.GL11;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.Silva;
 import soundlogic.silva.common.block.ModBlocks;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import vazkii.botania.api.internal.IManaBurst;
 import vazkii.botania.api.mana.BurstProperties;
 import vazkii.botania.api.mana.IManaCollector;
@@ -183,7 +184,7 @@ public class TileManaCrystal extends TileMod implements IManaPool, IManaCollecto
 					if(!worldObj.isRemote) {
 						mana -= burst.getStartingMana();
 						worldObj.spawnEntityInWorld(burst);
-						if(!vazkii.botania.common.core.handler.ConfigHandler.silentSpreaders)
+						if(!BotaniaAccessHandler.BotaianConfig.silentSpreaders)
 							worldObj.playSoundEffect(xCoord, yCoord, zCoord, "botania:spreaderFire", 0.05F, 0.7F + 0.3F * (float) Math.random());
 					}
 

@@ -102,6 +102,14 @@ public class LibBlockNames {
 
 	public static final String SLINGSHOT = "slingshot";
 
+	public static final String MANA_POTATO = "manaPotato";
+
+	public static final String PIXIE_FLOWER = "pixieFlower";
+
+	public static final String PIXIE_STONE = "pixieStone";
+
+	public static final String PIXIE_DOOR = "pixieDoor";
+
 
 
 }

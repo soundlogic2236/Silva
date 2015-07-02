@@ -13,6 +13,7 @@ import soundlogic.silva.common.block.tile.TileDwarvenSign;
 import soundlogic.silva.common.block.tile.TileEnchantPlate;
 import soundlogic.silva.common.block.tile.TileManaCrystal;
 import soundlogic.silva.common.block.tile.TileManaEater;
+import soundlogic.silva.common.block.tile.TileManaPotato;
 import soundlogic.silva.common.block.tile.TilePortalCore;
 import soundlogic.silva.common.block.tile.TilePortalUpgradeCharge;
 import soundlogic.silva.common.block.tile.TilePortalUpgradeInhibit;
@@ -29,6 +30,7 @@ import soundlogic.silva.common.item.block.ItemBlockManaCrystal;
 import soundlogic.silva.common.item.block.ItemBlockMod;
 import soundlogic.silva.common.item.block.ItemBlockModMultiple;
 import soundlogic.silva.common.item.block.ItemBlockModSlab;
+import soundlogic.silva.common.item.block.ItemBlockPixieFlower;
 import soundlogic.silva.common.item.block.ItemBlockPylon;
 import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibBlockNames;
@@ -95,6 +97,10 @@ public class ModBlocks {
 	public static Block coloredDust;
 	public static Block darkElfTrap;
 	public static Block slingshot;
+	public static Block manaPotato;
+	public static Block pixieFlower;
+	public static Block pixieStone;
+	public static Block pixieDoor;
 	
 	public static void preInit() {
 		
@@ -211,6 +217,18 @@ public class ModBlocks {
 		slingshot = new BlockSlingshot().setBlockName(LibBlockNames.SLINGSHOT);
 		GameRegistry.registerBlock(slingshot, ItemBlockMod.class, LibBlockNames.SLINGSHOT);
 		
+		manaPotato = new BlockManaPotato();
+		GameRegistry.registerBlock(manaPotato, ItemBlockMod.class, LibBlockNames.MANA_POTATO);
+		
+		pixieFlower = new BlockPixieFlower().setBlockName(LibBlockNames.PIXIE_FLOWER);
+		GameRegistry.registerBlock(pixieFlower, ItemBlockPixieFlower.class, LibBlockNames.PIXIE_FLOWER);
+		
+		pixieStone=new BlockSimpleMultiple(Material.rock,3).setEntry(LexiconData.pixie_farm_upgrades).setBlockName(LibBlockNames.PIXIE_STONE);
+		GameRegistry.registerBlock(pixieStone, ItemBlockModMultiple.class, LibBlockNames.PIXIE_STONE);
+		
+		pixieDoor=new BlockPixieDoor().setEntry(LexiconData.pixie_farm_upgrades).setBlockName(LibBlockNames.PIXIE_DOOR);
+		GameRegistry.registerBlock(pixieDoor, LibBlockNames.PIXIE_DOOR);
+		
 		initTileEntities();
 	}
 
@@ -233,6 +251,7 @@ public class ModBlocks {
 		registerTile(TileEnchantPlate.class, LibBlockNames.ENCHANT_PLATE);
 		registerTile(TileDarkElfTrap.class, LibBlockNames.DARK_ELF_TRAP);
 		registerTile(TileSlingshot.class, LibBlockNames.SLINGSHOT);
+		registerTile(TileManaPotato.class, LibBlockNames.MANA_POTATO);
 		
 		registerSubTile(SubTileRhododender.class, LibBlockNames.SUBTILE_RHODODENDER);
 		registerSubTile(SubTileBlazeBloom.class, LibBlockNames.SUBTILE_BLAZEBLOOM);

@@ -47,13 +47,13 @@ public class EyeHandler {
 		
 		public void renderAtBlock(String request, World world, int x, int y, int z) {
 			float m = 0.02F;
-			Botania.proxy.setWispFXDepthTest(false);
-			Botania.proxy.wispFX(world, x + (float) Math.random(), y + (float) Math.random(), z + (float) Math.random(), 1F, 0F, 0F, 0.15F + 0.05F * (float) Math.random(), m * (float) (Math.random() - 0.5), m * (float) (Math.random() - 0.5), m * (float) (Math.random() - 0.5));
+			BotaniaAccessHandler.setWispFXDepthTest(false);
+			BotaniaAccessHandler.wispFX(world, x + (float) Math.random(), y + (float) Math.random(), z + (float) Math.random(), 1F, 0F, 0F, 0.15F + 0.05F * (float) Math.random(), m * (float) (Math.random() - 0.5), m * (float) (Math.random() - 0.5), m * (float) (Math.random() - 0.5));
 		}
 
 		public void renderAtEntity(String request, World world, Entity e) {
-			Botania.proxy.setWispFXDepthTest(Math.random() < 0.6);
-			Botania.proxy.wispFX(world, e.posX + (float) (Math.random() * 0.5 - 0.25) * 0.45F, e.posY + e.height, e.posZ + (float) (Math.random() * 0.5 - 0.25) * 0.45F, 1F, 0F, 0F, 0.15F + 0.05F * (float) Math.random(), -0.05F - 0.03F * (float) Math.random());
+			BotaniaAccessHandler.setWispFXDepthTest(Math.random() < 0.6);
+			BotaniaAccessHandler.wispFX(world, e.posX + (float) (Math.random() * 0.5 - 0.25) * 0.45F, e.posY + e.height, e.posZ + (float) (Math.random() * 0.5 - 0.25) * 0.45F, 1F, 0F, 0F, 0.15F + 0.05F * (float) Math.random(), -0.05F - 0.03F * (float) Math.random());
 		}
 		
 		public abstract boolean checkBlock(String request, World world, int x, int y, int z);
@@ -100,9 +100,9 @@ public class EyeHandler {
 			}
 			public void renderAtBlock(String request, World world, int x, int y, int z) {
 				float m = 0.02F;
-				Botania.proxy.setWispFXDepthTest(false);
+				BotaniaAccessHandler.setWispFXDepthTest(false);
 				if(Math.random()<.3)
-					Botania.proxy.wispFX(world, x + .3F + (float) Math.random() * .4F, y + .3F + (float) Math.random() * .4F, z + .3F + (float) Math.random() * .4F, 1F, 0F, 0F, 0.15F + 0.05F * (float) Math.random(), m * (float) (Math.random() - 0.5), m * (float) (Math.random() - 0.5), m * (float) (Math.random() - 0.5));
+					BotaniaAccessHandler.wispFX(world, x + .3F + (float) Math.random() * .4F, y + .3F + (float) Math.random() * .4F, z + .3F + (float) Math.random() * .4F, 1F, 0F, 0F, 0.15F + 0.05F * (float) Math.random(), m * (float) (Math.random() - 0.5), m * (float) (Math.random() - 0.5), m * (float) (Math.random() - 0.5));
 			}
 			@Override
 			public boolean checkBlock(String request, World world, int x, int y, int z) {
@@ -270,7 +270,7 @@ public class EyeHandler {
 				}
 			}
 		}
-		Botania.proxy.setWispFXDepthTest(true);
+		BotaniaAccessHandler.setWispFXDepthTest(true);
 	}
 		
 	private static boolean scanInventory(IInventory inv, String request) {

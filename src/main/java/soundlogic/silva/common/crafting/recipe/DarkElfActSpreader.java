@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.block.tile.TileManaEater;
 import soundlogic.silva.common.block.tile.TilePortalCore;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import vazkii.botania.api.mana.IManaSpreader;
 
 public class DarkElfActSpreader implements IDarkElfAct{
@@ -21,7 +22,7 @@ public class DarkElfActSpreader implements IDarkElfAct{
 	int outputMetadata;
 	
 	public DarkElfActSpreader(int meta) {
-		inputBlock = GameRegistry.findBlock("Botania", "spreader");
+		inputBlock = BotaniaAccessHandler.findBlock("spreader");
 		inputMetadata = meta;
 		outputBlock = ModBlocks.manaEater;
 		outputMetadata = 0;

@@ -16,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
@@ -29,7 +30,11 @@ import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.block.BlockPylon;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataBase.BlockData;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
+import soundlogic.silva.common.entity.EntityPixieProxy;
+import soundlogic.silva.common.entity.EntityPixieProxy.PixieData;
+import soundlogic.silva.common.entity.EntityPixieProxy.PixieGroupHandler;
 import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibMultiblockNames;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -41,29 +46,31 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class MultiblockDataPixieFarm extends MultiblockDataBase {
 
+	public static ArrayList<TileMultiblockCore> activeFarms = new ArrayList<TileMultiblockCore>();
+	
 	private static final int MAX_PIXIES = 20;
 	private static final int COOKIE_LEVEL_FOR_SPAWN = 300;
 	private static final int COOKIE_LEVEL_PER_COOKIE = 1000;
 	private static final int MANA_FOR_DUST = 2000;
-	static Block shinyFlower;
+	static Block pixieFlower;
 	static Block storage;
 	static Item manaCookie;
 	static ItemStack pixieDust;
 	private IIcon iconPillar;
-	
+
 	public MultiblockDataPixieFarm() {
-		super(new BlockData(GameRegistry.findBlock("Botania", "quartzTypeElf"),2));
-		shinyFlower = GameRegistry.findBlock("Botania", "shinyFlower");
-		manaCookie = GameRegistry.findItem("Botania", "manaCookie");
-		pixieDust = new ItemStack(GameRegistry.findItem("Botania", "manaResource"),1,8);
-		storage = GameRegistry.findBlock("Botania", "storage");
-		BlockData core = new BlockData(GameRegistry.findBlock("Botania", "quartzTypeElf"),2);
-		BlockData quartz = new BlockData(GameRegistry.findBlock("Botania", "quartzTypeElf"),2);
-		BlockData storage = new BlockData(GameRegistry.findBlock("Botania", "storage"),2);
+		super(new BlockData(BotaniaAccessHandler.findBlock("quartzTypeElf"),2));
+		pixieFlower = ModBlocks.pixieFlower;
+		manaCookie = BotaniaAccessHandler.findItem("manaCookie");
+		pixieDust = new ItemStack(BotaniaAccessHandler.findItem("manaResource"),1,8);
+		storage = BotaniaAccessHandler.findBlock("storage");
+		BlockData core = new BlockData(BotaniaAccessHandler.findBlock("quartzTypeElf"),2);
+		BlockData quartz = new BlockData(BotaniaAccessHandler.findBlock("quartzTypeElf"),2);
+		BlockData storage = new BlockData(BotaniaAccessHandler.findBlock("storage"),2);
 		BlockData pylon = new BlockData(ModBlocks.dimensionalPylon, BlockPylon.getMetadataForDimension(Dimension.ALFHEIM));
 		BlockData dust = new BlockData(ModBlocks.pixieDust, 0);
 		BlockData grass = new BlockData(Blocks.grass, 0);
-		BlockData airFlower = new BlockData(GameRegistry.findBlock("Botania", "shinyFlower"), 0) {
+		BlockData airFlower = new BlockData(pixieFlower, 0) {
 			@Override
 			public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
 				return world.isAirBlock(x, y, z) || world.getBlock(x, y, z)==block;
@@ -235,35 +242,87 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 
 	@Override
 	public void onTick(TileMultiblockCore core) {
+		if(!activeFarms.contains(core))
+			activeFarms.add(core);
 		PixieFarmTileData data = (PixieFarmTileData)core.getTileData();
 		AxisAlignedBB aabb = getPixieBoundingBox(core);
 		World world = core.getWorldObj();
+		prepTickPixies(world, core, data,aabb);
+		updateFlowerCount(world, core, data);
 		processCookies(world, core, data);
 		spawnPixiesFromBlocks(world, core,data,aabb);
-		tickPixies(world, core, data,aabb);
-		cleanDeadPixies(data);
-		spawnPixiesFromBlocks(world, core,data,aabb);
+		data.pixieGroup.tick(world);
 		spreadFlowersAndPixies(world, core,data,aabb);
 		shedDust(world, core, data);
+		adjustPowerLevel(data);
 		core.getWorldObj().markBlockForUpdate(core.xCoord, core.yCoord, core.zCoord);
+
+/*		ArrayList<Integer> gens = new ArrayList<Integer>();
+		for(Pixie pixie : data.pixies) {
+			int gen = pixie.generation;
+			while(gen>=gens.size()) {
+				gens.add(0);
+			}
+			gens.set(gen, gens.get(gen)+1);
+		}
+		String res = "";
+		for(int gen : gens) {
+			if(gen<10)
+				res=res+"0"+gen+",";
+			else
+				res=res+gen+",";
+		}
+		System.out.println(res);*/
+	}
+	
+	private void updateFlowerCount(World world, TileMultiblockCore core, PixieFarmTileData data) {
+		if(data.flowercount!=-1 && world.rand.nextFloat()>.1F)
+			return;
+		int y = core.yCoord;
+		data.flowercount=0;
+		for(int x = core.xCoord-4; x <= core.xCoord+5 ; x++) {
+			for(int z = core.zCoord-4; z <= core.zCoord+5 ; z++) {
+				if(world.getBlock(x, y, z)==pixieFlower)
+					data.flowercount++;
+			}
+		}
+	}
+
+	private void adjustPowerLevel(PixieFarmTileData data) {
+		for(FarmPixieData pixie : data.pixieGroup.pixies) {
+			data.pixiePowerLevel+=Math.max(5, 10*pixie.generation*pixie.generation);
+		}
+		data.pixiePowerLevel=Math.min(data.pixiePowerLevel, data.maxPixiePower);
+		data.pixiePowerLevel-=data.pixiePowerLevel/2000;
+		data.pixiePowerLevel=Math.max(data.pixiePowerLevel, 0);
+	}
+
+	@Override
+	public void onClientTick(TileMultiblockCore core) {
+		PixieFarmTileData data = (PixieFarmTileData)core.getTileData();
+		data.pixieGroup.clientTick(core.getWorldObj());
 	}
 
 	private void shedDust(World world, TileMultiblockCore core, PixieFarmTileData data) {
-		if(world.rand.nextFloat()>.1F)
-			return;
-		for(Pixie pixie : data.pixies) {
-			if(world.rand.nextFloat()<.1F/((300-pixie.ticks)*(300-pixie.ticks)+20)) {
+		for(FarmPixieData pixie : data.pixieGroup.pixies) {
+			if(world.rand.nextFloat()<getDustChanceForPixie(pixie)) {
 				IManaPool pool = getRandomManaPool(world, core);
 				if(pool.getCurrentMana()>MANA_FOR_DUST)
 					pool.recieveMana(-MANA_FOR_DUST);
 				else
 					return;
 				EntityItem ent = new EntityItem(world, pixie.posX, pixie.posY, pixie.posZ, pixieDust.copy());
+				ent.lifespan=20*15;
 				world.spawnEntityInWorld(ent);
 			}
 		}
 	}
-
+	
+	private float getDustChanceForPixie(FarmPixieData pixie) {
+		float val = 1F/3600F * (1F + (((float)pixie.generation * 2F)/((float)pixie.generation + 2F)));
+		return val;
+	}
+	
 	private IManaPool getRandomManaPool(World world, TileMultiblockCore core) {
 		switch(world.rand.nextInt(4)) {
 		case 0:return (IManaPool) world.getTileEntity(core.xCoord-1, core.yCoord, core.zCoord-1);
@@ -308,31 +367,17 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 		return null;
 	}
 
-	private void cleanDeadPixies(PixieFarmTileData data) {
-		if(!data.pixieDied)
-			return;
-		Iterator<Pixie> pixies = data.pixies.iterator();
-		while(pixies.hasNext()) {
-			if(pixies.next().isDead)
-				pixies.remove();
-		}
-	}
-
 	private void spreadFlowersAndPixies(World world, TileMultiblockCore core, PixieFarmTileData data, AxisAlignedBB aabb) {
-		if(world.rand.nextFloat()<.5F)
-			return;
-		List<Pixie> curPixies = new ArrayList<Pixie>(data.pixies);
-		for(Pixie pixie : curPixies) {
-			if(world.rand.nextFloat()>.1F)
-				return;
+		List<FarmPixieData> curPixies = new ArrayList<FarmPixieData>(data.pixieGroup.pixies);
+		for(FarmPixieData pixie : curPixies) {
 			if((pixie.posY-core.yCoord)<2.3) {
 				int x = (int) pixie.posX;
 				int y = core.yCoord;
 				int z = (int) pixie.posZ;
-				if(world.rand.nextFloat()<chanceForSpawnPixie(world, core, data, x, y, z))
-					spawnPixieFromBlock(world, core, data, x, y, z, aabb);
+				if(world.rand.nextFloat()<chanceForSpawnPixie(world, core, data, x, y, z, pixie.generation+1))
+					spawnPixieFromBlock(world, core, data, x, y, z, aabb, pixie.generation+1);
 			}
-			pixie.spawnFlower(world, core, data, core.yCoord, aabb);
+			pixie.spawnFlower(world, core, data, core.yCoord);
 		}
 	}
 
@@ -346,30 +391,32 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 		int x = minX+core.getWorldObj().rand.nextInt(rangeX);
 		int y = core.yCoord;
 		int z = minZ+core.getWorldObj().rand.nextInt(rangeZ);
-		if(spawnPixieFromBlock(world, core, data, x, y, z, aabb)) {
+		if(spawnPixieFromBlock(world, core, data, x, y, z, aabb,0)) {
 			data.cookieLevel-=COOKIE_LEVEL_FOR_SPAWN;
 		}
 	}
 
-	private boolean spawnPixieFromBlock(World world, TileMultiblockCore core, PixieFarmTileData data, int x, int y, int z, AxisAlignedBB aabb) {
-		if(world.rand.nextFloat()<chanceForSpawnPixie(world, core, data, x, y, z))
-			return spawnPixie(world, core, data, x, y+1.5, z, aabb);
+	private boolean spawnPixieFromBlock(World world, TileMultiblockCore core, PixieFarmTileData data, int x, int y, int z, AxisAlignedBB aabb, int generation) {
+		if(world.rand.nextFloat()<chanceForSpawnPixie(world, core, data, x, y, z, 0))
+			return spawnPixie(world, core, data, x, y+1.5, z, aabb, generation);
 		return false;
 	}
 	
-	private boolean spawnPixie(World world, TileMultiblockCore core, PixieFarmTileData data, double x, double y, double z, AxisAlignedBB aabb) {
-		if(data.pixies.size()<MAX_PIXIES) {
-			Pixie pixie = new Pixie(x, y, z, aabb);
-			data.pixies.add(pixie);
+	private boolean spawnPixie(World world, TileMultiblockCore core, PixieFarmTileData data, double x, double y, double z, AxisAlignedBB aabb, int generation) {
+		if(data.pixieGroup.pixies.size()<MAX_PIXIES) {
+			FarmPixieData pixie = new FarmPixieData(x, y, z, aabb, generation, data);
 			return true;
 		}
 		return false;
 	}
 
-	private float chanceForSpawnPixie(World world, TileMultiblockCore core, PixieFarmTileData data, int x, int y, int z) {
+	private float chanceForSpawnPixie(World world, TileMultiblockCore core, PixieFarmTileData data, int x, int y, int z, int generation) {
+		return baseChanceForSpawnPixie(world, core, data, x, y, z) * (3-(((float)generation+2)/((float)generation+1))) * (generation==0 ? 1 : .05F);
+	}
+	private float baseChanceForSpawnPixie(World world, TileMultiblockCore core, PixieFarmTileData data, int x, int y, int z) {
 		Block block = world.getBlock(x, y, z);
-		if(block==shinyFlower)
-			return .1F + .05F * countAirBlocksAround(world, x, y, z);
+		if(block==pixieFlower)
+			return .1F * countAirBlocksAround(world, x, y, z);
 		if(block==ModBlocks.pixieDust) {
 			if(x==core.xCoord)
 				return 0F;
@@ -392,23 +439,14 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 		return count;
 	}
 
-	private void tickPixies(World world, TileMultiblockCore core, PixieFarmTileData data, AxisAlignedBB aabb) {
-		for(Pixie pixie : data.pixies) {
-			pixie.tick(world, core, data, aabb);
+	private void prepTickPixies(World world, TileMultiblockCore core, PixieFarmTileData data, AxisAlignedBB aabb) {
+		for(FarmPixieData pixie : data.pixieGroup.pixies) {
+			pixie.aabb=aabb;
 		}
 	}
 	
 	private AxisAlignedBB getPixieBoundingBox(TileMultiblockCore core) {
 		return AxisAlignedBB.getBoundingBox(core.xCoord-4, core.yCoord+1, core.zCoord-4, core.xCoord+5, core.yCoord+4, core.zCoord+5);
-	}
-
-	private void doParticles(World world, TileMultiblockCore core, PixieFarmTileData data) {
-		if(!core.getWorldObj().isRemote)
-			return;
-		for(Pixie pixie : data.pixies) {
-			for(int i = 0; i < 12; i++)
-				Botania.proxy.sparkleFX(core.getWorldObj(), pixie.posX + (Math.random() - 0.5) * 0.25, pixie.posY + 0.5  + (Math.random() - 0.5) * 0.25, pixie.posZ + (Math.random() - 0.5) * 0.25, 1F, 0.25F, 0.9F, 1F + (float) Math.random() * 0.25F, 5);
-		}
 	}
 
 	@Override
@@ -458,97 +496,60 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 
 	@Override
 	public LexiconEntry getLexiconEntry() {
-		return LexiconData.PIXIE_FARM;
+		return LexiconData.pixie_farm;
 	}
 
-	public static class Pixie {
-		final static double default_speed = 0.08F;
-		final static AxisAlignedBB default_boundingBox = AxisAlignedBB.getBoundingBox(-0.3, -0.3, -0.3, 0.3, 0.3, 0.3);
+	public static class FarmPixieData extends PixieData {
+
 		final static double bounds_acceleration = 0.04F;
 		final static double random_acceleration = 0.08F;
-		public double posX, posY, posZ;
-		public double prevPosX, prevPosY, prevPosZ;
-		public double motionX, motionY, motionZ;
-		public float rotation;
-		public float prevRotation;
-		public int ticks=0;
-		boolean isDead = false;
-		public int type = 0;
-		private static List collidingBoundingBoxes = new ArrayList();
-
-		public Pixie() {
+		
+		AxisAlignedBB aabb;
+		
+		public int generation = 0;
+		
+		public FarmPixieData(double x, double y, double z, AxisAlignedBB aabb, int generation, PixieFarmTileData data) {
+			super(data.pixieGroup);
+			this.generation=generation;
+			this.posX = x;
+			this.posY = y;
+			this.posZ = z;
+			setStartingVelocity(aabb);
+			this.aabb=aabb;
 		}
 		
-		public void spawnFlower(World world, TileMultiblockCore core, PixieFarmTileData data, int y, AxisAlignedBB aabb) {
-			if(posY-y>1.1)
+		public FarmPixieData(PixieGroupHandler data) {
+			super(data);
+		}
+
+		public void spawnFlower(World world, TileMultiblockCore core, PixieFarmTileData data, int y) {
+			if(this.motionY<=0 || this.prevMotionY>=0)
+				return;
+			if(posY-y>1.6)
+				return;
+			if(world.rand.nextFloat()<((((float)data.flowercount)/20F)*(((float)data.flowercount)/20F)))
+					return;
+			if(world.rand.nextFloat()>(((float)generation)+.5F)/(((float)generation)+1.5F))
 				return;
 			int x = MathHelper.floor_double(posX);
 			int z = MathHelper.floor_double(posZ);
 			if(!world.isAirBlock(x, y, z))
 				return;
-			if(shinyFlower.canPlaceBlockAt(world, x, y, z))
-				world.setBlock(x, y, z, shinyFlower, world.rand.nextInt(16), 3);
+			if(pixieFlower.canPlaceBlockAt(world, x, y, z))
+				world.setBlock(x, y, z, pixieFlower, world.rand.nextInt(16), 3);
 		}
 
-		public void tick(World world, TileMultiblockCore core, PixieFarmTileData data, AxisAlignedBB aabb) {
-			ticks++;
-			checkDead(world, data, aabb);
-			if(isDead)
+		@Override
+		public void tick(World world, PixieGroupHandler data) {
+			checkDeadBoundingBox(world, data);
+			if(this.isDead())
 				return;
-			this.prevPosX=this.posX;
-			this.prevPosY=this.posY;
-			this.prevPosZ=this.posZ;
-			this.prevRotation=this.rotation;
-			avoidBounds(aabb);
 			randomMotion(world);
-			tickMotion(world, aabb);
+			avoidBounds();
+			super.tick(world, data);
 		}
 		
-		private void tickMotion(World world, AxisAlignedBB aabb) {
-			double speed = getSpeed();
-			double newX = posX+motionX*speed;
-			double newY = posY+motionY*speed;
-			double newZ = posZ+motionZ*speed;
-			boolean shouldMove = true;
-			boolean newBlocked = positionBlocked(world, newX, newY, newZ);
-			if(newBlocked) {
-				boolean curBlocked = positionBlocked(world, posX, posY, posZ);
-				if(!curBlocked)
-					shouldMove=false;
-			}
-			if(shouldMove) {
-				this.posX=newX;
-				this.posY=newY;
-				this.posZ=newZ;
-			}
-			else {
-				this.motionX*=-1;
-				this.motionY*=-1;
-				this.motionZ*=-1;
-
-				newX = posX+motionX*speed;
-				newY = posY+motionY*speed;
-				newZ = posZ+motionZ*speed;
-				
-				newBlocked = positionBlocked(world, newX, newY, newZ);
-				
-				if(!newBlocked) {
-					this.posX=newX;
-					this.posY=newY;
-					this.posZ=newZ;
-				}
-			}
-		}
 		
-		private boolean positionBlocked(World world, double x, double y, double z) {
-			if(world.isAirBlock(MathHelper.floor_double(x), MathHelper.floor_double(y), MathHelper.floor_double(z)))
-				return false;
-			else if(world.getBlock(MathHelper.floor_double(x), MathHelper.floor_double(y), MathHelper.floor_double(z)).isNormalCube())
-				return true;
-			else
-				return !checkCollisions(world,getBoundingBox(x,y,z));
-		}
-
 		private void randomMotion(World world) {
 			this.motionX+=world.rand.nextGaussian()*random_acceleration;
 			this.motionY+=world.rand.nextGaussian()*random_acceleration;
@@ -557,7 +558,7 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 			normVelocity();
 		}
 
-		private void avoidBounds(AxisAlignedBB aabb) {
+		private void avoidBounds() {
 			double minXDist = Math.max(0, posX - aabb.minX);
 			double minYDist = Math.max(0, posY - aabb.minY);
 			double minZDist = Math.max(0, posZ - aabb.minZ);
@@ -577,33 +578,18 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 			normVelocity();
 		}
 
-		private void checkDead(World world, PixieFarmTileData data, AxisAlignedBB aabb) {
-			if(this.ticks>getLifeSpan()) {
-				setDead(data);
-				return;
-			}
+		private void checkDeadBoundingBox(World world, PixieGroupHandler data) {
 			if(!aabb.copy().expand(.5, .5, .5).isVecInside(Vec3.createVectorHelper(posX, posY, posZ))) {
 				setDead(data);
 				return;
 			}
-			if(world.getBlock((int)posX, (int)posY, (int)posZ).isNormalCube()) {
-				setDead(data);
-				return;
-			}
 		}
 
-		private int getLifeSpan() {
-			return 20*60*2;
+		@Override
+		protected int getLifeSpan() {
+			return 20*60*(generation+1);
 		}
 
-		public Pixie(double x, double y, double z, AxisAlignedBB aabb) {
-			this();
-			this.posX = x;
-			this.posY = y;
-			this.posZ = z;
-			setStartingVelocity(aabb);
-		}
-		
 		private void setStartingVelocity(AxisAlignedBB aabb) {
 			double minXDist = posX - aabb.minX;
 			double minYDist = posY - aabb.minY;
@@ -620,77 +606,29 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 			this.motionZ *= minZDist>maxZDist ? -1 : 1;
 			normVelocity();
 		}
-		private void normVelocity() {
-			double vel = Math.sqrt(motionX*motionX+motionY*motionY+motionZ*motionZ);
-			if(vel!=0) {
-				this.motionX = this.motionX/vel;
-				this.motionY = this.motionY/vel;
-				this.motionZ = this.motionZ/vel;
-				this.rotation=(float) (Math.atan2(motionX, motionZ) / Math.PI * 180F);
-			}
-			else {
-				this.motionX=Math.random()-.5;
-				this.motionY=Math.random()-.5;
-				this.motionZ=Math.random()-.5;
-				normVelocity();
-			}
-		}
-		
-		private void setDead(PixieFarmTileData data) {
-			data.pixieDied=true;
-			this.isDead=true;
-		}
-		
-		public AxisAlignedBB getBoundingBox(double x, double y, double z) {
-			return getBoundingBox().copy().offset(x, y, z);
-		}
-		private AxisAlignedBB getBoundingBox() {
-			return default_boundingBox;
-		}
-		
-		public double getSpeed() {
-			return default_speed;
-		}
-		
-		private static boolean checkCollisions(World world, AxisAlignedBB aabb) {
-			collidingBoundingBoxes.clear();
-	        int i = MathHelper.floor_double(aabb.minX);
-	        int j = MathHelper.floor_double(aabb.maxX + 1.0D);
-	        int k = MathHelper.floor_double(aabb.minY);
-	        int l = MathHelper.floor_double(aabb.maxY + 1.0D);
-	        int i1 = MathHelper.floor_double(aabb.minZ);
-	        int j1 = MathHelper.floor_double(aabb.maxZ + 1.0D);
+		private static final String TAG_PIXIE_GENERATION = "pixiesGeneration";
 
-	        for (int k1 = i; k1 < j; ++k1)
-	        {
-	            for (int l1 = i1; l1 < j1; ++l1)
-	            {
-	                if (world.blockExists(k1, 64, l1))
-	                {
-	                    for (int i2 = k - 1; i2 < l; ++i2)
-	                    {
-	                        Block block;
+		@Override
+		public void writeToNBT(NBTTagCompound cmp) {
+			super.writeToNBT(cmp);
+			cmp.setInteger(TAG_PIXIE_GENERATION, generation);
+		}
 
-	                        if (k1 >= -30000000 && k1 < 30000000 && l1 >= -30000000 && l1 < 30000000)
-	                        {
-	                            block = world.getBlock(k1, i2, l1);
-	                        }
-	                        else
-	                        {
-	                            block = Blocks.bedrock;
-	                        }
-	                        
-	                        System.out.println(block);
+		@Override
+		public void readFromNBT(NBTTagCompound cmp) {
+			super.readFromNBT(cmp);
+			generation=cmp.getInteger(TAG_PIXIE_GENERATION);
+		}
 
-	                        block.addCollisionBoxesToList(world, k1, i2, l1, aabb, collidingBoundingBoxes , (Entity)null);
-	                        if(!collidingBoundingBoxes.isEmpty())
-	                        	return false;
-	                    }
-	                }
-	            }
-	        }
-	        return true;
-	    }
+	}
 
+	@Override
+	public void onInvalidate(TileMultiblockCore core) {
+		this.activeFarms.remove(core);
+	}
+
+	@Override
+	public void onBreak(TileMultiblockCore tileMultiblockCore) {
+		// NO OP
 	}
 }

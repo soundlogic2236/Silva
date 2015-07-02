@@ -9,6 +9,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataBase.BlockData;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibMultiblockNames;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -54,8 +55,8 @@ public class MultiblockDataLavashroom extends MultiblockDataBase {
 	IIcon iconMushroom_inside_edge_dull;
 	
 	public MultiblockDataLavashroom() {
-		super(new BlockData(GameRegistry.findBlock("Botania", "mushroom"),14));
-		BlockData core = new BlockData(GameRegistry.findBlock("Botania", "mushroom"),14);
+		super(new BlockData(BotaniaAccessHandler.findBlock("mushroom"),14));
+		BlockData core = new BlockData(BotaniaAccessHandler.findBlock("mushroom"),14);
 		BlockData mushroom0 = new BlockData(Blocks.red_mushroom_block,0);
 		BlockData mushroom1 = new BlockData(Blocks.red_mushroom_block,1);
 		BlockData mushroom2 = new BlockData(Blocks.red_mushroom_block,2);
@@ -186,7 +187,7 @@ public class MultiblockDataLavashroom extends MultiblockDataBase {
 			List<EntityItem> items = core.getWorldObj().getEntitiesWithinAABB(EntityItem.class, aabb);
 			for(EntityItem ent : items) {
 				ItemStack stack = ent.getEntityItem();
-				if(stack.getItem() != GameRegistry.findItem("Botania", "rune"))
+				if(stack.getItem() != BotaniaAccessHandler.findItem("rune"))
 					continue;
 				int count = stack.stackSize;
 				int meta = stack.getItemDamage();
@@ -404,5 +405,20 @@ public class MultiblockDataLavashroom extends MultiblockDataBase {
 	@Override
 	public LexiconEntry getLexiconEntry() {
 		return LexiconData.lavaShroom;
+	}
+
+	@Override
+	public void onClientTick(TileMultiblockCore core) {
+		// NO OP
+	}
+
+	@Override
+	public void onInvalidate(TileMultiblockCore core) {
+		// NO OP
+	}
+
+	@Override
+	public void onBreak(TileMultiblockCore core) {
+		// NO OP
 	}
 }

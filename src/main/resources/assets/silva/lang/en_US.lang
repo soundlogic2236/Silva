@@ -1,3 +1,6 @@
+# MISC
+silva.misc.darkenedTheater.stop=Stop?
+
 # TOOLTIPS
 silva.tooltips.papers_craft=Craft with a lexicon
 silva.tooltips.papers_knowledge_type=Adds knowledge type:
@@ -79,6 +82,23 @@ tile.silva:dwarvenPool.name=Dwarven Mana Pool
 tile.silva:portalUpgradeRedstone.name=Redstone Control Portal Upgrade
 tile.silva:portalUpgradeInhibit.name=Inhibitor Portal Upgrade
 tile.silva:portalUpgradeCharge.name=Charging Portal Upgrade
+tile.silva:pixieFlower0.name=Pixie Dusted White Flower
+tile.silva:pixieFlower1.name=Pixie Dusted Orange Flower
+tile.silva:pixieFlower2.name=Pixie Dusted Magenta Flower
+tile.silva:pixieFlower3.name=Pixie Dusted Light Blue Flower
+tile.silva:pixieFlower4.name=Pixie Dusted Yellow Flower
+tile.silva:pixieFlower5.name=Pixie Dusted Lime Flower
+tile.silva:pixieFlower6.name=Pixie Dusted Pink Flower
+tile.silva:pixieFlower7.name=Pixie Dusted Gray Flower
+tile.silva:pixieFlower8.name=Pixie Dusted Light Gray Flower
+tile.silva:pixieFlower9.name=Pixie Dusted Cyan Flower
+tile.silva:pixieFlower10.name=Pixie Dusted Purple Flower
+tile.silva:pixieFlower11.name=Pixie Dusted Blue Flower
+tile.silva:pixieFlower12.name=Pixie Dusted Brown Flower
+tile.silva:pixieFlower13.name=Pixie Dusted Green Flower
+tile.silva:pixieFlower14.name=Pixie Dusted Red Flower
+tile.silva:pixieFlower15.name=Pixie Dusted Black Flower
+
 
 # ITEM NAMES
 item.silva:itemProxy.questionMark.name=Who knows?

@@ -100,8 +100,9 @@ public abstract class MultiblockDataBase {
 				for(int k = 0;k<templateSlice2.length;k++) {
 					BlockData data = templateSlice2[k];
 					int[] transCoords = getTransformedCoords(x,y,z,i,j,k,mirrorX,mirrorZ,rotation);
-					if(!data.isValid(null, world, transCoords[0], transCoords[1], transCoords[2]))
+					if(!data.isValid(null, world, transCoords[0], transCoords[1], transCoords[2])) {
 						return false;
+					}
 				}
 			}
 		}
@@ -143,26 +144,37 @@ public abstract class MultiblockDataBase {
 	}
 	
 	public void setBlock(BlockData data, TileMultiblockCore core, World world, int x, int y, int z) {
-		Block curBlock = world.getBlock(x, y, z);
-		int curMeta = world.getBlockMetadata(x, y, z);
-		float curHardness = curBlock.getBlockHardness(world, x, y, z);
-		TileEntity tempTile = world.getTileEntity(x,y,z);
+		Block curBlock = Blocks.air;
+		int curMeta = 0;
+		float curHardness = 0;
+		TileEntity tempTile=null;
 		NBTTagCompound curCompound = null;
-		if(tempTile!=null) {
-			curCompound = new NBTTagCompound();
-			tempTile.writeToNBT(curCompound);
+		if(!world.isAirBlock(x, y, z)) {
+			curBlock = world.getBlock(x, y, z);
+			curMeta = world.getBlockMetadata(x, y, z);
+			curHardness = curBlock.getBlockHardness(world, x, y, z);
+			tempTile = world.getTileEntity(x,y,z);
+			if(tempTile!=null) {
+				curCompound = new NBTTagCompound();
+				tempTile.writeToNBT(curCompound);
+			}
 		}
 		data.setBlock(core, world, x, y, z);
 		TileEntity tile = world.getTileEntity(x, y, z);
 		if(tile!=null && tile instanceof TileMultiblockProxy) {
 			TileMultiblockProxy proxy = (TileMultiblockProxy)world.getTileEntity(x, y, z);
 			if(proxy!=null) {
-				proxy.setOriginalBlock(curBlock, curMeta, curCompound, curHardness);
-				proxy.relativeX=core.xCoord-x;
-				proxy.relativeY=core.yCoord-y;
-				proxy.relativeZ=core.zCoord-z;
-				proxy.getCore();
-				proxy.markDirty();
+				if(tempTile instanceof TileMultiblockProxy) {
+					proxy.readFromNBT(curCompound);
+				}
+				else {
+					proxy.setOriginalBlock(curBlock, curMeta, curCompound, curHardness);
+					proxy.relativeX=core.xCoord-x;
+					proxy.relativeY=core.yCoord-y;
+					proxy.relativeZ=core.zCoord-z;
+					proxy.getCore();
+					proxy.markDirty();
+				}
 			}
 		}
 	}
@@ -194,7 +206,6 @@ public abstract class MultiblockDataBase {
 	public int[] getTransformedCoords(TileMultiblockCore core, int i, int j, int k) {
 		return getTransformedCoords(core.xCoord,core.yCoord,core.zCoord,i,j,k,core.mirrorX,core.mirrorZ,core.rotation);
 	}
-	
 	private int[] getTransformedCoords(int x, int y, int z, int i, int j, int k, boolean mirrorX, boolean mirrorZ, int rotation) {
 		int[] targetOffset = getTargetOffset(i,j,k,mirrorX,mirrorZ,rotation);
 		return new int[]{
@@ -203,7 +214,6 @@ public abstract class MultiblockDataBase {
 			z+targetOffset[2]
 		};
 	}
-
 	private int[] getTargetOffset(int i, int j, int k, boolean mirrorX, boolean mirrorZ, int rotation) {
 		int[] offset = getSimpleOffset(i,j,k);
 		if(mirrorX)
@@ -218,9 +228,15 @@ public abstract class MultiblockDataBase {
 			offset = rotate90(offset);
 		return offset;
 	}
-	
 	private int[] getSimpleOffset(int i, int j, int k) {
 		return new int[] {
+				j-templateOrigin[0],
+				i-templateOrigin[1],
+				k-templateOrigin[2],
+			};
+	}
+	private float[] getSimpleOffset(float i, float j, float k) {
+		return new float[] {
 				j-templateOrigin[0],
 				i-templateOrigin[1],
 				k-templateOrigin[2],
@@ -229,6 +245,13 @@ public abstract class MultiblockDataBase {
 	
 	private int[] rotate90(int[] input) {
 		return new int[] {
+				input[2],
+				input[1],
+				-input[0]
+		};
+	}
+	private float[] rotate90(float[] input) {
+		return new float[] {
 				input[2],
 				input[1],
 				-input[0]
@@ -384,11 +407,12 @@ public abstract class MultiblockDataBase {
 		}
 		
 		public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
-			return world.getBlock(x, y, z)==block && world.getBlockMetadata(x, y, z)==metadata;
+			return world.getBlock(x, y, z)==block && (metadata==-1 || world.getBlockMetadata(x, y, z)==metadata);
 		}
 
 		public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
-			world.setBlock(x, y, z, block, metadata, 0);
+			if(metadata!=-1)
+				world.setBlock(x, y, z, block, metadata, 0);
 		}
 	}
 	
@@ -397,6 +421,8 @@ public abstract class MultiblockDataBase {
 	public abstract IMultiblockTileData createTileData();
 	
 	public abstract void onTick(TileMultiblockCore core);
+	public abstract void onClientTick(TileMultiblockCore core);
+	public abstract void onBreak(TileMultiblockCore core);
 	public abstract void onCollision(TileMultiblockBase tile, TileMultiblockCore core, Entity ent);
 	public abstract void init(TileMultiblockCore core);
 	public abstract void setVisualData(TileMultiblockCore core, TileMultiblockBase tile, int x, int y, int z);
@@ -412,5 +438,11 @@ public abstract class MultiblockDataBase {
 	public abstract boolean shouldTryTransform(int trial, boolean mirrorX, boolean mirrorZ, int rot);
 
 	public abstract LexiconEntry getLexiconEntry();
-	
+
+	public abstract void onInvalidate(TileMultiblockCore core);
+
+	public void onWalking(TileMultiblockBase tile, TileMultiblockCore core, Entity ent) {
+		// NO OP
+	}
+
 }

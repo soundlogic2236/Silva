@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import soundlogic.silva.common.block.tile.TileMod;
 
@@ -60,12 +61,17 @@ public abstract class TileMultiblockBase extends TileMod{
 			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 			needsRefresh = false;
 		}
+		else if (!worldObj.isRemote)
+			this.breakMultiblock();
 	}
 	
 	public void breakMultiblock() {
 		this.getWorldObj().setBlock(xCoord, yCoord, zCoord, originalBlock, originalMetadata, 3);
-		if(originalNBT!=null)
-			this.getWorldObj().getTileEntity(xCoord, yCoord, zCoord).readFromNBT(originalNBT);
+		if(originalNBT!=null) {
+			TileEntity newTile = this.getWorldObj().getTileEntity(xCoord, yCoord, zCoord);
+			if(newTile!=null)
+				newTile.readFromNBT(originalNBT);
+		}
 	}
 
 	@Override

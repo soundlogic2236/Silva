@@ -13,6 +13,7 @@ import soundlogic.silva.common.block.BlockMultiblockProxyLava;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.block.tile.TileManaEater;
 import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataBase.BlockData;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibMultiblockNames;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -68,11 +69,11 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 	IIcon[] iconTransition = new IIcon[7];
 	
 	public MultiblockDataCarnilotus() {
-		super(new BlockData(GameRegistry.findBlock("Botania", "livingwood"),0));
-		BlockData core = new BlockData(GameRegistry.findBlock("Botania", "livingwood"),0);
-		BlockData livingwood = new BlockData(GameRegistry.findBlock("Botania", "livingwood"),0);
-		BlockData purplePetal = new BlockData(GameRegistry.findBlock("Botania", "petalBlock"),10);
-		BlockData blackPetal = new BlockData(GameRegistry.findBlock("Botania", "petalBlock"),15);
+		super(new BlockData(BotaniaAccessHandler.findBlock("livingwood"),0));
+		BlockData core = new BlockData(BotaniaAccessHandler.findBlock("livingwood"),0);
+		BlockData livingwood = new BlockData(BotaniaAccessHandler.findBlock("livingwood"),0);
+		BlockData purplePetal = new BlockData(BotaniaAccessHandler.findBlock("petalBlock"),10);
+		BlockData blackPetal = new BlockData(BotaniaAccessHandler.findBlock("petalBlock"),15);
 		BlockData ironBar = new BlockData(Blocks.iron_bars,0);
 		BlockData manaEater = new BlockData() {
 			@Override
@@ -237,7 +238,7 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 				int count = stack.stackSize;
 				int meta = stack.getItemDamage();
 				int toRemove = 0;
-				if(stack.getItem() == GameRegistry.findItem("Botania", "rune")) {
+				if(stack.getItem() == BotaniaAccessHandler.findItem("rune")) {
 					if(meta == 0) {
 						toRemove = Math.min(count, data.waterRunesNeeded);
 						data.waterRunesNeeded-=toRemove;
@@ -416,10 +417,10 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 		if(tile.getBlockType().getMaterial().equals(Material.water)) {
 			tile.iconsForSides=new IIcon[]{iconAcid,iconAcid,iconAcid,iconAcid,iconAcid,iconAcid};
 		}
-		else if(tile.getOriginalBlock()==GameRegistry.findBlock("Botania", "livingwood")) {
+		else if(tile.getOriginalBlock()==BotaniaAccessHandler.findBlock("livingwood")) {
 			tile.iconsForSides=new IIcon[]{iconStem,iconStem,iconStem,iconStem,iconStem,iconStem};
 		}
-		else if(tile.getOriginalBlock()==GameRegistry.findBlock("Botania", "petalBlock")) {
+		else if(tile.getOriginalBlock()==BotaniaAccessHandler.findBlock("petalBlock")) {
 			int innerFace = -1;
 			if(coords[2] == 0)
 				switch(core.rotation) {
@@ -501,7 +502,7 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 			tile.solid=false;
 			tile.maxBBY=.5F;
 		}
-		if(tile.getOriginalBlock()==GameRegistry.findBlock("Botania", "petalBlock") || tile.getOriginalBlock() == Blocks.iron_bars) {
+		if(tile.getOriginalBlock()==BotaniaAccessHandler.findBlock("petalBlock") || tile.getOriginalBlock() == Blocks.iron_bars) {
 			int[] coords = this.convertRelativeCoords(core, tile);
 			int innerFace = -1;
 			if(coords[2] == 0)
@@ -604,5 +605,20 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 	@Override
 	public LexiconEntry getLexiconEntry() {
 		return LexiconData.carnilotus;
+	}
+
+	@Override
+	public void onClientTick(TileMultiblockCore core) {
+		// NO OP
+	}
+
+	@Override
+	public void onInvalidate(TileMultiblockCore core) {
+		// NO OP
+	}
+
+	@Override
+	public void onBreak(TileMultiblockCore core) {
+		// NO OP
 	}
 }

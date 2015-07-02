@@ -8,6 +8,8 @@ import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataCarnilotus;
 import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataLavashroom;
 import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataMysticalGrinder;
 import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataPixieFarm;
+import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataPixieRoomEmpty;
+import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataPixieRoomDarkenedTheater;
 import soundlogic.silva.common.block.tile.multiblocks.MutliblockDataEnderCatcher;
 import soundlogic.silva.common.core.handler.MultiBlockCreationHandler.RenderData.RenderFace;
 import soundlogic.silva.common.item.ModItems;
@@ -221,7 +223,6 @@ public class MultiBlockCreationHandler {
 		    
 		    public void renderFace(RenderBlocks render) {
 		    	setRender(render);
-		    	System.out.println("keke");
 		    	switch(face) {
 				case XNeg:
 					render.renderFaceXNeg(null, x, y, z, icon);
@@ -355,14 +356,12 @@ public class MultiBlockCreationHandler {
 
 		public void buildFaces(Block block, IBlockAccess access, int x, int y, int z) {
 			renderBlocks.blockAccess=access;
-			System.out.println(renderBlocks.blockAccess);
 			renderBlocks.data=this;
 			this.faces.clear();
 			renderBlocks.renderBlockByRenderType(block, x, y, z);
 		}
 		
 		public void renderFaces(RenderBlocks renderer) {
-			System.out.println(faces.size());
 			for(RenderFace face : faces) {
 				face.renderFace(renderer);
 			}
@@ -376,12 +375,14 @@ public class MultiBlockCreationHandler {
 		new MultiblockDataMysticalGrinder();
 		new MutliblockDataEnderCatcher();
 		new MultiblockDataPixieFarm();
+		new MultiblockDataPixieRoomEmpty();
+		new MultiblockDataPixieRoomDarkenedTheater();
 	}
 	
 	@SubscribeEvent
 	public void onUse(PlayerInteractEvent event) {
 		ItemStack stack = event.entityPlayer.getCurrentEquippedItem();
-		if(stack!=null && stack.getItem() == GameRegistry.findItem("Botania", "twigWand") && event.action == Action.RIGHT_CLICK_BLOCK) {
+		if(stack!=null && stack.getItem() == BotaniaAccessHandler.findItem("twigWand") && event.action == Action.RIGHT_CLICK_BLOCK) {
 			if(event.world.isRemote) {
 				Block block = event.world.getBlock(event.x, event.y, event.z);
 				renderData.lastX=event.x;
