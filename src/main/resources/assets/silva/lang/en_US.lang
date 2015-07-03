@@ -143,18 +143,18 @@ silva.category.darkElf=The Dark Elves
 # -- BUNDLES OF PAPER
 silva.entry.paperBundles=Bundles of Paper
 silva.page.paperBundles0=While having all your &4knowledge&0 in one simple lexicon is wonderful, occasionally you might get some from other sources. Such &4knowledge&0 should of course be put in your lexicon. Simply crafting a paper bundle with your lexicon will add it to the &1Lexica Botania&0 as a new knowledge type, and crafting it with &1Paper&0 will duplicate it.
-silva.page.paperBundles1=Crafting with the &1Lexica Botania&0
-silva.page.paperBundles2=Crafting with &1Paper&0
+silva.page.paperBundles1=Adding knowledge to the &1Lexica Botania&0
+silva.page.paperBundles2=Duplicating knowledge using &1Paper&0
 
 # - ALFHOMANCY
 # -- DIMENSIONAL TRAVEL
 silva.entry.dimensionalTravelAttempt=Dimensional Travel
 silva.page.dimensionalTravelAttempt0=The &4Portal to Alfheim&0 you constructed is incapable of transporting living things. However, &1Ender Pearls&0 have an unusual property: When thrown, the thrower is teleported to wherever it lands. In addition, the pearls seem to be capable of traversing the link through the portal without issue. Throwing an &1Ender Pearl&0 through the portal might allow travel to &4Alfheim&0.
-silva.page.dimensionalTravelAttempt1=What will happen when you throw an &1Ender Pearl&0?
+silva.page.dimensionalTravelAttempt1=What will happen when you throw an &1Ender Pearl&0 through a portal?
 
 # -- DIMENSIONAL TRAVEL FAILURE
 silva.entry.dimensionalTravelFailure=Dimensional Travel II
-silva.page.dimensionalTravelFailure0=That was...not as expected in the slightest. Well, it could have been worse. You should still read the rest of the papers they sent you, starting with that message.
+silva.page.dimensionalTravelFailure0=That was...not as expected in the slightest. Well, it could have been worse. You should still read the papers they sent you, starting with that message.
 
 # - WORLD TREE
 
@@ -175,22 +175,17 @@ silva.page.worldTreeIntro2=The &4World Tree&0 is surrounded by the great &4Ginnu
 silva.entry.advancedPortals=Advanced Portals
 silva.page.advancedPortals0=Since Thor shattered the original bridge, we have had an increasing dependence on smaller, weaker portals akin to the one you initially created. While they do not, at least by methods known to us, permit the travel of living beings, they have facilitated a partial reconstruction of the &4trade network&0 between realms. While the portal you created out of wood and metal is impressive for such an
 silva.page.advancedPortals1=ad-hoc creation, portals constructed from &4Bifrost&0 are far more refined, adaptable, and efficient. Said portal can be tuned to connect to any of the nine realms, and any locations within with their own signature. The portal not only permits trade, but also lets some of each realm's underlying magical essence leak through, manifesting as specific effects in the portal's vicinity.
-silva.page.advancedPortals2=The full requirements for the portal are as follows CHANGE ME: 8 &1Bifrost Blocks&0, 4 &1Bifrost Stairs&0, 3 &1Sparkling Bifrost Blocks&0, a &1Portal Core&0 (read on), and 2 &1Portal Pylons&0 (read on), as well as a &4dimensional signature&0 (read on)
-silva.page.advancedPortals3=A &4dimensional signature&0 tunes the portal to its target location, usually a realm, but occasionally a location within. A signature is drawn in front of the portal, normally with &1pixie dust&0 in &4Alfheim&0, though any dust with some magical nature should suffice. Each signature has a specific shape, all of them fitting within a 5 by 3 space. I have included the signatures known to us in these papers.
-silva.page.advancedPortals4=Creating the &1Portal Core&0
-silva.page.advancedPortals5=Creating &1Portal Pylons&0
-silva.page.advancedPortals6=Make a frame of &1Bifrost Blocks&0
-silva.page.advancedPortals7=Add &1Sparkling Bifrost Blocks&0
-silva.page.advancedPortals8=Add &1Bifrost Stairs&0
-silva.page.advancedPortals9=Place the &1Portal Core&0
-silva.page.advancedPortals10=Add &1Mana Pools&0
-silva.page.advancedPortals11=Place &1Portal Pylons&0 above the pools
-silva.page.advancedPortals12=Create a &4dimensional signature&0
-silva.page.advancedPortals13=This portal requires a fair bit more &4Mana&0 to open than the wooden one, but once opened it has a fraction of the continuous drain. In addition, the portal allows for stronger dilation of time, accelerating &4bulk trades&0.
+silva.page.advancedPortals2=The full requirements for the portal are as follows: 8 &1Bifrost Blocks&0, 4 &1Bifrost Stairs&0, 3 &1Sparkling Bifrost Blocks&0, a &1Portal Core&0 (read on), and 2 &1Portal Pylons&0 (read on), as well as a &4dimensional signature&0 (read on).
+silva.page.advancedPortals3=A &4dimensional signature&0 tunes the portal to its target location, usually a realm, but occasionally a location within. A signature is drawn in front of the portal, normally with &1pixie dust&0 in &4Alfheim&0, though any dust with some magical nature should suffice. Each signature has a specific shape, all of them occupying a 5 by 3 space. I have included the signatures known to us in these papers.
+silva.page.advancedPortals4=Crafting the &1Portal Core&0
+silva.page.advancedPortals5=Crafting the &1Portal Pylons&0
+silva.page.advancedPortals6=Advanced Portal
+silva.page.advancedPortals7=Creating a &4dimensional signature&0
+silva.page.advancedPortals8=This portal requires a fair bit more &4Mana&0 to open than the wooden one, but once opened it has a fraction of the continuous drain. In addition, the portal allows for stronger dilation of time, accelerating &4bulk trades&0.
 
 # -- BIFROST
 silva.entry.bifrost=The Bifrost
-silva.page.bifrost0='Bifrost' refers both to the now-shattered rainbow bridge of &4Asgard&0 and that bridge's material. Said material was the only known thing to have the properties required for such a bridge. Unfortunately, the amount of the material that would be required to rebuild the bridge has exceeded the existing supply by several orders of magnitude.
+silva.page.bifrost0='&4Bifrost&0' refers both to the now-shattered rainbow bridge of &4Asgard&0 and that bridge's material. Said material was the only known thing to have the properties required for such a bridge. Unfortunately, the amount of it that would be required to rebuild the bridge has exceeded the existing supply by several orders of magnitude.
 silva.page.bifrost1=Regardless, what of it we do have is useful for a few different tasks. For starters, while individual blocks of &4Bifrost&0 are weak, it becomes stronger when adjacent to others, eventually being rendered almost indestructible. Thor's abilities permitted him to shatter it in one blow, but short of such power, destroying a block surrounded by four others is impossible.
 silva.page.bifrost2=A more common use ever since the &4Shattering&0, however, is to harness its interworldly nature for the creation of portals between the realms. Such a portal is described under 'Advanced Portals'.
 silva.page.bifrost3=There are three ways known to us to create the material, one of which is useless for portal creation, the second of which demands a lot of &4Mana&0, and the third of which requires an existing supply.
@@ -198,7 +193,7 @@ silva.page.bifrost4=The first method summons the blocks purely from &4Mana&0, re
 silva.page.bifrost5=The second method uses similar techniques, but instead channels the &4Mana&0 into a &1Block of Dragonstone&0, using the stability of the &4Dragonstone&0 to create 18 &1Shards of Bifrost&0, which are more permanent. These shards can then be put together to form a full block of normal, permanent &4Bifrost&0. Since you don't have any existing supply, you will need to make at least one batch with this method.
 silva.page.bifrost6=The third method uses an interesting property of the permanent &1Bifrost Blocks&0: when in contact with a &1Block of Dragonstone&0, they will convert it, resulting in a second &1Bifrost Block&0 and nine &1Shards of Bifrost&0 without using any additional &4Mana&0.
 silva.page.bifrost7=Crafting a &1Bifrost Block&0
-silva.page.bifrost8=Turning the block back into shards
+silva.page.bifrost8=Turning the block back into &1Bifrost Shards&0
 silva.page.bifrost9=Crafting &1Bifrost Stairs&0
 silva.page.bifrost10=Crafting &1Bifrost Walls&0
 silva.page.bifrost11=Crafting &1Bifrost Slabs&0
@@ -280,21 +275,20 @@ silva.page.dimVigridr1=Exposure to &4Vigrid&0's energies results in strange happ
 # - DWARVEN TRADE
 # -- DWARF INTRO
 silva.entry.dwarfIntro=Dwarven Trade
-silva.page.dwarfIntro0=Greetings and Good Mining from Nidavellir! It is wonderful to have new trading partners! We hope that we can build a great relationship with our skills. We have many things to offer, which are detailed in the attached pages. To start however, we need an easier method of indicating our trade offers.
-silva.page.dwarfIntro1=For this, we dwarves use &1Trade Signs&0, which use a bit of &4Bifrost&0 and the energies of a portal to synchronize themselves with a corresponding sign on the other side. If you provide the required materials, we will craft them free of charge for you.
-silva.page.dwarfIntro2=Trading for &1Dwarven Trade Signs&0.
-silva.page.dwarfIntro3=The rest of the trades will show up on the signs, what we want on the left, and what we will give on the right. Simply press a sign like a button and it will become selected, a fact which will be mirrored on our end. Then, if you send your half through, we will reply in kind.
+silva.page.dwarfIntro0=Greetings and Good Mining from Nidavellir! It is wonderful to have new trading partners! We hope that we can build a great relationship with our skills. We have many things to offer, which are detailed in the attached pages. To start it would be a good idea to set up a system for indicating our &4nonbasic trade&0 offers.
+silva.page.dwarfIntro1=For this, we dwarves use &1Trade Signs&0, which use a bit of &4Bifrost&0 and the energies of a portal to synchronize themselves with a corresponding sign on the other side. You should be able to make some of your own with &1Deeprock&0, one of the materials we offer as a &4basic trade&0.
+silva.page.dwarfIntro2=Crafting &1Dwarven Trade Signs&0
+silva.page.dwarfIntro3=The rest of the trades will show up on the signs, what we want on the left, and what we will give on the right. Simply press a sign like a button and the trade will be selected, which is indicated on each end's sign. Then, if you send your half through, we will reply with ours.
 silva.page.dwarfIntro4=Deals are offered on a dwarf by dwarf basis, and they are free to change their deals at any time, though it is considered rude to change down a selected deal, so that of course isn't done.
-silva.page.dwarfIntro5=As you build up a &4reputation&0 as a trading partner, you will find that we will be willing to offer &4more advanced trades&0. Participating in trades that require a greater level of skill will also boost your &4reputation&0 more than simply trading trinkets ever could.
+silva.page.dwarfIntro5=As you build up a &4reputation&0 as a trading partner, you will find that we will be willing to offer more advanced trades. Participating in trades that require a greater level of skill will also boost your &4reputation&0 more than simply trading basic resources and trinkets ever could.
 silva.page.dwarfIntro6=A final word of warning: While the &4Elves&0 centralize their portals, our portals are dispersed between the different tribes of dwarves. While simply closing and reopening the portal will still have it lead to the same portal on our side, if you were to disrupt the portal core itself it would be unlikely to reopen to our tribe, and you would have to develop a &4reputation&0 with whatever new tribe you connect to.
 
 # -- BASIC DWARVEN RESOURCES
 silva.entry.basicDwarvenResources=The Resources of Nidavellir
-silva.page.basicDwarvenResources0=Some more common resources of our realm we will trade easily, and are mostly used in crafting. We hope you enjoy them. They form a firm foundation for further trades.
+silva.page.basicDwarvenResources0=There are some exchanges we are willing to make at any time, as long as no trade is selected. These &4basic trades&0 will form a firm foundation for future &4nonbasic trades&0.
 silva.page.basicDwarvenResources1=Trading for &1Deepweed&0
 silva.page.basicDwarvenResources2=Trading for &1Deeprock&0
-silva.page.basicDwarvenResources3=Trading for &1Mushrooms&0
-silva.page.basicDwarvenResources4=Trading for &1Livingrock&0
+silva.page.basicDwarvenResources3=Trading for &1Shimmering Mushrooms&0
 
 # -- BOOM MOSS
 silva.entry.boomMoss=Boom Moss
@@ -303,7 +297,7 @@ silva.page.boomMoss1=We often use it for prospecting to reveal entire new layers
 silva.page.boomMoss2=Crafting &1Boom Moss&0
 silva.page.boomMoss3=In addition to regular &1Boom Moss&0, some dwarves know the secret of enchanting it, creating something known as &1Master Boom Moss&0. It requires no additional &4Mana&0 beyond that of regular &1Boom Moss&0, but when detonated it carves out the stone with &4silken precision&0, letting miners handle all minerals in their original form.
 silva.page.boomMoss4=Even better, it moves all the blocks thus mined back to the origin of the detonation, allowing the user to pick everything up with ease!
-silva.page.boomMoss5=Trading for &1Master Boom Moss&0
+silva.page.boomMoss5=Trading for &1Master Boom Moss&0 (nonbasic trade)
 silva.page.boomMoss6=&1Boom Moss&0 can be disrupted by higher heat levels such as those created in a &1Furnace&0. When dried out it will still explode, but will turn the things in its explosion to dust in the wind. Perhaps you could find a use for this variety.
 silva.page.boomMoss7=Drying &1Boom Moss&0
 
@@ -315,60 +309,56 @@ silva.page.dwarfForged2=A &4dwarf-forged sword&0's edge has tiny serrations whic
 silva.page.dwarfForged3=&4Dwarf-forged armor&0 has carefully-created interlocking pieces which will sometimes completely nullify even the most powerful blows!
 silva.page.dwarfForged4=In addition, our smiths put careful grooves into their creations permitting things like &1Timeless Ivy&0 to mesh better, allowing it to repair at a faster rate and for less &1Mana&0.
 silva.page.dwarfForged5=Any armor, tool, or weapon you get from us will be of dwarven make, and many of our smiths may be willing to craft equipment for you should you provide the materials and a fee. Such is their skill that they usually require less material than ordinary crafters, wasting less and making each ingot go further.
-silva.page.dwarfForged6=Paying dwarven smiths to craft
+silva.page.dwarfForged6=Paying dwarven smiths to craft (nonbasic trade)
 silva.page.dwarfForged7=Should you have objects not of dwarven make, not all hope is lost! While &4reforging&0 existing armor to our exacting standards is beyond the capability of most of our smiths, it is still possible to reforge the majority of equipment, even that of materials foreign to our world.
-silva.page.dwarfForged8=Paying dwarven smiths to reforge
+silva.page.dwarfForged8=Paying dwarven smiths to reforge (nonbasic trade)
 
 # -- DWARVEN BARRIER STONE
 silva.entry.dwarvenBarrierStone=Dwarven Barrier Stones
-silva.page.dwarvenBarrierStone0=&1Dwarven Barrier Stones&0 are a clever creation of us &4Dwarves&0. By infusing &1Deeprock&0 with a &1Mana Pearl&0 and inscribing it with certain runes, we can create a stone which, upon impact with a surface, expands in two directions, forming a barrier.
+silva.page.dwarvenBarrierStone0=&1Dwarven Barrier Stones&0 are a clever creation of us &4Dwarves&0. By infusing &1Deeprock&0 with a &1Mana Pearl&0 and inscribing it with certain runes, &4Dwarves&0 can create a stone which, upon impact with a surface, expands in two directions, forming a barrier.
 silva.page.dwarvenBarrierStone1=It is useful for rapidly blocking up tunnels when necessary, or quickly creating bridges across pits. In addition, the high density of the stone within puts a nasty bruise on any foe it hits.
-silva.page.dwarvenBarrierStone2=Trading for &1Dwarven Barrier Stones&0
+silva.page.dwarvenBarrierStone2=Trading for &1Dwarven Barrier Stones&0 (nonbasic trade)
 
 # -- DWARVEN CHAIN
 silva.entry.dwarvenChain=Dwarven Chain
 silva.page.dwarvenChain0=The great chain Gleipnir was crafted by our kind to bind the mighty wolf Fenrir, and is the only object known to be able to. Crafted from the sound of a cat's footfall, the beard of a woman, the roots of a mountain, the sinews of a bear, the breath of a fish, and the spittle of a bird it was a magnificent thing. But who has the time to get all that?
 silva.page.dwarvenChain1=Nonetheless, the same techniques can be used with more typical materials to craft a mighty, if not completely unstoppable, chain which can be used to bind other creatures even if they resist. A &1Dwarven Chain&0 functions much like a rope &1Lead&0, but it can be used on creatures more aggressive than your typical pet or livestock.
-silva.page.dwarvenChain2=Trading for &1Dwarven Chains&0
+silva.page.dwarvenChain2=Trading for a &1Dwarven Chain&0 (nonbasic trade)
 
 # -- DWARVEN MANA POOL
 silva.entry.dwarvenManaPool=Dwarven Mana Pools
 silva.page.dwarvenManaPool0=We &4Dwarves&0 have ready access to different materials than those common to Midgard and Alfheim, and our methods of manipulating &1Mana&0 are therefore quite different. While races that dwell on the surface of their realm typically use some sort of wooden spreader, in conjunction with pools made of &1Livingrock&0. In &4Nidavellir&0, we tend to rely instead on pools made of &1Deeprock&0 and &1Mana Crystals&0. Our pools lack the ability to disperse power automatically to nearby devices, but have can store &4Mana&0 more densely than those made of &1Livingrock&0.
 silva.page.dwarvenManaPool1=They are still fully capable of infusing items and connecting to &1Mana Spreaders&0 or &1Sparks&0, flowers and mushrooms are the only sort of thing that our pools do not interact with. For more information about how we manipulate &4Mana&0, see the entry on &1Mana Crystals&0.
-silva.page.dwarvenManaPool2=Trading a &1Mana Pool&0 for a &1Dwarven Mana Pool&0
+silva.page.dwarvenManaPool2=Crafting a &1Dwarven Mana Pool&0
 
 # -- MEAD OF POETRY
 silva.entry.dwarvenMead=Mead of Poetry
 silva.page.dwarvenMead0=Ah, the &1Mead of Poetry&0! Truly a wonderous drink! Despite its questionable origins, who could resist such a beverage? Delicious, sweet, and strong enough to make an entire party of dwarves black out. To my knowledge, I myself have partaken in it a total of thirty-one times in my life, though despite this I can only recall two times I've witnessed someone drunk on it.
 silva.page.dwarvenMead1=One occasion was in a tavern, and the dwarf in question has recently achieved some accomplishment or another-the details escape me, I was rather well supplied at the time. After a single mug he was singing a wonderful song, knocked over three tables, then bit off his companion's finger and used the bloody stump to write a poem on the wall of the tavern. Good times.
 silva.page.dwarvenMead2=The other occasion was seeing it used in combat. The one who drank it was shouting strange facts and swinging his sword every which way, a full half his strikes going completely wild as he jumped around like a madman. Come to think of it, the singing dwarf was jumping as well... The strikes that did hit, though, were perfectly aimed and devastating in strength. He won with ease and immediately passed out.
-silva.page.dwarvenMead3=Trading for &1Mead of Poetry&0
+silva.page.dwarvenMead3=Trading for &1Mead of Poetry&0 (nonbasic trade)
 
 # -- MANA CRYSTAL
 silva.entry.manaCrystal=Dwarven Mana Manipulation
 silva.page.manaCrystal0=&1Mana Crystals&0 are the other half of the standard dwarven &4Mana&0 system. The elven system has nothing that it can be directly compared to, though it can serve the functions of a spreader, a tablet, or a pool.
-silva.page.manaCrystal1=It has an internal storage of &4Mana&0 not quite as large as &1Mana Pools&0 or &1Mana Tablets&0, but considerably sized, enough to not be considered a simple buffer like found in spreaders. It automatically sends &4Mana Bursts&0 downwards, allowing for transport. It can be charged via &4Mana Bursts&0 or &1Mana Pools&0 and keeps its internal &4Mana&0 storage when picked up. It also has the abilities, like &1Livingrock&0 pools and wooden &1Mana Spreaders&0, to interact with flowers and mushrooms.
-silva.page.manaCrystal2=Trading for &1Mana Crystals&0
+silva.page.manaCrystal1=It has an internal storage of &4Mana&0 not quite as large as &1Mana Pools&0 or &1Mana Tablets&0, but considerably sized, enough to not be considered a buffer in spreaders. It automatically sends &4Mana Bursts&0 downwards, allowing for transport. It can be charged via &4Mana Bursts&0, &1Mana Pools&0, or &1Sparks&0 and keeps its internal &4Mana&0 storage when picked up. It can also supply and accept mana to and from flowers and mushrooms, like &1Livingrock&0 pools and &1Spreaders&0, respectively.
+silva.page.manaCrystal2=Trading for &1Mana Crystals&0 (nonbasic trade)
 
 # -- STONE HORSE
 silva.entry.stoneHorse=Stone Horse
-silva.page.stoneHorse0=A classic final challenge for an apprentice dwarven stonecarver is to carve a horse our of stone with such detail that it comes to life. As a result, we have quite the surplus and will trade them readily in exchange for the materials to carve another.
+silva.page.stoneHorse0=A classic final challenge for an apprentice dwarven stonecarver is to carve a horse our of stone with such detail that it comes to life. As a result, we have quite the surplus and will trade them readily in exchange for the materials needed to carve another.
 silva.page.stoneHorse1=Placing down the &1Stone Horse&0 will animate it, resulting in a horse that needs no saddle, and while it can be equipped with external armor, will have some natural armor of its own given its composition. Should the horse be sufficiently damaged, it will return to its statue state to be placed down again.
-silva.page.stoneHorse2=Trading for a &1Stone Horse&0
+silva.page.stoneHorse2=Trading for a &1Stone Horse&0 (nonbasic trade)
 
 # -- LAVACAP
 silva.entry.lavaShroom=Lavacap
 silva.page.lavaShroom0=The &1Lavacap&0 is us &4Dwarves&0' primary answer to &4Mana&0 generation. Consuming large amounts of both &4Lava&0 and solid fuel, but generating extreme amounts of &4Mana&0 in the process, these massive mushrooms provide most of our &4Mana&0. A &1Lavacap&0 generates more &4Mana&0 if the fuel is more potent, in relation to both fuel spent and time elapsed.
 silva.page.lavaShroom1=Creating and activating a &1Lavacap&0 requires one &1giant red mushroom&0, a &1Red Shimmering Mushroom&0, a piece of &1Deeprock&0, some &4Lava&0, and several &1Runes&0.
-silva.page.lavaShroom2=Begin with a simple &1red mushroom&0 placed.
-silva.page.lavaShroom3=Grow it into a &1giant red mushroom&0.
-silva.page.lavaShroom4=Replace part of the stalk with a &1Red Shimmering Mushroom&0 above a piece of &1Deeprock&0. It must be just below the edge of the cap, this may require removing bits of the bottom from the stalk. This placement is depicted on the next page.
-silva.page.lavaShroom5=Looks like this
-silva.page.lavaShroom6=Use a &1Wand of the Forest&0 to convert the mushroom into a &1Lavacap&0
-silva.page.lavaShroom7=Place &1Lava&0 in the hole in the top
-silva.page.lavaShroom8=Throw the &1Runes&0 into the small pool on the top. These will not be returned if you break the structure later, as they are incorporated into the mushroom itself.
-silva.page.lavaShroom9=The &1Lavacap&0 constantly loses some of its internal heat even when not in use, though when it is burning fuel it loses heat much faster. To feed it fuel simply burn the items in the &4enchanted lava&0 on the sides of the cap just as you would burn an item in normal &1Lava&0.
-silva.page.lavaShroom10=As long as it has a good supply of &1Lava&0, the &4enchanted lava&0 flowing from the cap will pulse slightly. If it cools down, any items will be burned without generating &4Mana&0 and the lava will dull. The &4Mana&0 generated will automatically drain into &1Mana Pools&0 or &1Mana Crystals&0 touching the bottom of the stalk, where the &1Red Shimmering Mushroom&0 was during construction.
+silva.page.lavaShroom2=Lavacap
+silva.page.lavaShroom3=Place &1Lava&0 in the hole in the top
+silva.page.lavaShroom4=Throw the &1Runes&0 into the small pool on the top. These will not be returned if you break the structure later, as they are incorporated into the mushroom itself.
+silva.page.lavaShroom5=The &1Lavacap&0 constantly loses some of its internal heat even when not in use, though when it is burning fuel it loses heat much faster. To feed it fuel simply burn the items in the &4enchanted lava&0 on the sides of the cap just as you would burn an item in normal &1Lava&0.
+silva.page.lavaShroom6=As long as it has a good supply of &1Lava&0, the &4enchanted lava&0 flowing from the cap will pulse slightly. If it cools down, fuel will be burned without generating &4Mana&0 and the &4enchanted lava&0 will dull. The &4Mana&0 generated will automatically drain into &1Mana Pools&0 or &1Mana Crystals&0 touching the bottom of the stalk, where the &1Red Shimmering Mushroom&0 was during construction.
 
 # - THE DARK ELVES
 
@@ -397,22 +387,18 @@ silva.page.darkElfDesc11=No such army has been seen since the &4Shattering&0, wh
 # -- CARNILOTUS
 silva.entry.carnilotus=Carnilotus
 silva.page.carnilotus0=Using the aggressive tendencies of the &1Mana Eaters&0, and mimicking certain carnivorous mundane plants at a larger scale, an eternally hungering flower can be created. The &1Carnilotus&0 consumes creatures in exchange for &4Mana&0, like the &1Gourmaryllis&0 but a bit...meaner.
-silva.page.carnilotus1=The &1Carnilotus&0 prefers its food still-moving, and will simply dissolve any items dropped in. If a drop can be cooked, like most &4meat&0, it generates &4Mana&0 more efficiently than a &1Gourmaryllis&0 would. Items that can't be cooked, it generates mana at the standard rate. It's worth noting that while &4skeletal creatures&0 don't yield anything edible, the &1Carnilotus&0, being a plant, is nourished by &1Bones&0, and the plant-friendly nutrients within will act as a boost for a few future digestions.
+silva.page.carnilotus1=The &1Carnilotus&0 prefers its food still-moving, and will simply dissolve any items dropped in. If a drop can be cooked, like most &4meat&0, it generates &4Mana&0 more efficiently than a &1Gourmaryllis&0 would. Items that can't be cooked, it generates mana at the standard rate. It's worth noting that while &4skeletal creatures&0 don't yield anything edible, the &1Carnilotus&0, being a plant, is nourished by &1Bones&0, and the plant-friendly nutrients in their marrow will act as a boost for a few future digestions.
 silva.page.carnilotus2=Creating and activating the &1Carnilotus&0 requires 9 &1Mana Eaters&0, 36 &1Purple Petal Blocks&0, 9 &1Black Petal Blocks&0, 9 &1Iron Bars&0, 2 &1Livingwood&0, some &1Water&0, several &1Runes&0, and 32 &1Sugar&0.
-silva.page.carnilotus3=Construct the base
-silva.page.carnilotus4=Place the stem
-silva.page.carnilotus5=Make the bowl
-silva.page.carnilotus6=Insert the teeth
-silva.page.carnilotus7=Construct the lifted lid
-silva.page.carnilotus8=Using a &1Wand of the Forest&0, activate the flower
-silva.page.carnilotus9=Fill the interior with water
-silva.page.carnilotus10=From a safe distance, drop in the &1Runes&0 and &1Sugar&0.
+silva.page.carnilotus3=Carnilotus
+silva.page.carnilotus4=Fill the interior with water, 2 blocks deep.
+silva.page.carnilotus5=From a safe distance, drop in the &1Runes&0 and &1Sugar&0.
+&o...why does it have teeth?&r
 
 # -- RHODODENDER
 silva.entry.rhododender=Rhododender
 silva.page.rhododender0=The &1Rhododender&0 is simple enough in concept, it simply throws &1Ender Pearls&0 in a relaying fashion. Each time the pearl is thrown, however, the damage taken when it finally lands increases, so be careful. This flower, unlike the &1Spectranthemum&0, is not governed by the &4axiom of chunkloading&0, and will temporarily load chunks as necessary.
 silva.page.rhododender1=How it throws the &1Ender Pearl&0 can be controlled by placing dusts around it-each dust in a given cardinal direction increases strength, both in that direction and upwards. Dusts on opposite sides counter each other laterally, but each one still contributes to vertical strength.
-silva.page.rhododender2=Play ball!
+silva.page.rhododender2=&oPlay ball!&r
 
 # -- PLACEABLE DUST
 silva.entry.placeableDust=Placeable Dust
@@ -422,40 +408,44 @@ silva.page.placeableDust0=While not necessarily as useful as &1Redstone&0, the w
 silva.entry.portalUpgrades=Portal Upgrades
 silva.page.portalUpgrades0=Your &4Bifrost portal&0, while well and good, has room for improvement. Fortunately, it has a modular design permitting you to upgrade it easily. Any of the &1Sparkling Bifrost Blocks&0 which make it up can be replaced with an upgrade for various effects.
 silva.page.portalUpgrades1=A simple upgrade will permit you to easily control it via &1Redstone&0-an active signal opening the portal, and its absence closing it. Of course, opening the portal will still cost a lot of &4Mana&0, but this control can still be useful for long-term closures.
-silva.page.portalUpgrades2=Redstone Control Portal Upgrade
+silva.page.portalUpgrades2=Crafting a &1Redstone Control Portal Upgrade&0
 silva.page.portalUpgrades3=The &4energies&0 which leak through the portal are often useful, but in some cases you don't want snow to pile up or things to light on fire. A simple enough upgrade will inhibit most energies passing through the portal while still permitting trade.
-silva.page.portalUpgrades4=Inhibitor Portal Upgrade
+silva.page.portalUpgrades4=Crafting an &1Inhibitor Portal Upgrade&0
 silva.page.portalUpgrades5=If you do want the &4exposure energies&0 to affect you, sitting and waiting in front of it can be tedious. To make things easier you can create a &1Realm Stone&0 and charge it up with energies from the portal, and then simply discharge the stone into yourself at a later time. You could even put multiple energies in it.
-silva.page.portalUpgrades6=Realm Stone (Uncharged)
-silva.page.portalUpgrades7=Charging Portal Upgrade
+silva.page.portalUpgrades6=Crafting an uncharged &1Realm Stone&0
+silva.page.portalUpgrades7=Crafting a &1Charging Portal Upgrade&0
 
 # -- DARK ELF RESOURCES
 silva.entry.darkElfResources=Dark Elf Resources
 silva.page.darkElfResources0=A common form of &4Dark Elf sabotage&0 is converting simple blocks like stone and wood into a &4darkened form&0. These &1darkened blocks&0 are fairly easy to break normally, but crumble to dust unless a &4silk touch tool&0 is used. They are, however, enchanted so as to harden dramatically when struck with a tool, making retrieval much more tedious than removal.
-silva.page.darkElfResources1=By design, the &1darkened blocks&0 are basically useless, however, attempting to purify them results in blocks of a rather paradoxical nature, which have interesting magical properties due to the conflicting magical energies within them.
-silva.page.darkElfResources2=Darkening Stone
-silva.page.darkElfResources3=Darkening Wood
+silva.page.darkElfResources1=By design, the &4darkened blocks&0 are basically useless, however, attempting to purify them results in blocks of a rather paradoxical nature, which have interesting magical properties due to the conflicting magical energies within them.
+silva.page.darkElfResources2=Darkening &1Stone&0
+silva.page.darkElfResources3=Darkening &1Wood&0
 
 # -- MOVING ENCHANTMENTS
 silva.entry.movingEnchantments=Moving Enchantments
-silva.page.movingEnchantments0=While you can create armor and tools from &1paradox blocks&0, the conflicting energies within render them slightly unpleasant to the touch and less durable and effective than even wood, making them worthless for any direct use. However, the same magical energies do cause them to have interesting properties with enchanting.
+silva.page.movingEnchantments0=While you can create armor and tools from &1paradox blocks&0, the conflicting energies within render them slightly unpleasant to the touch and no more effective than bare hands, making them worthless for any direct use. However, the same magical energies do cause them to have interesting properties with enchanting.
 silva.page.movingEnchantments1=Though not directly enchantable, &1paradox items&0 can be made to leach &4enchantments&0 from mundane items, and subsequently yield them to a &1Book&0.
 silva.page.movingEnchantments2=To do so requires an &1Enchantment Redistribution Plate&0 on top of a checkerboard pattern of &1Paradox Rock&0 and &1Patterened Framed Paradox Wood&0. Also, each transfer requires an &1Enchantment Allocation Catalyst&0, plenty of &4Mana&0, and of course the two items being used for the transfer.
-silva.page.movingEnchantments3=Creating the &1Enchantment Redistribution Plate&0
+silva.page.movingEnchantments3=Creating an &1Enchantment Redistribution Plate&0
 silva.page.movingEnchantments4=Creating an &1Enchantment Allocation Catalyst&0
 silva.page.movingEnchantments5=Creating a &1paradox item&0
 silva.page.movingEnchantments6=After the plate is set up and ready to receive &4Mana&0, toss the required items on top of it and it will begin the transfer, consuming the original item and the catalyst.
-silva.page.movingEnchantments7=Transfering &4Enchantments&0 (&1Paradox Wood&0 is under the plate)
+silva.page.movingEnchantments7=Transfering &4enchantments&0 (&1Paradox Wood&0 is under the plate)
 silva.page.movingEnchantments8=After the transfer, the paradox item will require additional power to loosen its newly-gained bonds with the &4enchantments&0. This power can be gained by killing creatures while having the item in your inventory, and will gain power in proportion to the &4XP&0 dropped. Once it is full, simply craft the item with a &1Book&0.
-silva.page.movingEnchantments9=The entire process is rather expensive, and transferring multiple enchantments in one process will be cheaper in terms of &4Mana&0, &4XP&0, and consumed items.
+silva.page.movingEnchantments9=The entire process is rather expensive, and transferring multiple &4enchantments&0 in one process will be cheaper in terms of &4Mana&0, &4XP&0, and consumed items.
 
 # -- MUSHROOMS
 silva.entry.mushrooms=Mushrooms
-silva.page.mushrooms0=The way the &4Dwarves&0 work with &4Mana&0 has differences beyond a different manner of storing and manipulating it. Instead of working with &4Flowers&0, the cave-dwelling &4Dwarves&0 tend to use &4Mushrooms&0. While the large-scale ones like the &1Lavacap&0 are generally not too different from giant &4Flowers&0, the smaller varieties have some rather interesting differences. The most important quality to note is that &4Mushrooms&0 are best used in numbers, with each individual mushroom being rather insignificant, dying and growing as the colony spreads. While they do consume some amount of &4Mana&0, the amount used by each &4Mushroom&0 is rather miniscule, and as long as there's a decent &4Mana&0 supply in the vicinity, it should suffice.
+silva.page.mushrooms0=The way the &4Dwarves&0 work with &4Mana&0 has differences beyond a storage and manipulation. Instead of working with &4Flowers&0, the cave-dwelling &4Dwarves&0 tend to use &4Mushrooms&0. While the large-scale ones like the &1Lavacap&0 are generally not too different from giant &4Flowers&0, the smaller varieties have some rather interesting differences. The most important quality to note is that &4Mushrooms&0 are best used in numbers, with each individual mushroom being rather insignificant, reproducing and dying as the colony spreads. While they do consume some amount of &4Mana&0, the amount used by each &4Mushroom&0 is rather miniscule, and as long as there's a decent &4Mana&0 supply in the vicinity, it should suffice.
 
 # -- BLAZEBLOOM
 silva.entry.blazebloom=Blazebloom
-silva.page.blazebloom0=Digging out large rooms underground is quite a chore. The &1Blazebloom&0 will take care of this task in exchange for some &1Blaze Powder&0 and a large, but reasonable, amount of &4Mana&0. Simply lay out the shape of the desired room with &1Blaze Powder&0, place the flower directly above the perimeter at just below the level of the desired ceiling, and activate it, and the &1Blazebloom will clear out the room with a giant explosion, obliterating any natural blocks within the defined shape.
+silva.page.blazebloom0=Digging out large rooms underground is quite a chore, as is deciding exactly how to change this flower into something that uses &1Fiery Pylons&0. The &1Blazebloom&0 will take care of this task in exchange for some &1Blaze Powder&0 and a large, but reasonable, amount of &4Mana&0. Simply lay out the shape of the desired room with &1Blaze Powder&0, place the flower directly above the perimeter at just below the level of the desired ceiling, and activate it, and the &1Blazebloom&0 will clear out the room with a giant explosion, obliterating any natural blocks within the defined shape.
+
+# -- OBLITERATORY HOLLOWER
+silva.entry.hollower=Obliteratory Hollower
+silva.page.hollower0=Digging out large rooms underground is quite a chore. The &4Obliteratory Hollower&0 will take care of this task in exchange for some &1Blaze Powder&0 and an extreme, but reasonable in context, amount of &4Mana&0. Simply <REPLACE ME WITH HOW TO DEFINE SHAPE>, and <REPLACE ME WITH HOW TO ACTIVATE>, and the defined shape will be cleared with a giant explosion, obliterating any natural blocks within the defined shape.
 
 # -- INFUSED PYLONS
 silva.entry.infusedPylons=Infused Pylons
@@ -465,4 +455,10 @@ silva.page.infusedPylons2=Infusing an &1Untuned Pylon&0
 
 # -- MANA POTATO
 silva.entry.manaPotato=Mana Potato
-silva.page.manaPotato0=Sometimes, you find yourself needing &4Mana&0 somewhere, but no need for infrastructure to keep it supplied, and setting up &1Mana Pools&0 that will barely end up being used gets tedious. The single-use and extremely cheap &1Mana Potato&0 solves this problem. When created, a &1Mana Potato&0 is pre-filled with &4Mana&0, and can then be immediately placed to temporarily supply &4Mana&0 to anything nearby. However, &1Mana Potatoes&0 cannot be refilled by any means, be it &4Mana Bursts&0, &1Sparks&0, or &1Mana Tablets&0. When empty, all that's left behind is a hollowed-out potato, not even useful as food.
+silva.page.manaPotato0=Sometimes, you find yourself needing &4Mana&0 somewhere, but no need for infrastructure to keep it supplied, and setting up &1Mana Pools&0 that will barely end up being used gets tedious. The single-use and extremely cheap &1Mana Potato&0 solves this problem. When created, a &1Mana Potato&0 is pre-filled with &4Mana&0, and can then be immediately placed to temporarily supply &4Mana&0 to any nearby blocks. However, &1Mana Potatoes&0 cannot be refilled by any means, be it &4Mana Bursts&0, &1Sparks&0, or &1Mana Tablets&0. When empty, all that's left behind is a hollowed-out potato, not even useful as food.
+
+# -- MYSTICAL GRINDER
+silva.entry.mysticalGrinder=Mystical Grinder
+silva.page.mysticalGrinder0=something something something mystical grinder is cool, hard to describe being awesome when it doesn't work on metals. The &4Mystical Grinder&0 will take any mineral ore and utilize the abilities of &1Deepweed&0 to extract every last bit of material from the rock, something that would otherwise require a fortune enchantment too powerful to be imbued on any known material.
+silva.page.mysticalGrinder1=Mystical Grinder
+silva.page.mysticalGrinder2=Any ores on the bottom layer moving towards the core will be picked up if possible and distributed to the &1Deepweed&0 plants above. If necessary, the ore will be divided into smaller pieces to equally distribute the work between the 14 plants. After processing is completed, the output will be deposited directly below the core
