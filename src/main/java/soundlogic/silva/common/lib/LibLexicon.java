@@ -58,6 +58,10 @@ public class LibLexicon {
 	public static final String RHODODENDER = "rhododender";
 	public static final String PLACEABLE_DUST = "placeableDust";
 	public static final String ENCHANTMENT_MOVING = "movingEnchantments";
+	public static final String MYSTICAL_GRINDER = "mysticalGrinder";
+	public static final String ENDER_CATCHER = "enderCatcher";
+	public static final String PIXIE_FARM = "pixieFarm";
+	public static final String PIXIE_ROOMS = "pixieFarmUpgrades";
 
 
 

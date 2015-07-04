@@ -214,7 +214,6 @@ public class MultiblockDataPixieRoomDarkenedTheater extends MultiblockDataPixieR
 				pixie.targetPosX=targetCoords[0];
 				pixie.targetPosY=targetCoords[1];
 				pixie.targetPosZ=targetCoords[2];
-				System.out.println(targetCoords[0]+","+targetCoords[1]+","+targetCoords[2]);
 			}
 			if(pixie.setRotation) {
 				pixie.rotation=convertPixieRotation(core, data, pixie.unconvertedRotation);
@@ -592,7 +591,6 @@ public class MultiblockDataPixieRoomDarkenedTheater extends MultiblockDataPixieR
 			double dx=targetPosX-this.posX;
 			double dy=targetPosY-this.posY;
 			double dz=targetPosZ-this.posZ;
-			System.out.println(Math.abs(dx)+Math.abs(dy)+Math.abs(dz));
 			if(Math.abs(dx)<0.01 && Math.abs(dy)<0.01 && Math.abs(dz)<0.01) {
 				this.posX=targetPosX;
 				this.posY=targetPosY;

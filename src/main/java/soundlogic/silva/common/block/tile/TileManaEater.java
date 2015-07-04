@@ -1,6 +1,7 @@
 package soundlogic.silva.common.block.tile;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.lwjgl.opengl.GL11;
 
@@ -48,6 +49,9 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 	private static final int[] BURST_COLOR = new int[]{0xFFAA33};
 	private static final int[] TICKS_BEFORE_MANA_LOSS = new int[]{150};
 	private static final float[] MOTION_MODIFIER = new float[]{2.1F};
+
+	private static final int TICKS_ALLOWED_WITHOUT_PINGBACK = 20;
+	private static final double PINGBACK_EXPIRED_SEARCH_DISTANCE = 0.5;
 	
 	private static final String TAG_MANA = "mana";
 	private static final String TAG_KNOWN_MANA = "knownMana";
@@ -59,6 +63,14 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 	private static final String TAG_FORCE_CLIENT_BINDING_Y = "forceClientBindingY";
 	private static final String TAG_FORCE_CLIENT_BINDING_Z = "forceClientBindingZ";
 
+	private static final String TAG_HAS_IDENTITY = "hasIdentity";
+	private static final String TAG_UUID_MOST = "uuidMost";
+	private static final String TAG_UUID_LEAST = "uuidLeast";
+	private static final String TAG_PINGBACK_TICKS = "pingbackTicks";
+	private static final String TAG_LAST_PINGBACK_X = "lastPingbackX";
+	private static final String TAG_LAST_PINGBACK_Y = "lastPingbackY";
+	private static final String TAG_LAST_PINGBACK_Z = "lastPingbackZ";
+	
 	public static int staticMeta = 0;
 	
 	int mana;
@@ -75,6 +87,12 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 	public int lastBurstDeathTick = -1;
 	public int burstParticleTick = 0;
 
+	UUID identity;
+	public int pingbackTicks = 0;
+	public double lastPingbackX = 0;
+	public double lastPingbackY = -1;
+	public double lastPingbackZ = 0;
+	
 	List<PositionProperties> lastTentativeBurst;
 	boolean invalidTentativeBurst = false;
 
@@ -122,6 +140,26 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 		if(needsNewBurstSimulation())
 			checkForReceiver();
 
+		if(!canShootBurst)
+			if(pingbackTicks <= 0) {
+				double x = lastPingbackX;
+				double y = lastPingbackY;
+				double z = lastPingbackZ;
+				AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(x, y, z, x, y, z).expand(PINGBACK_EXPIRED_SEARCH_DISTANCE, PINGBACK_EXPIRED_SEARCH_DISTANCE, PINGBACK_EXPIRED_SEARCH_DISTANCE);
+				List<IManaBurst> bursts = worldObj.getEntitiesWithinAABB(IManaBurst.class, aabb);
+				IManaBurst found = null;
+				UUID identity = getIdentifier();
+				for(IManaBurst burst : bursts)
+					if(burst != null && identity.equals(burst.getShooterUIID())) {
+						found = burst;
+						break;
+					}
+
+				if(found != null)
+					found.ping();
+				else setCanShoot(true);
+			} else pingbackTicks--;		
+		
 		tryShootBurst();
 
 		if(receiverLastTick != receiver && !worldObj.isRemote) {
@@ -140,6 +178,17 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 	@Override
 	public void writeCustomNBT(NBTTagCompound cmp) {
 		super.writeCustomNBT(cmp);
+		
+		UUID identity = getIdentifier();
+		cmp.setBoolean(TAG_HAS_IDENTITY, true);
+		cmp.setLong(TAG_UUID_MOST, identity.getMostSignificantBits());
+		cmp.setLong(TAG_UUID_LEAST, identity.getLeastSignificantBits());
+		
+		cmp.setInteger(TAG_PINGBACK_TICKS, pingbackTicks);
+		cmp.setDouble(TAG_LAST_PINGBACK_X, lastPingbackX);
+		cmp.setDouble(TAG_LAST_PINGBACK_Y, lastPingbackY);
+		cmp.setDouble(TAG_LAST_PINGBACK_Z, lastPingbackZ);
+		
 		cmp.setInteger(TAG_MANA, mana);
 		cmp.setFloat(TAG_ROTATION_X, rotationX);
 		cmp.setFloat(TAG_ROTATION_Y, rotationY);
@@ -155,6 +204,20 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 	@Override
 	public void readCustomNBT(NBTTagCompound cmp) {
 		super.readCustomNBT(cmp);
+		
+		if(cmp.getBoolean(TAG_HAS_IDENTITY)) {
+			long most = cmp.getLong(TAG_UUID_MOST);
+			long least = cmp.getLong(TAG_UUID_LEAST);
+			UUID identity = getIdentifierUnsafe();
+			if(identity == null || most != identity.getMostSignificantBits() || least != identity.getLeastSignificantBits())
+				identity = new UUID(most, least);
+		} else getIdentifier();
+		
+		pingbackTicks = cmp.getInteger(TAG_PINGBACK_TICKS);
+		lastPingbackX = cmp.getDouble(TAG_LAST_PINGBACK_X);
+		lastPingbackY = cmp.getDouble(TAG_LAST_PINGBACK_Y);
+		lastPingbackZ = cmp.getDouble(TAG_LAST_PINGBACK_Z);
+		
 		mana = cmp.getInteger(TAG_MANA);
 		rotationX = cmp.getFloat(TAG_ROTATION_X);
 		rotationY = cmp.getFloat(TAG_ROTATION_Y);
@@ -254,8 +317,6 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 						if(!BotaniaAccessHandler.BotaianConfig.silentSpreaders)
 							worldObj.playSoundEffect(xCoord, yCoord, zCoord, "botania:spreaderFire", 0.05F, 0.7F + 0.3F * (float) Math.random());
 					}
-
-					canShootBurst = false;
 				}
 			}
 		}
@@ -441,5 +502,27 @@ public class TileManaEater extends TileMod implements IWandBindable, IManaReceiv
 	@Override
 	public void setCanShoot(boolean arg0) {
 		this.canShootBurst=arg0;
+	}
+
+	@Override
+	public void pingback(IManaBurst burst, UUID expectedIdentity) {
+		if(getIdentifier().equals(expectedIdentity)) {
+			pingbackTicks = TICKS_ALLOWED_WITHOUT_PINGBACK;
+			Entity e = (Entity) burst;
+			lastPingbackX = e.posX;
+			lastPingbackY = e.posY;
+			lastPingbackZ = e.posZ;
+			setCanShoot(false);
+		}
+	}
+
+	@Override
+	public UUID getIdentifier() {
+		if(identity == null)
+			identity = UUID.randomUUID();
+		return identity;
+	}
+	public UUID getIdentifierUnsafe() {
+		return identity;
 	}
 }

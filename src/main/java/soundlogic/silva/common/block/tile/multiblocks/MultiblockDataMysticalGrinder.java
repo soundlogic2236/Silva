@@ -32,6 +32,7 @@ import net.minecraft.profiler.Profiler;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.MinecraftException;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
@@ -136,7 +137,17 @@ public class MultiblockDataMysticalGrinder extends MultiblockDataBase {
 	public MultiblockDataMysticalGrinder() {
 		super(new BlockData(Blocks.sticky_piston, 0));
 		BlockData core = new BlockData(Blocks.sticky_piston, 0);
-		BlockData dirt = new BlockData(Blocks.dirt, 1);
+		BlockData dirt = new BlockData(Blocks.dirt, 1) {
+			ItemStack courseDirt;
+
+			public ItemStack[] forMultiblockGetMaterials() {
+				if(courseDirt==null) {
+					courseDirt = new ItemStack(Blocks.dirt, 1, 1);
+					courseDirt.setStackDisplayName(StatCollector.translateToLocal("silva.misc.coarseDirt"));
+				}
+				return new ItemStack[] { courseDirt };
+			}
+		};
 		BlockData crystal = new BlockData(ModBlocks.manaCrystal, 0);
 		BlockData weed = new BlockData(ModBlocks.dwarfWeed, 0);
 		BlockData pylon = new BlockData(ModBlocks.dimensionalPylon, BlockPylon.getMetadataForDimension(Dimension.NIDAVELLIR));

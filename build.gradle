@@ -47,15 +47,15 @@ group = "soundlogic.silva" // http://maven.apache.org/guides/mini/guide-naming-c
 archivesBaseName = "Silva"
 
 minecraft {
-    version = "1.7.10-10.13.2.1291"
+    version = "1.7.10-10.13.4.1448-1.7.10"
     runDir = "eclipse"
 }
 
 dependencies {
-    compile "codechicken:CodeChickenLib:1.7.10-1.1.1.106:dev"
-    compile "codechicken:CodeChickenCore:1.7.10-1.0.4.29:dev"
+    compile "codechicken:CodeChickenLib:1.7.10-1.1.3.138:dev"
+    compile "codechicken:CodeChickenCore:1.7.10-1.0.7.46:dev"
     compile "mcp.mobius.waila:Waila:1.5.8_1.7.10"
-    compile "codechicken:NotEnoughItems:1.7.10-1.0.3.67:dev"
+    compile "codechicken:NotEnoughItems:1.7.10-1.0.5.111:dev"
 }
 
 processResources

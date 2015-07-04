@@ -1,18 +1,28 @@
 package soundlogic.silva.common.block.tile.multiblocks;
 
+import static net.minecraftforge.common.util.ForgeDirection.EAST;
+import static net.minecraftforge.common.util.ForgeDirection.NORTH;
+import static net.minecraftforge.common.util.ForgeDirection.SOUTH;
+import static net.minecraftforge.common.util.ForgeDirection.WEST;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.opengl.GL11;
 
+import com.google.common.collect.HashBiMap;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.block.ModBlocks;
 import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataBase.BlockData;
+import soundlogic.silva.common.block.tile.multiblocks.MultiblockDataBase.BlockData.MultiblockComponentFromBlockData;
 import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibMultiblockNames;
 import vazkii.botania.api.lexicon.LexiconEntry;
+import vazkii.botania.api.lexicon.multiblock.Multiblock;
+import vazkii.botania.api.lexicon.multiblock.component.MultiblockComponent;
 import vazkii.botania.api.mana.IManaPool;
 import vazkii.botania.client.core.handler.HUDHandler;
 import net.minecraft.block.Block;
@@ -32,6 +42,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
@@ -54,21 +65,31 @@ public class MultiblockDataLavashroom extends MultiblockDataBase {
 	IIcon iconMushroom_inside_edge;
 	IIcon iconMushroom_inside_edge_dull;
 	
+	private static class BlockDataMushroom extends BlockData {
+		public BlockDataMushroom(Block block, int meta) {
+			super(block, meta);
+		}
+
+		public ItemStack[] forMultiblockGetMaterials() {
+			return new ItemStack[] { new ItemStack(block, 1, 0) };
+		}
+	}
+	
 	public MultiblockDataLavashroom() {
 		super(new BlockData(BotaniaAccessHandler.findBlock("mushroom"),14));
 		BlockData core = new BlockData(BotaniaAccessHandler.findBlock("mushroom"),14);
-		BlockData mushroom0 = new BlockData(Blocks.red_mushroom_block,0);
-		BlockData mushroom1 = new BlockData(Blocks.red_mushroom_block,1);
-		BlockData mushroom2 = new BlockData(Blocks.red_mushroom_block,2);
-		BlockData mushroom3 = new BlockData(Blocks.red_mushroom_block,3);
-		BlockData mushroom4 = new BlockData(Blocks.red_mushroom_block,4);
-		BlockData mushroom5 = new BlockData(Blocks.red_mushroom_block,5);
-		BlockData mushroom6 = new BlockData(Blocks.red_mushroom_block,6);
-		BlockData mushroom7 = new BlockData(Blocks.red_mushroom_block,7);
-		BlockData mushroom8 = new BlockData(Blocks.red_mushroom_block,8);
-		BlockData mushroom9 = new BlockData(Blocks.red_mushroom_block,9);
-		BlockData mushroom10 = new BlockData(Blocks.red_mushroom_block,10);
-		BlockData deepRock = new BlockData(ModBlocks.dwarfRock,0);
+		BlockData mushroom0 = new BlockDataMushroom(Blocks.red_mushroom_block,0);
+		BlockData mushroom1 = new BlockDataMushroom(Blocks.red_mushroom_block,1);
+		BlockData mushroom2 = new BlockDataMushroom(Blocks.red_mushroom_block,2);
+		BlockData mushroom3 = new BlockDataMushroom(Blocks.red_mushroom_block,3);
+		BlockData mushroom4 = new BlockDataMushroom(Blocks.red_mushroom_block,4);
+		BlockData mushroom5 = new BlockDataMushroom(Blocks.red_mushroom_block,5);
+		BlockData mushroom6 = new BlockDataMushroom(Blocks.red_mushroom_block,6);
+		BlockData mushroom7 = new BlockDataMushroom(Blocks.red_mushroom_block,7);
+		BlockData mushroom8 = new BlockDataMushroom(Blocks.red_mushroom_block,8);
+		BlockData mushroom9 = new BlockDataMushroom(Blocks.red_mushroom_block,9);
+		BlockData mushroom10 = new BlockDataMushroom(Blocks.red_mushroom_block,10);
+		BlockData deepRock = new BlockDataMushroom(ModBlocks.dwarfRock,0);
 
 		creationRequirementsTemplate = new BlockData[][][] {
 					{{BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD, BlockData.WILDCARD},

@@ -17,6 +17,7 @@ import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
 import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibMultiblockNames;
 import vazkii.botania.api.lexicon.LexiconEntry;
+import vazkii.botania.api.lexicon.multiblock.Multiblock;
 import vazkii.botania.api.mana.IManaPool;
 import vazkii.botania.client.core.handler.HUDHandler;
 import net.minecraft.block.Block;
@@ -75,7 +76,7 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 		BlockData purplePetal = new BlockData(BotaniaAccessHandler.findBlock("petalBlock"),10);
 		BlockData blackPetal = new BlockData(BotaniaAccessHandler.findBlock("petalBlock"),15);
 		BlockData ironBar = new BlockData(Blocks.iron_bars,0);
-		BlockData manaEater = new BlockData() {
+		BlockData manaEater = new BlockData(ModBlocks.manaEater, 0) {
 			@Override
 			public boolean isValid(TileMultiblockCore core, World world, int x, int y, int z) {
 				if(!(world.getBlock(x, y, z) instanceof BlockManaEater))
@@ -105,6 +106,10 @@ public class MultiblockDataCarnilotus extends MultiblockDataBase {
 			@Override
 			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				BlockData.WILDCARD.setBlock(core, world, x, y, z);
+			}
+			@Override
+			public void addToMultiblock(Multiblock mb, int x, int y, int z, boolean isCore) {
+				// NO OP
 			}
 		};
 

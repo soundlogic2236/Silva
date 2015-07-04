@@ -38,6 +38,7 @@ import soundlogic.silva.common.entity.EntityPixieProxy.PixieGroupHandler;
 import soundlogic.silva.common.lexicon.LexiconData;
 import soundlogic.silva.common.lib.LibMultiblockNames;
 import vazkii.botania.api.lexicon.LexiconEntry;
+import vazkii.botania.api.lexicon.multiblock.Multiblock;
 import vazkii.botania.api.mana.IManaPool;
 import vazkii.botania.client.core.handler.HUDHandler;
 import vazkii.botania.common.Botania;
@@ -78,6 +79,10 @@ public class MultiblockDataPixieFarm extends MultiblockDataBase {
 			@Override
 			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				//NO OP
+			}
+			@Override
+			public void addToMultiblock(Multiblock mb, int x, int y, int z, boolean isCore) {
+				// NO OP
 			}
 		};
 		

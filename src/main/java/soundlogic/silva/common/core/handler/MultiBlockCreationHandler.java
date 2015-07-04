@@ -368,17 +368,7 @@ public class MultiBlockCreationHandler {
 		}
 		
 	}
-	
-	public MultiBlockCreationHandler() {
-		new MultiblockDataLavashroom();
-		new MultiblockDataCarnilotus();
-		new MultiblockDataMysticalGrinder();
-		new MutliblockDataEnderCatcher();
-		new MultiblockDataPixieFarm();
-		new MultiblockDataPixieRoomEmpty();
-		new MultiblockDataPixieRoomDarkenedTheater();
-	}
-	
+
 	@SubscribeEvent
 	public void onUse(PlayerInteractEvent event) {
 		ItemStack stack = event.entityPlayer.getCurrentEquippedItem();

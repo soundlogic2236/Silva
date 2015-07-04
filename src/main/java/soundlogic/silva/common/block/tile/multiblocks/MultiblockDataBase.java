@@ -12,7 +12,12 @@ import soundlogic.silva.common.block.BlockMultiblockProxyNoRender;
 import soundlogic.silva.common.block.BlockMultiblockProxyNoRenderWater;
 import soundlogic.silva.common.block.BlockMultiblockProxyWater;
 import soundlogic.silva.common.block.ModBlocks;
+import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
+import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.lexicon.LexiconEntry;
+import vazkii.botania.api.lexicon.multiblock.Multiblock;
+import vazkii.botania.api.lexicon.multiblock.MultiblockSet;
+import vazkii.botania.api.lexicon.multiblock.component.MultiblockComponent;
 import vazkii.botania.api.mana.IManaPool;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -21,10 +26,12 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
@@ -39,6 +46,8 @@ public abstract class MultiblockDataBase {
 	
 	public static HashMap<Block, List<MultiblockDataBase>> multiBlocks = new HashMap<Block, List<MultiblockDataBase>>();
 	public static HashMap<String, MultiblockDataBase> multiBlocksByName = new HashMap<String, MultiblockDataBase> ();
+	
+	private MultiblockSet multiblockSet;
 	
 	public MultiblockDataBase(BlockData rootBlock) {
 		super();
@@ -57,11 +66,9 @@ public abstract class MultiblockDataBase {
 	public boolean tryCreate(World world, int x, int y, int z) {
 		int trial = 0;
 		while(trial < 16) {
-			boolean mirrorX = ( trial & 1 ) > 0;
-			boolean mirrorZ = ( trial & 2 ) > 0;
-			boolean rotation1 = ( trial & 4 ) > 0;
-			boolean rotation2 = ( trial & 8 ) > 0;
-			int rotation = ( rotation1 ? 1 : 0 ) + ( rotation2 ? 2 : 0 );
+			boolean mirrorX = getMirrorXForTrial(trial);
+			boolean mirrorZ = getMirrorZForTrial(trial);
+			int rotation = getRotationForTrial(trial);
 			if(shouldTryTransform(trial,mirrorX, mirrorZ, rotation)) {
 				if(matchesTemplateForCreation(world,x,y,z,mirrorX,mirrorZ,rotation)) {
 					create(world,x,y,z,mirrorX,mirrorZ,rotation);
@@ -270,6 +277,10 @@ public abstract class MultiblockDataBase {
 			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				//NO OP
 			}
+			@Override
+			public void addToMultiblock(Multiblock mb, int x, int y, int z, boolean isCore) {
+				// NO OP
+			}
 		};
 		public static BlockData AIR = new BlockData() {
 			@Override
@@ -279,6 +290,10 @@ public abstract class MultiblockDataBase {
 			@Override
 			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				world.setBlockToAir(x, y, z);
+			}
+			@Override
+			public void addToMultiblock(Multiblock mb, int x, int y, int z, boolean isCore) {
+				// NO OP
 			}
 		};
 		public static BlockData POOL = new BlockData() {
@@ -293,6 +308,22 @@ public abstract class MultiblockDataBase {
 			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				//NO OP
 			}
+			public void addToMultiblock(Multiblock mb, int x, int y, int z, boolean isCore) {
+				MultiblockComponent component = new MultiblockComponentFromBlockData(this, x, y, z, isCore);
+				mb.addComponent(component);
+			}
+			
+			public Block forMultiblockGetBlock() {
+				return BotaniaAccessHandler.findBlock("pool");
+			}
+			
+			public int forMultiblockGetMeta() {
+				return (int) (BotaniaAPI.internalHandler.getWorldElapsedTicks() / 20) % 3;
+			}
+			@Override
+			public ItemStack[] forMultiblockGetMaterials() {
+				return new ItemStack[] { new ItemStack(BotaniaAccessHandler.findBlock("pool")) };
+			}
 		};
 		
 		public static BlockData WATER = new BlockData() {
@@ -306,6 +337,18 @@ public abstract class MultiblockDataBase {
 			public void setBlock(TileMultiblockCore multiblock, World world, int x, int y, int z) {
 				world.setBlock(x, y, z, Blocks.water, 0, 0);
 			}
+			@Override
+			public Block forMultiblockGetBlock() {
+				return Blocks.water;
+			}
+			@Override
+			public int forMultiblockGetMeta() {
+				return 0;
+			}
+			@Override
+			public ItemStack[] forMultiblockGetMaterials() {
+				return new ItemStack[] { new ItemStack(Items.water_bucket) };
+			}
 		};
 		
 		public static BlockData MULTIBLOCK = new BlockData() {
@@ -316,6 +359,10 @@ public abstract class MultiblockDataBase {
 			@Override
 			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				world.setBlock(x, y, z, ModBlocks.multiblockProxy,0,0);
+			}
+			@Override
+			public void addToMultiblock(Multiblock mb, int x, int y, int z, boolean isCore) {
+				// NO OP
 			}
 		};
 
@@ -328,6 +375,10 @@ public abstract class MultiblockDataBase {
 			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				world.setBlock(x, y, z, ModBlocks.multiblockCore,0,0);
 			}
+			@Override
+			public void addToMultiblock(Multiblock mb, int x, int y, int z, boolean isCore) {
+				// NO OP
+			}
 		};
 		
 		public static BlockData MULTIBLOCK_LAVA = new BlockData() {
@@ -338,6 +389,10 @@ public abstract class MultiblockDataBase {
 			@Override
 			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				world.setBlock(x, y, z, ModBlocks.multiblockProxyLava,0,0);
+			}
+			@Override
+			public void addToMultiblock(Multiblock mb, int x, int y, int z, boolean isCore) {
+				// NO OP
 			}
 		};
 
@@ -350,6 +405,10 @@ public abstract class MultiblockDataBase {
 			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				world.setBlock(x, y, z, ModBlocks.multiblockProxyWater,0,0);
 			}
+			@Override
+			public void addToMultiblock(Multiblock mb, int x, int y, int z, boolean isCore) {
+				// NO OP
+			}
 		};
 
 		public static BlockData MULTIBLOCK_NO_RENDER = new BlockData() {
@@ -361,6 +420,10 @@ public abstract class MultiblockDataBase {
 			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				world.setBlock(x, y, z, ModBlocks.multiblockProxyNoRender,0,0);
 			}
+			@Override
+			public void addToMultiblock(Multiblock mb, int x, int y, int z, boolean isCore) {
+				// NO OP
+			}
 		};
 		
 		public static BlockData MULTIBLOCK_NO_RENDER_WATER = new BlockData() {
@@ -371,6 +434,10 @@ public abstract class MultiblockDataBase {
 			@Override
 			public void setBlock(TileMultiblockCore core, World world, int x, int y, int z) {
 				world.setBlock(x, y, z, ModBlocks.multiblockProxyNoRenderWater,0,0);
+			}
+			@Override
+			public void addToMultiblock(Multiblock mb, int x, int y, int z, boolean isCore) {
+				// NO OP
 			}
 		};
 		
@@ -414,6 +481,73 @@ public abstract class MultiblockDataBase {
 			if(metadata!=-1)
 				world.setBlock(x, y, z, block, metadata, 0);
 		}
+
+		public void addToMultiblock(Multiblock mb, int x, int y, int z, boolean isCore) {
+			MultiblockComponent component = new MultiblockComponentFromBlockData(this, x, y, z, isCore);
+			mb.addComponent(component);
+		}
+		
+		public Block forMultiblockGetBlock() {
+			return block;
+		}
+		
+		public int forMultiblockGetMeta() {
+			return metadata;
+		}
+
+		public ItemStack[] forMultiblockGetMaterials() {
+			return new ItemStack[] { new ItemStack(block, 1, metadata) };
+		}
+
+		public void forMultiblockDoRotation(MultiblockComponent multiblockComponentFromBlockData, double angle) {
+			// NO OP
+		}
+		
+		protected static class MultiblockComponentFromBlockData extends MultiblockComponent {
+
+			BlockData data;
+			boolean isCore;
+			
+			public MultiblockComponentFromBlockData(BlockData data, ChunkCoordinates relPos, boolean isCore) {
+				super(relPos, data.block, data.metadata);
+				this.data=data;
+				this.isCore=isCore;
+			}
+
+			public MultiblockComponentFromBlockData(BlockData data, int x, int y, int z, boolean isCore) {
+				this(data, new ChunkCoordinates(x, y, z), isCore);
+			}
+
+			@Override
+			public Block getBlock() {
+				return data.forMultiblockGetBlock();
+			}
+
+			@Override
+			public int getMeta() {
+				return data.forMultiblockGetMeta();
+			}
+			
+			public ItemStack[] getMaterials() {
+				return data.forMultiblockGetMaterials();
+			}
+			@Override
+			public MultiblockComponent copy() {
+				return new MultiblockComponentFromBlockData(data, relPos, isCore);
+			}
+
+			@Override
+			public boolean matches(World world, int x, int y, int z) {
+				return data.isValid(null, world, x, y, z);
+			}
+
+			@Override
+			public void rotate(double angle) {
+				super.rotate(angle);
+				data.forMultiblockDoRotation(this, angle);
+			}
+		}
+
 	}
 	
 	public abstract String getName();
@@ -444,5 +578,94 @@ public abstract class MultiblockDataBase {
 	public void onWalking(TileMultiblockBase tile, TileMultiblockCore core, Entity ent) {
 		// NO OP
 	}
+	
+	public int getTrialToUseForMultiblockDisplay() {
+		int trial = 0;
+		while(trial < 16) {
+			boolean mirrorX = getMirrorXForTrial(trial);
+			boolean mirrorZ = getMirrorZForTrial(trial);
+			int rotation = getRotationForTrial(trial);
+			if(shouldTryTransform(trial,mirrorX, mirrorZ, rotation))
+				return trial;
+			trial++;
+		}
+		return -1;
+	}
+	
+	public static final boolean getMirrorXForTrial(int trial) {
+		return ( trial & 1 ) > 0;
+	}
+	
+	public static final boolean getMirrorZForTrial(int trial) {
+		return ( trial & 2 ) > 0;
+	}
+	
+	public static final int getRotationForTrial(int trial) {
+		boolean rotation1 = ( trial & 4 ) > 0;
+		boolean rotation2 = ( trial & 8 ) > 0;
+		return ( rotation1 ? 1 : 0 ) + ( rotation2 ? 2 : 0 );
+	}
+	
+	public static class SilvaMultiblock extends Multiblock {
+		MultiblockDataBase silvaMultiblock;
+		public SilvaMultiblock(MultiblockDataBase silvaMultiblock) {
+			super();
+			this.silvaMultiblock=silvaMultiblock;
+		}
+		public Multiblock[] createRotations() {
+			Multiblock[] blocks = new Multiblock[4];
+			blocks[0] = this;
+			blocks[1]=blocks[0].copy();
+			blocks[2]=blocks[0].copy();
+			blocks[3]=blocks[0].copy();
+			if(silvaMultiblock.shouldTryTransform(4, false, false, 1))
+				blocks[1].rotate(Math.PI / 2);
+			if(silvaMultiblock.shouldTryTransform(8, false, false, 2)) {
+				blocks[2].rotate(Math.PI / 2);
+				blocks[2].rotate(Math.PI / 2);
+			}
+			if(silvaMultiblock.shouldTryTransform(12, false, false, 3)) {
+				blocks[3].rotate(Math.PI / 2);
+				blocks[3].rotate(Math.PI / 2);
+				blocks[3].rotate(Math.PI / 2);
+			}
+			return blocks;
+		}
+	}
+	
+	protected MultiblockSet makeMultiblockSet() {
+		Multiblock mb = new SilvaMultiblock(this);
+		int renderOffsetX;
+		int renderOffsetY;
+		int renderOffsetZ;
+		
+		int trial = getTrialToUseForMultiblockDisplay();
+		
+		boolean mirrorX = getMirrorXForTrial(trial);
+		boolean mirrorZ = getMirrorZForTrial(trial);
+		int rotation = getRotationForTrial(trial);
+		
+		for(int i = 0;i<creationRequirementsTemplate.length;i++) {
+			BlockData[][] templateSlice1=creationRequirementsTemplate[i];
+			for(int j = 0; j<templateSlice1.length;j++) {
+				BlockData[] templateSlice2=templateSlice1[j];
+				for(int k = 0;k<templateSlice2.length;k++) {
+					BlockData data = templateSlice2[k];
+					int[] transCoords = getTransformedCoords(0,0,0,i,j,k,mirrorX,mirrorZ,rotation);
+					boolean isCore = transCoords[0]==0 && transCoords[1]==0 && transCoords[2]==0;
+					data.addToMultiblock(mb, transCoords[2], transCoords[1], -transCoords[0], isCore);
+				}
+			}
+		}
+		mb.setRenderOffset(0, this.templateOrigin[1], 0);
+		return mb.makeSet();
+	}
 
+	public final MultiblockSet getMultiblockSet() {
+		if(multiblockSet==null)
+			multiblockSet=makeMultiblockSet();
+		return multiblockSet;
+	}
+	
+	
 }

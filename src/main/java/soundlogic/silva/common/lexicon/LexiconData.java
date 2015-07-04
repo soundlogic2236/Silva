@@ -14,7 +14,9 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import soundlogic.silva.client.lib.LibResources;
 import soundlogic.silva.common.block.ModBlocks;
+import soundlogic.silva.common.block.tile.multiblocks.ModMultiblocks;
 import soundlogic.silva.common.core.handler.BotaniaAccessHandler;
+import soundlogic.silva.common.core.handler.MultiBlockCreationHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler;
 import soundlogic.silva.common.core.handler.portal.DimensionHandler.Dimension;
 import soundlogic.silva.common.crafting.ModCraftingRecipes;
@@ -44,6 +46,7 @@ import vazkii.botania.common.item.ItemLexicon;
 import vazkii.botania.common.lexicon.page.PageCraftingRecipe;
 import vazkii.botania.common.lexicon.page.PageElvenRecipe;
 import vazkii.botania.common.lexicon.page.PageLoreText;
+import vazkii.botania.common.lexicon.page.PageMultiblock;
 import vazkii.botania.common.lexicon.page.PagePetalRecipe;
 import vazkii.botania.common.lexicon.page.PageRecipe;
 import vazkii.botania.common.lexicon.page.PageText;
@@ -394,7 +397,8 @@ public class LexiconData {
 				new PageAdvancedImage("7",LibResources.LAVA_SHROOM_PICS[4],PageBackground.DEFAULT),
 				new PageAdvancedText("8", PageBackground.DEFAULT),
 				new PageAdvancedText("9", PageBackground.DEFAULT),
-				new PageAdvancedText("10",PageBackground.DEFAULT));
+				new PageAdvancedText("10",PageBackground.DEFAULT),
+				new PageMultiblock("11", ModMultiblocks.lavashroom.getMultiblockSet()));
 		
 		darkElves=new SLexiconEntry(LibLexicon.DARK_ELVES_DESCRIPTION, categoryWorldTree);
 		darkElves.setKnowledgeType(darkElfKnowledge).setLexiconPages(
@@ -423,8 +427,8 @@ public class LexiconData {
 				new PageAdvancedImage("7",LibResources.CARNILOTUS_PICKS[4],PageBackground.DEFAULT),
 				new PageAdvancedImage("8",LibResources.CARNILOTUS_PICKS[5],PageBackground.DEFAULT),
 				new PageAdvancedImage("9",LibResources.CARNILOTUS_PICKS[6],PageBackground.DEFAULT),
-				new PageAdvancedImage("19",LibResources.CARNILOTUS_PICKS[7],PageBackground.DEFAULT)
-				);
+				new PageAdvancedImage("19",LibResources.CARNILOTUS_PICKS[7],PageBackground.DEFAULT),
+				new PageMultiblock("11", ModMultiblocks.carnilotus.getMultiblockSet()));
 
 		rhododender=new SLexiconEntry(LibLexicon.RHODODENDER, BotaniaAPI.categoryFunctionalFlowers);
 		rhododender.setKnowledgeType(BotaniaAPI.basicKnowledge).setLexiconPages(
@@ -450,7 +454,21 @@ public class LexiconData {
 				new PageAdvancedText("9", PageBackground.DEFAULT)
 				);
 		
+		mysticalGrinder = new SLexiconEntry(LibLexicon.MYSTICAL_GRINDER, BotaniaAPI.categoryDevices);
+		mysticalGrinder.setKnowledgeType(dwarvenKnowledge).setLexiconPages(
+				new PageMultiblock("0", ModMultiblocks.mysticalgrinder.getMultiblockSet()));
+		enderCatcher = new SLexiconEntry(LibLexicon.ENDER_CATCHER, BotaniaAPI.categoryEnder);
+		enderCatcher.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
+				new PageMultiblock("0", ModMultiblocks.endercatcher.getMultiblockSet()));
+		pixie_farm = new SLexiconEntry(LibLexicon.PIXIE_FARM, BotaniaAPI.categoryAlfhomancy);
+		pixie_farm.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
+				new PageMultiblock("0", ModMultiblocks.pixiefarm.getMultiblockSet()));
+		pixie_farm_upgrades = new SLexiconEntry(LibLexicon.PIXIE_ROOMS, BotaniaAPI.categoryAlfhomancy);
+		pixie_farm_upgrades.setKnowledgeType(worldTreeKnowledge).setLexiconPages(
+				new PageMultiblock("0", ModMultiblocks.pixieroom.getMultiblockSet()));
+
 		definePapers();
+
 	}
 
 	public static void definePapers() {
