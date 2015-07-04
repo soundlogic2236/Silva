@@ -459,6 +459,6 @@ silva.page.manaPotato0=Sometimes, you find yourself needing &4Mana&0 somewhere, 
 
 # -- MYSTICAL GRINDER
 silva.entry.mysticalGrinder=Mystical Grinder
-silva.page.mysticalGrinder0=something something something mystical grinder is cool, hard to describe being awesome when it doesn't work on metals. The &4Mystical Grinder&0 will take any mineral ore and utilize the abilities of &1Deepweed&0 to extract every last bit of material from the rock, something that would otherwise require a fortune enchantment too powerful to be imbued on any known material.
+silva.page.mysticalGrinder0=&1Deepweed&0 is quite the tenacious plant. Having to grow underground, it's able to extract as much nutrition from its soil as possible. Planting it in this realm's relatively rich and soft soil permits the use of &1Deepweed&0's extraction capabilities for other purposes. The &4Mystical Grinder&0 will take any mineral ore and utilize the abilities of &1Deepweed&0 to extract every last bit of material from the rock, something that would otherwise require a fortune enchantment too powerful to be imbued on any known material.
 silva.page.mysticalGrinder1=Mystical Grinder
 silva.page.mysticalGrinder2=Any ores on the bottom layer moving towards the core will be picked up if possible and distributed to the &1Deepweed&0 plants above. If necessary, the ore will be divided into smaller pieces to equally distribute the work between the 14 plants. After processing is completed, the output will be deposited directly below the core
