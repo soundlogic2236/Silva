@@ -450,9 +450,10 @@ silva.page.hollower0=Digging out large rooms underground is quite a chore. The &
 
 # -- INFUSED PYLONS
 silva.entry.infusedPylons=Infused Pylons
-silva.page.infusedPylons0=There are a few varieties of energy-filled &4Pylons&0 that can be obtained with just &4Mana&0 and minerals, and some more with access to the &4Elves&0' resources. However, the crystal structure has the potential for many more uses. Placing an &1Untuned Pylon&0 near an active &4Bifrost portal&0 will result in some of the realm's leaking energy being absorbed by the crystal, resulting in a pylon infused with the energies of that realm.
-silva.page.infusedPylons1=Crafting an &1Untuned Pylon&0
-silva.page.infusedPylons2=Infusing an &1Untuned Pylon&0
+silva.page.infusedPylons0=There are a few varieties of energy-filled &4Pylons&0 that can be obtained with just &4Mana&0 and minerals, and some more with access to the &4Elves&0' resources. However, the crystal structure has the potential for many more uses. Placing an &1Untuned Pylon&0 near an active &4Bifrost Portal&0 will result in some of the realm's leaking energy being absorbed by the crystal, resulting in a pylon infused with the energies of that realm.
+silva.page.infusedPylons1=It is worth noting that exposure via &4Bifrost Portals&0 is only the most common way to infuse a pylon. Simply placing down a pylon in a realm will infuse it directly. However, materials from a given realm are already full of that realm's energy, and need a surge of magical power such as the one released when a higher-level &1Gaia Guardian&0 is defeated, to be further infused.
+silva.page.infusedPylons2=Crafting an &1Untuned Pylon&0
+silva.page.infusedPylons3=Infusing an &1Untuned Pylon&0
 
 # -- MANA POTATO
 silva.entry.manaPotato=Mana Potato
@@ -462,4 +463,9 @@ silva.page.manaPotato0=Sometimes, you find yourself needing &4Mana&0 somewhere, 
 silva.entry.mysticalGrinder=Mystical Grinder
 silva.page.mysticalGrinder0=&1Deepweed&0 is quite the tenacious plant. Having to grow underground, it's able to extract as much nutrition from its soil as possible. Planting it in this realm's relatively rich and soft soil permits the use of &1Deepweed&0's extraction capabilities for other purposes. The &4Mystical Grinder&0 will take any mineral ore and utilize the abilities of &1Deepweed&0 to extract every last bit of material from the rock, something that would otherwise require a fortune enchantment too powerful to be imbued on any known material.
 silva.page.mysticalGrinder1=Mystical Grinder
-silva.page.mysticalGrinder2=Any ores on the bottom layer moving towards the core will be picked up if possible and distributed to the &1Deepweed&0 plants above. If necessary, the ore will be divided into smaller pieces to equally distribute the work between the 14 plants. After processing is completed, the output will be deposited directly below the core
+silva.page.mysticalGrinder2=Any ores on the bottom layer moving towards the core will be picked up if possible and distributed to the &1Deepweed&0 plants above. If necessary, the ore will be divided into smaller pieces to equally distribute the work between the 14 plants. After processing is completed, the output will be deposited directly below the core.
+
+# -- ENDER CATCHER
+silva.entry.enderCatcher=Ender Catcher
+silva.page.enderCatcher0=Chains of &1Rhododenders&0 are incredibly useful, but a limit on their length is quickly reached due to the accumulated damage, and keeping a supply of &1Ender Pearls&0 is a nuisance. Utilizing pylons infused with the same energies as the pearls, the &1Ender Catcher&0 solves both of these problems, catching any &1Ender Pearls&0 above it. This ends the teleportation at the center of the structure without damage, and retrieves the pearl, depositing it in the &1Hopper&0 used in the structure's creation.
+silva.page.enderCatcher1=Ender Catcher
