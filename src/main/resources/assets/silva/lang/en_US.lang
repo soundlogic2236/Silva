@@ -469,3 +469,9 @@ silva.page.mysticalGrinder2=Any ores on the bottom layer moving towards the core
 silva.entry.enderCatcher=Ender Catcher
 silva.page.enderCatcher0=Chains of &1Rhododenders&0 are incredibly useful, but a limit on their length is quickly reached due to the accumulated damage, and keeping a supply of &1Ender Pearls&0 is a nuisance. Utilizing pylons infused with the same energies as the pearls, the &1Ender Catcher&0 solves both of these problems, catching any &1Ender Pearls&0 above it. This ends the teleportation at the center of the structure without damage, and retrieves the pearl, depositing it in the &1Hopper&0 used in the structure's creation.
 silva.page.enderCatcher1=Ender Catcher
+
+# -- STURDY SLINGSHOT
+silva.entry.slingshot=Sturdy Slingshot
+silva.page.slingshot0=A &1Dispenser&0 can automatically throw things, sure, but it can't do it with precision, lacks potential for long-range use, and doesn't work with &1Ender Pearls&0. The &1Sturdy Slingshot&0 is a much more specialized device, capable of doing all of those things, while giving up the internal buffer, the capacity for items that a &1Dispenser&0 just drops on the ground, and in favor of manual activation, &4Redstone&0 control.
+silva.page.slingshot1=To use the &1Sturdy Slingshot&0, one must simply set a trajectory by binding the block to a target location with a &1Wand of the Forest&0, insert an item using a &1Hopper&0 or something similar, and right click the block.
+silva.page.slingshot2=Crafting a &1Sturdy Slingshot&0
